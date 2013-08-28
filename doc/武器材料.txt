@@ -1,0 +1,54 @@
+
+武器材料 -- Blues
+首先，这个是基于tx板块wuya同志的心血，我只是补充点拿的方法，所以希望对newbie有帮助
+我觉得newbie不着急ding武器，因为坏了修理费高，1点要1gold，所以，大家慎重。
+
+如果你一开始没有武器的时候，你只要直接去 张铁匠那里 tj 3s,2e,se,s,s,w
+然后l sign,按照sign里面的提示ding sword XXXXXXXXXXX， 要10gold，不需要任何材料
+这个时候新出来的武器只有10伤害，然后你根据上面的材料，1个个去ji，没ji一次，花10gold，然后加10点伤害
+ji的材料必须达到某个级别才能用，比如：lv60的id，最多可以用的材料是 水晶球 ，等升级倒61的时候，就可以用那个绣铁块了，而倒61lv的时候，武器的杀伤力是 基本10＋80（一共用了8个材料来ji，每个10伤害）＝90
+
+乌铁块 lv 12
+(登封县) tj 9w,se, buy from sun
+
+熟铁块 lv 19
+(登封县) tj 9w,se, buy from sun
+
+铸铁块 lv 26
+(登封县) tj 9w,se, buy from sun
+
+生铁块 lv 33
+(登封县) tj 9w,se, buy from sun
+
+苍穹千年寒铁 lv 40
+(黄山) from cx center, s,w,wu,wu,wd,sw, test，对内力有要求，好像是1000内力
+
+塔公铁 lv 47
+(塔公寺) from gw绿洲lama， n,ne,nw,w,nw,nw,nw,w,w,nw,w,w,w,w,nw,s,s,w,w,sd,sw,sw,sw,w,w,sd,s(可能有误差，你们可以map看1下塔公寺的位置，give 1 gold to lama, l 绿塔，l hole，就会自动拿到，但是有可能是塔公寺的diqi，那个是riddle用的，你们没用)
+
+水晶球 lv 54
+(桃源) from tj 10e,3s,e,e,e,e, around to rabbit, cactch rabbit, e,e,e,n,push door,n,n,e,swing 秋千,,w, search room就拿到了
+
+锈铁块 lv 61
+(黄山) cx center, s,w,wu,wu,wd,wu,n,wu,wu,sw,w,wd,w,n,w,w,w,sw,w,nu
+到了以后要用lindao（task）chop vine（藤条），north就可以拿到
+
+陨石碎片 lv 68
+(帝王谷) from tj 11e,3eu,ne,e,e,e,s,s,s,s,e,pick luwei,e,dive,e,e,eu,climb cliff,step 黑色印痕, use lighter(在桃源的oven拿),north,可以拿到（那个地方和另外1个 魔教的riddle有关，拿真雷火珠的）
+
+漆黑的小刀 lv 80
+(新疆) from gw绿洲的lama 3w,nw,ne,nw,ne,nw,ne,nw,ne,nw,ne,wd,wu,wd,wu,wd,wu,wd,wu,nw,nw,w,w,w,n,n,n,nw,ne,n,n,看见傅红雪，杀了他，可以拿（路径可能有误差，反正大家走到新疆买什么烤羊肉啊烤包子啊的地方就差不多了）
+
+我记得路径可能都有点误差，但是大方向不会错，大家耐心周围看看，可以发现
+**天剑: 90级
+8把剑(broken sword) then ask zhu ting about 剑, give to zhu ting at baiyun, and give anything to start the conversation! come back about 72 mins!
+
+**苍穹神剑: 110级 武当山门 southup east, 武当7个道士的第一个
+
+**战虎之魄: 120级
+kill chi you
+
+==明月心的心：135级
+mingyue xin
+杜先生的山茶花：135级
+du xiansheng

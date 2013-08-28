@@ -1,0 +1,78 @@
+/al starthb {ask meng about mission;/ticker {hb} {ask meng about mission;look} {70}}
+
+/ac {^镖头说道：“我们回镖局吧}{stopk;ask meng about reward;resethb;bj2fy;/delay {2}{fullheal};/delay {18}{fy2bj};/delay {20}{starthb}}
+/ac {^你已经接过一趟镖了，还不快去送，难道被劫去了}{ask meng about lost}
+/ac {^查猛根本不想回答你的问题} {/delay {3}{ask meng about mission}}
+/ac {^哎！我真是看错人了，连这点小事都办不成}{starthb}
+/ac {^查猛对你说道：现在有一笔镖银需要}{resethb;hb_accept;accept easy;/delay {5}{accept easy}}
+/ac {^查猛告诉你：雇佣一个镖师(ask meng about guard)}{ask meng about guard}
+/ac {^查猛说道：护镖路途危险，我看这位}{stophb}
+/ac {^现在可以雇佣的镖师有}{choose_guard;choose assassin;eatall}
+
+/ac {^您要将另一个连线中的相同人物赶出去}{/delay {3}{y;look}}
+/nop ac {^您要将另一个连线中的相同人物赶出去}{y;/cr;/delay {3}{look};/delay {4}{resethb}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{y;/cr;/delay {1}{hb_tj;resethb}}
+/ac {^你又在流沙中陷深了一些}{restarthb}
+/ac {^看起来%0想杀死你！}{enforce 90;enforce 100;kkk;startk;look}
+/ac {^突然一个劫匪跳出来拦在路上！}{buff;enforce 90;enforce 100;kkk;startk}
+/ac {^成功剿匪}{resethb;hp;l}
+/ac {^你上一个动作还没有完成，不能打坐}{/delay {1.5}{dazuo}}
+/ac {^  少林 第二十一代俗家弟子「金狮掌」查猛(Meng)}{resethb}
+/ac {^重新连线完毕。}{resethb}
+
+/al stophb {
+/unac {^  少林 第二十一代俗家弟子「金狮掌」查猛(Meng)};
+/unac {^查猛对你说道：现在有一笔镖银需要};
+/unac {^查猛根本不想回答你的问题};
+/unac {^镖头说道：“我们回镖局吧};
+/unticker {hb};
+/unticker {r_hb};
+/unac {^您要将另一个连线中的相同人物赶出去};
+/unac {^请敲回车键［ＲＥＴＵＲＮ］};
+/unac {^你又在流沙中陷深了一些};
+/unac {^看起来%0想杀死你！};
+/unac {^突然一个劫匪跳出来拦在路上！};
+/unac {^成功剿匪};
+/unac {^你上一个动作还没有完成，不能打坐};
+/unac {^  少林 第二十一代俗家弟子「金狮掌」查猛(Meng)};
+/unac {^重新连线完毕。}
+}
+
+/al fullheal {stopk;rideto fy;u;/delay {1}{jd};/delay {5}{gsalute};/delay {9}{fy2zt}}
+/al gsalute {u;give gold to $helper;give gold box to $helper;d;aaa shuangbei;aaa horse;ride horse;/delay {1}{d;/4 e;s};/delay {2}{/5 salute};/delay {3}{n;/4 w;u}}
+/al resethb {/ticker {r_hb}{restarthb}{360}}
+/al restarthb {fullheal;/delay {15}{fy2bj};/delay {17}{eatall;starthb}}
+/nop 给仓库东西
+/var helper nurse;
+/al hbteam {/forall {superman yeah hard soft magic power fate kitchen fairy sex feeling}{team with}}
+/al hbgive {
+give gold box to $helper;
+give gold to $helper;
+give $helper sword;
+give $helper staff;
+give $helper spear;
+give $helper whip;
+give $helper axe;
+give $helper finger;
+give $helper ring;
+give $helper mask;
+give $helper hammer;
+give $helper hat;
+give $helper surcoat;
+give $helper belt;
+give $helper shield;
+give $helper mask;
+give $helper shoes;
+give $helper necklace;
+give $helper bracelet;
+give $helper blade;
+give $helper armor;
+give $helper gloves;
+give $helper cloth
+}
+/gag {^【风云天下】}
+/gag {^【传闻】}
+/gag {早都饿的心里发慌了，大口吃起手中的西瓜}
+/gag {向查猛打听}
+/gag {^一队镖车从内院驶出}
+/al hb_tj {w;s;aaal;/delay {2}{restarthb}}

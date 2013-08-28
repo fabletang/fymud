@@ -1,0 +1,85 @@
+#config {TINTIN CHAR} /
+/var myname lykos
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname 117.135.143.81 6666
+/session $myname china.fengyun.com 6000
+/nop session $myname fy.hbisp.com 3333
+/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
+/al ntchat {/unticker {checkchat}}
+/act {^请选择您使用的内码}{0}
+/act {^您的英文名字：} {$myname}
+/al reload {/read $myname.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
+/ac {^#SESSION '%0' DIED.}{/read %0.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
+/var hasleg 0
+/var hashand 0
+/al wileg {/if {$hasleg==0}{unwi all;wi leg}}
+/al wihand {/if {$hashand==0}{unwi all;wi jade}}
+/al wiw wileg
+/al wih wihand
+/ac {^  √烤鸡腿)}{/var hasleg 1;/var hashand 0} 
+/ac {^  √爪(Jade)}{/var hashand 1;/var hasleg 0} 
+/ac {^你从怀中摸出一对}{/var hashand 1;/var hasleg 0} 
+/ac {^你将手上的爪藏入}{/var hashand 0} 
+/ac {^你抓起一根烤鸡腿}{/var hashand 0;/var hasleg 1} 
+/al buff {i;perform dodge.wolverine}
+/var islian 0
+/ac {^你双目红赤，大张着手臂}{/var hashand 1;/var hasleg 0} 
+/al ki {wi jade;set target %0;/var npc %0;buff;/delay {2}{kill %0}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
+/nop ------------
+/var xl_max 0
+/var sc_ok 0
+/var zjbl_ok 0
+/al zh xiao
+/al dh {zh;perform duanhou}
+/al sg {zh;perform shigu}
+/al ak sg 
+/al kkx {/ticker {kill}{ak}{4.2}}
+/al startk {sg;/al ak sg;kkx}
+/al kx startk
+/al ssk startk
+/al stopk {/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『断喉』只能对战}{stopk;cks}
+/ac {^『嗜骨』只能对战}{stopk;cks}
+/ac {^你的法力太低}{hp}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{sk;yaoheal}
+/ac {^你仰天狼嚎“呜～嗷}{/al zh {/showme todo};/delay {40}{/al zh {xiao}}}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;get leg}
+/read gag.sc
+/read path.sc
+/read normal.sc
+/read quest.sc
+/read teama.sc
+/read status.sc
+/nop log o $myname.log
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/al hx {get matong from bag; drink matong; put matong in bag}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
+/unac {^然而，%1已经死了}{cks}
+/al getitem {
+    pick needle;
+    get 1200 needle from cactus bonsai;
+     stack;
+     retrieve 9428;
+     retrieve 9901;
+     retrieve 7626;
+     retrieve 8360;
+     retrieve 3478;
+     remove all;
+     wear all
+}
+/read autorecover.sc
+/al qq {wolf;quest}
+/al buyleg {buy fried chicken leg from waiter}
+/gag {^todo}
+/ac {^禅使出大悲千叶掌法}{/if {$is_kill==0}{askkill;ak;/ticker {kill}{ak}{4.2}}}

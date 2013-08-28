@@ -1,0 +1,29 @@
+
+
+It's also possible to install straight from the Fedora repository using 'yum install tintin', though this may give you an out of date version.
+Execute: tt++ to launch TinTin++
+Mandrake
+In order to compile the source code you may need to have the zlib and pcre libraries installed.
+Mac OS X (OSX)
+In order to compile the source code you may need to have the zlib and pcre libraries installed.
+Red Hat
+In order to compile the source code you may need to have the zlib and pcre libraries installed.
+Slackware
+In order to compile the source code you may need to have the zlib and pcre libraries installed.
+Solaris
+If you get symbol reference errors add -lxnet to the end of the CC variable in Makefile: CC = -Wall -lxnet
+SuSe
+In order to compile the source code you may need to have the zlib and pcre libraries installed.
+Ubuntu
+The following commands should install TinTin++ on Unbuntu.
+
+    mkdir tintin
+    cd tintin
+    sudo apt-get install build-essential
+    sudo apt-get build-dep tintin++
+    wget http://downloads.sourceforge.net/tintin/tintin-2.00.8.tar.gz
+    tar -zxvf tintin-2.00.8.tar.gz
+    cd /tt/src
+    ./configure
+    sudo make install
+

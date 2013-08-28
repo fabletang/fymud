@@ -1,0 +1,40 @@
+【黄麻子的『红包』(hongbao)】                【阿毛的『鲁班尺』(lubanchi)】               
+【黑袍公的『棋盘』(qipan)】                  【司空摘星的『摘星手』(zhaixin-shou)】       
+　阿发的『阿发日记』(afrji)　                　表哥的『巴山图』(bstu)　                   
+　孤松先生的『残松图』(cansong-tu)　         　寒梅先生的『断梅笔』(duanmei-bi)　         
+　赤松的『大昭密文』(dzmwen)　               　葛伦的『天竺佛珠』(fozhu)　                
+　曲无容的『天缺古月寒』(guyuehan)　         　红娘子的『五罗轻烟帕』(handkerchief)　     
+　兴国大师的『鸿孤遗托』(hgyituo)　          　林仙儿的『金红散花衣』(huaqun)　           
+　雪蕊儿的『流星蝴蝶剑』(hudie-sword)　      　南宫平的『护花铃』(huhualing)　            
+　琴心的『玉壶冰』(ice-qin)　                　潇潇的『肥肠』(intestine)　                
+　班察巴那的『五花神弓』(iron-bow)　         　天机老人的『觇玉软靴』(jade-boots)　       
+　天机老人的『觇玉发簪』(jade-pin)　         　天机老人的『觇玉戒指』(jade-ring)　        
+　淳于怀太的『极乐丹』(jiledan)　            　李霞的『金牙箍』(jygu)　                   
+　王仁德的『考题』(kaoti)　                  　郝生意的『太平灯笼』(lantern)　            
+　瞎老爹的『夜明珠』(lighting-pearl)　       　农具店老板的『砍林刀』(lindao)　           
+　青竹先生的『乱竹帖』(luanzhu-tie)　        　逍遥侯的『逍遥紫袍』(magrobe)　            
+　金灵芝的『沧海明月心』(moonheart)　        　良家妇女的『卖身契』(msqi)　               
+　箫王孙的『暴雨梨花针』(needle box)　       　南宫十三郎的『南宫家谱』(ngjiapu)　        
+　枯梅大师的『凝碧剑』(ningsword)　          　柳无眉的『千年温玉』(old jade)　           
+踔俑Φ摹呕血谱』(ouxue-pu)　             　楚留香的『踏月飘香扇』(pxshan)　           
+　古丽娜的『曲蔓』(quman)　                  　木拉提的『英吉沙快刀』(sharp dagger)　     
+　百晓生的『神兵谱』(shenbingpu)　           　朱笔判官的『生死簿』(shengsibu)　          
+　心湖的『方丈手谕』(shouyu)　               　孙剑的『帅旗』(shuai-qi)　                 
+　齐小燕的『弹弓』(slingshot)　              　宋甜儿的『宋嫂鱼』(song-fish)　            
+　孙天灭的『三清宫规』(sqgonggui)　          　酒肉和尚的『三字经』(szjing)　             
+　白水娘娘的『天一神水』(tianyi poison)　    　铁中棠的『铁血大旗』(tiexue-flag)　        
+　郭大路的『猴儿酒』(wine-hulu)　            　丁鹏的『出跸刀』(wood-wandao)　            
+　西门吹雪的『无剑心法』(wujianxinfa)　      　石雁的『太极五行牌』(wuxingpai)　          
+　连城璧的『侠义无双令』(xiayiling)　        　丁白云的『降魔道法』(xmdaofa)　            
+　朱藻的『仙笑歌』(xxge)　                   　快活王的『夜光杯』(yeguangbei)　           
+　方玉飞的『银钩牌』(yingoupai)　            　殷正廉的『知府印章』(yinzhang)　           
+　常胜将军的『武穆遗书』(yue-script)　       　苏蓉蓉的『白玉美人』(yumeiren)　           
+　陆小凤的『指环儿』(zhihuan)　              
+
+确定不了lubanchi的大概位置。
+locate zhihuan
+fystatus:sen:4108/4113/4113
+『指环儿』似乎在西北方极远的高处。
+/grep zhihuan
+############################## GREPPING PAGE 1 FOR zhihuan ###############################
+陆小凤的『指环儿』(zhihuan)　

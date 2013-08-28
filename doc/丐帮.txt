@@ -1,0 +1,200 @@
+丐帮战斗trigger更新
+
+先贴出来，供pig们参考，有空再补解释和具体用法吧
+rumor* lazy
+
+#ALIAS ua {unwield all}
+#ALIAS bz {bzz}
+#ALIAS gzd {#T- autoquest1;#T- autoquest2;#T- autoquest3;#T- autoquest4}
+#ALIAS kzd {#t- da;#t- bda;#t+ zda;#t- tda}
+#ALIAS kd {#t+ da;#t- danda}
+#ALIAS gd {#t- da;#t- danda}
+#ALIAS gg {jyg;#alias p pc;#timer 1 h;#ts 200}
+#ALIAS dddd {#timer 1 ps;#ts 1}
+#ALIAS ddd {#timer 1 pcc;#ts 2}
+#ALIAS dd {jsd;#timer 1 {lele;jl;shj;p};#ts 1}
+#ALIAS ks {wi;enable unarmed dragonstrike;perform shichengliulong}
+#ALIAS wi {unwield staff;wield claw}
+#ALIAS pp {zjbl}
+#ALIAS czj {ws;perform chuozijue}
+#ALIAS bzj {ws;perform banzijue}
+#ALIAS tzj {ws;perform tiaozijue}
+#ALIAS xlwh {wi;perform xianglongwuhui}
+#ALIAS zjbl {wi;perform zhenjingbaili}
+#ALIAS scll {wi;perform shichengliulong}
+#ALIAS txwg {ws;perform tianxiawugou}
+#ALIAS pcd {#timer 1 pc;#ts 1}
+#ALIAS ppd {#al p pp;#al ps {ws;bz;perform chuozijue}}
+#ALIAS ccd {#timer 1 czj;#ts 1}
+#ALIAS yyd {#timer 1 yzj;#ts 3}
+#ALIAS ttd {#timer 1 tzj;#ts 3}
+#ALIAS ksd {#al p ps}
+#ALIAS kpd {#t+ panduan;#t+ panduana;#t- panduanb}
+#ALIAS gpd {#t- panduan;#t- panduana;#t- panduanb}
+#ALIAS ppp {ppd}
+#ALIAS kdd {#t- da;#t+ danda}
+#ALIAS ps {ws;bz;perform chuozijue}
+#ALIAS bzz {perform banzijue}
+#ALIAS pc {xlwh}
+#ALIAS ws {unwield claw;wield staff}
+#ALIAS pqd {#timer 1 {ws;pwg};#ts 1}
+#ALIAS wpwg {ws;pwg}
+#ALIAS kqd {#al ps {ws;bz;pwg}}
+#ALIAS gqd {#al ps {ws;bz;perform chuozijue}}
+#ALIAS kqd2 {#al ps {ws;pwg}}
+#ALIAS kqd3 {#al ps {ws;bz;perform yinzijue;pwg}}
+#ALIAS pindex {ps}
+#ALIAS kbz {#al ks {wi;enable unarmed dragonstrike;perform shichengliulong}}
+#ALIAS gbz {#al ks ooo}
+#ALIAS ooo {pp}
+#ALIAS kbzz {kbz}
+
+
+#TRIGGER {此特技只能在战斗中使用} {gg} {} 517
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo pp;dd} {da} 517
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#alarm +19 {say 时差2}} {} 517
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#wa 2000;#al p pp} {da} 517
+#TRIGGER {和身扑上，旋转着但极快疾地欺近你} {pp;perform zhenjingbaili;perform zhenjingbaili;gpd;ws} {panduan} 517
+#TRIGGER {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;#al bzz spank;gpd;#alarm +18 {#al bzz {perform banzijue}}} {panduan} 517
+#TRIGGER {招架此招} {tzj;gpd} {panduana} 517
+#TRIGGER {俨然无懈可击} {ps;gpd} {panduan} 517
+#TRIGGER {觑得亲切，不退反进，借势击向你} {yzj;ps;gpd} {panduan} 517
+#TRIGGER {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj;gpd} {panduan} 517
+#TRIGGER {^??你说道：时差2} {pc;pcd;super} {da} 517
+#TRIGGER {^??你的真气被打乱了，使不出震惊百里} {kao} {da} 517
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo ps;dd} {danda} 517
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#al p ps} {danda} 517
+#TRIGGER {足尖着力，飘身后退} {gpd;ps} {panduan} 517
+#TRIGGER {^??你说道：时差2} {pc;pcd;super} {danda} 517
+#TRIGGER {^??这里无法使用特殊招式} {gg} {} 517
+#TRIGGER {招架此招} {ps;gpd} {panduanb} 517
+#TRIGGER {^??你所受到的野狗步法·狗尾续貂的效用消失了} {#al lele jsd} {} 517
+#TRIGGER {^??你双腿半曲半伸，双掌如封如攻，矫健灵活之态，正是狗尾续貂一势} {#al lele hehe} {} 517
+#TRIGGER {^??你看准*步法的破绽，手中★￥愈夜愈疯狂￥★如蜻蜓点水般连续击向*下盘} {#al bz spank;#alarm +17 {#al bz bzz}} {} 517
+收藏分享
+
+新手上路
+Rank: 1
+2#
+ xgsword发表于 2011-4-4 09:37 | 只看该作者
+差很多alias.
+银剑小生
+TOP
+
+新手上路
+Rank: 1
+3#
+ yao发表于 2011-4-4 14:47 | 只看该作者
+补一下trigger的说明，供pig们参考，gb trigger还是有点技术含量的，当初练gb时sh没什么人玩，main的qiao-gay又是solo基本都是手动，所以我这trigger是从gb最早约30级开始设直到现在慢慢调整的，每次update都是简单的加一个补丁，以实用为主，所以在看trigger的时候就有点难懂了，所以这里加一个战斗思路，建议pig们还是按照这个思路自己编一下；里面有不少alias重复等情况，例如pc、xlwh最终内容实际是一致的，主要原因在于多个id同时登陆需要一些统一的alias以方便控制，还请迁就一下慢慢看吧
+rumor* giggle       
+
+1. 开场
+一开场，马上juji, 注意是拿着staff来狙击，有几率劈字诀和busy对方，然后马上一个降龙无悔，进入攻击循环
+#ALIAS kk {ws;jsd;#al p pc;juji %0;set target %0;#wa 1000;pc;pcd} 
+#ALIAS ws {unwield claw;wield staff}
+#ALIAS wi {unwield staff;wield claw}
+#ALIAS jsd {perform dodge.gouweixudiao}
+#ALIAS pc {xlwh}
+#ALIAS xlwh {wi;perform xianglongwuhui}
+#ALIAS pcd {#timer 1 pc;#ts 1}
+说明：
+这个是开局alias, jsd是狗尾续貂，战斗前用无busy; 建议再加一个叫杀的，以防止出现不能juji的情况下，打半天才发现gb在旁边晒太阳的情况
+
+2. 攻击循环触发
+无论哪种循环，降龙无悔都是个不变的引子，一切都是围绕两个降龙无悔中间的时间差做文章
+开场降龙无悔后，做个计时，下次最大杀伤时间一到，立刻触发再出：
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#alarm +19 {say 时差2}} {} 517
+#TRIGGER {^??你说道：时差2} {pc;pcd;super} {da} 517
+#TRIGGER {^??你说道：时差2} {pc;pcd;super} {danda} 517
+说明：
+我以前用过两个计时，时差1是指20s能出现busy效果的时间，早期被打的很惨的时候有时候也不得不在这个时间就用一下降龙，时差2是杀伤最大时间，现在220级两个时间一致了，所以只用一个；建议可以改成show，以防破坏，不过看起来fy的ppl都是比较nice的，所以我也没改过：）
+
+3. 攻击循环
+两次降龙无悔之间，就是pig们需要考虑的重点
+我试过多种方式，例如一直时乘六龙并根据效果出招式，例如一直震惊百里式，例如一直戳字诀（早期可用enmeiryu），各有利弊和所适合的战斗对手，最终一般情况下还是采用了这种方式：降龙无悔后先是时乘六龙，根据效果攻击一招，然后在下一个降龙无悔前不再使用时乘六龙（貌似也有连续使用成功率下降的因素，两个降龙无悔的时间差正好约等于cdt），而是选择一套攻击模式：
+1） 步骤一：降龙触发
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo pp;dd} {da} 517
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo ps;dd} {danda} 517
+#ALIAS dd {#timer 1 p;#ts 1}
+#ALIAS kbz {#al ks {wi;perform shichengliulong}}
+#ALIAS gbz {#al ks ooo}
+#ALIAS pp {zjbl}
+#ALIAS zjbl {wi;perform zhenjingbaili}
+#ALIAS ps {ws;bz;perform chuozijue}
+#ALIAS bz {bzz}
+#ALIAS bzz {perform banzijue}
+说明：                  
+-- 降龙后进入循环出p的ticktime，一开始先把p给定义成ks，也就是一直执行ks的循环，alias kbz将ks赋值为时乘六龙，gbz将ks赋值为ooo; 
+-- 大家看到有个alias ooo,gbz,kbz，这些是因为某些对手没法用时乘六龙（例如boss），这时候只要来一个gbz, ks就被赋值成ooo（在两个trigger组中ooo分别对应pp或ps），也就是说不再使用时乘六龙，改为震惊百里或者戳字诀；
+-- 两个trigger组，对应着用掌或棍的两种打法，后边步骤三解释
+
+2） 步骤二：时乘六龙触发
+gb的经典trigger，对newbie有难度，我当时做trigger时搞死了n次西门、无名、黑袍, shy:-)
+
+看来包括一些pig如xgsword都还不太理解，这里稍微解释一下，这套trigger事实上保险性还是不错的，所有组合都是瞬开瞬关，实战中还从来没遇到过被他人或gb bandit干扰的情况：
+
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#wa 2000;#al p pp} {da} 517
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#al p ps} {danda} 517
+#ALIAS kpd {#t+ panduan;#t+ panduana;#t- panduanb}
+#ALIAS gpd {#t- panduan;#t- panduana;#t- panduanb}
+说明：注意kpd和gpd分别是对触发效果的trigger组的开和关，以实现瞬开瞬关的效果；两个trigger组对应两套打法，步骤三解释
+
+#TRIGGER {和身扑上，旋转着但极快疾地欺近你} {pp;perform zhenjingbaili;perform zhenjingbaili;gpd;ws} {panduan} 517
+#TRIGGER {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;#al bzz spank;gpd;#alarm +18 {#al bzz {perform banzijue}}} {panduan} 517
+#TRIGGER {招架此招} {tzj;gpd} {panduana} 517
+#TRIGGER {招架此招} {ps;gpd} {panduanb} 517
+#TRIGGER {俨然无懈可击} {ps;gpd} {panduan} 517
+#TRIGGER {觑得亲切，不退反进，借势击向你} {yzj;ps;gpd} {panduan} 517
+#TRIGGER {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj;gpd} {panduan} 517
+#ALIAS ktbq {#al kpd {#t+ panduan;#t+ panduana;#t- panduanb}}
+#ALIAS gtbq {#al kpd {#t+ panduan;#t- panduana;#t+ panduanb}}
+#ALIAS czj {ws;perform chuozijue}
+#ALIAS bzj {ws;perform banzijue}
+#ALIAS tzj {ws;perform tiaozijue}
+#ALIAS yzj {ws;perform yinzijue}
+说明：
+-- 这是6个效果的trigger，可以看到，时乘六龙打出来trigger组才用kpd打开，然后读到效果后立刻用gpd关掉，所以不用担心被破坏或者被bandit触发，实战中没出过问题；
+-- 可能有注意到有两个"招架此招"的trigger，分别对应组"panduana"和"panduanb"，这是前期面对神水bandit时设的，防止挑掉兵器后反被polu，后期nb了就不用管了直接挑就是了，用alias ktbq和gtbq控制；
+-- "无懈可击"时没有效果，所以直接加了一个攻击ps
+-- 应该都知道，时乘六龙后无busy，所以这里都是一看到效果马上跟着一个相应pfm
+
+3）步骤三：时乘六龙后转入你想要的攻击模式，我是设了几种，大类是"da"或者"danda"，分别对应用拳头或棍，然后对棍法又加了几个alias以适应不同的打法
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo pp;dd} {da} 517
+#TRIGGER {^??你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向*的十八处要害} {#al p ks;#al ooo ps;dd} {danda} 517
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#wa 2000;#al p pp} {da} 517
+#TRIGGER {^??你倏然进身拍出一掌，虽不过是一掌，却暗含六道劲力，隐隐将} {kpd;#al p ps} {danda} 517
+#ALIAS kd {#t+ da;#t- danda}
+#ALIAS kdd {#t- da;#t+ danda}
+#ALIAS kqd {#al ps {ws;bz;pwg};#al p ps;kdd}
+#ALIAS gqd {#al ps {ws;bz;perform chuozijue};#al p ps;kdd}
+#ALIAS kqd2 {#al ps {ws;pwg};#al p ps;kdd}
+#ALIAS kqd3 {#al ps {ws;bz;perform yinzijue;pwg};#al p ps;kdd}
+#TRIGGER {^??你看准*步法的破绽，手中★￥愈夜愈疯狂￥★如蜻蜓点水般连续击向*下盘} {#al bz spank;#alarm +17 {#al bz bzz}} {} 517
+说明： 
+trigger共有两个组，一个是"da"，kd打开，基本就是一直出震惊百里的模式；一个是"danda"，kdd打开，使用打狗棒的模式。打狗棒模式后期根据需要我又加了kqd,gqd,kqd2,kqd3：
+-- 遇到皮厚的尤其是带金刚的，kd，一直出震惊百里，大家看到有个alias ooo,gbz,kbz，这些是为了打boss用的，因为对boss没法用时乘六龙，这时候只要来一个gbz,kd,这样在两个降龙无悔之间就会一直震惊百里，效果绝对劲爆而且省force，唯一就是当心被hate先送命，tank或heal还是必要的；
+
+---gqd: 使用戳字诀，每到busy的ticktime就优先使用挑字诀，我没有设yinzijue，因为后期实战效果很差浪费时间，推测可能是因为后期ppl级别比较高，而yinzijue的攻击力是在npc基础上附加的，所以czj效果更好，唯一的就是yzj的busy短一些，建议看阶段决定是不是加；
+
+---kqd,kqd2,kqd3：就是使用“天下无狗”的alias, 区别是kqd会使用busy和无狗，kqd2一直无狗，kqd3是busy、yinzijue、无狗都用，实际中主要用kqd和kqd2；
+使用无狗的情况：不主攻的对手是拿鞭子的（打狗棒克鞭子）、不主攻的在用震惊百里（打到后可中断pfm）、第一个打了一大半了突然发现第二个需要马上杀掉（例如第二个突然开始念经了或者是sq在群攻精或者加星号的残云碧或者鞭子没切掉狂抽精等等，这种情况下一般马上set target到第二个对手，但gb可以用天下无狗顺带把第一个收拾掉）、有xg对手（群攻时一般xg只优先heal自己）....
+
+
+
+补充：
+1. 可以看得出来，gb变换武器的概率非常高，所以200级的猴爪很有必要
+2. tianfeng技能我学的是ghosty-force，增加闪避率以减少震惊百里时被打中的几率
+3. ab1的13/14/15都挺重要，减少被打
+4. ab3几乎个个经典，我把力量和震惊百里杀伤+30%满了，有点的情况下把震惊百里不打断加到50%效果会不错
+5. ab2的截脉诀不用说非常必要，另外梦魇也可以选择性用用
+6. 一些产用alias还是比较重要的，关键时候管用：
+#ALIAS kss {#timer 1 ks;#ts 1}                    不断出时乘六龙，有时候挺有用
+#ALIAS ccd {#timer 1 czj;#ts 1}                   不断戳字诀，gb最烦的就是一开场打掉90%，然后老半天打不掉剩下的，这种情况下适用
+#ALIAS pcd {#timer 1 pc;#ts 1}                   不断降龙，适用带金刚的切kee不高时
+#ALIAS ttd {#timer 1 tzj;#ts 1}                    挑兵器
+#ALIAS bbd {#timer 1 bzj;#ts 1}                  不断busy，没办法的情况下或许可以救tank的命
+#ALIAS fjm {#timer 1 {hyj;bq 1000};#ts 1}   自己或队友要挂了，来个混元诀（补team的kee和force），管用
+......
+
+最后，gb总体感觉还是个非常不错的门派，适用性广、操作性强、还环保，谁玩谁知道：）
+TOP

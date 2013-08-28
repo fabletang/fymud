@@ -1,0 +1,92 @@
+#config {TINTIN CHAR} /
+/var myname chan
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname 117.135.143.81 6666
+/session $myname china.fengyun.com 6000
+/nop session $myname fy.hbisp.com 3333
+/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
+/al ntchat {/unticker {checkchat}}
+/act {^请选择您使用的内码}{0}
+/act {^您的英文名字：} {$myname}
+/al reload {/read $myname.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
+/ac {^#SESSION '%0' DIED.}{/read %0.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
+/var hasstaff 0
+/var hashand 0
+/al wistaff {/if {$hasstaff==0}{unwi all;wi jade}}
+/al wihand {/if {$hashand==0}{unwi all}}
+/al wiw wistaff
+/al wih wihand
+/al hh {exert heal}
+/al hhto {exert heal %0}
+/ac {^  √金刚杵(Jade)}{/var hashand 0;/var hasstaff 1} 
+/ac {^你拿出一根乌黑的金刚杵握在手中}{/var hashand 0;/var hasstaff 1} 
+/ac {^你松开了手中的}{/var hasstaff 0} 
+/ac {^你放下手中的金刚杵}{/var hasstaff 0} 
+/ac {^你没有装备任何武器}{/var hasstaff 0;/var hashand 0} 
+/ac {^你使出大悲千叶掌法}{/var hasstaff 0;/var hashand 1} 
+/al buff {i;}
+/al healme {/showme todo}
+/al healto {/showme todo}
+/al j {healme;healto;wihand;perform qianshouqianbian}
+/al lx {healme;healto;wistaff;perform longxianyuye}
+/al jj {healme;healto;conjure void_sense}
+/var islian 0
+/al ki {wi staff;set target %0;buff;/var npc %0;/delay {2}{kill %0;startk}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
+/nop ------------
+/var xl_max 0
+/var sc_ok 0
+/var zjbl_ok 0
+/al ak jj 
+/al kkx {/ticker {kill}{ak}{2.1}}
+/al startk {jj;/al ak jj;kkx}
+/al kx startk
+/al ssk startk
+/ac {^%1心头一颤，只觉繁华世事}{j;/al ak j;/delay {30}{/al ak jj}}
+/ac {^结果%1被你攻了个手忙脚乱！}{/al ak lx}
+/ac {^%1已经手忙脚乱了！}{lx;/al ak lx}
+/ac {^敌人已经中招了，还不抓紧}{lx;/al ak lx}
+/ac {^需要100点灵力！}{/al ak j}
+/ac {^你低呼佛号，内力聚于双臂}{/al ak j;/var hashand 0;/var hasstaff 1}
+/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『空识神通』只能对战}{stopk;cks}
+/ac {^『龙现于野』只能对战}{stopk;cks}
+/ac {^『千手千变』只能对战}{stopk;cks}
+/ac {^你的法力太低}{hp}
+/ac {^( 你似乎十分疲惫，}{/al healme {exert heal}}
+/ac {^( 你看起来已经力不从心了}{/al healme {exert heal}}
+/ac {^( 你头重脚轻，正在勉力)}{/al healme {exert heal}}
+/ac {^( 你摇头晃脑、歪歪斜斜}{/al healme {exert heal}}
+/ac {^( 你已经陷入半昏迷状态}{/al healme {exert heal}}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
+/ac {^你运起内功，缓缓地将真气}{/al healme {/showme todo}}
+/ac {^你运起内功，将手掌贴在%1背心}{/al healto {/showme todo}}
+/read gag.sc
+/read path.sc
+/read normal.sc
+/read quest.sc
+/read teama.sc
+/read status_2.sc
+/nop read autorecover.sc
+/log o $myname.log
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/al hx {get matong from bag; drink matong; put matong in bag}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
+/unac {^然而，%1已经死了}{cks}
+/al getitem {
+     stack;
+     retrieve 7557;
+     remove all;
+     wear all
+}
+/al qq {fox;quest}
+/gag {^（你上一个动作还没有完成}
+/gag {^todo}
+/ac {^可是什么事情都没有发生}{fff}

@@ -1,0 +1,129 @@
+#config {TINTIN CHAR} /
+/var myname immortal
+/session $myname china.fengyun.com 6000
+/ac {^请选择您使用的内码}{0}
+/ac {^您的英文名字：} {$myname}
+/al reload {/read $myname.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
+/ac {^#SESSION '%0' DIED.}{/read %0.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/al wim {do unwield sword,wield jade}
+/al getsword {conjure swordout}
+/var v_j 0
+/var v_k 0
+/var v_kk 0
+/al healme {ok}
+/nop 1 2 3 4
+/var hassword 0
+/var hashand 0
+/al wisword {/if {$hassword==0}{unwi all;wi goldsword}}
+/al wihand {/if {$hashand==0}{unwi all;wi jade}}
+/ac {^  √金剑(Goldsword)}{/var hassword 1;/var hashand 0} 
+/ac {^  √指甲(Jade)}{/var hashand 1;/var hassword 0} 
+/ac {^你将手中的金剑插入}{/var hassword 0} 
+/ac {^你从宝玉剑鞘中抽出}{/var hassword 1;/var hashand 0} 
+/ac {^你从怀中摸出一对指}{/var hashand 1;/var hassword 0} 
+/ac {^你将手上的指甲藏入}{/var hashand 0} 
+/ac {^你使出太极剑法中的}{/var hashand 0;/var hassword 1} 
+/al ls {healme;wisword;perform liusha}
+/al cz {healme;wisword;perform chanzijue}
+/al nz {healme;wihand;perform nianzijue}
+/al jz {healme;wisword;perform jianzhang}
+/al z  {healme;wihand;perform zhen}
+/al lt {healme;wisword;perform leiting}
+/var islian 0
+/ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hassword 0;/var islian 0} 
+/ac {^一式『安然雷霆』闪出血红色的剑芒}{pj;/if {$emy_kee>20}{ulk;/var islian 0;/ticker {kill}{ls}{4}}}
+/al kkx {/var emy_kee 100;/ticker {kill}{cz}{2}}
+/al startk {cz;kkx}
+/al kx {/al startk {cz;kkx};kkx}
+/al ulk {/unticker {kill}}
+/al pj {performp freeze}
+/al pjj {performp canglongzhaxian}
+/nop ------同步 leader ----
+/nop ---------------
+/ac {被你的剑法所缠，动作慢了下来}{ulk;z;/var islian 0;/ticker {kill}{z}{2}}
+/ac {^对方已经手忙脚乱了。}{ulk;z;/var islian 0;/ticker {kill}{z}{2}}
+/ac {看破了你的企图，避实以待}{pj;ulk;/var islian 1;/ticker {kill}{cz}{2}}
+/ac {动作迟滞，如陷沙积}{ulk;cz;/var islian 1;/ticker {kill}{cz}{2}}
+/ac {%1为你剑法所缠，封架不及，顿时}{ulk;/var islian 1;/var npc %1;/ticker {kill}{nz}{2}}
+/ac {，剑圈立散！}{pj;ulk;/var islian 0;/ticker {kill}{cz}{2}}
+/ac {^你展开太极剑法『缠字诀』}{/if {$islian ==1 }{ulk;/ticker {kill}{ls}{2}}}
+/ac {头晕目眩，被你的拳势围住不能脱身}{pj;pjj;ulk;;/var islian 1;/ticker {kill}{jz}{2}}
+/ac {^只见你这一拳变化无方}{pj;pjj;ulk;/var islian 0;/ticker {kill}{z}{2}}
+/ac {^你运力不慎，没用出绝招反而露出了空门}{pj;pjj;/if {$islian ==1 }{ulk;/ticker {kill}{ls}{2}}}
+/ac {^可是%1看破了你的企图，并没有上当}{ulk;/var islian 1;/ticker {kill}{ls}{2}}
+/ac {从容应招，将你的攻势消于无形}{ulk;/var islian 1;/ticker {kill}{ls}{2}}
+/ac {目前正自顾不暇，放胆攻击}{/if {$islian==0}{z}}
+/ac {将周身凝聚的冰块震得粉碎！！}{pj}
+/ac {^但是被%1机灵地躲开了。}{de6 {pj;pjj};/showme ====todo====}
+/ac {^『棉里藏针』需要}{lt}
+/al kk {ak;/ticker {kill}{ak}}{2.1}
+/al ki {set wimpy 20;set target %0;/var npc %0;buff;/delay {5}{kill %0;gongji %0}}
+/al petbuff {order wear all;order wield ironfist}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxx;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al buff {wh;de1 {petbuff;getsword;cast hanxing};de2 {perform dodge.zong;cast jixing;}}
+/al kkk {healme;perform dodge.bazhentu;/delay {2.1}{healme;perform dodge.bazhentu}}
+/al kkkk {healme;do perform nianzijue,perform zhen;/delay {2.1}{healme;perform zhen}};
+/al kks {nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}} 
+/al ks {ulk;/var islian 0;unwi jade;wi sword;/al startk {kks};startk}
+/al stopk {/unticker {kill};nokill;nwlk}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var knpc %0;pj}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk;/var knpc %0}
+/ac {^『八阵图』只能对}{stopk;/al healme {ok};cks}
+/ac {^『缠字诀』只能对}{stopk;/al healme {ok};cks}
+/ac {^『粘字诀』只能对}{stopk;/al healme {ok};cks}
+/ac {^［棉里藏针］只能对}{stopk;/al healme {ok};cks}
+/ac {^『剑掌』只能对}{stopk;/al healme {ok};cks}
+/ac {^『千里流沙』只能对}{stopk;/al healme {ok};cks}
+/ac {^『安然雷霆』只能对}{stopk;/al healme {ok};cks}
+/ac {^需要0点的真气}{dazuo}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{/al healme hh;hh;}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{/al healme hh;hh;/delay {3}{healme}}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{set wimpy 30;cks;/al healme hh;hh}
+/ac {^你运起太极两仪功}{/al healme {;}}
+/ac {^你所选用的武功中没有这种必杀技}{getsword;get jade}
+/read gag.sc
+/read path.sc
+/read normal.sc
+/read quest.sc
+/nop read team.sc
+/read status.sc
+/nop read hb.tin
+/nop log o ../$myname.log
+/ac {^【新手】} {/line log ../chat-$myname.log}{raw}
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0 && $is_walk==0}{}{}}
+/ac {^然而，%1已经死了}{cks}
+/nop ac {已经手忙脚乱了！}{/if {$is_kill==1}{ak1;ak2}}
+/ac {^一层淡淡的白气从指掌间透出，你的外伤}{cks}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  && $is_walk==0}{}{}}
+/al getitem {
+    stack;
+    retrieve 9474;
+    retrieve 456;
+    retrieve 3051;
+    retrieve 4940;
+    retrieve 5772;
+    retrieve 3055;
+    remove all;
+    wear all
+}
+/nop gag {^结果}
+/nop gag {^手中的}
+/gag {^你双手一翻一抖，一股气劲}
+/gag {^（你上一个动作还没有完成}
+/gag {^你爽快地}
+/gag {^你并没有装备这样东西作为武器}
+/gag {^你一招}
+/read autorecover.sc
+/al qq {cut;quest}
+/al roomin {927}
+/al jiamoshang {exert xinyuan}
+/al jiaxueshang {exert juedai}
+/ac {【ＱＳＴ。】 %1     （20）}{jiamoshang}

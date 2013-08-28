@@ -1,0 +1,74 @@
+#config {TINTIN CHAR} /
+/var myname gun
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname fy.hbisp.com 3333
+/session $myname china.fengyun.com 6000
+/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
+/al ntchat {/unticker {checkchat}}
+/act {^请选择您使用的内码}{0}
+/act {^您的英文名字：} {$myname}
+/al reload {/read $myname.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr; /ticker {noidle}{tu;}{280}}
+/ac {^重新连线完毕。}{/cr; /ticker {noidle}{tu;}{280};resethb}
+/ac {^#SESSION '%0' DIED.}{/read %0.tin}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tin}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver;}
+/al enablemove {enable move anxiang-steps}
+/al movenone {enable move none}
+/al jd {th jd $myname}
+/al wim {wield jade}
+/al phl {/var henglian 0;stat;/delay {1}{/if {$henglian == 0}{perform iron-cloth.yichuan}}}
+/al buff {wim;jjjj;exert youdishenru; phl}
+/al ki {set target %0;buff; /delay {1}{kill %0}}
+/al akinit {
+    /al ak0 {};
+    /al ak1 jjk;
+    /al ak2 jjjk;
+    /al ak3 k;
+    /al ak4 jk;
+    /al ak5 j
+}
+/al kkk {ak0;ak1;ak2;ak3;ak4;ak5};
+/ac {%0如同遭到电击，全身刺痛}{/al ak1 {/echo 已经中标 }; /delay {18}{/al ak1 j}}
+/ac {^对手已经中了你的『金石为开』}{k}
+/al startk {nwlk;akinit;iskill;wim;kkk; /ticker {kill} {kkk} {5}}
+/al stopk {/unticker {kill};nokill;akinit}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk; /var killlosttime 0;}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kk;startk}
+/ac {^『沥血肝胆』只能对战斗}{stopk; /var killlosttime 0;cks}
+/ac {^『十指擒龙』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『乌龙摆尾』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『金石为开』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『与天比高』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^你所选用的武功中没有这种必杀技。}{get spear;wi spear;wim}
+/al jm {perform panlongsuoguan}
+/ac {^( 你头重脚轻，正在勉力支撑)}{jm;/al ak0 jm}
+/ac {^( 你已经陷入半昏迷状态}{perform dodge.jiyingbotu}
+/al hx {exert bikongxi}
+/al hs {exert danxinzhao}
+/al hj {exert qingfengdang}
+/ac {^横练·一串鞭	%1 sec}{/var henglian 1;/var henglian_sec %1;/showme 横练 $henglian_sec 秒后消失;/delay {$henglian_sec}{/var henglian 1;phl}}
+/ac {^在你周身流转的那股真气渐渐消失了}{/showme 真气渐渐消失了}
+/ac {^你所受到的横练·一串鞭的效用消失了}{/var henglian 0;phl}
+/ac {^你全身每一个骨节忽然全都爆竹般响起}{stat}
+/read gag.sc
+/read path.sc
+/read normal.sc
+/read team.sc
+/read quest.sc
+/read status.sc
+/al hxdazuo {exercise 300;hh; /delay {2.1}{dazuo}}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/al getitem {
+905;
+stack;
+retrieve 9693;
+retrieve 4352;
+retrieve 4355;
+retrieve 4358;
+retrieve 1843;
+remove all;
+wear all
+}
+/read autorecover.sc

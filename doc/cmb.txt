@@ -1,0 +1,37 @@
+fystatus:gin:246/736/736
+fystatus:kee:424/1265/1265
+fystatus:sen:196/738/738
+fystatus:force:968/484
+fystatus:gin:307/736/736
+fystatus:kee:535/1265/1265
+fystatus:sen:257/738/738
+【精力】  614/   736 (100%)    【食物】  0%
+ 【气血】 1070/  1265 (100%)    【饮水】  2%
+ 【心神】  514/   738 (100%)    【评价】 318
+ 【灵力】  450/   225 (   0)    【杀气】 43
+ 【内力】  968/   484 (  36)    【潜能】 90821
+ 【法力】  452/   226 (   0)    【等级】 Ｌ23 （19.1％）
+ 【能量】  100/   100           【连击】0/   5 
+
+
+Enemy:kee:6/100
+Enemy:kee:6/100
+
+fystatus:gin:304/756/756
+fystatus:kee:274/1365/1365
+fystatus:sen:304/758/758
+fystatus:atman:220/225
+fystatus:force:407/484
+fystatus:mana:220/226
+fystatus:gin:348/756/756
+fystatus:kee:329/1365/1365
+fystatus:sen:348/758/758
+fystatus:atman:240/225
+fystatus:force:444/484
+fystatus:mana:240/226
+
+fystatus:kee:1526/1526/1526;gin:1109/1109/1109;sen:1269/1269/1269
+fystatus:force:520/520;mana:610/305;atman:450/225
+
+结果他头晕目眩，被你的拳势围住不能脱身，频频中招！
+
