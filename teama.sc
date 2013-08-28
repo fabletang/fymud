@@ -14,7 +14,7 @@
 /ac {ÄãµÄ¶ú±ßÇÄÉùËµµÀ£ºyes.}{/math is_together {$is_together + 1}}{1}
 /al tk {
 tat;
-/delay {1.8}{/if {$is_together > 0}{
+/delay {1.5}{/if {$is_together > 0}{
     ki %0;
     whisper $teamer_1 KKK%0;
     whisper $teamer_2 KKK%0

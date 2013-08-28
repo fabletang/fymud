@@ -178,6 +178,6 @@ n;
 /ticker {qiuyin}{giveqiuyin}{120}}
 /ac {^卡卡木说道：我受伤了}{give 1 baiyao to kaka mu;de3 {fi kaka mu}}
 /al askwurong {ask wurong about 国色天香;answer 不丑}
-/ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;/de3 {fight nanren}}
+/ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;de3 {fight nanren}}
 /ac {^勾魂使者对你说道：想过我这一关？}{accept test;tell ghost no face}
 /al xintask {cancel;de1 {newtask}}

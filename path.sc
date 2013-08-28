@@ -1617,7 +1617,7 @@ nwlk;
     /ac {^Î÷·ğËş}{/4 e;khlin-};
     /ac {^¶«·ğËş}{/4 w;khlin-};
     /ac {^ÄÏ·ğËş}{u;wadeliusha};
-    /ac {^±±·ğËş}{/4 s;khlin-};
+    /ac {^±±·ğËş}{u;wadeliusha};
     /ac {^Ê¥µî}{khlin-}
 }
 /al khlin- {

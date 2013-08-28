@@ -36,7 +36,7 @@
     {ficheck}
 }
 /al full {
-    /if {$is_kill==0&&$is_walk==0}{
+    /if {$is_kill==0 && $is_walk==0}{
     fullme;
     }{/showme ====is_kill =$is_kill \\ is_walk =$is_walk}
 }
@@ -57,7 +57,7 @@
 /var sen_s_p 100
 /ac {^fystatus:kee:%1/%2/%3}
     {
-    /var kee %1;/var kee_m %2;/var kee_s %3;
+    /var kee %1; /var kee_m %2; /var kee_s %3;
     /math kee_m_d {$kee_m - $kee};
     /math kee_s_d {$kee_s - $kee};
     /math kee_m_p {$kee_m_d/$kee_m*100.0};
@@ -66,7 +66,7 @@
     }
 /ac {^fystatus:gin:%1/%2/%3}
     {
-    /var gin %1;/var gin_m %2;/var gin_s %3;
+    /var gin %1; /var gin_m %2; /var gin_s %3;
     /math gin_m_d {$gin_m - $gin};
     /math gin_s_d {$gin_s - $gin};
     /math gin_m_p {100.0 * $gin_m_d / $gin_m};
@@ -75,7 +75,7 @@
     }
 /ac {^fystatus:sen:%1/%2/%3}
     {
-    /var sen %1;/var sen_m %2;/var sen_s %3;
+    /var sen %1; /var sen_m %2; /var sen_s %3;
     /math sen_m_d {$sen_m - $sen};
     /math sen_s_d {$sen_s - $sen};
     /math sen_m_p {$sen_m_d/$sen_m*100.0};
@@ -84,9 +84,9 @@
     }
 /ac {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}
     {
-    /var kee %1;/var gin %4;/var sen %7;
-    /var kee_m %2;/var gin_m %5;/var sen_m %8;
-    /var kee_s %3;/var gin_s %6;/var sen_s %9;
+    /var kee %1; /var gin %4; /var sen %7;
+    /var kee_m %2; /var gin_m %5; /var sen_m %8;
+    /var kee_s %3; /var gin_s %6; /var sen_s %9;
     /math kee_m_d {$kee_m - $kee};
     /math kee_s_d {$kee_s - $kee};
     /math kee_m_p {$kee_m_d/$kee_m*100.0};
@@ -104,9 +104,9 @@
 /var emy_kee 100
 /var emy_sen 100
 /var emy_gin 100
-/ac {^Enemy:sen:%1/100.0}{/var emy_sen %1;refsta}
-/ac {^Enemy:kee:%1/100.0}{/var emy_kee %1;refsta}
-/ac {^Enemy:gin:%1/100.0}{/var emy_gin %1;refsta}
+/ac {^Enemy:sen:%1/100}{iskill;/var emy_sen %1;refsta}
+/ac {^Enemy:kee:%1/100}{iskill;/var emy_kee %1;refsta}
+/ac {^Enemy:gin:%1/100}{iskill;/var emy_gin %1;refsta}
 /var force 0
 /var force_p 100
 /ac {^fystatus:force:%1/%2;mana:%3/%4;atman:%5/%6}{
@@ -196,8 +196,8 @@
     /var mana_s %2;
     /math mana_p {$mana/$mana_s*100.0}
 }
-/al he {do drink skin}
-/al chi {eat meat}
+/al he {do get skin from bag,drink skin}
+/al chi {do get meat from bag,eat meat}
 /ac {^你拿起%1喝了几口}{/var he_ok 1;/delay {4}{full}}
 /ac {^你拿起%1咬了几口}{/var chi_ok 1;/delay {4}{full}}
 /ac {^你已经将%1喝得一滴也不剩}{/var err "not drink"}
@@ -237,12 +237,17 @@
     /if {$f_drk<2}{he};
     /if {$f_eat<2}{chi};
    /showme  {gin_m_p=$gin_m_p kee_m_p=$kee_m_p sen_m_p=$sen_m_p};
-    /if {$kee_s_p>10}{hh;yaoheal};
+    /if {$kee_s_p>9}{
+        /showme {===yaoheal};
+        yaoheal; 
+        hh;
+        /delay {4}{full}
+        };
     /if {$kee_m_p>10}{dazuo};
     /if {$gin_m_p>10}{dazuo};
     /if {$sen_m_p>10}{dazuo};
    /showme  {force_p=$force_p atman_p=$atman_p};
-    /if {$atman_p<120}{hl}; 
+    /if {$atman_p<110}{hl}; 
     /if {$force_p<120}{hn} 
     }
 }

@@ -119,14 +119,11 @@
 /al fy2zt {fy2ztv}
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
-    pick needle;
-    get 1200 needle from cactus bonsai;
      stack;
-     retrieve 9428;
-     retrieve 9901;
-     retrieve 7626;
-     retrieve 8360;
-     retrieve 3478;
+     retrieve 6411;
+     retrieve 9945;
+     retrieve 9937;
+     retrieve 7214;
      remove all;
      wear all
 }

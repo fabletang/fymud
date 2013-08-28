@@ -21,7 +21,7 @@
 /al wihand {/if {$hashand==0}{unwi all}}
 /al wiw wistaff
 /al wih wihand
-/al hh {exert heal}
+/al hh {exert mheal}
 /al hhto {exert heal %0}
 /ac {^  √金刚杵(Jade)}{/var hashand 0;/var hasstaff 1} 
 /ac {^你拿出一根乌黑的金刚杵握在手中}{/var hashand 0;/var hasstaff 1} 
@@ -36,7 +36,7 @@
 /al lx {healme;healto;wistaff;perform longxianyuye}
 /al jj {healme;healto;conjure void_sense}
 /var islian 0
-/al ki {wi staff;set target %0;buff;/var npc %0;/delay {2}{kill %0;startk}}
+/al ki {iskill;wi staff;set target %0;buff;/var npc %0;/delay {0.5}{kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -53,20 +53,20 @@
 /ac {^敌人已经中招了，还不抓紧}{lx;/al ak lx}
 /ac {^需要100点灵力！}{/al ak j}
 /ac {^你低呼佛号，内力聚于双臂}{/al ak j;/var hashand 0;/var hasstaff 1}
-/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/al stopk {/al healme {/showme todo};/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『空识神通』只能对战}{stopk;cks}
 /ac {^『龙现于野』只能对战}{stopk;cks}
 /ac {^『千手千变』只能对战}{stopk;cks}
 /ac {^你的法力太低}{hp}
-/ac {^( 你似乎十分疲惫，}{/al healme {exert heal}}
-/ac {^( 你看起来已经力不从心了}{/al healme {exert heal}}
-/ac {^( 你头重脚轻，正在勉力)}{/al healme {exert heal}}
-/ac {^( 你摇头晃脑、歪歪斜斜}{/al healme {exert heal}}
-/ac {^( 你已经陷入半昏迷状态}{/al healme {exert heal}}
+/ac {^( 你似乎十分疲惫，}{/al healme hh}
+/ac {^( 你看起来已经力不从心了}{/al healme hh}
+/ac {^( 你头重脚轻，正在勉力)}{/al healme hh}
+/ac {^( 你摇头晃脑、歪歪斜斜}{/al healme hh}
+/ac {^( 你已经陷入半昏迷状态}{/al healme hh}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
-/ac {^你运起内功，缓缓地将真气}{/al healme {/showme todo}}
-/ac {^你运起内功，将手掌贴在%1背心}{/al healto {/showme todo}}
+/ac {^你运起内功，缓缓地}{/al healme {/showme todo}}
+/ac {^你运起内功，将手掌}{/al healto {/showme todo}}
 /read gag.sc
 /read path.sc
 /read normal.sc
@@ -83,6 +83,8 @@
 /al getitem {
      stack;
      retrieve 7557;
+     retrieve 2559;
+     retrieve 4792;
      remove all;
      wear all
 }

@@ -67,14 +67,9 @@
 /ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
-    pick needle;
-    get 1200 needle from cactus bonsai;
      stack;
-     retrieve 9428;
-     retrieve 9901;
-     retrieve 7626;
-     retrieve 8360;
-     retrieve 3478;
+     retrieve 4734;
+     retrieve 7945;
      remove all;
      wear all
 }
