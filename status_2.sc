@@ -106,16 +106,29 @@
 /var emy_kee 100
 /var emy_sen 100
 /var emy_gin 100
-/al temy {tt emy:$npc|gin:$emy_gin|kee:$emy_kee|sen:$emy_sen|}
+/al temy {tt nemy:$npc|gin:$emy_gin|kee:$emy_kee|sen:$emy_sen|}
+/al wemy {
+    /if {"$team_header" == "$myname"}{}{
+    whisper $team_header nemy:$npc|gin:$emy_gin|kee:$emy_kee|sen:$emy_sen|
+    }
+    }
 /ac {^Enemy:sen:%1/100}{iskill;/var emy_sen %1;temy;refsta}
 /ac {^Enemy:kee:%1/100}{iskill;/var emy_kee %1;temy;refsta}
 /ac {^Enemy:gin:%1/100}{iskill;/var emy_gin %1;temy;refsta}
-/ac {^【四人帮】%0 emy:%1|gin:%2|kee:%3|sen:%4|}{
+/ac {nemy:%1|gin:%2|kee:%3|sen:%4|}{
      /var npc %1;
      /var emy_gin %2;
      /var emy_kee %3;
      /var emy_sen %4;
-   refsta 
+     refsta
+     }
+/nop {你的耳边悄声说道：nemy:%1|gin:%2|kee:%3|sen:%4|}
+/ac {^【四人帮】%+ emy:%1|gin:%2|kee:%3|sen:%4|}{
+     /var npc %1;
+     /var emy_gin %2;
+     /var emy_kee %3;
+     /var emy_sen %4;
+     refsta
 }
 /var force 0
 /var force_p 100
@@ -238,6 +251,7 @@
 /ac {^你盘膝而坐，静坐冥思}{/delay {2}{full}}
 /nop hn
 /ac {^你坐下来运气用功，一股内息}{/delay {2}{full}}
+/ac {^你现在身体状况太差了，无法吐纳练功}{/showme --todo}
 
 /al hl {exercise jing $gin_h}
 /al hn {exercise qi $kee_h}

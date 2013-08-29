@@ -17,9 +17,9 @@
 /al tk {
 tat;
 /delay {1.5}{/if {$is_together > 0}{
-    ki %0;
     whisper $teamer_1 KKK%0;
-    whisper $teamer_2 KKK%0
+    whisper $teamer_2 KKK%0;
+    ki %0;
     }{/showme 队员 数量 $is_together;team talk 队员 丢失}};
 /delay {3}{/var is_together 0}
 }
