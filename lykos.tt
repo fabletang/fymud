@@ -59,7 +59,6 @@
 /read normal.sc
 /read quest.sc
 /read teama.sc
-/read status.sc
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
@@ -73,8 +72,12 @@
      remove all;
      wear all
 }
-/read autorecover.sc
+/nop read autorecover.sc
+/read status_2.sc
 /al qq {wolf;quest}
 /al buyleg {buy fried chicken leg from waiter}
 /gag {^todo}
-/ac {^禅使出大悲千叶掌法}{/if {$is_kill==0}{askkill;ak;/ticker {kill}{ak}{4.2}}}
+/al petbuff {order wear all;order wield ironfist}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxl;/delay {0.5}{/if {$haspet==0}{whistle}}}

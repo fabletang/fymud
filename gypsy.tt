@@ -30,7 +30,7 @@
 /al sc {wihand;perform shichengliulong}
 /var islian 0
 /ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {wihand;set target %0;buff;/delay {2}{juji %0;kill %0;startk}}
+/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -43,7 +43,7 @@
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
     iskill;
-    /var npc %1;
+    /var npcn %1;
     /var zjbl_ok 0;
     /var xl_max 0;
     /delay {20}{/var xl_max 1;/al ak xl};
@@ -58,7 +58,7 @@
 /al ps bzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
-    /var ncp %0;
+    /var npcn %0;
     zjbl;
     /al ak zjbl
 }
@@ -100,17 +100,16 @@
 /ac {^『红藕香残』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『七星伴月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^你的法力太低}{hp}
-/nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{/al ak bzj;exert qi;/delay {3}{exert qi;hp}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{sk;yaoheal}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read teama.sc
-/read status.sc
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
@@ -127,5 +126,10 @@
      remove all;
      wear all
 }
-/read autorecover.sc
+/nop read autorecover.sc
+/read status_2.sc
 /al qq {fox;quest}
+/al petbuff {order wear all;order wield ironfist}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxg;/delay {0.5}{/if {$haspet==0}{whistle}}}

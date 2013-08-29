@@ -26,13 +26,14 @@
 /var atmana_clr <029>
 /nop {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}{/var qi %1;/var jin %4;/var shen %7;refsta}
 /nop al fcks {/showme fight check status}
-/al clean_var {/var emy_sen 100;/var emy_kee 100;/var emy_name_en none;nokill;nwlk}
+/nop clean_var {/var emy_sen 100;/var emy_kee 100;/var emy_name_en none;nokill;nwlk}
+/al clean_var {/var hasorder 0;/var emy_sen 100;/var emy_kee 100;/var emy_gin 100}
 /al checkme {/showme Checkme}
 /al ficheck {/showme Refesh}
-/al fullme {/showme Fullme}
+/al fullme {nokill;nwlk;/showme Fullme}
 /al refsta {
     /if {$is_kill==0}
-    {checkme}
+    {clean_var;checkme}
     {ficheck}
 }
 /al full {
@@ -41,7 +42,8 @@
     }{/showme ====is_kill =$is_kill \\ is_walk =$is_walk}
 }
 /nop al cks {hp;/delay {0.2}{/showme check status}}
-/al cks {hp;/delay {0.5}{refsta}}
+/nop al cks {hp;/delay {0.5}{refsta}}
+/al cks {full}
 /al checkme {/showme Checkme}
 /var kee_m_d 0
 /var kee_s_d 0
@@ -104,9 +106,17 @@
 /var emy_kee 100
 /var emy_sen 100
 /var emy_gin 100
-/ac {^Enemy:sen:%1/100}{iskill;/var emy_sen %1;refsta}
-/ac {^Enemy:kee:%1/100}{iskill;/var emy_kee %1;refsta}
-/ac {^Enemy:gin:%1/100}{iskill;/var emy_gin %1;refsta}
+/al temy {tt emy:$npc|gin:$emy_gin|kee:$emy_kee|sen:$emy_sen|}
+/ac {^Enemy:sen:%1/100}{iskill;/var emy_sen %1;temy;refsta}
+/ac {^Enemy:kee:%1/100}{iskill;/var emy_kee %1;temy;refsta}
+/ac {^Enemy:gin:%1/100}{iskill;/var emy_gin %1;temy;refsta}
+/ac {^【四人帮】%0 emy:%1|gin:%2|kee:%3|sen:%4|}{
+     /var npc %1;
+     /var emy_gin %2;
+     /var emy_kee %3;
+     /var emy_sen %4;
+   refsta 
+}
 /var force 0
 /var force_p 100
 /ac {^fystatus:force:%1/%2;mana:%3/%4;atman:%5/%6}{
@@ -194,10 +204,11 @@
 /ac {^ 【法力】 %1/ %2 (%3) }{
     /var mana %1;
     /var mana_s %2;
-    /math mana_p {$mana/$mana_s*100.0}
+    /math mana_p {$mana/$mana_s*100.0};
+    refsta
 }
-/al he {do get skin from bag,drink skin}
-/al chi {do get meat from bag,eat meat}
+/al he {do get skin from bag,drink skin,put skin in bag}
+/al chi {do get meat from bag,eat meat,put meat in bag}
 /ac {^你拿起%1喝了几口}{/var he_ok 1;/delay {4}{full}}
 /ac {^你拿起%1咬了几口}{/var chi_ok 1;/delay {4}{full}}
 /ac {^你已经将%1喝得一滴也不剩}{/var err "not drink"}
@@ -236,7 +247,7 @@
     /delay {0.5}{
     /if {$f_drk<2}{he};
     /if {$f_eat<2}{chi};
-   /showme  {gin_m_p=$gin_m_p kee_m_p=$kee_m_p sen_m_p=$sen_m_p};
+   /nop showme  {gin_m_p=$gin_m_p kee_m_p=$kee_m_p sen_m_p=$sen_m_p};
     /if {$kee_s_p>9}{
         /showme {===yaoheal};
         yaoheal; 
@@ -246,7 +257,7 @@
     /if {$kee_m_p>10}{dazuo};
     /if {$gin_m_p>10}{dazuo};
     /if {$sen_m_p>10}{dazuo};
-   /showme  {force_p=$force_p atman_p=$atman_p};
+   /nop showme  {force_p=$force_p atman_p=$atman_p};
     /if {$atman_p<110}{hl}; 
     /if {$force_p<120}{hn} 
     }

@@ -92,7 +92,7 @@
     /delay {4}{hp;eatall;dazuo}
 }
 /ac {ËÀÁË¡£}{look corpse}
-/ac {^ÂÌÖŞ}{gb wineskin;fill wineskin;pp wineskin}
+/ac {^ÂÌÖŞ}{do get skin from bag,fill skin,put skin in bag}
 /ac {^¾ÆÈâºÍÉĞËµµÀ£º¡°Ëı´Ë·¬ÌÓ½«³öÈ¥}{open door;s;pull Ğ¡¹ñ}
 /nop ac {ÄãµÄĞşÁéÓñºĞÖĞÃ»ÓĞ%0Õâ¸öÎïÆ·¡£}{qxl %0; /delay {3}{i}}
 /nop ac {~[37mÄãÏÖÔÚµÄÈÎÎñÊÇ: µ½%0È¥%1¡»%2ÔÚ%3ÄÚÍê³É} {/var qname %1; /showme {%0 %1¡» %3}{-1}} {2}
@@ -197,7 +197,11 @@
 
 /nop fill jiudai
 /al filljiudai {fykz;/delay {1}{/2 {gb wineskin}; /2 {fill wineskin;fill wineskin 2 ;pp wineskin}}; /delay {2}{kzfy}}
-
+/al fjd {fykz;/delay {1}{
+    do get skin from bag,get skin from bag,fill skin,put skin in bag,fill skin,put skin in bag,drop skin 2,get skin,fill skin; 
+    /delay {2}{kzfy}
+    }
+    }
 /al ga {get all from %0}
 /al gc {get %0 from corpse %1}
 
@@ -389,3 +393,14 @@ sell yellow crystal;
 /al fi {iskill;fight %0;set targe %0;/var npc %0}
 /ac {^¿ÉÊÇÊ²Ã´ÊÂÇé¶¼Ã»ÓĞ·¢Éú}{fff}
 /ac {^¿´ÆğÀ´½ğÒÂÎÀÊ×ÁìÏëÉ±ËÀÄã}{tk sentry}
+/nop full pet
+/al fpet {
+    gb skin;gb meat;
+    pg skin;pg meat;
+    order drink skin;
+    /delay {4}{order eat meat};
+    /delay {5}{
+    pm skin;pm meat;
+    }
+}
+

@@ -5,7 +5,9 @@
 /var helper nurse;
 /var is_together 0;
 /al setheader {/var team_header %0}
+/var hasorder 0
 /al tat {
+    /var hasorder 0;
     /var is_together 0;
     whisper $teamer_1 team_at?;
     whisper $teamer_2 team_at?
@@ -28,7 +30,7 @@ tat;
 }
 /ac {你的耳边悄声说道：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
 /ac {告诉你：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
-/ac {你的耳边悄声说道：KKK%0}{ki %0}
+/ac {你的耳边悄声说道：KKK%0}{/var hasorder 1; ki %0}
 
 /al tta {tell $teamer_1 EX%0}
 /al ttb {tell $teamer_2 EX%0}
@@ -39,10 +41,10 @@ tat;
 /al t {
     /if {"$team_header" == "$myname"}{
     whisper $teamer_1 EX%0;
-    /delay {0.5}{whisper $teamer_2 EX%0};
+    /delay {0.8}{whisper $teamer_2 EX%0};
     /var EX %0;
     /replace {EX}{,}{;};
-    /delay {1}{$EX}
+    /delay {1.5}{$EX}
     }{/showme you not leader}}
 /al ttt {
     tta %0;
@@ -88,7 +90,9 @@ whisper $teamer_2 EXfollow $team_header
    de3 {team with $teamer_3};
    de4 {team name 四人帮}
 }
-/ac {^%0在你的耳边悄声说道：heal |%1|}{/al healto {exert heal %1};healto}
-/al yaoheal {whisper $team_header heal |$myname|}
+/ac {^%0在你的耳边悄声说道：heal |%1|}{/al healto {hh %1}; healto}
+/al yaoheal {/if {"$team_header" == "$myname"}{}{whisper $team_header heal |$myname|}}
 /al askkill {whisper $team_header killwho |$myname|}
-/ac {^%0在你的耳边悄声说道：killwho |%1|}{whisper %1 KKK$npc;/showme kill $npc}
+/ac {^%0在你的耳边悄声说道：killwho |%1|}{whisper %1 KKK$npc;/showme kill $npc;}
+/ac {^禅使出大悲千叶掌法}{/if {$hasorder==0}{askkill;iskill}}
+/ac {^禅双手合十，垂眉俯首}{/if {$hasorder==0}{askkill;iskill}}

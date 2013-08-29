@@ -92,3 +92,7 @@
 /gag {^（你上一个动作还没有完成}
 /gag {^todo}
 /ac {^可是什么事情都没有发生}{fff}
+/al petbuff {order wear all;order wield ironfist}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxc;/delay {0.5}{/if {$haspet==0}{whistle}}}
