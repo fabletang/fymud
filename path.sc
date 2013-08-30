@@ -303,9 +303,13 @@
 /al fyw {wlk;do d,w,w,w,w,w,w,w,w;nwlk}
 /al fyw- {wlk;unwield all;do e,e,e,e,e,e,e,e,u;nwlk}
 
-/al fy2qf {fyn;/delay {1.5}{fyn2qf}}
-/al fyn2qf {pl {wlk;n;n;n;e;e;nwlk};pr}
+/nop fyn {wlk;do d,n,n,n,n,nw,n,ne,n,n;nwlk;}
+/nop  fy2qf {fyn;/delay {1.5}{fyn2qf}}
+/al fy2qf {wlk;do d,n,n,n,n,nw,n,ne,n,n,n,n,n,e,e;nwlk}
+/nop fyn2qf {pl {wlk;n;n;n;e;e;nwlk};pr}
+/al fyn2qf {wlk;do n,n,n,e,e;nwlk}
 /al qf2fyn {pl {wlk;w;w;s;s;s;nwlk};pr}
+/al qf2fy {unwield all;wlk;do w,w,s,s,s,s,s,sw,s,se,s,s,s,s,u;nwlk}
 /nop al fy2qf {fyn;/delay {1.5}{/3 n;/2 e}}
 /al fyn2qf+ {
     wlk;
@@ -322,8 +326,9 @@
     /unac {^千佛山角}
 }
 
-/al qf2fy {qf2fyn;de1 {fyn-}}
+/nop  qf2fy {qf2fyn;de1 {fyn-}}
 /al qf2fyn+ {
+
     wlk;
     /ac {^南北大道}{s};
     /ac {^风云城北}{;qf2fyn-;fyn-}
@@ -351,8 +356,10 @@
 /al xg2fy {xg2qf;de1 {qf2fy}}
 
 /nop 清平山庄
-/al qf2qp {pl {wlk;e;s;s;s;e;ne;ne;ne;e;nwlk};pr}
-/al qp2qf {pl {wlk;w;sw;sw;sw;w;n;n;n;w;nwlk};pr}
+/nop qf2qp {pl {wlk;e;s;s;s;e;ne;ne;ne;e;nwlk};pr}
+/nop qp2qf {pl {wlk;w;sw;sw;sw;w;n;n;n;w;nwlk};pr}
+/al qf2qp {wlk;do e,s,s,s,e,ne,ne,ne,e;nwlk}
+/al qp2qf {wlk;do w,sw,sw,sw,w,n,n,n,w;nwlk}
 
 /al fy2qp {fy2qf;de3 {qf2qp}}
 /al qp2fy {wlk;w;/3 sw;w;/3 n;w;de1 {qf2fy}}
@@ -667,7 +674,8 @@
     /unac {^听着耳边的呼呼}
 }
 
-/al fy2ml {fys;de1 {do s,s,s,s,s,s,climb tree;nwlk;}}
+/nop  fy2ml {fys;de1 {do s,s,s,s,s,s,climb tree;nwlk;}}
+/al fy2ml {wlk;d;do s,s,s,s,s,s,s,s,s,s,s,s,s,s,climb tree;nwlk;}
 /al ml2fy {ml2fy+;l}
 /al ml2fy+ {
     wlk;
@@ -758,7 +766,8 @@
 }
 
 /nop 沉香镇
-/al fy2cx {cx2fy-;fy2ml;fy2cx+}
+/nop fy2cx {cx2fy-;fy2ml;fy2cx+}
+/al fy2cx {fy2ml;de4 {swing west};de6 {do swing west,w,w,w,w;nwlk};}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -771,7 +780,8 @@
     /unac {^镇东首}
 }
 /nop 沉香to风云
-/al cx2fy {fy2cx-;cx2fy+;l;}
+/nop cx2fy {fy2cx-;cx2fy+;l;}
+/al cx2fy {cx2sf;de1 {sf2sk};de2 {sk2fy}}
 /al cx2fy+ {
     wlk;
     /ac {^老城广场}{/delay {0.2}{/6 e;climb tree}};
@@ -1021,8 +1031,10 @@ wlk;
 }
 /nop 风云到关外
 
-/al lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
-/al gw2lz {pl {wlk;wi jade;w;n;e;e;e;e;e;e;e;e;e;e;e;e;e;nwlk};pr}
+/nop lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
+/al lz2gw {wlk;do w,w,w,w,w,w,w,w,w,w,w,w,w,s,e;nwlk}
+/nop  gw2lz {pl {wlk;wi jade;w;n;e;e;e;e;e;e;e;e;e;e;e;e;e;nwlk};pr}
+/al gw2lz {wlk;unwield all;wield jade;do w,n,e,e,e,e,e,e,e,e,e,e,e,e,e;nwlk}
 /al gw2cx {gw2sj;wi jade;de2 {sj2cx}}
 /nop al sj2cx {pl {wlk;e;e;s;s;su;sw;se;se;sw;se;s;nwlk};pr}
 /al sj2cx {pl {wlk;do e,e,s,s,su,sw,se,se,sw,se,s;nwlk};pr}
@@ -1110,7 +1122,8 @@ wlk;
 /al wlb2bc {wlb2lz;de2 {lz2bc}}
 /al bc2wlb {bc2lz;de2 {lz2wlb}}
 /al wlb2fy {wlb2lz;de3 {lz2fy}}
-/al lz2fy {lz2cx;cx2fy+}
+/nop lz2fy {lz2cx;cx2fy+}
+/al lz2fy {lz2sk;de1 {sk2fy}}
 /nop al fy2lz {fy2cx;cx2lz+}
 /al fy2lz {fy2cx;de7 {cx2lz}}
 /al cx2lz+ {
@@ -1140,8 +1153,8 @@ wlk;
 /al wurong2tf {do s,s,s,s,s.e,s,e,e}
 
 /nop 塞口
-/al fy2sk {fyw;de1 {/9 w}}
-/al sk2fy {wlk;/9 e;de1 {fyw-}}
+/al fy2sk {fyw;de1 {do w,w,w,w,w,w,w,w,w;nwlk}}
+/al sk2fy {wlk;do e,e,e,e,e,e,e,e,e;de1 {fyw-}}
 /nop 桃源
 /al fy2ty {wlk;/al ty_action {around;l};fy2wdz;fy2ty+;de2 {/4 e;ty_action}}
 /al fy2ty+ {
@@ -1746,3 +1759,18 @@ nwlk;
 /ac {一棵苍郁挺拔，枝繁叶茂的汉柏，在它的主干与侧枝的交接处之上长了一个^}{/al answerdm {answer 挂印封侯};w;n;n;n;answerdm}
 /ac {^一棵古柏树干上淤结了一个球状疤瘤}{/al answerdm {answer 麒麟望月};w;n;n;n;answerdm}
 /ac {^一棵唐槐，高大茂盛}{/al answerdm {answer 唐槐抱子};w;n;n;n;answerdm}
+/al cx2hy {wlk;do n,nw,ne,nw,nw,ne,nw,nd;nwlk}
+/al hy2cx {wlk;do su,ne,sw,se,se,sw,se,s;nwlk}
+/nop sf 石峰
+/al cx2sf {wlk;do n,nw,ne,nw,nw,ne,nw,nd,n,nw,n;nwlk}
+/al sf2sk {wlk;do s,s,s,e,e,e,e,e;nwlk}
+/nop  tf2sk {wlk;do s,w,s,s,s,s,e,e,e,e,e;nwlk}
+/nop lz2tf {wlk;do w,n,n,n,n,e,n;nwlk}
+/nop  tf2lz {wlk;do s,w,s,s,s,e,n,w;nwlk}
+/al  sf2lz {wlk;do s,s,e,n,w;nwlk}
+/al lz2sf {wlk;do w,n,n,n;nwlk}
+/nop  lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
+/al lz2sk {wlk;do w,n,n,n,s,s,s,e,e,e,e,e;nwlk}
+/al cx2fy {cx2sf;de1 {sf2sk};de2 {sk2fy}}
+/al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
+/al lz2fy {lz2sk;de1 {sk2fy}}
