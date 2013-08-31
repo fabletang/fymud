@@ -169,7 +169,12 @@
 /al lc {l corpse %0}
 /nop al ki {set target %0;kill %0; /var knpc %0}
 /al xc {get all from corpse %0}
-/al x {get %1 from corpse %2}
+/al x {get %0 from corpse}
+/al x2 {get %0 from corpse 2}
+/al x3 {get %0 from corpse 3}
+/al x4 {get %0 from corpse 4}
+/al x5 {get %0 from corpse 5}
+/al x6 {get %0 from corpse 6}
 /nop al xb {get %0 from corpse;cun %0}
 /al xb {get %0 from corpse;qput %0}
 /al dj {get wineskin from bag;drink wineskin}

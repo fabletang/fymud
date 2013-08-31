@@ -29,15 +29,17 @@
 /al buff {i;perform dodge.wolverine}
 /var islian 0
 /ac {^你双目红赤，大张着手臂}{/var hashand 1;/var hasleg 0} 
-/al ki {wi jade;set target %0;/var npc %0;buff;/delay {2}{kill %0}}
+/var hasorder 0
+/al ki {set target %0;/var npc %0;cq %0;buff;/var hasorder 1;/delay {6.1}{cq %0;kill %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
 /var zjbl_ok 0
 /al zh xiao
-/al dh {zh;perform duanhou}
-/al sg {zh;perform shigu}
+/al dh {zh;wih;perform duanhou}
+/al sg {get leg;zh;wih;perform shigu}
+/al cq {wiw;perform jingkeciqin} 
 /al ak sg 
 /al kkx {/ticker {kill}{ak}{4.2}}
 /al startk {sg;/al ak sg;kkx}

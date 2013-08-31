@@ -36,7 +36,7 @@
 /al lx {healme;healto;wistaff;perform longxianyuye}
 /al jj {healme;healto;conjure void_sense}
 /var islian 0
-/al ki {iskill;wi staff;set target %0;buff;/var npc %0;/delay {0.5}{kill %0;startk}}
+/al ki {iskill;wi staff;set target %0;buff;/var npc %0;/delay {3}{kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
