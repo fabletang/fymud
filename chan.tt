@@ -29,14 +29,20 @@
 /ac {^你放下手中的金刚杵}{/var hasstaff 0} 
 /ac {^你没有装备任何武器}{/var hasstaff 0;/var hashand 0} 
 /ac {^你使出大悲千叶掌法}{/var hasstaff 0;/var hashand 1} 
-/al buff {i;}
 /al healme {/showme todo}
 /al healto {/showme todo}
 /al j {healme;healto;wihand;perform qianshouqianbian}
 /al lx {healme;healto;wistaff;perform longxianyuye}
 /al jj {healme;healto;conjure void_sense}
+/al kk {healme;healto;conjure mind_sense}
+/al pj {performp dodge.liushuichanchan}
+/nop al pjj {performp jingsheng with xxl;performp jingsheng}
+/nop al pjj {performp jingsheng}
+/al pjj {order perform jingsheng with xxl;performp jingsheng}
+/al buff {wh;de1 {wpet}}
 /var islian 0
-/al ki {iskill;wi staff;set target %0;buff;/var npc %0;/delay {3}{kill %0;startk}}
+/al init {/var healme {/showme todo};/var healto {showme todo}}
+/al ki {iskill;wi staff;set target %0;buff;/var npc %0;/delay {2}{kill %0;gongji %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -48,25 +54,29 @@
 /al kx startk
 /al ssk startk
 /ac {^%1心头一颤，只觉繁华世事}{j;/al ak j;/delay {30}{/al ak jj}}
-/ac {^结果%1被你攻了个手忙脚乱！}{/al ak lx}
-/ac {^%1已经手忙脚乱了！}{lx;/al ak lx}
-/ac {^敌人已经中招了，还不抓紧}{lx;/al ak lx}
+/ac {^结果%1被你攻了个手忙脚乱！}{pjj;/al ak kk}
+/ac {^%1已经手忙脚乱了！}{pjj;kk;/al ak kk}
+/ac {^敌人已经中招了，还不抓紧}{kk;/al ak kk}
+/ac {^奇冷的寒气包围了}{pjj}
+/ac {^但是被%1机灵地躲}{pj}
 /ac {^需要100点灵力！}{/al ak j}
-/ac {^你低呼佛号，内力聚于双臂}{/al ak j;/var hashand 0;/var hasstaff 1}
-/al stopk {/al healme {/showme todo};/unticker {kill};nokill}
+/ac {^你低呼佛号，内力聚于双臂}{pj;/al ak j;/var hashand 0;/var hasstaff 1}
+/ac {^你闭目凝神，印堂飞起一片红霞}{/al ak j;/var hashand 1;/var hasstaff 0}
+/al stopk {init;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『空识神通』只能对战}{stopk;cks}
+/ac {^这种法术只能对战}{stopk;cks}
 /ac {^『龙现于野』只能对战}{stopk;cks}
 /ac {^『千手千变』只能对战}{stopk;cks}
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫，}{/al healme hh}
 /ac {^( 你看起来已经力不从心了}{/al healme hh}
 /ac {^( 你头重脚轻，正在勉力)}{/al healme hh}
-/ac {^( 你摇头晃脑、歪歪斜斜}{/al healme hh}
-/ac {^( 你已经陷入半昏迷状态}{/al healme hh}
+/ac {^( 你摇头晃脑、歪歪斜斜}{exert douzhansheng;/al healme hh}
+/ac {^( 你已经陷入半昏迷状态}{exert douzhansheng;/al healme hh}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
-/ac {^你运起内功，缓缓地}{/al healme {/showme todo}}
-/ac {^你运起内功，将手掌}{/al healto {/showme todo}}
+/ac {^你运起内功，缓缓地}{pj;/al healme {/showme todo}}
+/ac {^你运起内功，将手掌}{pj;/al healto {/showme todo}}
 /read gag.sc
 /read path.sc
 /read normal.sc
@@ -92,7 +102,7 @@
 /gag {^（你上一个动作还没有完成}
 /gag {^todo}
 /ac {^可是什么事情都没有发生}{fff}
-/al petbuff {order wear all;order wield ironfist}
+/al wpet {order wear all;order wield blade}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxc;/delay {0.5}{/if {$haspet==0}{whistle}}}

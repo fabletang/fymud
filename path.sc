@@ -767,7 +767,7 @@
 
 /nop 沉香镇
 /nop fy2cx {cx2fy-;fy2ml;fy2cx+}
-/al fy2cx {fy2ml;de4 {swing west};de6 {do swing west,w,w,w,w;nwlk};}
+/al fy2cx {fy2ml;/delay {4.5}{swing west};de6 {do swing west,w,w,w,w;nwlk};}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -959,7 +959,7 @@
 /al sga2fy {sga2yks;de1 {yks2fy}}
 
 /nop 八识神通
-/al ff {conjure team_drift}
+/nop ff {conjure team_drift}
 /al fff {fff+;fdf}
 /al fff+ {
 /ac {^你的周围一片寂静}{de10 {df2fy}};
@@ -1128,7 +1128,7 @@ wlk;
 /al fy2lz {fy2cx;de7 {cx2lz}}
 /al cx2lz+ {
     wlk;
-    /ac {^老城广场}{/delay {0.2}{cx2lz}};
+    /ac {^老城广场}{cx2lz};
     /ac {^大漠风沙}{cx2lz-}
 }
 /al cx2lz- {

@@ -25,12 +25,18 @@
 /ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
 /ac {^你将手上的戒指藏入}{/var hashand 0} 
 /ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
-/al buff {i;perform dodge.gouweixudiao}
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
 /var islian 0
-/ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;startk}}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxg;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al pj {performp freeze}
+/al pjj {performp canglongzhaxian}
+/ac {将周身凝聚的冰块震得粉碎！！}{pj}
+/ac {^但是被%1机灵地躲开了。}{de6 {pj};/showme ====todo====}
+/al buff {wh;perform dodge.gouweixudiao}
+/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -64,6 +70,7 @@
 }
 /ac {^你的真气被打乱了，使不出震惊百里}{/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak sc}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
+/ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak bzj}
 /ac {^随着长声惨叫}{czj;/al ak sc}
@@ -130,6 +137,3 @@
 /read status_2.sc
 /al qq {fox;quest}
 /al petbuff {order wear all;order wield ironfist}
-/var haspet 0
-/ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxg;/delay {0.5}{/if {$haspet==0}{whistle}}}

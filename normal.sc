@@ -288,7 +288,7 @@
 /ac {^木牢狱卒嘿嘿道：够胆量！}{tk guard;ki guard}
 /ac {^金牢狱卒嘿嘿道：够胆量！}{tk guard;ki guard}
 /ac {^火牢狱卒嘿嘿道：够胆量！}{tk guard;ki guard}
-/nop ac {^看起来%0想杀死你！}{/var knpc_name %0;}
+/nop {^看起来%0想杀死你！}{/var knpc_name %0;iskill}
 /ac {^糟糕！你失手了！}{startk}
 /ac {^这里无法使用特殊招式} {stopk}
 /ac {^你用尽全身力量，将}{/unticker {pull}}
@@ -397,7 +397,7 @@ sell yellow crystal;
 /ac {^三仙碑}{do get skin from bag,fill skin}
 /al fi {iskill;fight %0;set targe %0;/var npc %0}
 /ac {^可是什么事情都没有发生}{fff}
-/ac {^看起来金衣卫首领想杀死你}{tk sentry}
+/ac {^看起来金衣卫首领想杀死你}{tk sentry}{3}
 /nop full pet
 /al fpet {
     gb skin;gb meat;
@@ -408,4 +408,4 @@ sell yellow crystal;
     pm skin;pm meat;
     }
 }
-
+/ac {^潇江说道：你试着吹一声口哨（ｗｈｉｓｔｌｅ）}{de2 {whistle};de3 {scorep}}

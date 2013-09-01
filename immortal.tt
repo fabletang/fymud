@@ -63,6 +63,7 @@
 /al kk {ak;/ticker {kill}{ak}}{2.1}
 /al ki {set wimpy 20;set target %0;/var npc %0;buff;/delay {5}{kill %0;gongji %0}}
 /al petbuff {order wear all;order wield ironfist}
+/al wpet {order wear all;order wield ironfist}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxx;/delay {0.5}{/if {$haspet==0}{whistle}}}

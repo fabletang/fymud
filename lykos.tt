@@ -26,11 +26,25 @@
 /ac {^你从怀中摸出一对}{/var hashand 1;/var hasleg 0} 
 /ac {^你将手上的爪藏入}{/var hashand 0} 
 /ac {^你抓起一根烤鸡腿}{/var hashand 0;/var hasleg 1} 
-/al buff {i;perform dodge.wolverine}
+/al buff {wh;perform dodge.wolverine;/delay {0.8}{wpet}}
+/al pj {performp dodge.liushuichanchan}
+/nop al pjj {/showme ========pjj;order perform siqi with xxc}
+/nop al pjj {/showme ========pjj;order perform siqi with xxc}
+/nop al pjj {/showme ========pjj;order perform siqi with xxc;performp siqi}
+/al pjj {/showme ========pjj;order perform siqi with xxc;performp siqi}
 /var islian 0
 /ac {^你双目红赤，大张着手臂}{/var hashand 1;/var hasleg 0} 
+/ac {^结果%1攻了个手忙脚乱}{de1 {ok}}
+/ac {^奇冷的寒气包围了}{de1 {ok}}
+/ac {^但是被%1机灵地躲}{pj}
 /var hasorder 0
-/al ki {set target %0;/var npc %0;cq %0;buff;/var hasorder 1;/delay {6.1}{cq %0;kill %0}}
+/al ki {set target %0;/var npc %0;buff;/var hasorder 1;
+        /if {$is_kill==0}{
+        de1 {cq %0;gongji %0};/delay {7.1}{cq %0;kill %0}
+        }{
+        de1 {gongji %0;kill %0}
+        }
+        }
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -79,7 +93,8 @@
 /al qq {wolf;quest}
 /al buyleg {buy fried chicken leg from waiter}
 /gag {^todo}
-/al petbuff {order wear all;order wield ironfist}
+/al wpet {order wear all;order wield sword}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxl;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/{^看起来%0想杀死你！}{iskill;gongji %0;pj;startk}

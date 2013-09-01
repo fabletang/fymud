@@ -44,7 +44,7 @@ tat;
     /delay {0.8}{whisper $teamer_2 EX%0};
     /var EX %0;
     /replace {EX}{,}{;};
-    /delay {1.5}{$EX}
+    /delay {1.6}{$EX}
     }{/showme you not leader}}
 /al ttt {
     tta %0;
