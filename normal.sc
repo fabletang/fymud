@@ -93,6 +93,7 @@
 }
 /ac {ËÀÁË¡£}{look corpse}
 /ac {^ÂÌÖŞ}{do get skin from bag,fill skin,put skin in bag}
+/ac {^´óÃ÷ºş}{do get skin from bag,fill skin,put skin in bag}
 /ac {^¾ÆÈâºÍÉĞËµµÀ£º¡°Ëı´Ë·¬ÌÓ½«³öÈ¥}{open door;s;pull Ğ¡¹ñ}
 /nop ac {ÄãµÄĞşÁéÓñºĞÖĞÃ»ÓĞ%0Õâ¸öÎïÆ·¡£}{qxl %0; /delay {3}{i}}
 /nop ac {~[37mÄãÏÖÔÚµÄÈÎÎñÊÇ: µ½%0È¥%1¡»%2ÔÚ%3ÄÚÍê³É} {/var qname %1; /showme {%0 %1¡» %3}{-1}} {2}

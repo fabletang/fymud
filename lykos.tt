@@ -34,7 +34,7 @@
 /al pjj {/showme ========pjj;order perform siqi with xxc;performp siqi}
 /var islian 0
 /ac {^你双目红赤，大张着手臂}{/var hashand 1;/var hasleg 0} 
-/ac {^结果%1攻了个手忙脚乱}{de1 {ok}}
+/ac {^结果%1攻了个手忙脚乱}{pjj}
 /ac {^奇冷的寒气包围了}{de1 {ok}}
 /ac {^但是被%1机灵地躲}{pj}
 /var hasorder 0
@@ -52,18 +52,21 @@
 /var zjbl_ok 0
 /al zh xiao
 /al dh {zh;wih;perform duanhou}
+/al cz {zh;wih;perform canzhi}
 /al sg {get leg;zh;wih;perform shigu}
 /al cq {wiw;perform jingkeciqin} 
 /al ak sg 
-/al kkx {/ticker {kill}{ak}{4.2}}
-/al startk {sg;/al ak sg;kkx}
+/al kkx {/ticker {kill}{ak}{4.1}}
+/al startk {cz;/al ak cz;kkx}
 /al kx startk
 /al ssk startk
 /al stopk {/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『残肢』需要%1秒后}{sg;/al ak sg;}
+/ac {^你招式一变，阴柔奇诡}{/al ak sg;/delay {90}{/al ak cz}}
 /ac {^『断喉』只能对战}{stopk;cks}
 /ac {^『嗜骨』只能对战}{stopk;cks}
-/ac {^你的法力太低}{hp}
+/ac {^『残肢』只能对战}{stopk;cks}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}

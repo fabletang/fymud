@@ -68,13 +68,14 @@
     zjbl;
     /al ak zjbl
 }
-/ac {^你的真气被打乱了，使不出震惊百里}{/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak sc}}
+/ac {^你的真气被打乱了，使不出震惊百里}{/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak bzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak bzj}
-/ac {^随着长声惨叫}{czj;/al ak sc}
-/ac {你只好招式突换，一棍随手挥出}{/al ak sc}
+/ac {^随着长声惨叫}{pjj;czj;/al ak yzj}
+/ac {你只好招式突换，一棍随手挥出}{/al ak yzj}
+/ac {^你需要过%1秒才能再次使用引字诀}{bzj}
 /al sc+ {
 /ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
@@ -98,15 +99,9 @@
 /ac {^『降龙无悔』只能对战}{stopk;cks}
 /ac {^『时乘六龙』只能对战}{stopk;cks}
 /ac {^『震惊百里』只能对战}{stopk;cks}
-/ac {^『雨后初虹』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『清辉』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『连天衰草』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『阴陵扣命』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『无空漩流』只能对战斗}{stopk;cks}
-/ac {^『红藕香残』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『七星伴月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^你的法力太低}{hp}
+/ac {^『引字诀』只能对战}{stopk;cks}
+/ac {^『绊字诀』只能对战}{stopk;cks}
+/ac {^『戳字诀』只能对战}{stopk;cks}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}

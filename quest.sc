@@ -16,9 +16,9 @@
         /if {$en_qb==1}{
         fyxl;
         list;
-        de4 {buyitem};
-        de5 {xlfy};
-        /delay {6}{gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
+        de6 {buyitem};
+        de7 {xlfy};
+        /delay {8}{gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
         }
 }
 /ac {^©¦%1¡¡¡º%2¡»(%3) }{/if {"$q_item"=="%2"}{/var q_item_name %3}}
