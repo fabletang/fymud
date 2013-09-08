@@ -30,7 +30,7 @@
 /var islian 0
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxg;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al wh {/var haspet 0;l xxg;/delay {0.8}{/if {$haspet==0}{whistle;order team with xxc}}}
 /al pj {performp freeze}
 /al pjj {performp canglongzhaxian}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}

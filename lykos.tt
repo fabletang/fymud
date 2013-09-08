@@ -96,8 +96,8 @@
 /al qq {wolf;quest}
 /al buyleg {buy fried chicken leg from waiter}
 /gag {^todo}
-/al wpet {order wear all;order wield sword}
+/al wpet {order wear all;order wield sword;order team with xxc}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxl;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al wh {/var haspet 0;l xxl;/delay {0.6}{/if {$haspet==0}{whistle;order team with xxc}}}
 /{^看起来%0想杀死你！}{iskill;gongji %0;pj;startk}
