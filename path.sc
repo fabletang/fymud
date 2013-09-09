@@ -361,8 +361,8 @@
 /al qf2qp {wlk;do e,s,s,s,e,ne,ne,ne,e;nwlk}
 /al qp2qf {wlk;do w,sw,sw,sw,w,n,n,n,w;nwlk}
 
-/al fy2qp {fy2qf;de3 {qf2qp}}
-/al qp2fy {wlk;w;/3 sw;w;/3 n;w;de1 {qf2fy}}
+/al fy2qp {fy2qf;de1 {qf2qp}}
+/al qp2fy {qp2qf;de1 {qf2fy}}
 /nop 岱庙坊
 /nop al qp2dm {pl {wlk;w;n;ne;ne;n;n;nwlk};pr}
 /al qp2dm {wlk;do w,n,ne,ne,n,n;nwlk}
@@ -372,7 +372,7 @@
 /al qp2ts {qp2dm;de1 {dm2ts}}
 /al ts2qp {ts2dm;de1 {dm2qp}}
 /nop al dm2qp {wlk;s;e;e;/4 s;de1 {w;w;/3 s;sw;sw;s;e;nwlk}}
-/al fy2dm {fy2qp;de5 {qp2dm}}
+/al fy2dm {fy2qp;de3 {qp2dm}}
 /nop al fy2dm {fy2qf;de3 {wlk;e;/3 s;e;ne};de4 {/2 ne;n;/2 ne;/2 n;nwlk}}
 /al dm2fy {wlk;dm2qp;de1 {qp2fy}}
 /nop 泰山
@@ -403,7 +403,7 @@
     /unac {^十八盘};
     /unac {^南天门};
 }
-/al tsout {/7 d;wd;sd;/6 d}
+/al tsout {do d,d,d,d,d,d,d,d,d,d,d,d,d;wd;sd;/6 d}
 /nop 老屋
 /al fy2lw {fyn2lw+;fyn}
 /al fyn2lw+ {
@@ -497,7 +497,7 @@
 /al hsb2fy+ {
     wlk;
     /ac {^西花园}{climb wall;};
-    /ac {^你松开蔓藤}{de1 {look}};
+    /ac {^你松开蔓藤}{de2 {look}};
     /ac {^黑松城堡的东侧}{w};
     /ac {^黑松城堡的西侧}{e};
     /ac {^黑松淳于} {down;w;w;d;w;d;s;};
@@ -1080,7 +1080,7 @@ wlk;
 /al tp2guizi {pl {wlk;sw;sw;s;s;s;w;w;w;w;push black door;s;s;nwlk};pr}
 /al guizi2tp {pl {wlk;n;n;pull door;n;e;e;e;e;n;n;n;ne;ne;nwlk};pr}
 /al guizi2fy {guizi2tp;de2 {tp2fy}}
-/al fy2guizi {fy2tp;de13 {tp2guizi}}
+/al fy2guizi {fy2tp;de11 {tp2guizi}}
 /nop mha梅花庵
 /al tp2mha {pl {wlk;ne;w;w;w;nw;nu;nu;su;nu;wu;nu;wu;nwlk};pr}
 /al mha2tp {pl {wlk;ed;sd;ed;sd;nd;sd;sd;se;e;e;sw;nwlk};pr}
@@ -1092,7 +1092,7 @@ wlk;
 
 /al gw2er {gw2tp;de3 {tp2er}}
 /al er2gw {er2tp;de3 {tp2gw}}
-/al fy2er {fy2lz;de9 {lz2er}}
+/al fy2er {fy2lz;de8 {lz2er}}
 /al er2fy {er2lz;de4 {lz2fy}}
 /nop 关外到边城
 /al gw2bc {gw2lz;de2 {lz2bc}}
