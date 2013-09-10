@@ -121,10 +121,11 @@
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
      stack;
-     retrieve 6411;
-     retrieve 9945;
-     retrieve 9937;
-     retrieve 7214;
+     retrieve 6455;
+     retrieve 9935;
+     retrieve 7815;
+     retrieve 1577;
+     retrieve 2251;
      remove all;
      wear all
 }

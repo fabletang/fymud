@@ -92,9 +92,8 @@
 /read path.sc
 /read normal.sc
 /read quest.sc
-/nop read team.sc
-/read status.sc
-/nop read hb.tin
+/read teama.sc
+/read status_2.sc
 /nop log o ../$myname.log
 /ac {^【新手】} {/line log ../chat-$myname.log}{raw}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
@@ -122,7 +121,6 @@
 /gag {^你爽快地}
 /gag {^你并没有装备这样东西作为武器}
 /gag {^你一招}
-/read autorecover.sc
 /al qq {cut;quest}
 /al roomin {927}
 /al jiamoshang {exert xinyuan}

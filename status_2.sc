@@ -241,9 +241,9 @@
         }{/var chi_ok 1};
     checkme
     }
-/ac {^你盘腿跌坐在地上，闭上眼}{/showme ----dazuo}
+/ac {^你盘腿跌坐在地上，闭上眼}{nokill;nwlk;/showme ----dazuo}
 /ac {^你从忘我的境界中回神敛气}{full;/showme ----dazuo finish}
-/ac {^你不可以在这里打坐}{iswlk;/showme ----cannot dazuo}
+/ac {^你不可以在这里打坐}{wlk;/showme ----cannot dazuo}
 /nop hl
 /nop {^你觉得一阵天旋地转，头涨得像要裂开}{/delay {2}{full}}
 /ac {^你盘膝而坐，闭上眼睛开始凝聚思绪}{/delay {2}{full}}

@@ -60,7 +60,7 @@
 /al startk {cz;/al ak cz;kkx}
 /al kx startk
 /al ssk startk
-/al stopk {/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/al stopk {get leg;/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『残肢』需要%1秒后}{sg;/al ak sg;}
 /ac {^你招式一变，阴柔奇诡}{/al ak sg;/delay {90}{/al ak cz}}
@@ -86,8 +86,11 @@
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
      stack;
-     retrieve 4734;
+     retrieve 1901;
      retrieve 7945;
+     retrieve 7949;
+     retrieve 7957;
+     retrieve 7953;
      remove all;
      wear all
 }

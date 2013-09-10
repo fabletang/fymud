@@ -84,7 +84,7 @@
 /read teama.sc
 /read status_2.sc
 /nop read autorecover.sc
-/log o $myname.log
+/log o ../$myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
@@ -93,8 +93,10 @@
 /al getitem {
      stack;
      retrieve 7557;
-     retrieve 2559;
-     retrieve 4792;
+     retrieve 8075;
+     retrieve 7401;
+     retrieve 1973;
+     retrieve 9443;
      remove all;
      wear all
 }
@@ -106,3 +108,7 @@
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxc;/delay {0.6}{/if {$haspet==0}{whistle;order team with xxl}}}
+/ac {^【新手】} {/line log ../chat-$myname.log}{plain}
+/ac {^【传闻】} {/line log ../chat-$myname.log}{plain}
+/ac {^【谣言】} {/line log ../chat-$myname.log}{plain}
+/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}

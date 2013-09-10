@@ -1,7 +1,7 @@
 /var team_header chan;
 /var teamer_1 lykos
 /var teamer_2 gypsy
-/var teamer_3 gun
+/var teamer_3 immortal
 /var helper nurse;
 /var is_together 0;
 /al setheader {/var team_header %0}
@@ -10,6 +10,7 @@
     /var hasorder 0;
     /var is_together 0;
     whisper $teamer_1 team_at?;
+    whisper $teamer_3 team_at?;
     whisper $teamer_2 team_at?
 }
 /ac {你的耳边悄声说道：team_at?}{/var hasorder 0;whisper $team_header yes.$team_header}{1}
@@ -19,6 +20,7 @@ tat;
 /delay {1.5}{/if {$is_together > 0}{
     whisper $teamer_1 KKK%0;
     whisper $teamer_2 KKK%0;
+    whisper $teamer_3 KKK%0;
     ki %0;
     }{/showme 队员 数量 $is_together;team talk 队员 丢失}};
 /delay {3}{/var is_together 0}
@@ -26,6 +28,7 @@ tat;
 /al ttk {
     whisper $teamer_1 KKK%0;
     whisper $teamer_2 KKK%0;
+    whisper $teamer_3 KKK%0;
     ki %0
 }
 /ac {你的耳边悄声说道：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
@@ -41,14 +44,16 @@ tat;
 /al t {
     /if {"$team_header" == "$myname"}{
     whisper $teamer_1 EX%0;
-    /delay {0.8}{whisper $teamer_2 EX%0};
+    /delay {0.4}{whisper $teamer_2 EX%0};
+    /delay {0.8}{whisper $teamer_3 EX%0};
     /var EX %0;
     /replace {EX}{,}{;};
-    /delay {1.6}{$EX}
+    /delay {1.2}{$EX}
     }{/showme you not leader}}
 /al ttt {
     tta %0;
     ttb %0;
+    ttc %0;
     /var EX %0;
     /replace {EX}{,}{;};
     /delay {1.4}{$EX}
@@ -58,12 +63,14 @@ tat;
 /al tc {tta follow none;ttb follow none;ttc follow none}
 /al tf {
 whisper $teamer_1 EXfollow $team_header;
-whisper $teamer_2 EXfollow $team_header
+whisper $teamer_2 EXfollow $team_header;
+whisper $teamer_3 EXfollow $team_header
 }
 /al tq {
     tta qq;
     ttb qq;
-    /delay {0.5} {qq}}
+    ttc qq;
+    /delay {0.8} {qq}}
 
 /al tth {tell $team_header EX%0}
 /al th {tell $helper EX%0}
@@ -75,8 +82,8 @@ whisper $teamer_2 EXfollow $team_header
 /ac {^%0告诉你：teamsoul}{csoulto $teamer_2; /delay {2}{csoulto kisskill}; /delay {4}{csoul}}
 /al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoul}}
 /al tcks {
-    tta stat;ttb stat;stat;
-    tta cks;ttb cks;cks
+    tta stat;ttb stat;ttc stat;stat;
+    tta cks;ttb cks;ttc cks;cks
 }
 /al thh1 {tell $healer_1 EXhh $myname}
 /al thh2 {tell $healer_2 EXhh $myname}
