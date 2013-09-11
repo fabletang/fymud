@@ -252,6 +252,8 @@
 /nop hn
 /ac {^你坐下来运气用功，一股内息}{/delay {2}{full}}
 /ac {^你现在身体状况太差了，无法吐纳练功}{/showme --todo}
+/ac {^疗伤时至少需要有最大内力值护体}{hn}
+/ac {^你呼吸由低而响，愈来愈是粗重}{/delay {1}{full}}
 
 /al hl {exercise jing $gin_h}
 /al hn {exercise qi $kee_h}

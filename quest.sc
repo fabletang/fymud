@@ -181,3 +181,5 @@ n;
 /ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;de3 {fight nanren}}
 /ac {^勾魂使者对你说道：想过我这一关？}{accept test;tell ghost no face}
 /al xintask {cancel;de1 {newtask}}
+/al askxiaoyuer {ask xiao yuer about cancel;de2 {ask xiao yuer about help}}
+/ac {^小鱼儿说道：你可以用%1来定位}{/al ll %1;ll}
