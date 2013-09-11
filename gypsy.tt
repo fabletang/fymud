@@ -34,7 +34,7 @@
 /al pj {performp freeze}
 /al pjj {performp canglongzhaxian}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
-/ac {^但是被%1机灵地躲开了。}{de6 {pj};/showme ====todo====}
+/ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
 /al buff {wh;perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
@@ -60,6 +60,7 @@
 /al bzj {wistaff;perform banzijue}
 /al tzj {wistaff;perform tiaozijue}
 /al yzj {wistaff;perform yinzijue}
+/al txwg {wistaff;perform tianxiawugou}
 /al zjbl {wihand;perform zhenjingbaili}
 /al ps bzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
@@ -68,14 +69,16 @@
     zjbl;
     /al ak zjbl
 }
-/ac {^你的真气被打乱了，使不出震惊百里}{/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak bzj}}
+/ac {^你的真气被打乱了，使不出震惊百里}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak bzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak bzj}
-/ac {^随着长声惨叫}{pjj;czj;/al ak yzj}
-/ac {你只好招式突换，一棍随手挥出}{/al ak yzj}
-/ac {^你需要过%1秒才能再次使用引字诀}{bzj}
+/ac {^随着长声惨叫}{pjj;/al ak yzj}
+/ac {你只好招式突换，一棍随手挥出}{pj;/al ak yzj}
+/ac {^你需要过%1秒才能再次使用引字诀}{txwg}
+/ac {^你低喝一声『天下无狗』}{/al ak bzj}
+/ac {^对方已经手忙脚乱了。}{txwg}
 /al sc+ {
 /ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
@@ -102,6 +105,7 @@
 /ac {^『引字诀』只能对战}{stopk;cks}
 /ac {^『绊字诀』只能对战}{stopk;cks}
 /ac {^『戳字诀』只能对战}{stopk;cks}
+/ac {^『天下无狗』只能对战}{stopk;cks}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}

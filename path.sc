@@ -380,7 +380,7 @@
 /nop al ts2dm {wlk;sd;/4 s;/delay {0.5}{/5 s}}
 /nop al dm2ts {wlk;nw;w;/4 n;/2 e;n;nu;nwlk}
 /nop al ts2dm {wlk;sd;s;/2 w;/4 s;e;se;nwlk}
-/al fy2ts {fy2dm;de6 {dm2ts}}
+/al fy2ts {fy2dm;de4 {dm2ts}}
 /nop yun zhen
 /al ts2yunzheng {do ed,eu,climb down}
 /al yunzheng2ts {climb up;de4 {wd;wu}}
@@ -1587,7 +1587,7 @@ nwlk;
 /nop al fyxl {d;/3 w;s}
 /al xlfy {do n,e,e,e;u}
 /½ðÇ®°ï ÐûÎäÌÃ
-/al fy2xwt {pl {wlk;d;w;w;w;w;n;n;w;n;w;open picture;wd;e;nwlk};pr}
+/al fy2xwt {wlk;do d,w,w,w,w,n,n,w,n,w,open picture,wd,e;nwlk}
 /al xwt2fy {pl {wlk;w;eu;e;s;e;s;s;e;e;e;e;u;nwlk};pr}
 
 /nop ¶ö»¢¸Ú
@@ -1596,11 +1596,11 @@ nwlk;
 /al fy2ehg {fy2wdz;de2 {wdz2ehg}}
 /al ehg2fy {ehg2wdz;de2 {wdz2fy}}
 /nop ¶ÏËþ
-/al dtin {listen;push door;l ¶ÏËþ;open door;enter}
+/al dtin {do listen,push door,l ¶ÏËþ,open door,enter}
 /al wdz2dt {wlk;do s,s,s,se,se,su,su,su,keychain,sw,sw,su;dtin;nwlk}
 /al dt2wdz {wlk;do d,d,d,d,d,out,ne,nd,nd,nd,nw,nw,n,n,n;nwlk}
-/al fy2dt {fy2wdz;de2 wdz2dt}
-/al dt2fy {dt2wdz;de3 wdz2fy}
+/al fy2dt {fy2wdz;de2 {wdz2dt}}
+/al dt2fy {dt2wdz;de2 {wdz2fy}}
 /nop ask baili about ¹é¶«¾°
 /al dt2jyt {jytin+;wlk;do u,u,u,u,u,u,u,u,jumpout window,drop dingxi note,d,u,jumpout window;nwlk}
 /al jytin {jytin+;wlk;do push ¶ÏÇ½,enter,su,open Ä¾Ç½,eu;nwlk}

@@ -55,10 +55,10 @@
 /ac {^只见你这一拳变化无方}{pj;pjj;ulk;/var islian 0;/ticker {kill}{z}{2}}
 /ac {^你运力不慎，没用出绝招反而露出了空门}{pj;pjj;/if {$islian ==1 }{ulk;/ticker {kill}{ls}{2}}}
 /ac {^可是%1看破了你的企图，并没有上当}{ulk;/var islian 1;/ticker {kill}{ls}{2}}
-/ac {从容应招，将你的攻势消于无形}{ulk;/var islian 1;/ticker {kill}{ls}{2}}
+/ac {从容应招，将你的攻势消于无形}{pj;ulk;/var islian 1;/ticker {kill}{ls}{2}}
 /ac {目前正自顾不暇，放胆攻击}{/if {$islian==0}{z}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
-/ac {^但是被%1机灵地躲开了。}{de6 {pj;pjj};/showme ====todo====}
+/ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj};}
 /ac {^『棉里藏针』需要}{lt}
 /al kk {ak;/ticker {kill}{ak}}{2.1}
 /al ki {set wimpy 20;set target %0;/var npc %0;buff;/delay {5}{kill %0;gongji %0}}
