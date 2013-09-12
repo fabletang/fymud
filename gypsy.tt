@@ -72,20 +72,20 @@
 }
 /ac {^你所受到的野狗步法·狗尾续貂的效用消失}{/al tbuff perform dodge.gouweixudiao}
 /ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo}}
-/ac {^你的真气被打乱了，使不出震惊百里}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak bzj}}
+/ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{txwg}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak tzj}
-/ac {^随着长声惨叫}{pjj;/al ak tzj}
+/ac {^随着长声惨叫}{pjj;/al ak txwg}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{txwg}
-/ac {^你低喝一声『天下无狗』}{/al ak bzj}
+/ac {^你低喝一声『天下无狗』}{/al ak tzj}
 /ac {^对方已经手忙脚乱了。}{txwg}
 /ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
 /ac {^对方没有武器，无从使用『挑字诀』}{yzj}
 /ac {^这件武器看来没法挑下来}{yzj}
-/ac {^对方现在防备的很严，没希望挑下来}{yzj}
+/ac {^对方现在防备的很严，没希望挑下来}{bzj}
 /al sc+ {
 /ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
