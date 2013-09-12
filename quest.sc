@@ -183,3 +183,4 @@ n;
 /al xintask {cancel;de1 {newtask}}
 /al askxiaoyuer {ask xiao yuer about cancel;de2 {ask xiao yuer about help}}
 /ac {^小鱼儿说道：你可以用%1来定位}{/al ll %1;ll}
+/ac {^卡卡木说道：废话少说}{startk}

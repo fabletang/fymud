@@ -281,7 +281,6 @@
 /tab incarnation
 /tab practice
 /tab apprentice
-
 /nop 自动杀
 /ac {^  青龙杀手 %1(%2)}{say kill %2; /var result %2;@lowerLetter{};ttk $result;ki $result; /showme $result}
 /ac {^毛野恨声道：拿命来}{tk mao ye;ki mao ye}
@@ -396,7 +395,7 @@ sell yellow crystal;
 /al digstatue {/ticker {dig}{l 杨树;l 新土;dig;get box}{4}}
 /al notdig {/unticker {dig}}
 /ac {^三仙碑}{do get skin from bag,fill skin}
-/al fi {iskill;fight %0;set targe %0;/var npc %0}
+/al fi {buff;iskill;de2 {fight %0;set targe %0;/var npc %0}}
 /ac {^可是什么事情都没有发生}{fff}
 /ac {^看起来金衣卫首领想杀死你}{tk sentry}{3}
 /nop full pet

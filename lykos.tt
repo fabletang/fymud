@@ -25,6 +25,8 @@
 /ac {^  √爪(Jade)}{/var hashand 1;/var hasleg 0} 
 /ac {^你从怀中摸出一对}{/var hashand 1;/var hasleg 0} 
 /ac {^你将手上的爪藏入}{/var hashand 0} 
+/ac {^你放下手中的烤鸡腿}{/var hasleg 0} 
+/ac {^你跃身而起，手中烤鸡腿}{/var ishammer 0;/var hasleg 0;get leg;iskill;/delay {0.2}{ch $npc}} 
 /ac {^你抓起一根烤鸡腿}{/var hashand 0;/var hasleg 1} 
 /al buff {wh;perform dodge.wolverine;/delay {0.8}{wpet}}
 /al pj {performp dodge.liushuichanchan}
@@ -39,11 +41,7 @@
 /ac {^但是被%1机灵地躲}{pj}
 /var hasorder 0
 /al ki {set target %0;/var npc %0;buff;/var hasorder 1;
-        /if {$is_kill==0}{
-        de1 {cq %0;gongji %0};/delay {7.1}{cq %0;kill %0}
-        }{
-        de1 {gongji %0;kill %0}
-        }
+        de1 {cq ;bl;gongji %0};/delay {6.1}{cq;startk}
         }
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
@@ -51,27 +49,45 @@
 /var sc_ok 0
 /var zjbl_ok 0
 /al zh xiao
-/al dh {zh;wih;perform duanhou}
-/al cz {zh;wih;perform canzhi}
-/al sg {get leg;zh;wih;perform shigu}
-/al cq {wiw;perform jingkeciqin} 
+/al dh {/if {$ishammer==0}{wih;perform duanhou}}
+/al cz {/if {$ishammer==0}{wih;perform canzhi}}
+/al sg {/if {$ishammer==0}{get leg;wih;perform shigu}}
+/al cq {wiw;perform jingkeciqin $npc} 
+/al bl {ch $npc} 
+/al blyj {/if {$ishammer==0}{wiw;perform bolangyiji $npc}}
+/al jch {xiao;exert preservation}
+/ac {^当前在战斗中的憎恨最多对象：%0 (%1)}{
+        /var max_ch %1;
+        /if {$max_ch=="狼"}{jch}{
+             blyj;/al ak blyj}
+        }
 /al ak sg 
-/al kkx {/ticker {kill}{ak}{4.1}}
-/al startk {cz;/al ak cz;kkx}
+/al kkx {/ticker {kill}{ak}{2.1}}
+/al startk {bl $npc;/al ak bl;kkx}
 /al kx startk
 /al ssk startk
-/al stopk {get leg;/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/al stopk {/var ishammer 0;get leg;/var zh {xiao};/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『残肢』需要%1秒后}{sg;/al ak sg;}
 /ac {^你招式一变，阴柔奇诡}{/al ak sg;/delay {90}{/al ak cz}}
+/ac {^战斗外的刺杀请使用『荆轲刺秦』}{cq $npc}
+/ac {^战斗中无法使用荆轲刺秦}{bl $npc}
+/ac {^只有在对手对你疏于防范时才能使用此招}{jch;ch $npc;/al ak cz}
+/ac {^『潜狼诀』需要}{/al ak cz}
+/var ishammer 0
+/ac {^你趁其不备，飞速转到}{/var ishammer 1}
+/ac {^真可惜，你要刺杀的目标溜走了}{/var ishammer 0;cz}
 /ac {^『断喉』只能对战}{stopk;cks}
 /ac {^『嗜骨』只能对战}{stopk;cks}
 /ac {^『残肢』只能对战}{stopk;cks}
+/ac {^你要暗算谁？}{/showme "npc"=$npc;cz}
+/ac {^目标%1不在这里}{cz}
+/ac {^你身边没有这个NPC}{blyj}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk;yaoheal}
-/ac {^你仰天狼嚎“呜～嗷}{/al zh {/showme todo};/delay {40}{/al zh {xiao}}}
+/ac {^你仰天狼嚎“呜～嗷}{/al zh {/showme todo};/delay {0.2}{bl}}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get leg}
 /read gag.sc
 /read path.sc
@@ -103,4 +119,4 @@
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxl;/delay {0.6}{/if {$haspet==0}{whistle;order team with xxc}}}
-/{^看起来%0想杀死你！}{iskill;gongji %0;pj;startk}
+/{^看起来%0想杀死你！}{iskill;pj;ch $npc;/delay {0.2}{startk}}

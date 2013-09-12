@@ -10,8 +10,8 @@
     /var hasorder 0;
     /var is_together 0;
     whisper $teamer_1 team_at?;
-    whisper $teamer_3 team_at?;
-    whisper $teamer_2 team_at?
+    whisper $teamer_2 team_at?;
+    whisper $teamer_3 team_at?
 }
 /ac {你的耳边悄声说道：team_at?}{/var hasorder 0;whisper $team_header yes.$team_header}{1}
 /ac {你的耳边悄声说道：yes.}{/math is_together {$is_together + 1}}{1}

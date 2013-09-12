@@ -25,8 +25,9 @@
 /ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
 /ac {^你将手上的戒指藏入}{/var hashand 0} 
 /ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
-/al xl {wihand;perform xianglongwuhui}
-/al sc {wihand;perform shichengliulong}
+/al tbuff {/showme todo}
+/al xl {tbuff;wihand;perform xianglongwuhui}
+/al sc {tbuff;wihand;perform shichengliulong}
 /var islian 0
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
@@ -56,11 +57,11 @@
     /var sc_ok 0;
     /al ak sc;
 }
-/al czj {wistaff;perform chuozijue}
-/al bzj {wistaff;perform banzijue}
-/al tzj {wistaff;perform tiaozijue}
-/al yzj {wistaff;perform yinzijue}
-/al txwg {wistaff;perform tianxiawugou}
+/al czj {tbuff;wistaff;perform chuozijue}
+/al bzj {tbuff;wistaff;perform banzijue}
+/al tzj {tbuff;wistaff;perform tiaozijue}
+/al yzj {tbuff;wistaff;perform yinzijue}
+/al txwg {tbuff;wistaff;perform tianxiawugou}
 /al zjbl {wihand;perform zhenjingbaili}
 /al ps bzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
@@ -69,16 +70,22 @@
     zjbl;
     /al ak zjbl
 }
+/ac {^你所受到的野狗步法·狗尾续貂的效用消失}{/al tbuff perform dodge.gouweixudiao}
+/ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo}}
 /ac {^你的真气被打乱了，使不出震惊百里}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak bzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
-/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
-/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak bzj}
-/ac {^随着长声惨叫}{pjj;/al ak yzj}
-/ac {你只好招式突换，一棍随手挥出}{pj;/al ak yzj}
+/ac {^%1已经破绽毕露，还不趁机进攻}{txwg}
+/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak tzj}
+/ac {^随着长声惨叫}{pjj;/al ak tzj}
+/ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{txwg}
 /ac {^你低喝一声『天下无狗』}{/al ak bzj}
 /ac {^对方已经手忙脚乱了。}{txwg}
+/ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
+/ac {^对方没有武器，无从使用『挑字诀』}{yzj}
+/ac {^这件武器看来没法挑下来}{yzj}
+/ac {^对方现在防备的很严，没希望挑下来}{yzj}
 /al sc+ {
 /ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
@@ -105,6 +112,7 @@
 /ac {^『引字诀』只能对战}{stopk;cks}
 /ac {^『绊字诀』只能对战}{stopk;cks}
 /ac {^『戳字诀』只能对战}{stopk;cks}
+/ac {^『挑字诀』只能对战}{stopk;cks}
 /ac {^『天下无狗』只能对战}{stopk;cks}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{yaoheal}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{yaoheal}
