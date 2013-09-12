@@ -70,7 +70,7 @@
     zjbl;
     /al ak zjbl
 }
-/ac {^你所受到的野狗步法·狗尾续貂的效用消失}{/al tbuff perform dodge.gouweixudiao}
+/ac {^你所受到的野狗步法%0效用消失}{/al tbuff perform dodge.gouweixudiao;tbuff}
 /ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo}}
 /ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
