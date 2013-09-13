@@ -256,13 +256,12 @@
 /ac {^你呼吸由低而响，愈来愈是粗重}{/delay {1}{full}}
 /ac {^战斗中不能打坐}{iskill}
 /ac {^战斗中不能吐纳练功}{iskill}
-
 /al hl {exercise jing $gin_h}
 /al hn {exercise qi $kee_h}
 /al hf {exercise shen $sen_h}
 /ac {^Fullme}{
     hp;
-    /delay {0.5}{
+    /delay {0.3}{
     /if {$f_drk<2}{he};
     /if {$f_eat<2}{chi};
    /nop showme  {gin_m_p=$gin_m_p kee_m_p=$kee_m_p sen_m_p=$sen_m_p};

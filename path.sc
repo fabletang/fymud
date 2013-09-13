@@ -78,7 +78,7 @@
 /al yinbin2wy {wlk;do eu,open door,eu,eu,e,s,e,e,eu,e;nwlk}
 /al xrd2dqg {xrd2wy;de1 {wy2yinbin}}
 /nop al fye2xrd {wlk;e;e;/3 eu;e;eu;nwlk}
-/al fye2xrd {wlk;do e,e,eu,eu,eu,e,eu;nwlk}
+/nop al fye2xrd {wlk;do e,e,eu,eu,eu,e,eu;nwlk}
 /al fye2xrd+ {
     /ac {^奇石疏影}{n};
     /ac {^迷茫风雨路}{fye2xrd-}
@@ -87,8 +87,12 @@
     /unac {^奇石疏影};
     /unac {^迷茫风雨路}
 }
-/al xrd2fye {wlk;wd;w;/3 wd;w;w;nwlk}
-/al fy2xrd {fye;fye2xrd+;de2 {e;e;fye2xrd}}
+/nop al xrd2fye {wlk;wd;w;/3 wd;w;w;nwlk}
+/nop al fy2xrd {fye;fye2xrd+;de2 {e;e;fye2xrd}}
+/al fye2xrd {wlk;do e,e,eu,eu,eu,ne,nw,n,nu;nwlk}
+/al xrd2fye {wlk;do sd,s,se,sw,wd,wd,wd,w,w;nwlk}
+/al fy2xrd {fye;de1 {fye2xrd}}
+/nop al xrd2fy {xrd2fye;de1 {fye-}}
 /al xrd2fy {xrd2fye;de1 {fye-}}
 
 /nop 灌木林

@@ -92,7 +92,7 @@
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
      stack;
-     retrieve 7557;
+     retrieve 4884;
      retrieve 8075;
      retrieve 7401;
      retrieve 1973;
@@ -112,3 +112,4 @@
 /ac {^【传闻】} {/line log ../chat-$myname.log}{plain}
 /ac {^【谣言】} {/line log ../chat-$myname.log}{plain}
 /ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
+/al jiangshaqi {perform dodge.kongling}

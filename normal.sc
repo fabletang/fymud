@@ -409,3 +409,9 @@ sell yellow crystal;
     }
 }
 /ac {^潇江说道：你试着吹一声口哨（ｗｈｉｓｔｌｅ）}{de2 {whistle};de3 {scorep}}
+/al jiangshaqi {
+    do d,n,n,e;
+    /4 salute;
+    dazuo;
+    /delay {12}{do w,s,s,u}
+    }

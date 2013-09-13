@@ -184,3 +184,4 @@ n;
 /al askxiaoyuer {ask xiao yuer about cancel;de2 {ask xiao yuer about help}}
 /ac {^小鱼儿说道：你可以用%1来定位}{/al ll %1;ll}
 /ac {^卡卡木说道：废话少说}{startk}
+/ac {^吕南人说道：让我看看你到底有几斤}{startk}

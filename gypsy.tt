@@ -31,13 +31,14 @@
 /var islian 0
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxg;/delay {0.8}{/if {$haspet==0}{whistle;order team with xxc}}}
+/al wh {/var haspet 0;l xxg;/delay {0.8}{/if {$haspet==0}{whistle;order team with xxc;wpet}}}
 /al pj {performp freeze}
 /al pjj {performp canglongzhaxian}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
+/al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
-/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;startk}}
+/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -70,18 +71,20 @@
     zjbl;
     /al ak zjbl
 }
-/ac {^你所受到的野狗步法%0效用消失}{/al tbuff perform dodge.gouweixudiao;tbuff}
-/ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo}}
+/ac {^你所受到的野狗步法%0效用消失}{/al tbuff {perform dodge.gouweixudiao};tbuff}
+/ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo};/delay {120}{/al tbuff {perform dodge.gouweixudiao}}}
 /ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
-/ac {^%1已经破绽毕露，还不趁机进攻}{txwg}
+/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak tzj}
-/ac {^随着长声惨叫}{pjj;/al ak txwg}
+/ac {^随着长声惨叫}{pjj;/al ak czj}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
-/ac {^你需要过%1秒才能再次使用引字诀}{txwg}
+/ac {^你需要过%1秒才能再次使用引字诀}{czj}
 /ac {^你低喝一声『天下无狗』}{/al ak tzj}
-/ac {^对方已经手忙脚乱了。}{txwg}
+/ac {^对方已经手忙脚乱了。}{czj}
+/ac {^对方已经不能动弹了}{czj}
+/ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
 /ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
 /ac {^对方没有武器，无从使用『挑字诀』}{yzj}
 /ac {^这件武器看来没法挑下来}{yzj}

@@ -61,13 +61,13 @@
 /ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj};}
 /ac {^『棉里藏针』需要}{lt}
 /al kk {ak;/ticker {kill}{ak}}{2.1}
-/al ki {set wimpy 20;set target %0;/var npc %0;buff;/delay {5}{kill %0;gongji %0}}
+/al ki {set wimpy 20;set target %0;/var npc %0;buff;/delay {3}{kill %0;gongji %0}}
 /al petbuff {order wear all;order wield ironfist}
 /al wpet {order wear all;order wield ironfist}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xxx;/delay {0.5}{/if {$haspet==0}{whistle}}}
-/al buff {wh;de1 {petbuff;getsword;cast hanxing};de2 {perform dodge.zong;cast jixing;}}
+/al buff {wh;de1 {petbuff;getsword;cast jixing;cast hanxing};de2 {perform dodge.zong}}
 /al kkk {healme;perform dodge.bazhentu;/delay {2.1}{healme;perform dodge.bazhentu}}
 /al kkkk {healme;do perform nianzijue,perform zhen;/delay {2.1}{healme;perform zhen}};
 /al kks {nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}} 
