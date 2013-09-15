@@ -9,21 +9,23 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/al wim {do unwield sword,wield jade}
+/al wim {do unwield woodsword,wield jade}
 /al getsword {conjure swordout}
 /var v_j 0
 /var v_k 0
 /var v_kk 0
-/al healme {ok}
+/al healme {/showme todo}
 /nop 1 2 3 4
 /var hassword 0
 /var hashand 0
-/al wisword {/if {$hassword==0}{unwi all;wi goldsword}}
+/al wisword {/if {$hassword==0}{unwi all;wi woodsword}}
 /al wihand {/if {$hashand==0}{unwi all;wi jade}}
 /ac {^  √金剑(Goldsword)}{/var hassword 1;/var hashand 0} 
 /ac {^  √指甲(Jade)}{/var hashand 1;/var hassword 0} 
 /ac {^你将手中的金剑插入}{/var hassword 0} 
+/ac {^你将手中的木剑插入背上}{/var hassword 0} 
 /ac {^你从宝玉剑鞘中抽出}{/var hassword 1;/var hashand 0} 
+/ac {^你从背后抽出一把木剑}{/var hassword 1;/var hashand 0} 
 /ac {^你从怀中摸出一对指}{/var hashand 1;/var hassword 0} 
 /ac {^你将手上的指甲藏入}{/var hashand 0} 
 /ac {^你使出太极剑法中的}{/var hashand 0;/var hassword 1} 
@@ -75,13 +77,13 @@
 /al stopk {/unticker {kill};nokill;nwlk}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var knpc %0;pj}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk;/var knpc %0}
-/ac {^『八阵图』只能对}{stopk;/al healme {ok};cks}
-/ac {^『缠字诀』只能对}{stopk;/al healme {ok};cks}
-/ac {^『粘字诀』只能对}{stopk;/al healme {ok};cks}
-/ac {^［棉里藏针］只能对}{stopk;/al healme {ok};cks}
-/ac {^『剑掌』只能对}{stopk;/al healme {ok};cks}
-/ac {^『千里流沙』只能对}{stopk;/al healme {ok};cks}
-/ac {^『安然雷霆』只能对}{stopk;/al healme {ok};cks}
+/ac {^『八阵图』只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^『缠字诀』只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^『粘字诀』只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^［棉里藏针］只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^『剑掌』只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^『千里流沙』只能对}{stopk;/al healme {/showme todo};cks}
+/ac {^『安然雷霆』只能对}{stopk;/al healme {/showme todo};cks}
 /ac {^需要0点的真气}{dazuo}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{/al healme hh;hh;}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{/al healme hh;hh;/delay {3}{healme}}

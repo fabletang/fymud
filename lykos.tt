@@ -28,6 +28,7 @@
 /ac {^你放下手中的烤鸡腿}{/var hasleg 0} 
 /ac {^你跃身而起，手中烤鸡腿}{/var ishammer 0;/var hasleg 0;get leg;iskill;/delay {0.2}{ch $npc}} 
 /ac {^你抓起一根烤鸡腿}{/var hashand 0;/var hasleg 1} 
+/ac {^这件武器已经严重损坏，不合再用}{drop leg;gb leg;wield leg}
 /al buff {wh;perform dodge.wolverine;/delay {0.8}{wpet}}
 /al pj {performp dodge.liushuichanchan}
 /nop al pjj {/showme ========pjj;order perform siqi with xxc}
@@ -73,6 +74,7 @@
 /ac {^战斗外的刺杀请使用『荆轲刺秦』}{cq $npc}
 /ac {^战斗中无法使用荆轲刺秦}{bl $npc}
 /ac {^只有在对手对你疏于防范时才能使用此招}{jch;ch $npc;/al ak cz}
+/ac {^糟了，被发现了，你不得不放弃了博浪一击}{cz;/al ak cz}
 /ac {^『潜狼诀』需要}{/al ak cz}
 /var ishammer 0
 /ac {^你趁其不备，飞速转到}{/var ishammer 1}

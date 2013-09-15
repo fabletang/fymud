@@ -13,14 +13,19 @@
         /var q_item 0;
         xixi;
         quest;
-        /if {$en_qb==1}{
+        xixi;
+        de1 {/showme buyitemfromling}
+}
+/ac {^buyitemfromling}{
+    /if {$en_qb==1}{
         fyxl;
         list;
         de6 {buyitem};
         de7 {xlfy};
-        /delay {8}{gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
+        de8 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
         }
 }
+
 /ac {^│%1　『%2』(%3) }{/if {"$q_item"=="%2"}{/var q_item_name %3}}
 /al buyitem {/grep $q_item;/echo $q_item;/echo $q_item_name;bxl $q_item; qput $q_item_name;qput $q_item}
 /al askshuizhi {ask lu yu about 水质}
@@ -129,15 +134,18 @@ w;cook
 /al maze {wlk;d;e;s;ask chuili seng about 神秘组织;n;w;u;nwlk}
 /ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}
-/ac {^一道人影突自}{qie}
+/ac {^一道人影突自}{qie;/ticker {kill}{bk}{4.1}}
 /nop ac {^看起来四戒僧想杀死你}{qie;bs;/delay {4}{qie;bs}}
 /al qie {stopk;unwi whip;perform panguaxe;wi whip}
 /al bk {stopk;wi whip;perform firestorm}
 /al bs {stopk;wi whip;perform thousandfeather}
 /al ale {conjure summon4;conjure summon3;conjure summon2;conjure summon1;}
-/ac {^灰黑色的烟雾骤然在你眼前爆开}{ale}
+/ac {^灰黑色的烟雾骤然在你眼前爆开}{ale;/ticker {kill}{bs}{4.1}}
+/al qdm {exert damageup}
 /ac {^今田魅知子突然绕到你身后}{hp}
-/ac {^你获得了一个大馒头}{/delay {4}{qeatall}}
+/ac {^今田魅知子突然绕到梦魇护驾身后}{hp}
+/ac {^结果只听见「砰」地一声巨响，你像一捆稻草}{exert qi 1000;de2 {exert qi 1000};de4{exert qi 1000}}
+/ac {^你获得了一个大馒头}{/unticker {kill};de4 {nd;ed;eu;ed;eu;ed;eu;open door;nu}}
 /al qeatall {eat mantou;/delay {4}{drink flask}; /delay {8}{use demon drug;hp}}
 /al xq {exert qi %0}
 /nop ac {你已经陷入半昏迷状态}{eat pill;hp}{3}
@@ -178,10 +186,41 @@ n;
 /ticker {qiuyin}{giveqiuyin}{120}}
 /ac {^卡卡木说道：我受伤了}{give 1 baiyao to kaka mu;de3 {fi kaka mu}}
 /al askwurong {ask wurong about 国色天香;answer 不丑}
-/ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;de3 {fight nanren}}
+/ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;de3 {fi nanren}}
 /ac {^勾魂使者对你说道：想过我这一关？}{accept test;tell ghost no face}
 /al xintask {cancel;de1 {newtask}}
 /al askxiaoyuer {ask xiao yuer about cancel;de2 {ask xiao yuer about help}}
 /ac {^小鱼儿说道：你可以用%1来定位}{/al ll %1;ll}
 /ac {^卡卡木说道：废话少说}{startk}
 /ac {^吕南人说道：让我看看你到底有几斤}{startk}
+/al askqingbo {ask qingbo about 保护;de4 {ask qingbo about 袁姬;kill assassin;ki assassin;};de5 {ki assassin}}
+/ac {^湖水忽然一阵荡漾，嗖嗖地跳出个黑影}{kill assassin;ki assassin;/showme todo}
+/al askzhang {
+    ask zhang about 飞鸽传信;
+    de2 {ask zhang about 清波公子};
+    de4 {ask zhang about 飞鸽传信};
+    de6 {ask zhang about 飞鸽传信};
+    de8 {ask dai yin about 商量};
+    }
+/al askmedman {
+    ask medman about 麻沸散;
+    de2 {answer 戴寅};
+}
+/al givemedman {
+    give snake pearl to medman;
+    give lawan to medman;
+    give hair to medman;
+}
+/al asklang {
+  remove all;
+  wear botao;
+  ask tianpeng lang about 蜡丸; 
+  de2 {ask tianpeng lang about 蜡丸}; 
+  de4 {ask tianpeng lang about 蜡丸}; 
+  de6 {ask tianpeng lang about 蜡丸}; 
+  de8 {ask tianpeng lang about 蜡丸}; 
+  de10 {ask tianpeng lang about 蜡丸}; 
+  de12 {ask tianpeng lang about 蜡丸}; 
+  de14 {ask tianpeng lang about 蜡丸}; 
+}
+/ac {^田膨郎转过身去}{get lawan}

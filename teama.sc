@@ -101,5 +101,10 @@ whisper $teamer_3 EXfollow $team_header
 /al yaoheal {/if {"$team_header" == "$myname"}{}{whisper $team_header heal |$myname|}}
 /al askkill {whisper $team_header killwho |$myname|}
 /ac {^%0在你的耳边悄声说道：killwho |%1|}{whisper %1 KKK$npc;/showme kill $npc;}
-/unac {^禅使出大悲千叶掌法}{/if {$hasorder==0}{askkill;iskill}}
-/unac {^禅双手合十，垂眉俯首}{/if {$hasorder==0}{askkill;iskill}}
+/al gga {give %0 to $teamer_1}
+/al ggb {give %0 to $teamer_2}
+/al ggc {give %0 to $teamer_3}
+/al gggg {give %0 to $team_header}
+/al tga {whisper $teamer_1 EXgive %0 to $team_header}
+/al tgb {whisper $teamer_2 EXgive %0 to $team_header}
+/al tgc {whisper $teamer_3 EXgive %0 to $team_header}

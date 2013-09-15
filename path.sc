@@ -41,6 +41,8 @@
 /al dk2white {do w,w,w,w,nu,nu,nu,nu,nu}
 /al dk2chu {batin;de2 {bat2chu}}
 /al chu2fy {wlk;w;w;n;hb2fy}
+/al dk2fy {batin;de1 bat2chu;de3 chu2fy}
+/al white2fy {white2dk;de1 dk2fy}
 /al chu2dk {ask master about island; chu2dk+;de1 {keychain}}
 /nop dk 洞口
 /al chu2dk+ {
@@ -455,12 +457,12 @@
 /al tp2byz {wlk;ne;/2 w;nw;/2 nu;wu;/delay {0.5}{/2 wd;/2 w;n;nwlk}}
 /al byz2tp {wlk;s;/2 e;/2 eu;/delay {0.5}{ed;/2 sd;se;/2 e;sw;nwlk}}
 /al els2tp {wlk;s;e;se;e;e;sw;nwlk}
-/al fy2els {fy2tp;de12 {tp2els}}
+/al fy2els {fy2tp;de10 {tp2els}}
 /al els2fy {els2tp;de1 {tp2fy}}
 /nop 边城到白云庄
 /al bc2byz {pl {wlk;se;e;e;e;e;se;e; e;nu;nu;wu;wd;wd;w;w;n;keychain;nwlk};pr}
 /al byz2bc {pl {wlk;s;e; e;eu; eu;ed;sd;sd;w; w;nw;w;w;w;w;nw;nwlk};pr}
-/al fy2byz {fy2tp;de13 {tp2byz}}
+/al fy2byz {fy2tp;de10 {tp2byz}}
 /al byz2fy {byz2tp;de2 {tp2fy}}
 /nop 好汉庄
 /al bc2hhz {w;/4 s;se;wade;de7 {su;/2 sw;/2 w}}
@@ -547,7 +549,7 @@
     /ac {^独木危桥}{w};
     /ac {^你脚下一滑，在独木桥}{de2 {west}};
     /ac {^山谷口}{sw};
-    /ac {^云海孤舟}{xrd2fy;nhq2fy-}
+    /ac {^云海孤舟}{nhq2fy-;do wd,wd,wd,w,w;fye-;}
 }
 /al nhq2fy- {
     nwlk;
@@ -580,7 +582,9 @@
 /al nhq2dw {nhq2dw+;l}
 /al nhq2dw+ {
     wlk;
-    /ac {^奈何桥} {fy2nhq-;/ticker {eren}{toucheren}{1};s;/6 east;down};
+    /ac {^奈何桥} {fy2nhq-;/ticker {eren}{toucheren}{1};
+        do s,east,east,east,east,east,east,down;
+        };
     /ac {^＂呀＂地一声}{/3 east;open door;/3 east;};
     /ac {^石壁上的门户又无声无息的合了起来}{toucheren};
     /ac {^谷地}{/delay {0.5}{/3 s;/3 w;nhq2dw-}};
@@ -1078,13 +1082,13 @@ wlk;
     /unac {^吱的一声，红门};
     /unac {^怡红小院}
 }
-/al fy2yhy {fy2tp;de13 {tp2yhy}}
+/al fy2yhy {fy2tp;de10 {tp2yhy}}
 /al yhy2fy {yhy2tp;de2 {tp2fy}}
 /nop 鬼子
 /al tp2guizi {pl {wlk;sw;sw;s;s;s;w;w;w;w;push black door;s;s;nwlk};pr}
 /al guizi2tp {pl {wlk;n;n;pull door;n;e;e;e;e;n;n;n;ne;ne;nwlk};pr}
 /al guizi2fy {guizi2tp;de2 {tp2fy}}
-/al fy2guizi {fy2tp;de11 {tp2guizi}}
+/al fy2guizi {fy2tp;de10 {tp2guizi}}
 /nop mha梅花庵
 /al tp2mha {pl {wlk;ne;w;w;w;nw;nu;nu;su;nu;wu;nu;wu;nwlk};pr}
 /al mha2tp {pl {wlk;ed;sd;ed;sd;nd;sd;sd;se;e;e;sw;nwlk};pr}

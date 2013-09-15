@@ -256,6 +256,7 @@
 /ac {^你呼吸由低而响，愈来愈是粗重}{/delay {1}{full}}
 /ac {^战斗中不能打坐}{iskill}
 /ac {^战斗中不能吐纳练功}{iskill}
+/ac {^你腹中空空的感觉消失了}{hp}
 /al hl {exercise jing $gin_h}
 /al hn {exercise qi $kee_h}
 /al hf {exercise shen $sen_h}

@@ -64,21 +64,23 @@
 /al yzj {tbuff;wistaff;perform yinzijue}
 /al txwg {tbuff;wistaff;perform tianxiawugou}
 /al zjbl {wihand;perform zhenjingbaili}
-/al ps bzj
+/al ps tzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
     /var npcn %0;
-    zjbl;
-    /al ak zjbl
+    sc+;
 }
+/nop zjbl
+/nop al ak zjbl
 /ac {^你所受到的野狗步法%0效用消失}{/al tbuff {perform dodge.gouweixudiao};tbuff}
 /ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo};/delay {120}{/al tbuff {perform dodge.gouweixudiao}}}
 /ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
-/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
+/nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
+/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show todo}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{czj}
-/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak tzj}
-/ac {^随着长声惨叫}{pjj;/al ak czj}
+/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
+/ac {^随着长声惨叫}{pjj;czj;/al ak czj}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{czj}
 /ac {^你低喝一声『天下无狗』}{/al ak tzj}
@@ -90,19 +92,19 @@
 /ac {^这件武器看来没法挑下来}{yzj}
 /ac {^对方现在防备的很严，没希望挑下来}{bzj}
 /al sc+ {
-/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
-/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
-/ac {招架此招} {tzj};
-/ac {俨然无懈可击} {ps};
-/al {觑得亲切，不退反进，借势击向你} {yzj};
-/ac {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj}
+/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl;sc-;de8 {/al ak sc}}; 
+/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;sc-;de8 {/al ak sc}};
+/ac {招架此招} {tzj;sc-;de8 {/al ak sc}};
+/ac {俨然无懈可击} {tzj;de8 {/al ak sc}};
+/ac {觑得亲切，不退反进，借势击向你} {yzj;sc-;de8 {/al ak sc}};
+/ac {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj;sc-;de8 {/al ak sc}}
 }
 /al sc- {
 /ac {和身扑上，旋转着但极快疾地欺近你}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招};
 /ac {招架此招};
 /ac {俨然无懈可击};
-/al {觑得亲切，不退反进，借势击向你};
+/ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
 /nop -----------------
@@ -122,6 +124,7 @@
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{yaoheal}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk;yaoheal}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
+/ac {^使用特殊招式至少需要50点的内力}{wiw;tt $myname no force}
 /read gag.sc
 /read path.sc
 /read normal.sc
