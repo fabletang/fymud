@@ -134,18 +134,18 @@ w;cook
 /al maze {wlk;d;e;s;ask chuili seng about 神秘组织;n;w;u;nwlk}
 /ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}
-/ac {^一道人影突自}{qie;/ticker {kill}{bk}{4.1}}
+/ac {^一道人影突自}{qie}
 /nop ac {^看起来四戒僧想杀死你}{qie;bs;/delay {4}{qie;bs}}
 /al qie {stopk;unwi whip;perform panguaxe;wi whip}
 /al bk {stopk;wi whip;perform firestorm}
 /al bs {stopk;wi whip;perform thousandfeather}
 /al ale {conjure summon4;conjure summon3;conjure summon2;conjure summon1;}
-/ac {^灰黑色的烟雾骤然在你眼前爆开}{ale;/ticker {kill}{bs}{4.1}}
-/al qdm {exert damageup}
+/ac {^灰黑色的烟雾骤然在你眼前爆开}{ale}
+/al qdm {exert powerup;exert damageup}
 /ac {^今田魅知子突然绕到你身后}{hp}
 /ac {^今田魅知子突然绕到梦魇护驾身后}{hp}
-/ac {^结果只听见「砰」地一声巨响，你像一捆稻草}{exert qi 1000;de2 {exert qi 1000};de4{exert qi 1000}}
-/ac {^你获得了一个大馒头}{/unticker {kill};de4 {nd;ed;eu;ed;eu;ed;eu;open door;nu}}
+/ac {^结果只听见「砰」地一声巨响，你像一捆稻草}{exert qi 2000;de2 {exert qi 2000};de3 {exert qi 2000}}
+/ac {^你获得了一个大馒头}{/unticker {kill};de4 {nd;ed;eu;ed;eu;ed;eu;open door;nu};de10 {1;use demon drug};de12 {qeatall}}
 /al qeatall {eat mantou;/delay {4}{drink flask}; /delay {8}{use demon drug;hp}}
 /al xq {exert qi %0}
 /nop ac {你已经陷入半昏迷状态}{eat pill;hp}{3}
@@ -154,7 +154,7 @@ w;cook
 /ac {^众弟子向你躬身一礼，亦四散离去}{qpowerup}{3}
 /al qpowerup {exert powerup;/delay {4}{exert damageup}}
 /nop al q {exert qi 1000}
-/nop al qqq {eat pill;hp}
+/al ii {eat pill;exert qi 2000;hp}
 /ac {^看起来梅花盗想杀死你}{ki meihuadao}
 /al giveqiuyin {
 qiuyin+;
@@ -224,3 +224,6 @@ n;
   de14 {ask tianpeng lang about 蜡丸}; 
 }
 /ac {^田膨郎转过身去}{get lawan}
+/ac {^少林派和尚道：阿弥陀佛，请问这位施主是何派高足}{answer 清平;de2 {qeatall}}
+/ac {^看起来梅津想杀死你}{de1 stopk;ale;de6 {bs}}
+/al re {repair}

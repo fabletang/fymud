@@ -2,7 +2,8 @@
 /var myname chan
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
-/session $myname china.fengyun.com 6000
+/nop session $myname china.fengyun.com 6000
+/session $myname 122.200.77.32 6000
 /nop session $myname fy.hbisp.com 3333
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
