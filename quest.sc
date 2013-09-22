@@ -227,3 +227,5 @@ n;
 /ac {^少林派和尚道：阿弥陀佛，请问这位施主是何派高足}{answer 清平;de2 {qeatall}}
 /ac {^看起来梅津想杀死你}{de1 stopk;ale;de6 {bs}}
 /al re {repair}
+/al whlaopi {whisper laopi 小马;whisper laopi 朋友;de1 {do kill sun legate,out}}
+/ac {^你听到老皮滚入湖水前说的最后两句话}{charge center;get grass;give grass to xiao lin}
