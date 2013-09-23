@@ -68,13 +68,20 @@
 /nop ac {^这个方向没有出路。}{look}
 /ac {^风兵向你喝道：不可手持兵器} {unwield all}
 /ac {^守备士兵向你喝道：不可手持兵器入城}{unwield all}
-/al dqg2fy {wlk;wear all;open door;/3 eu;e;s;e;e;de1 {eu;e;e;s;wu;w;nu;wd};de2 {wd;wd;unwi all;/4 w};de3 {/7 w;u;nwlk}}
+/nop al dqg2fy {wlk;wear all;open door;/3 eu;e;s;e;e;de1 {eu;e;e;s;wu;w;nu;wd};de2 {wd;wd;unwi all;/4 w};de3 {/7 w;u;nwlk}}
+/al dqg2fy {yinbin2wy;de1 {wy2fy}}
 
-/al fy2dqg {wlk;fy2xrd;de3 {xrd2dqg}}
-
+/nop al fy2dqg {wlk;fy2xrd;de3 {xrd2dqg}}
+/al fy2dqg {wlk;fy2wy;de3 {wy2yinbin}}
+/nop yhgz 云海孤舟 
+/al fy2yhgz {fye;de1 {do e,e,eu,eu,eu;nwlk}}
+/al fy2wy {fye;de1 {do e,e,eu,eu,eu,sd,e,ed,n,w;nwlk}}
+/al wy2fy {wlk;do e,s,wu,w,nu,wd,wd,wd,w,w;de1 {fye-}}
 /nop 仙人洞
 /nop wy 危崖
-/al xrd2wy {wlk;sd;e;ed;n;w;nwlk}
+/al xrd2wy {wlk;do sd,e,ed,n,w;nwlk}
+/al yhgz2wy {wlk;do sd,e,ed,n,w;nwlk}
+/al wy2yhgz {wlk;do e,s,wu,w,nu;nwlk}
 /al wy2xrd {wlk;do e,s,wu,w,nu;nwlk}
 /al wy2yinbin {wlk;w;wd;/2 w;n;w;/2 wd;open door;wd;nwlk}
 /al yinbin2wy {wlk;do eu,open door,eu,eu,e,s,e,e,eu,e;nwlk}
@@ -1637,8 +1644,8 @@ nwlk;
     /ac {^孔雀河}{wadeliusha};
     /ac {^西佛塔}{/4 e;khlin-};
     /ac {^东佛塔}{/4 w;khlin-};
-    /ac {^南佛塔}{u;wadeliusha};
-    /ac {^北佛塔}{u;wadeliusha};
+    /ac {^南佛塔}{/4 n;khlin-};
+    /ac {^北佛塔}{/4 s;khlin-};
     /ac {^圣殿}{khlin-}
 }
 /al khlin- {
