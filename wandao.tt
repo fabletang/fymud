@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname shaman
+/var myname wandao
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /session $myname fy.sysfon.com 6000

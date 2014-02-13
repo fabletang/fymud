@@ -1590,7 +1590,7 @@ nwlk;
 /nop al cx2ls {pl {wlk;s;s;s;s;w;w;w;s;wu;give meat to fighter wolf;su;su;su;keychain;se;eu;su;su;sw;su;se;nwlk};pr}
 /al cx2ls {wlk;do s,s,s,s,w,w,w,s,wu,su,keychain,su,keychain;de1 {do su,se,eu,su,su,sw,su,se;nwlk}}
 /al ls2fy {ls2cx;cx2fy+}
-/al fy2ls {fy2cx;de7 {cx2ls}}
+/al fy2ls {fy2cx;de9 {cx2ls}}
 /al ls2langwo {wlk;nw;nd;crawl up;nwlk}
 /al langwo2ls {wlk;crawl down;de3 {su;se;nwlk}}
 /al langwo2fy {langwo2ls;de4 {ls2fy}}

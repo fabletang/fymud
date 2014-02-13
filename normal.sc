@@ -415,3 +415,4 @@ sell yellow crystal;
     dazuo;
     /delay {12}{do w,s,s,u}
     }
+/al buybx {ask xuer about 铂金经验保险}

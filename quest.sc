@@ -229,3 +229,16 @@ n;
 /al re {repair}
 /al whlaopi {whisper laopi 小马;whisper laopi 朋友;de1 {do kill sun legate,out}}
 /ac {^你听到老皮滚入湖水前说的最后两句话}{charge center;get grass;give grass to xiao lin}
+/al askxiaonv {
+ask xiaonu about here;
+de2 {ask xiaonu about xiao};
+de4 {ask xiaonu about 孝女花};
+de6 {ask xiaonu about 六种花};
+de8 {ask xiaonu about 神石}
+}
+/al buystone {
+list;
+de1 {buy ikebana stone from fang;arrange;ki fang}
+}
+/al askqiandao {recall back;w;n;w; ask qiandao npc about 签到;de1 {e;e;e;e;n}}
+
