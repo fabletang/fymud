@@ -30,13 +30,15 @@
 /ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
 /ac {^你将手上的戒指藏入}{/var hashand 0} 
 /ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
-/al buff {i;perform dodge.gouweixudiao}
+/read moonbuff.sc
+/nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
+/al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /al lx {wiblade;perform yipianlianxin}
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
 /var islian 0
 /ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {wiblade;set target %0;buff;/delay {2}{kill %0;startk}}
+/al ki {set target %0;buff;/delay {4.1}{kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -45,7 +47,7 @@
 /al ak xl
 /al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
 /nop al startk {xl;/al ak xl;kkx}
-/al startk {wihammer;wi futou}
+/al startk {;}
 /al kx startk
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{

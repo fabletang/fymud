@@ -75,7 +75,7 @@
 /al fy2dqg {wlk;fy2wy;de3 {wy2yinbin}}
 /nop yhgz ‘∆∫£π¬÷€ 
 /al fy2yhgz {fye;de1 {do e,e,eu,eu,eu;nwlk}}
-/al fy2wy {fye;de1 {do e,e,eu,eu,eu,sd,e,ed,n,w;nwlk}}
+/al fy2wy {fye;de1 {do e,e,n,eu,eu,eu,sd,e,ed,n,w;nwlk}}
 /al wy2fy {wlk;do e,s,wu,w,nu,wd,wd,wd,w,w;de1 {fye-}}
 /nop œ…»À∂¥
 /nop wy Œ£—¬
