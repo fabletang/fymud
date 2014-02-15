@@ -240,5 +240,4 @@ de8 {ask xiaonu about 神石}
 list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
-/al askqiandao {recall back;w;n;w; ask qiandao npc about 签到;de1 {e;e;e;e;n}}
-
+/al askqiandao {recall back;w;n;w; ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;save}}

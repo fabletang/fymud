@@ -782,7 +782,7 @@
 
 /nop 沉香镇
 /nop fy2cx {cx2fy-;fy2ml;fy2cx+}
-/al fy2cx {fy2ml;/delay {4.5}{swing west};de6 {do swing west,w,w,w,w;nwlk};}
+/al fy2cx {fy2ml;/delay {5}{swing west;swing west};/delay {5.5}{do w,w,w,w;nwlk}}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -819,7 +819,7 @@
 /nop 南海
 /al fy2nh {cx2fy-;wlk;d;/7 s;de1 {/7 s;fy2nh+;climb tree}}
 /al fy2nh+ {
-    /ac {^你顺着树杆爬了上来} {/ac {^莽林边缘}{su;s;fy2nh-};swing south;de3 {swing south}};
+    /ac {^你顺着树杆爬了上来} {/ac {^莽林边缘}{su;s;fy2nh-};swing south;de2 {swing south}};
 }
 /al fy2nh- {
     nwlk;
@@ -1035,7 +1035,7 @@ wlk;
 /al dfin {buy pumpkin from max;eat pumpkin;de3 {dfin+;dash}}
 /al fy2df {fy2max;de2 {dfin}}
 /nop al dfout {su;sd;s;/5 d;/delay {0.5}{/8 d};/delay {1.5}{/6 d;ne}}
-/al dfout {do su,sd,s,s,d,d,d,d,d,d,d,d;de1 {do d,d,d,d,d,d,d,d,d,d,ne}}
+/al dfout {do su,sd,s,s,d,d,d,d,d,d,d,d;de1 {do d,d,d,d,d,d,d,d,d,d,d,ne}}
 /ac {^你所受到的地域幽魂的效用消失了}{
     /ac {^孟婆亭}{sw;s;dash mist};
     look;
@@ -1789,3 +1789,4 @@ nwlk;
 /al cx2fy {cx2sf;de1 {sf2sk};de2 {sk2fy}}
 /al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
 /al lz2fy {lz2sk;de1 {sk2fy}}
+/al gt {goto %0;de2 {%0;l}}

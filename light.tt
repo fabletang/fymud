@@ -78,3 +78,4 @@
      wear all
 }
 /read autorecover.sc
+/al ffy {recall back;w;n;e;e;e;n;u}

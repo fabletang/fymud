@@ -1,54 +1,37 @@
 #config {TINTIN CHAR} /
-/var myname wandao
+/var myname real 
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
+/nop session $myname china.fengyun.com 6000
+/nop session $myname fy.hbisp.com 3333
 /session $myname fy.sysfon.com 6000
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read wandao.tt}
+/al reload {/read $myname.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手】} {/line log ../chat-$myname.log}{plain}
-/ac {^【传闻】} {/line log ../chat-$myname.log}{plain}
-/ac {^【谣言】} {/line log ../chat-$myname.log}{plain}
-/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
-/al wpet {order wear all;order wield ironfist}
-/var haspet 0
-/ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xwd;/delay {0.5}{/if {$haspet==0}{whistle}}}
-/al scorep {score xwd}
-/al skillsp {skills xwd}
-/al hpp {wlk;expp;hp xwd;nwlk}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /var hasstaff 0
 /var hashand 0
-/var hasblade 0
-/var hashammer 0
 /al wistaff {/if {$hasstaff==0}{unwi all;wi staff}}
 /al wihand {/if {$hashand==0}{unwi all;wi jade}}
-/al wiblade {/if {$hasblade==0}{wi blade;wi hu-blade;wi futou}}
-/al wihammer {wi hammer}
 /al wiw wistaff
 /al wih wihand
 /ac {^  √%1taff)}{/var hasstaff 1;/var hashand 0} 
-/ac {^  √戒指(Jade)}{/var hashand 1;/var hasstaff 0} 
 /ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
 /ac {^你将手上的戒指藏入}{/var hashand 0} 
 /ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
-/read moonbuff.sc
-/nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/al buff {wi jade;bf1;wi jade2;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
-/al lx {wiblade;perform yipianlianxin}
+/al buff {exert damageup;de2 {exert powerup}}
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
 /var islian 0
 /ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {set target %0;buff;/delay {3.1}{kill %0}}
+/al ki {wi all;set target %0;buff;de4 {kill %0;}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -56,6 +39,7 @@
 /var zjbl_ok 0
 /al ak xl
 /al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
+/nop al startk {xl;/al ak xl;kkx}
 /al startk {;}
 /al kx startk
 /al ssk startk
@@ -65,28 +49,43 @@
 /al yzj {wistaff;perform yinzijue}
 /al zjbl {wihand;perform zhenjingbaili}
 /al ps bzj
-/ac {^%1只觉掌风扑面，气息窒滞}{
-    iskill;
-    /var ncp %0;
-    zjbl;
-    /al ak zjbl
-}
+/nop -----------------
+/al wpet {order wear all;order wield ironfist}
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxz;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al scorep {score xxz}
+/al skillsp {skills xxz}
+/al hpp {wlk;expp;hp xxz;nwlk}
+/al k {wi blade;perform fengsiyunqi}
+/al j {unwi all;perform panguaxe}
+/ac {^对手没有使用武器，无需使出『盘古斧』}{wi all;/showme -----todo------;}
+/ac {^你眼中神光一闪，身影一晃，食指乍然弹出}{wi all;/showme -----todo------;}
+/ac {^你所受到的碎玉神罡}{/if {$is_kill==1}{buff}}
+/ac {^你左右寻不着机会，咬了咬牙，将二指缓缓松开。}{/if {$is_kill==1}{j}}
+/ac {^这个武器看来你无法点断的。}{wi jade;wi all}
+/nop -----------------
+/ac {^你大喝一声，犹似半空响了个霹雳}{}
+/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『盘古斧』只能对战斗中}{stopk;cks}
 /ac {^你的法力太低}{hp}
 /nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{;}
-/ac {^你所选用的武功中没有这种必杀技。}{get jade;wi jade;get jade2 wi jade2}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{/al ak bzj;exert qi;/delay {3}{exert qi;hp}}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{wh}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read team.sc
 /read status.sc
-/log o $myname.log
+/nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
     pick needle;

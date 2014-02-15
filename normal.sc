@@ -408,7 +408,7 @@ sell yellow crystal;
     pm skin;pm meat;
     }
 }
-/ac {^潇江说道：你试着吹一声口哨（ｗｈｉｓｔｌｅ）}{de2 {whistle};de3 {scorep}}
+/ac {^潇江说道：你试着吹一声口哨（ｗｈｉｓｔｌｅ）}{de2 {whistlep};de3 {scorepp}}
 /al jiangshaqi {
     do d,n,n,e;
     /4 salute;
@@ -416,3 +416,8 @@ sell yellow crystal;
     /delay {12}{do w,s,s,u}
     }
 /al buybx {ask xuer about 铂金经验保险}
+/ac {^水银在到处流转，舒适无比}{tuna}
+/al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
+/al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
+/al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
+/ac {^  兵装谱(fengyun bingzhuangpu)}{nokill;nwlk}
