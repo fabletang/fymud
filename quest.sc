@@ -241,3 +241,4 @@ list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
 /al askqiandao {recall back;w;n;w; ask qiandao npc about Ç©µ½;de1 {e;e;e;e;n;hp;save}}
+/al qf {quest fail}

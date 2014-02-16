@@ -31,7 +31,7 @@
 /al sc {wihand;perform shichengliulong}
 /var islian 0
 /ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {wi all;set target %0;buff;de4 {kill %0;}}
+/al ki {wi all;set target %0;buff;de4 {kill %0};}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -40,7 +40,8 @@
 /al ak xl
 /al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
 /nop al startk {xl;/al ak xl;kkx}
-/al startk {;}
+/nop al startk {j;/ticker {kill}{j}{2.1}}
+/al startk {/ticker {kill}{/showme *****************************************}{2}}
 /al kx startk
 /al ssk startk
 /al czj {wistaff;perform chuozijue}
@@ -58,32 +59,44 @@
 /al skillsp {skills xxz}
 /al hpp {wlk;expp;hp xxz;nwlk}
 /al k {wi blade;perform fengsiyunqi}
-/al j {unwi all;perform panguaxe}
-/ac {^对手没有使用武器，无需使出『盘古斧』}{wi all;/showme -----todo------;}
-/ac {^你眼中神光一闪，身影一晃，食指乍然弹出}{wi all;/showme -----todo------;}
+/al j {unwi blade;wi sword;perform knockdown}
+/al jj {unwi sword;unwi blade;perform panguaxe}
+/var npc_wq 1
+/ac {^你嘴角挂着一丝若有若无的微笑，食、中}{
+        /showme {++++++挑兵器+-+++++++};
+       /delay {3} {perform knockdown;/showme {++++++挑兵器+=+++++++};}
+       }
+/ac {手中%0向你}{
+    /if {$iskill==1 && $npc_wq==1}{j;/showme ++++++挑兵器==+++++++}
+}{3}
+/nop npc 你向 开始移动。（40->35)。
+/ac {^你使一式「秋风吹醒英雄梦」%0震得冲天而起}{
+   /var npc_wq 0 
+    }
+/ac {^对手没有使用武器，无需使出『盘古斧』}{wi all;/var npc_wq 0;/showme -----todo------;}
+/ac {^你眼中神光一闪，身影一晃，食指乍然弹出}{wi all;/var npc_wq 0;/showme -----todo------;}
 /ac {^你所受到的碎玉神罡}{/if {$is_kill==1}{buff}}
 /ac {^你左右寻不着机会，咬了咬牙，将二指缓缓松开。}{/if {$is_kill==1}{j}}
-/ac {^这个武器看来你无法点断的。}{wi jade;wi all}
+/ac {^这个武器看来你无法点断的。}{wi jade;/var npc_wq 0;wi all}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
-/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『盘古斧』只能对战斗中}{stopk;cks}
+/ac {^这一式只能对战}{stopk;cks}
 /ac {^你的法力太低}{hp}
-/nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{/al ak bzj;exert qi;/delay {3}{exert qi;hp}}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{exert qi;/delay {3}{exert qi;hp}}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{wh}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
-/read team.sc
+/nop read team.sc
 /read status.sc
 /nop log o $myname.log
+/al stopk {/unticker {kill};nokill}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {get matong from bag; drink matong; put matong in bag}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
 /unac {^然而，%1已经死了}{cks}
@@ -100,5 +113,9 @@
      wear all
 }
 /read autorecover.sc
-/al qq {fox;quest}
+/al qq {xixi;quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
+/ac {^任务被你完}{j;/showme =================================================}
+/ac {^  兵装谱(fengyun bingzhuangpu)}{nokill;nwlk;stopk}
+/al eatall {gb meat;drink dai;de2 {eat meat}}
+/al hs {drink dai}

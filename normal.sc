@@ -56,7 +56,7 @@
 /al hn {recover force}
 /al hx {exert heal}
 /al aaa {ask giftman about %0}
-/al aaal {aaa horse;aaa bag;aaa orb;ride horse}
+/al aaal {aaa horse;aaa small bag;aaa orb;ride horse}
 
 /al gm {wlk;d; /3 w;n;withdraw %0; /delay {3} {s; /3 e;u;nwlk}}
 /al cm {wlk;d; /3 w;n;deposit %0; /delay {3} {s; /3 e;u;nwlk}}
@@ -92,8 +92,8 @@
     /delay {4}{hp;eatall;dazuo}
 }
 /ac {ËÀÁË¡£}{look corpse}
-/ac {^ÂÌÖŞ}{do get skin from bag,fill skin,put skin in bag}
-/ac {^´óÃ÷ºş}{do get skin from bag,fill skin,put skin in bag}
+/ac {^ÂÌÖŞ}{do get skin from small bag,fill skin,put skin in small bag}
+/ac {^´óÃ÷ºş}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^¾ÆÈâºÍÉĞËµµÀ£º¡°Ëı´Ë·¬ÌÓ½«³öÈ¥}{open door;s;pull Ğ¡¹ñ}
 /nop ac {ÄãµÄĞşÁéÓñºĞÖĞÃ»ÓĞ%0Õâ¸öÎïÆ·¡£}{qxl %0; /delay {3}{i}}
 /nop ac {~[37mÄãÏÖÔÚµÄÈÎÎñÊÇ: µ½%0È¥%1¡»%2ÔÚ%3ÄÚÍê³É} {/var qname %1; /showme {%0 %1¡» %3}{-1}} {2}
@@ -159,7 +159,7 @@
 }
 /al finditem+ {
     /ac {^               ¨q¨T¡ó%1(%2)¡ó¨T¨r}{/var item_title %1;@lowerLetter{}; /var item_name $result;say sfd $item_name};
-    /ac {^¨U ÓÀ¾ÃÎïÆ·¡¡¡¡¡¡     ¡¡%1Æ·ÖÊ:    %2}{/delay {0.2}{/if {%2>2}{/showme ·¢ÏÖºÃ¶«Î÷ $item_name Æ·ÖÊ: %2}{put $item_name in bag}}}
+    /ac {^¨U ÓÀ¾ÃÎïÆ·¡¡¡¡¡¡     ¡¡%1Æ·ÖÊ:    %2}{/delay {0.2}{/if {%2>2}{/showme ·¢ÏÖºÃ¶«Î÷ $item_name Æ·ÖÊ: %2}{put $item_name in small bag}}}
 }
 /al finditem- {
     /unac {^               ¨q¨T¡ó%1(%2)¡ó¨T¨r};
@@ -178,25 +178,25 @@
 /al x6 {get %0 from corpse 6}
 /nop al xb {get %0 from corpse;cun %0}
 /al xb {get %0 from corpse;qput %0}
-/al dj {get wineskin from bag;drink wineskin}
-/al gg {give %0 to tian ji;get %0 from bag;give %0 to tian ji;qreturn}
+/al dj {get wineskin from small bag;drink wineskin}
+/al gg {give %0 to tian ji;get %0 from small bag;give %0 to tian ji;qreturn}
 /al ggg {get all}
-/al pp {put %0 in bag}
-/al xg {get %0 from corpse;put %0 in bag}
-/al lb {look bag}
-/al gb {get %0 from bag}
-/al xp {put %0 in bag;get %0 from corpse;qput %0}
-/al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
-/nop al eatall {eat mantou;get beef meat from bag;get wineskin from bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in bag;put wineskin in bag}}
+/al pp {put %0 in small bag}
+/al xg {get %0 from corpse;put %0 in small bag}
+/al lb {look small bag}
+/al gb {get %0 from small bag}
+/al xp {put %0 in small bag;get %0 from corpse;qput %0}
+/al buysmall bag {d;w;w;n;buy small small bag from xuer; /delay {3}{s;e;e;;u}}
+/nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
 /if {$can_eat==1}{gb meat;gb skin;eat meat; /delay {3}{drink wineskin;pp meat;pp wineskin}}
 }
-/nop al eatall {get xigua from bag;eat xigua;put xigua in bag}
+/nop al eatall {get xigua from small bag;eat xigua;put xigua in small bag}
 /nop ÏãÁé
 /al qxl {fyxl;bxl %0; /delay {2}{xlfy;gg %0}}
 
 /nop ·çÔÆtoMAX pumpkin jiudai
-/nop al buyeat {d; /10 w; /delay {2}{/5 w;s;buy pumpkin from max;buy jiudai from max}; /delay {4}{put pumpkin in bag;put jiudai in bag;put jiudai in bag;n;unwield all; /5 e}; /delay {6}{/10 e;u}}
+/nop al buyeat {d; /10 w; /delay {2}{/5 w;s;buy pumpkin from max;buy jiudai from max}; /delay {4}{put pumpkin in small bag;put jiudai in small bag;put jiudai in small bag;n;unwield all; /5 e}; /delay {6}{/10 e;u}}
 
 
 /al buyeat {fy2qf; /delay {3}{e;e;buy beef meat from xiaofan;/2 buy wineskin from xiaofan;w;w}; /delay {4}{qf2fy}}
@@ -204,7 +204,7 @@
 /nop fill jiudai
 /al filljiudai {fykz;/delay {1}{/2 {gb wineskin}; /2 {fill wineskin;fill wineskin 2 ;pp wineskin}}; /delay {2}{kzfy}}
 /al fjd {fykz;/delay {1}{
-    do get skin from bag,get skin from bag,fill skin,put skin in bag,fill skin,put skin in bag,drop skin 2,get skin,fill skin; 
+    do get skin from small bag,get skin from small bag,fill skin,put skin in small bag,fill skin,put skin in small bag,drop skin 2,get skin,fill skin; 
     /delay {2}{kzfy}
     }
     }
@@ -394,7 +394,7 @@ sell yellow crystal;
 /ac {^ÖìÔåËµµÀ£ºÄãÕæ²»´í£¡¿ÉÆÆÎÒµÄÆßÏÉÅ®Õó£¡}{wear all}
 /al digstatue {/ticker {dig}{l ÑîÊ÷;l ĞÂÍÁ;dig;get box}{4}}
 /al notdig {/unticker {dig}}
-/ac {^ÈıÏÉ±®}{do get skin from bag,fill skin}
+/ac {^ÈıÏÉ±®}{do get skin from small bag,fill skin}
 /al fi {buff;iskill;de2 {fight %0;set targe %0;/var npc %0}}
 /ac {^¿ÉÊÇÊ²Ã´ÊÂÇé¶¼Ã»ÓĞ·¢Éú}{fff}
 /ac {^¿´ÆğÀ´½ğÒÂÎÀÊ×ÁìÏëÉ±ËÀÄã}{tk sentry}{3}
@@ -420,4 +420,4 @@ sell yellow crystal;
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ Ğ¡Ğ¡Õæ xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ Ğ¡Ğ¡Õæ xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  ±ø×°Æ×(fengyun bingzhuangpu)}{nokill;nwlk}
+/ac {^  ±ø×°Æ×(fengyun bingzhuangpu)}{nokill;nwlk;stopk}

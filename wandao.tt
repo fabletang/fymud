@@ -34,8 +34,6 @@
 /al wihammer {wi hammer}
 /al wiw wistaff
 /al wih wihand
-/ac {^  √%1taff)}{/var hasstaff 1;/var hashand 0} 
-/ac {^  √戒指(Jade)}{/var hashand 1;/var hasstaff 0} 
 /ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
 /ac {^你将手上的戒指藏入}{/var hashand 0} 
 /ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
@@ -47,8 +45,7 @@
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
 /var islian 0
-/ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {set target %0;buff;/delay {3.1}{kill %0}}
+/al ki {set target %0;buff;/delay {4.1}{kill %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -65,18 +62,16 @@
 /al yzj {wistaff;perform yinzijue}
 /al zjbl {wihand;perform zhenjingbaili}
 /al ps bzj
-/ac {^%1只觉掌风扑面，气息窒滞}{
+/ac {^你乍然退步，旋身，反手}{
     iskill;
-    /var ncp %0;
-    zjbl;
-    /al ak zjbl
-}
+    set secon_perform leidianjiaohong;
+    /delay {240}{set secon_perform mingyue}
+    }
 /ac {^你的法力太低}{hp}
-/nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{;}
-/ac {^你所选用的武功中没有这种必杀技。}{get jade;wi jade;get jade2 wi jade2}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;wi jade;get jade2;wi jade2}
 /read gag.sc
 /read path.sc
 /read normal.sc
@@ -85,7 +80,8 @@
 /read status.sc
 /log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {get matong from bag; drink matong; put matong in bag}
+/al hx {drink dai}
+/al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /unac {^然而，%1已经死了}{cks}
 /al getitem {
@@ -101,5 +97,8 @@
      wear all
 }
 /read autorecover.sc
-/al qq {fox;quest}
+/al qq {nod;quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
+/ac {^任务被你完}{j}
+/ac {^  兵装谱(fengyun bingzhuangpu)}{nokill;nwlk;stopk}
+/al eatall {gb meat;drink dai;de2 {eat meat}}

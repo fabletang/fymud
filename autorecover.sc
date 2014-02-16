@@ -97,8 +97,9 @@
             /if {$jin_delta > $jin_lost}{dazuo; dhp}{/var jin_ok 1};
             }
        };
+/nop if hx tth hh $myname tt ÆøÑª $qi_per% dhp
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
-        /if {$qi_per < 96 && $is_walk==0}{hx;tth hh $myname;tt ÆøÑª $qi_per%; dhp}{
+        /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
             /if {$qi_delta > $qi_lost}{ dazuo; dhp}{/var qi_ok 1};
             }
        };
