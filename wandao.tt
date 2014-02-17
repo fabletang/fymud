@@ -7,10 +7,10 @@
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read wandao.tt}
+/al reload {/read $wandao.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{dao;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{dao}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /ac {^【新手】} {/line log ../chat-$myname.log}{plain}

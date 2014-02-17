@@ -29,8 +29,6 @@
 /al buff {exert damageup;de2 {exert powerup}}
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
-/var islian 0
-/ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
 /al ki {wi all;set target %0;buff;de4 {kill %0};}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
@@ -41,7 +39,8 @@
 /al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
 /nop al startk {xl;/al ak xl;kkx}
 /nop al startk {j;/ticker {kill}{j}{2.1}}
-/al startk {/ticker {kill}{/showme *****************************************}{2}}
+/var c_num 0
+/al startk {/var c_num 0;/ticker {kill}{/math c_num {$c_num + 1};/showme -------------------- $c_num -----------------}{2}}
 /al kx startk
 /al ssk startk
 /al czj {wistaff;perform chuozijue}

@@ -93,7 +93,7 @@
 }
 /ac {ËÀÁË¡£}{look corpse}
 /ac {^ÂÌÖŞ}{do get skin from small bag,fill skin,put skin in small bag}
-/ac {^´óÃ÷ºş}{do get skin from small bag,fill skin,put skin in small bag}
+/nop ac {^´óÃ÷ºş}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^¾ÆÈâºÍÉĞËµµÀ£º¡°Ëı´Ë·¬ÌÓ½«³öÈ¥}{open door;s;pull Ğ¡¹ñ}
 /nop ac {ÄãµÄĞşÁéÓñºĞÖĞÃ»ÓĞ%0Õâ¸öÎïÆ·¡£}{qxl %0; /delay {3}{i}}
 /nop ac {~[37mÄãÏÖÔÚµÄÈÎÎñÊÇ: µ½%0È¥%1¡»%2ÔÚ%3ÄÚÍê³É} {/var qname %1; /showme {%0 %1¡» %3}{-1}} {2}
@@ -102,9 +102,9 @@
 /al tpull {/ticker {pull}{pull %0}{1}}
 /al untpull {/unticker {pull}}
 /al stdbook {/30 {study %0}}
-/unac {^ÄãÏòÀÏ¸¾ÈË´òÌıÓĞ¹Ø¡ºËÍ·¹¡»µÄÏûÏ¢}{get basket;w;w;s;s;s;s;e;give farmer basket;w;n;n;}
+/nop ÄãÏòÀÏ¸¾ÈË´òÌıÓĞ¹Ø¡ºËÍ·¹¡»µÄÏûÏ¢get basket;w;w;s;s;s;s;e;give farmer basket;w;n;n;
+
 /al buywuqi {fy2lw; /delay {4}{w;nw;buy %0 from tian long;se;e};/delay {5}{lw2fy}}
-/al buyxigua {d;s;e;buy xigua from waiter; /delay {1}{w;n;u}}
 
 /nop tableºÏ²¢ÎïÆ·
 /al hebing {/2 {remove %0;unwi %0;put %0 in table};combine;get all from table}
@@ -197,8 +197,6 @@
 
 /nop ·çÔÆtoMAX pumpkin jiudai
 /nop al buyeat {d; /10 w; /delay {2}{/5 w;s;buy pumpkin from max;buy jiudai from max}; /delay {4}{put pumpkin in small bag;put jiudai in small bag;put jiudai in small bag;n;unwield all; /5 e}; /delay {6}{/10 e;u}}
-
-
 /al buyeat {fy2qf; /delay {3}{e;e;buy beef meat from xiaofan;/2 buy wineskin from xiaofan;w;w}; /delay {4}{qf2fy}}
 
 /nop fill jiudai
@@ -218,7 +216,6 @@
 
 /al qr {d;w;w;n;ask shangguan xuer about treasurebox; /delay {1}{s;e;e;u;qreturn;}}
 /al qs  {d;w;w;n;qsave; /delay {1}{s;e;e;u;}}
-
 
 /al checkchat {/grep ¡¾ĞÂÊÖ¡¿; /grep ¡¾ÏĞÁÄ¡¿}
 /nop ac {#PROMPT SIZE (%0) LONGER THAN ROW SIZE (80)}{/read status.sc; /cr}
@@ -283,11 +280,11 @@
 /tab apprentice
 /nop ×Ô¶¯É±
 /ac {^  ÇàÁúÉ±ÊÖ %1(%2)}{say kill %2; /var result %2;@lowerLetter{};ttk $result;ki $result; /showme $result}
-/ac {^Ã«Ò°ºŞÉùµÀ£ºÄÃÃüÀ´}{tk mao ye;ki mao ye}
-/ac {^ÌÀÒ°ºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk tang ye;ki tang ye}
-/ac {^Ä¾ÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;ki guard}
-/ac {^½ğÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;ki guard}
-/ac {^»ğÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;ki guard}
+/ac {^Ã«Ò°ºŞÉùµÀ£ºÄÃÃüÀ´}{tk mao ye;kill mao ye}
+/ac {^ÌÀÒ°ºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk tang ye;kill tang ye}
+/ac {^Ä¾ÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;kill guard}
+/ac {^½ğÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;kill guard}
+/ac {^»ğÀÎÓü×äºÙºÙµÀ£º¹»µ¨Á¿£¡}{tk guard;kill guard}
 /nop {^¿´ÆğÀ´%0ÏëÉ±ËÀÄã£¡}{/var knpc_name %0;iskill}
 /ac {^Ôã¸â£¡ÄãÊ§ÊÖÁË£¡}{startk}
 /ac {^ÕâÀïÎŞ·¨Ê¹ÓÃÌØÊâÕĞÊ½} {stopk}
@@ -301,19 +298,19 @@
 /ac {^»ÅÂÒ¶øÈ¥¡£}{/showme µô¶«Î÷ÁË;/3 team talk $myname µô¶«Î÷ÁË!!!}
 /ac {^Äã¸Ğ¾õÉíÉÏÒ»Çá£¬ËÆºõ¶ªÁËÊ²Ã´¶«Î÷}{/showme µô¶«Î÷ÁË;team talk $myname µô¶«Î÷ÁË!!!}
 /nop stack ÄÃ¶«Î÷
-/ac {^Äã½«ÊÖÖĞµÄÅ£Èâ¸É³ÔµÃ¸É¸É¾»¾»}{/showme buy meat !!!;team talk $myname no meat!!!}
+/ac {^Äã½«ÊÖÖĞµÄÅ£Èâ¸É³ÔµÃ¸É¸É¾»¾»}{gb meat;/showme buy meat !!!;team talk $myname no meat!!!}
 /ac {^Äã´Ó%0µÄÊ¬ÌåÉíÉÏËÑ³öÒ»¼ş²¼ÒÂ}{drop cloth}
 /ac {^Äã´Ó%0µÄÊ¬ÌåÉíÉÏËÑ³öÒ»°Ñ³¤½£}{drop sword}
 /ac {^Ò»¹ÉÇ¿¾¢µÄî¸Æøµ²×¡ÁËÄã}{play qin;keychain;e}
 /al buyshuijin {
-sell green crystal;
-sell yellow crystal;
+    sell green crystal;
+    sell yellow crystal;
     /delay {4}{
     bxl blue crystal;
     bxl yellow crystal;
     bxl purple crystal;
-    bxl green crystal;
-    };
+    bxl green crystal
+    }
 }
 /ac {^Ê¹ÓÃÌØÊâÕĞÊ½ÖÁÉÙĞèÒª50µãµÄÄÚÁ¦}{stopk}
 /al tqst+ {
@@ -408,7 +405,7 @@ sell yellow crystal;
     pm skin;pm meat;
     }
 }
-/ac {^äì½­ËµµÀ£ºÄãÊÔ×Å´µÒ»Éù¿ÚÉÚ£¨£÷£è£é£ó£ô£ì£å£©}{de2 {whistlep};de3 {scorepp}}
+/nop {^äì½­ËµµÀ£ºÄãÊÔ×Å´µÒ»Éù¿ÚÉÚ£¨£÷£è£é£ó£ô£ì£å£©}{de2 {whistlep};de3 {scorepp}}
 /al jiangshaqi {
     do d,n,n,e;
     /4 salute;
@@ -420,4 +417,4 @@ sell yellow crystal;
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ Ğ¡Ğ¡Õæ xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ Ğ¡Ğ¡Õæ xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  ±ø×°Æ×(fengyun bingzhuangpu)}{nokill;nwlk;stopk}
+/ac {^  ±ø×°Æ×(fengyun bingzhuangpu)}{/var is_kill 0;/var is_walk 0}
