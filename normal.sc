@@ -184,7 +184,7 @@
 /al lb {look small bag}
 /al gb {get %0 from small bag}
 /al xp {put %0 in small bag;get %0 from corpse;qput %0}
-/al buybag {d;w;w;n;buy small small bag from xuer; /delay {3}{s;e;e;;u}}
+/al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
 /if {$can_eat==1}{gb meat;gb skin;eat meat; /delay {3}{drink wineskin;pp meat;pp wineskin}}
@@ -414,4 +414,17 @@
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  兵装谱}{/var is_kill 0;/var is_walk 0}
+/ac {^  兵装谱}{/var is_kill 0;/var is_walk 0;/unticker {kill}}
+/al qstore {sb;remove %0;unwield %0;store %0}
+/var q_it abc
+/al qtake {qtake+;/var q_it {%0};sb;llb}
+/al qtake+ {
+    /ac {^[ %1] %2(%3)}{
+        /var it_num %1;
+        /var it_name %3;
+        /if {$q_it==$it_name}{take $it_num 1;/showme {take $it_num 1}}{qtake-}
+            }
+            }
+/al qtake- {
+    /unac {^[ %1] %2(%3)}
+            }

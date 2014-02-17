@@ -93,18 +93,17 @@
            /if {$food_eat<3}{eat meat}{/var food_ok 1}
         }}{/var food_ok 1};
     /if {$food_ok==1 && $auto_en_jin==1}{
-        /if {$jin_per < 96 && $is_walk==0}{hj;tt 精力 $jin_per%;/var jin_ok 1;dhp}{
+        /if {$jin_per < 96 && $is_walk==0}{hj;/var jin_ok 1;dhp}{
             /if {$jin_delta > $jin_lost}{dazuo; dhp}{/var jin_ok 1};
             }
        };
-/nop if hx tth hh $myname tt 气血 $qi_per% dhp
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
         /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
             /if {$qi_delta > $qi_lost}{ dazuo; dhp}{/var qi_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $qi_ok==1 && $auto_en_shen==1}{
-        /if {$shen_per < 96 && $is_walk==0}{hs;tt 神 $shen_per%;}{
+        /if {$shen_per < 96 && $is_walk==0}{hs;}{
             /if {$shen_delta > $shen_lost}{hs; dazuo; dhp}{/var shen_ok 1};
             }
        };
@@ -118,13 +117,13 @@
     /math max_fali {2*$fali_init};
     /if {$is_walk==0 && $is_kill==0}{
         /if {$auto_en_ll==1}{
-           /if {$lingli < $lingli_init}{hl;tt $myname 回灵力; }{/var lingli_ok 1}
+           /if {$lingli < $lingli_init}{hl; }{/var lingli_ok 1}
         }{/var lingli_ok 1};
         /if {$lingli_ok==1 && $auto_en_nl==1}{
-           /if {$neili < $neili_init}{hn;tt $myname 回内力; }{/var neili_ok 1}
+           /if {$neili < $neili_init}{hn;}{/var neili_ok 1}
         }{/var neili_ok 1};
         /if {$lingli_ok==1 && $neili_ok==1 && $auto_en_fl==1}{
-           /if {$fali < $fali_init}{hf;tt $myname 回法力; }{/var fali_ok 1}
+           /if {$fali < $fali_init}{hf;}{/var fali_ok 1}
         }{/var fali_ok 1; dhp};
         /var food_ok 0;
         /var jin_ok 0;

@@ -37,19 +37,14 @@
 /var wkxl_ok 1
 /var flfy_ok 1
 /al wim {;}
-/al xx {unwi blade;wi needle;wi piece;perform qixingbanyue;perform liantianshuaicao; wim}
-/al ps {unwi blade;wi needle;wi piece;perform liantianshuaicao;perform qixingbanyue; wim}
-/al zd {unwi blade;wi needle;wi piece;perform hongouxiangcan;perform qixingbanyue; wim}
-/al flfy1 { wi needle;wi piece;perform fengloufeiyan;perform hongouxiangcan; wim}
+/al xx {perform qixingbanyue;perform liantianshuaicao;}
+/al ps {perform liantianshuaicao;perform qixingbanyue;}
+/al zd {perform hongouxiangcan;perform qixingbanyue;}
+/al flfy1 { wi needle;wi piece;perform fengloufeiyan;perform hongouxiangcan;}
 /al flfy {/if {$flfy_ok==1}{flfy1;/delay {1}{flfy1}}{/showme not 风漏飞烟 }}
-/al wkxl {/if {$wkxl_ok==1}{ wi needle;wi piece;perform wukongxuanliu; wim}{/showme not 无空漩流 }}
+/al wkxl {/if {$wkxl_ok==1}{perform wukongxuanliu;}{/showme not 无空漩流 }}
 /ac {真气流转，身形飘忽灵动}{/if {$is_kill==1}{flfy;wkxl}}
-/ac {^金枪不倒以手中欢喜金刚转点地}{/if {$is_kill==1}{/delay {5}{flfy;wkxl}}}
-/ac {坦克(Tank)：busy fails}{/if {$is_kill==1}{flfy}}
 /ac {^在缕缕暗香中，%1不禁有些痴迷起来}{/if {$is_kill==1}{/delay {5}{wkxl}}}
-/ac {^明月双手拇指食指相对虚合}{/if {$is_kill==1}{/delay {5}{wkx}}}
-/ac {^清辉双手拇指食指相对虚合}{/if {$is_kill==1}{/delay {5}{wkxl}}}
-/ac {^结果%1被硬攻了个手忙脚乱}{/if {$is_kill==1}{/delay {5}{wkxl}}}
 /nop ac {^你微挪半尺，%1力道尽数落在你身侧冰壁}{/if {$is_kill==1}{flfy}}
 /ac {^你微挪半尺，%1力道尽数落在你身侧冰壁}{/showme ---todo---}
 /ac {^结果%1被扰得眼花潦乱，应接不暇}{/if {$is_kill==1}{/delay {5}{wkxl}}}

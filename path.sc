@@ -712,7 +712,7 @@
 
 
 /nop al fy2zt {fy2zt+;d;/3 n;w;de1 {w;n;w;w;open door;w;jump}}
-/al fy2zt {fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr}
+/al fy2zt {wlk;fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr}
 
 /nop al zt2fy {open door;/2 e;s;e;e;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
 /al zt2fy {pl {wlk;open door;s;s;s;s;dd white towel;wear all;e;ne;e;e;n;n;n;u;fy2zt-};pr}
