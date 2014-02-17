@@ -58,12 +58,12 @@
 /al skillsp {skills xxz}
 /al hpp {wlk;expp;hp xxz;nwlk}
 /al k {wi blade;perform fengsiyunqi}
-/al j {unwi blade;wi sword;perform knockdown}
+/al j {wi jade;wi sword;perform knockdown}
 /al jj {unwi sword;unwi blade;perform panguaxe}
 /var npc_wq 1
 /ac {^你嘴角挂着一丝若有若无的微笑，食、中}{
         /showme {++++++挑兵器+-+++++++};
-       /delay {3} {perform knockdown;/showme {++++++挑兵器+=+++++++};}
+       /delay {3} {wi sword;wi jade;perform knockdown;/showme {++++++挑兵器+=+++++++};}
        }
 /ac {手中%0向你}{
     /if {$iskill==1 && $npc_wq==1}{j;/showme ++++++挑兵器==+++++++}
@@ -111,10 +111,10 @@
      remove all;
      wear all
 }
-/read autorecover.sc
+/read autorecover_hc.sc
 /al qq {xixi;quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
 /ac {^任务被你完}{j;/showme =================================================}
-/ac {^  兵装谱(fengyun bingzhuangpu)}{nokill;nwlk;stopk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /al hs {drink dai}
+/ac {^看起来%0想杀死你！}{wi jade;wi sword;/var knpc_name %0;iskill}

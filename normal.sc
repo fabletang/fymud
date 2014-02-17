@@ -7,7 +7,7 @@
 /config {DEBUG TELNET} off
 /config {CONVERT META} off
 /split 0 1
-/al reload {/read $myname.tt}
+/nop al reload {/read $myname.tt}
 /variable is_kill 0
 /variable can_eat 1
 /al de0 {/delay {0.5}%1}
@@ -102,8 +102,6 @@
 /al tpull {/ticker {pull}{pull %0}{1}}
 /al untpull {/unticker {pull}}
 /al stdbook {/30 {study %0}}
-/nop 你向老妇人打听有关『送饭』的消息get basket;w;w;s;s;s;s;e;give farmer basket;w;n;n;
-
 /al buywuqi {fy2lw; /delay {4}{w;nw;buy %0 from tian long;se;e};/delay {5}{lw2fy}}
 
 /nop table合并物品
@@ -186,7 +184,7 @@
 /al lb {look small bag}
 /al gb {get %0 from small bag}
 /al xp {put %0 in small bag;get %0 from corpse;qput %0}
-/al buysmall bag {d;w;w;n;buy small small bag from xuer; /delay {3}{s;e;e;;u}}
+/al buybag {d;w;w;n;buy small small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
 /if {$can_eat==1}{gb meat;gb skin;eat meat; /delay {3}{drink wineskin;pp meat;pp wineskin}}
@@ -405,7 +403,6 @@
     pm skin;pm meat;
     }
 }
-/nop {^潇江说道：你试着吹一声口哨（ｗｈｉｓｔｌｅ）}{de2 {whistlep};de3 {scorepp}}
 /al jiangshaqi {
     do d,n,n,e;
     /4 salute;
@@ -417,4 +414,4 @@
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  兵装谱(fengyun bingzhuangpu)}{/var is_kill 0;/var is_walk 0}
+/ac {^  兵装谱}{/var is_kill 0;/var is_walk 0}

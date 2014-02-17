@@ -98,7 +98,7 @@
 }
 /nop al xrd2fye {wlk;wd;w;/3 wd;w;w;nwlk}
 /nop al fy2xrd {fye;fye2xrd+;de2 {e;e;fye2xrd}}
-/al fye2xrd {wlk;do e,e,eu,eu,eu,ne,nw,n,nu;nwlk}
+/al fye2xrd {wlk;do e,e,n,e,eu,eu,eu,ne,nw,n,nu;nwlk}
 /al xrd2fye {wlk;do sd,s,se,sw,wd,wd,wd,w,w;nwlk}
 /al fy2xrd {fye;de1 {fye2xrd}}
 /nop al xrd2fy {xrd2fye;de1 {fye-}}
@@ -285,30 +285,6 @@
 /al fys- {wlk;unwield all;do n,n,n,n,n,n,n,n,u;nwlk}
 /nop al fys {pfys;pr}
 /nop al fys- {pfys-;pr}
-/al fys-+ {
-    wlk;
-    /ac {^金水玉带河}{s};
-    /ac {^风云天骄门}{s};
-    /ac {^团龙石阶}{s};
-    /ac {^太和门}{s};
-    /ac {^午门}{s};
-    /ac {^汉白玉天街}{s};
-    /ac {^天坛}{s};
-    /ac {^天机阁}{fys--};
-    /ac {^风云天下}{u;de2 {fys--}}
-}
-/al fys-- {
-    nwlk;
-    /unac {^金水玉带河};
-    /unac {^天机阁};
-    /unac {^风云天骄门};
-    /unac {^团龙石阶};
-    /unac {^太和门};
-    /unac {^午门};
-    /unac {^汉白玉天街};
-    /unac {^天坛};
-    /unac {^风云天下}
-}
 /nop al fye {pl {wlk;d;e;e;e;e;e;e;e;e;e;nwlk};pr}
 /al fye {wlk;do d,e,e,e,e,e,e,e,e,e;nwlk;}
 /nop al fye- {pl {wlk;unwield all;w;w;w;w;w;w;w;w;w;u;nwlk;wim};pr}
@@ -887,7 +863,7 @@
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /al slout {wlk;/5 {do s,su,sd,d;};nwlk}
 /al jianfangzhang {pl {wlk;ask master about 见方丈;answer 重要事;nd;nu;nd;nu;sd;nwlk};pr}
-/al fy2yetu {fyw;de1 {pl {wlk;w;nw;ne;e;ne;e;sw;s;sd;nwlk};pr}}
+/al fy2yetu {fyw;de1 {pl {wlk;w;nw;ne;e;ne;e;sw;s;nwlk};pr}}
 /al yetu2fy {pl {wlk;nu;n;ne;w;sw;w;sw;se;e;fyw-};pr}
 /nop slhm 少林后门
 /al fy2slhm {fyw;de1 {w;nw;ne;e;ne;e;sw;e;nwlk}}

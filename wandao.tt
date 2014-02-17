@@ -7,17 +7,14 @@
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read $wandao.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{dao;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{dao}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{xixi;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手】} {/line log ../chat-$myname.log}{plain}
-/ac {^【传闻】} {/line log ../chat-$myname.log}{plain}
-/ac {^【谣言】} {/line log ../chat-$myname.log}{plain}
-/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
+/ac {^【新手】} {/line log ../chat-$myname.log }
 /al wpet {order wear all;order wield ironfist}
+/al reload {/read wandao.tt}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
 /al wh {/var haspet 0;l xwd;/delay {0.5}{/if {$haspet==0}{whistle}}}
@@ -45,7 +42,7 @@
 /al xl {wihand;perform xianglongwuhui}
 /al sc {wihand;perform shichengliulong}
 /var islian 0
-/al ki {set target %0;buff;/delay {4.1}{kill %0}}
+/al ki {wi jade;wi jade2;set target %0;buff;/delay {4.1}{kill %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
@@ -76,7 +73,6 @@
 /read path.sc
 /read normal.sc
 /read quest.sc
-/read team.sc
 /read status.sc
 /log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
@@ -96,9 +92,9 @@
      remove all;
      wear all
 }
-/read autorecover.sc
-/al qq {nod;quest}
+/read autorecover_hc.sc
+/al qq {quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
 /ac {^任务被你完}{j}
-/ac {^  兵装谱(fengyun bingzhuangpu)}{nokill;nwlk;stopk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
+/ac {^看起来%0想杀死你！}{wi jade;wi jade2;/var knpc_name %0;iskill}
