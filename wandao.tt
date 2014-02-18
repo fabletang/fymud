@@ -12,7 +12,7 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手】} {/line log ../chat-wandao.log }
+/ac {^【新手} {/line {log} newwandao.log}
 /al wpet {order wear all;order wield ironfist}
 /al reload {/read wandao.tt}
 /var haspet 0
@@ -23,24 +23,37 @@
 /al hpp {wlk;expp;hp xwd;nwlk}
 /var hasblade 0
 /var hasanqi 0
-/ac {^你抽出一把明晃晃的圆月弯刀}{/var hasblade 1;/var hasanqi 0}
-/ac {^你装备%0棋子作武器}{/var hasblade 0;/var hasanqi 1}
-/ac {^你放下手中的圆月弯刀}{/var hasblade 0}
-/ac {^你放下手中的%0棋子}{/var hasanqi 0}
-/ac {^  √圆月弯刀(jade2)}{/var hasblade 1;/var hasanqi 0}
-/ac {^  √%0(go piece)}{/var hasblade 0;/var hasanqi 1}
-/al wihand {/if {$hashand==0}{unwi all;wi jade}}
-/al wiblade {wi jade;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
-/al wianqi {wi jade;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
+/var hashand 0
+/var hasfushou 0
+/al iblade {/var hasblade 1;/var hasanqi 0;/var hashand 0; /showme iblade;}
+/al noblade {/var hasblade 0;/var hashand 1; /showme noblade;}
+/al ianqi {/var hasanqi 1;/var hasblade 0;/var hashand 0; /showme ianqi;}
+/al noanqi {/var hasanqi 0;/var hashand 1; /showme noanqi;}
+/al ihand {/var hashand 1;/var hasanqi 0;/var hasblade 0; /showme ihand;}
+/al nohand {/var hashand 0; /showme nohand;}
+/al ifushou {/var hasfushou 1;/showme ifushou;}
+/al nofushou {/var hasfushou 0;/showme nofushou;}
+/ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
+/ac {^你装备%0棋子作武器}{ianqi}
+/ac {^你放下手中的圆月弯刀}{noblade}
+/ac {^你放下手中的刀鞘}{nofushou}
+/ac {^你抽出一把明晃晃的刀鞘}{ifushou}
+/ac {^你放下手中的%0棋子}{noanqi}
+/ac {^  √圆月弯刀(jade2)}{iblade}
+/ac {^    圆月弯刀(jade2)}{noblade}
+/ac {^  √%0(go piece)}{ianqi}
+/ac {^  √刀鞘(jade)}{ifushou}
+/ac {^    刀鞘(jade)}{nofushou}
+/al wifushou {/if {$hasfushou==0}{wi jade}}
+/al wihand {wifushou;/if {$hashand==0}{unwi all}}
+/al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
+/al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /read moonbuff_hc.sc
 /nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/al buff {my;bf1;/delay {4.1}{bf2;bf6;bf7}}
+/nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
+/al buff {bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
 /nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
-/al lx {wiblade;perform yipianlianxin}
-/al xl {wihand;perform xianglongwuhui}
-/al sc {wihand;perform shichengliulong}
-/var islian 0
-/al ki {do i,hp,unwield jade,wield jade;wiblade;
+/al ki {do i,hp;wiblade;
         set target %0;
         buff;
         /delay {4.1}{
@@ -48,7 +61,7 @@
             kill %0;
                     }
         }
-/al k {unwi jade2;perform finger.dian}
+/al k {wihand;perform finger.dian}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
@@ -61,22 +74,55 @@
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
-/al bg {do enable blade ittouryu,set secon_perform hyakki}
+/al reffs {do unwield jade,wield jade}
+/al bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
 /al qie {do enable blade ittouryu,set secon_perform gobankiri}
-/al my {do enable blade chillblade,set secon_perform mingyue}
-/al ld {do enable blade chillblade,set secon_perform leidianjiaohon}
-/al wk {perform wukongxuanliu}
+/al my {reffs;do enable blade chillblade,set secon_perform mingyue}
+/al ld {reffs;do enable blade chillblade,set secon_perform leidianjiaohong}
+/al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
+/nop 技能检查
+/var myok 0
+/var bgok 0
+/var bgok_t 0
+/var qpok 0
+/al okmy {/var myok 1}
 /ac {^你乍然退步，旋身，反手}{
+    cks;
     iskill;
-    de2 cks;
-    de4 {/showme {------shaqi=$shaqi};/if {$shaqi>0}{bg}{ld}};
+    wianqi;
+    /var myok 0;
+    /delay {242} {/var myok 1};
+    /delay {2.5} {/if {$shaqi>0}{bg}{
+                                    /if {$bgok_t==1}{bg}{ld};
+                                    };
+                  /showme {------shaqi=$shaqi};
+                 };
+    wianqi;
     }
 /ac {^你突然仰天长嚎}{
+    cks;
     iskill;
-    do unwield jade2,wield needle,wield piece;
-    de2 cks;
-    de4 {/showme {------shaqi=$shaqi};/if {$shaqi>0}{bg}{my}};
+    wianqi;
+    /var bgok 0;
+    /var bgok_t 0;
+    /delay {122}{/var bgok_t 1};
+    /delay {2.5} {/if {$shaqi>0}{bg}{
+                                    /if {$myok==1}{my}{ld};
+                                    };
+                  /showme {------shaqi=$shaqi};
+                 };
+    wianqi;
+    /delay {4.5} {wk};
 }
+/ac {^刀云中突发裂帛之声}{
+    iskill;
+    wianqi;
+    /delay {2.5}{
+            /if {$myok==1}{my};
+            /if {$bgok==1}{bg};
+            /if {$bgok_t==1}{bg};
+                 }
+                         }
 /al stopk {nokill;/unticker {kill}}
 /ac {^你的法力太低}{hp}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
@@ -89,12 +135,12 @@
 /read normal.sc
 /read quest.sc
 /read status.sc
-/log o ../wandao.log
+/nop log o ../wandao.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {drink dai}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/unac {^然而，%1已经死了}{cks}
+/ac {^然而，%1已经死了}{cks}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -113,8 +159,9 @@
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
-            wi jade;
+            wifushou;
             /var knpc_name %0;
             iskill
                          }
-/al wim {do unwield jade2,wield needle,wield piece,wield jade}
+
+/al wim {wifushou}

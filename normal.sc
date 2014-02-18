@@ -216,6 +216,7 @@
 /al qs  {d;w;w;n;qsave; /delay {1}{s;e;e;u;}}
 
 /al checkchat {/grep 【新手】; /grep 【闲聊】}
+/al checknew {/grep 【新手】}
 /nop ac {#PROMPT SIZE (%0) LONGER THAN ROW SIZE (80)}{/read status.sc; /cr}
 
 /function {lowerLetter} {
