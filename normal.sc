@@ -429,3 +429,11 @@
 /al qtake- {
     /unac {^[ %1] %2(%3)}
             }
+/al pickupall {
+    pickup 1; pickup 2; pickup 3; pickup 4; pickup 5; pickup 6; pickup 7; pickup 8; pickup 9;
+    de2 {pickup 10;pickup 11;pickup 12;pickup 13;pickup 14;pickup 15;pickup 16; pickup 17; pickup 18; pickup 19};
+    de4 {pickup 20;pickup 22;pickup 22;pickup 23;pickup 24;pickup 25;pickup 26; pickup 27; pickup 28; pickup 29};
+    de6 {pickup 30;pickup 33;pickup 33;pickup 33;pickup 34;pickup 35;pickup 36; pickup 37; pickup 38; pickup 39};
+    de8 {pickup 40;pickup 44;pickup 44;pickup 44;pickup 44;pickup 45;pickup 46; pickup 47; pickup 48; pickup 49};
+    de10 {pickup 50;pickup 55;pickup 55;pickup 55;pickup 55;pickup 55;pickup 56; pickup 57; pickup 58; pickup 59};
+            }

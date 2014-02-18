@@ -13,6 +13,7 @@
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /ac {^【新手} {/line {log} newwandao.log}
+/ac {^【传闻} {/line {log} newwandao.log}
 /al wpet {order wear all;order wield ironfist}
 /al reload {/read wandao.tt}
 /var haspet 0
@@ -56,7 +57,7 @@
 /al ki {do i,hp;wiblade;
         set target %0;
         buff;
-        /delay {4.1}{
+        /delay {6.2}{
             /if {$shaqi >0}{bg}{ld};
             kill %0;
                     }
@@ -80,24 +81,31 @@
 /al my {reffs;do enable blade chillblade,set secon_perform mingyue}
 /al ld {reffs;do enable blade chillblade,set secon_perform leidianjiaohong}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
+/nop 『红藕香残』hongouxiangcan
+/al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
 /nop 技能检查
-/var myok 0
+/var myok 1
 /var bgok 0
 /var bgok_t 0
 /var qpok 0
 /al okmy {/var myok 1}
+/nop 百鬼busy效果
+/var npcbusy 0
+/ac {^突然，一蓬鲜血激射}{
+    /var npcbusy 6
+}
 /ac {^你乍然退步，旋身，反手}{
     cks;
     iskill;
     wianqi;
     /var myok 0;
     /delay {242} {/var myok 1};
-    /delay {2.5} {/if {$shaqi>0}{bg}{
+    /delay {2.1} {/if {$shaqi>0}{bg}{
                                     /if {$bgok_t==1}{bg}{ld};
                                     };
                   /showme {------shaqi=$shaqi};
+                  wk;
                  };
-    wianqi;
     }
 /ac {^你突然仰天长嚎}{
     cks;
@@ -106,21 +114,23 @@
     /var bgok 0;
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
-    /delay {2.5} {/if {$shaqi>0}{bg}{
+    /delay {2.1} {/if {$shaqi>0}{bg}{
                                     /if {$myok==1}{my}{ld};
                                     };
                   /showme {------shaqi=$shaqi};
                  };
-    wianqi;
-    /delay {4.5} {wk};
+    /if {$npcbusy==6}{
+        /delay {5} {wk};
+                    }
 }
 /ac {^刀云中突发裂帛之声}{
     iskill;
     wianqi;
-    /delay {2.5}{
+    /delay {2.1}{
             /if {$myok==1}{my};
             /if {$bgok==1}{bg};
             /if {$bgok_t==1}{bg};
+    ho;
                  }
                          }
 /al stopk {nokill;/unticker {kill}}
@@ -140,7 +150,7 @@
 /al hx {drink dai}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/ac {^然而，%1已经死了}{cks}
+/ac {^然而，%1已经死了}{;}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -163,5 +173,5 @@
             /var knpc_name %0;
             iskill
                          }
-
 /al wim {wifushou}
+/ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{ho}
