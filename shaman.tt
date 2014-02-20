@@ -128,9 +128,21 @@
      remove all;
      wear all
 }
-/read autorecover.sc
+/read autorecover_hc.sc
 /al qq {fox;quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
-/al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小和尚 xhs};de6 whistle}
+/al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小和尚 xhs};de9 {whistle;hp}}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
-/al yyyy {/ticker {yang}{dismissp xhs;de2 {yangcw}}{11}}
+/al yyyy {/ticker {yang}{dismissp xhs;de2 {yangcw}}{12}}
+/al eatall {gb meat;drink dai;de2 {eat meat}}
+/ac {^胡大掌柜的现钱已经不够}{
+    /unticker yang;
+    hp;
+    /delay {12}{ffy};
+    /delay {14}{d;w;w;w;n};
+    /delay {15} {withdraw 5000000};
+    /delay {20} {do s,e,e,e;fy2gw};
+    /delay {32}{do w,n,n,n,n,e;deposit 5 tenthousand-cash};
+    /delay {37}{yyyy};
+}
+/var jqs_lost_limit 0.5
