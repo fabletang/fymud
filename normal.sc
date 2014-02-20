@@ -362,7 +362,7 @@
 /ac {^麻锋嘿嘿道：够胆量}{buff;ki ma feng}
 /ac {^一阵冷风吹散了你的阴魂}{dfout}
 /al asksoup {ask mengpo about soup}
-/ac {^你所受到的地域幽魂的效用消失了}{sw;s;dash mist}
+/ac {^你所受到的地域幽魂的效用消失了}{nw;s;dash mist}
 /ac {^你上世的恩怨未尽，还是再等一阵儿吧}{/delay {5}{dash mist}}
 /ac {^你身子虚弱到了极点，连站都站不稳了}{score;say 又死了。。。}
 /nop 治病

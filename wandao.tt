@@ -145,6 +145,7 @@
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
+/ac {^『红藕香残』只能对战}{sk}
 /read gag.sc
 /read path.sc
 /read normal.sc

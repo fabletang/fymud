@@ -93,7 +93,7 @@
            /if {$food_eat<3}{eat meat}{/var food_ok 1}
         }}{/var food_ok 1};
     /if {$food_ok==1 && $auto_en_jin==1}{
-        /if {$jin_per < 96 && $is_walk==0}{use hugu;dhp}{
+        /if {$jin_per < 96 && $is_walk==0}{hj;use hugu;dhp}{
             /if {$jin_delta > $jin_lost}{sleep;dazuo; dhp}{/var jin_ok 1};
             }
        };
@@ -144,3 +144,5 @@
 /ac {^你盘膝而坐，闭上眼睛}{/delay {2.1}{hp}}
 /ac {^你坐下来运气用功}{/delay {2.1}{hp}}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
+/ac {^你一觉醒来，只觉精力充沛}{hp}
+/ac {^你的气血治愈了}{hp}

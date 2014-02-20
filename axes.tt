@@ -18,10 +18,10 @@
 /al reload {/read axes.tt}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xwd;/delay {0.5}{/if {$haspet==0}{whistle}}}
-/al scorep {score xwd}
-/al skillsp {skills xwd}
-/al hpp {wlk;expp;hp xwd;nwlk}
+/al wh {/var haspet 0;l xxf;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al scorep {score xxf}
+/al skillsp {skills xxf}
+/al hpp {wlk;expp;hp xxf;nwlk}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -53,7 +53,12 @@
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
 /al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /read moonbuff_hc.sc
-/al buff {perform dodge.liuyun}
+/al buff {
+        perform herb.xiumugong;
+        perform dodge.liuyun;
+        poison jade shecao;
+        de3 {poison axe shecao};
+            }
 /al ki {do hp,wield axe,wield jade;
         set target %0;
         buff;
@@ -61,8 +66,10 @@
             kill %0;
                     }
         }
-/al ki {wi axe;wi jade;kill %0}
+/al ki {buff;wi axe;wi jade;/delay {4.2}{kill %0;set target %0;}}
 /al k {do unwield axe,unwield jade,perform zhangjian,wield axe,wield jade}
+/al j {perform herb.xiumugong}
+/al kk {perform herb.canyunbi}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
@@ -190,3 +197,8 @@
      wear all
 }
 /al fy2zt {fy2ztv}
+/al hx {herbheal with jinqian}
+/al hj {herbheal with qingmuxiang}
+/al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小斧头 xxf};de9 {whistle;hp}}
+/ac {^粉黛的锋刃慢慢恢复了正常的光泽}{posion axe shecao}
+/ac {^破霄的锋刃慢慢恢复了正常的光泽}{posion jade shecao}
