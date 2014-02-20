@@ -53,20 +53,16 @@
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
 /al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /read moonbuff_hc.sc
-/nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
-/al buff {bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
-/nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
-/al ki {do i,hp;wiblade;
+/al buff {perform dodge.liuyun}
+/al ki {do hp,wield axe,wield jade;
         set target %0;
         buff;
-        /delay {6.2}{
-            /if {$shaqi >0}{bg}{ld};
+        /delay {2.2}{
             kill %0;
                     }
         }
 /al ki {wi axe;wi jade;kill %0}
-/al k {wihand;perform finger.dian}
+/al k {do unwield axe,unwield jade,perform zhangjian,wield axe,wield jade}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
@@ -146,13 +142,14 @@
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
+/ac {^『掌剑』只能对战}{sk}
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read status.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {drink dai}
+/al hx {use baiyao}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /ac {^然而，%1已经死了}{;}

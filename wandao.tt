@@ -174,7 +174,7 @@
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
-            wifushou;
+            reffs;
             /var knpc_name %0;
             iskill
                          }
@@ -192,3 +192,5 @@
      remove all;
      wear all
 }
+/al kb {ki bandit}
+/ac {^沁骨的冰凉流入喉咙}{de2 hp}

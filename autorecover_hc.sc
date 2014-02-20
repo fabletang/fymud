@@ -93,13 +93,13 @@
            /if {$food_eat<3}{eat meat}{/var food_ok 1}
         }}{/var food_ok 1};
     /if {$food_ok==1 && $auto_en_jin==1}{
-        /if {$jin_per < 96 && $is_walk==0}{hj;/var jin_ok 1;dhp}{
-            /if {$jin_delta > $jin_lost}{dazuo; dhp}{/var jin_ok 1};
+        /if {$jin_per < 96 && $is_walk==0}{use hugu;dhp}{
+            /if {$jin_delta > $jin_lost}{sleep;dazuo; dhp}{/var jin_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
-        /if {$qi_per < 96 && $is_walk==0}{use hugu}{
-            /if {$qi_delta > $qi_lost}{ dazuo; dhp}{/var qi_ok 1};
+        /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
+            /if {$qi_delta > $qi_lost}{sleep; dazuo; dhp}{/var qi_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $qi_ok==1 && $auto_en_shen==1}{

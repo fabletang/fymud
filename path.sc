@@ -1766,3 +1766,4 @@ nwlk;
 /al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
 /al lz2fy {lz2sk;de1 {sk2fy}}
 /al gt {goto %0;de2 {%0;l}}
+/al fyz {recall back}
