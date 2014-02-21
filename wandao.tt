@@ -185,6 +185,7 @@
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
             reffs;
+            wi jade2;
             /var knpc_name %0;
             iskill
                          }
@@ -204,3 +205,4 @@
 }
 /al kb {ki bandit}
 /ac {^沁骨的冰凉流入喉咙}{de2 hp}
+/al ks {unwi all;wiblade;ld}
