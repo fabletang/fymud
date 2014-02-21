@@ -254,6 +254,7 @@
 /al hb2tuzi {wlk;do s,s,s,s,s,n,n,n,w,w,w,w,s;wlk}
 /al hb2fy {hb2tuzi;de1 {tuzi2fy}}
 /al fy2hb {fy2tuzi;de3 {tuzi2hb}}
+/al fy2stj {fy2tuzi;de3 {tuzi2hb};de4 {do n,n,n,w,open door,w;give romance to master;}}
 /nop 海边-龙王
 /al hb2lw {wlk;do n,n,n,n,n,e,walkto bow,give meat to man,enter;nwlk}
 /al lw2hb {wlk;out;walkto 岸边;de8 {w;s;s;s;nwlk}}
@@ -712,7 +713,7 @@
 
 
 /nop al fy2zt {fy2zt+;d;/3 n;w;de1 {w;n;w;w;open door;w;jump}}
-/al fy2zt {wlk;fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr}
+/al fy2zt {wlk;fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr;wlk}
 
 /nop al zt2fy {open door;/2 e;s;e;e;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
 /al zt2fy {pl {wlk;open door;s;s;s;s;dd white towel;wear all;e;ne;e;e;n;n;n;u;fy2zt-};pr}
@@ -735,7 +736,7 @@
     /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-}
 }
 
-/al fy2ztv {fy2ztv+;d;/3 s;w;w;sw;de1 {s;s;w;buy white towel from kid}}
+/al fy2ztv {wlk;fy2ztv+;d;/3 s;w;w;sw;de1 {s;s;w;buy white towel from kid}}
 /nop al fy2ztv {fy2ztv+;d;/3 n;e;de1 {e;n;east;east;open door;east;wash}}
 /nop al zt2fyv {open door;/2 w;s;w;w;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
 /al ztv2fy {wlk;open door;/4 n;de1 {wear baojia;wear all;e;n;n;ne;e;e;/3 n;u;fy2ztv-}}

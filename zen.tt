@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname chan
+/var myname claw 
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /nop session $myname china.fengyun.com 6000
@@ -134,3 +134,4 @@
 /read autorecover.sc
 /al qq {fox;quest}
 /al eatall {drink hulu;de4 {eat mantou}}
+/al ffy {recall back;w;n;e;e;e;n;u}

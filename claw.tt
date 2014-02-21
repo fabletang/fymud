@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname wandao
+/var myname claw 
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /session $myname fy.sysfon.com 6000
@@ -12,16 +12,16 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手} {/line {log} newwandao.log}
-/ac {^【传闻} {/line {log} newwandao.log}
+/ac {^【新手} {/line {log} newaxes.log}
+/ac {^【传闻} {/line {log} newaxes.log}
 /al wpet {order wear all;order wield ironfist}
-/al reload {/read wandao.tt}
+/al reload {/read claw.tt}
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xwd;/delay {0.5}{/if {$haspet==0}{whistle}}}
-/al scorep {score xwd}
-/al skillsp {skills xwd}
-/al hpp {wlk;expp;hp xwd;nwlk}
+/al wh {/var haspet 0;l xxz;/delay {0.5}{/if {$haspet==0}{whistle}}}
+/al scorep {score xxz}
+/al skillsp {skills xxz}
+/al hpp {wlk;expp;hp xxz;nwlk}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -53,36 +53,29 @@
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
 /al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /read moonbuff_hc.sc
-/nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
-/al buff {bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
-/nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
-/al ki {do i,hp;wiblade;
+/al buff {exert powerup}
+/al ki {do hp,wield axe,wield jade;
         set target %0;
         buff;
-        /delay {6.2}{
-            /if {$shaqi >0}{bg}{ld};
+        /delay {2.2}{
             kill %0;
                     }
         }
-/al k {wihand;perform finger.dian}
-/al ki {do i,hp;wiblade;
-        set target %0;
-        buff;
-        /delay {3.2}{
-            /if {$shaqi >0}{bg}{ld};
-            kill %0;
-                    }
-        }
+/al ki {buff;wi axe;wi jade;/delay {4.2}{kill %0;set target %0;}}
+/al ki {buff;wi sword;reffs;set target %0;de4 {kill %0;shoot %0;j;startk}}
+/al k {do unwield axe,unwield jade,perform zhangjian,wield axe,wield jade}
+/al j {exert mihunshu}
+/al jj {perform dodge.lianhuanbu}
+/al kk {wi sword;perform shuanglengcanxia}
+/al k {kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /al startk {
         iskill;
         /ticker {kill}{
-            ps;
-            wk
-            }{12.2}
+            j;
+            }{7.1}
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
@@ -92,7 +85,6 @@
 /al my {reffs;do enable blade chillblade,set secon_perform mingyue}
 /al ld {reffs;do enable blade chillblade,set secon_perform leidianjiaohong}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
-/al wk {;}
 /nop 『红藕香残』hongouxiangcan
 /al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
 /al fl {wianqi;perform fengloufeiyan;/showme ---- 5 hit npc}
@@ -152,17 +144,15 @@
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{;}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
-/ac {^『无空漩流』只能对战}{sk}
-/ac {^『风漏飞烟』只能对战}{sk}
-/ac {^『红藕香残』只能对战}{sk}
+/ac {^『连环步』只能对战}{sk}
+/ac {^迷魂术只能对战}{sk}
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read status.sc
-/nop log o ../wandao.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {drink dai}
+/al hx {use baiyao}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /ac {^然而，%1已经死了}{;}
@@ -184,7 +174,7 @@
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
-            reffs;
+            wifushou;
             /var knpc_name %0;
             iskill
                          }
@@ -202,5 +192,9 @@
      remove all;
      wear all
 }
-/al kb {ki bandit}
-/ac {^沁骨的冰凉流入喉咙}{de2 hp}
+/al fy2zt {fy2ztv}
+/al hj {use hugu}
+/al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小斧头 xxz};de9 {whistle;hp}}
+/ac {^粉黛的锋刃慢慢恢复了正常的光泽}{posion axe shecao}
+/ac {^破霄的锋刃慢慢恢复了正常的光泽}{posion jade shecao}
+/ac {^需等待%0秒才能再次使用迷魂术}{jj}
