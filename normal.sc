@@ -438,3 +438,6 @@
     de14 {pickup 50;pickup 55;pickup 55;pickup 55;pickup 55;pickup 55;pickup 56; pickup 57; pickup 58; pickup 59};
             }
 /ac {^【闲聊】拍卖师(Auctioneer)：第%0号拍卖物%1无人认领}{pickup %0} 
+/ac {^你中的七彩蝙蝠毒发作了}{gb 1 bat drug;cure 7batpoison;}
+/ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{gb 1 bat drug;cure 7batpoison;}
+/al ts tsell;

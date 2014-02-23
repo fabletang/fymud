@@ -18,10 +18,11 @@
 }
 /ac {^buyitemfromling}{
     /if {$en_qb==1}{
+        wlk;
         fyxl;
         list;
         de6 {buyitem};
-        de7 {xlfy};
+        de7 {xlfy;nwlk};
         de8 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
         }
 }
@@ -190,7 +191,8 @@ n;
 /ac {^勾魂使者对你说道：想过我这一关？}{accept test;tell ghost no face}
 /al xintask {cancel;de1 {newtask}}
 /al askxiaoyuer {ask xiao yuer about cancel;de2 {ask xiao yuer about help}}
-/ac {^小鱼儿说道：你可以用%1来定位}{/al ll %1;ll}
+/nop 小鱼儿说道：你可以用locate faked meijian来定位
+/ac {^小鱼儿说道：你可以用locate %0来}{/al ll locate %0;/al fll {follow %0};/al kll {ki %0}}
 /ac {^卡卡木说道：废话少说}{startk}
 /ac {^吕南人说道：让我看看你到底有几斤}{startk}
 /al askqingbo {ask qingbo about 保护;de4 {ask qingbo about 袁姬;kill assassin;ki assassin;};de5 {ki assassin}}
@@ -242,3 +244,6 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 }
 /al askqiandao {recall back;w;n;w; ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;save}}
 /al qf {quest fail}
+/ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
+/ac {^你现在的任务是: 到少林寺去杀}{stat}
+/al askxy askxiaoyuer

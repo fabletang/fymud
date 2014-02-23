@@ -860,8 +860,13 @@
 /al hsout {wlk;do s,ed,ne,nu,nw,wd,wu,wd,nd,nd,w,ne,nw,ne;nw;ed;nwlk}
 /al hsin  {wlk;do wu,se,sw,se,sw,e,su,su,eu,ed,eu,se,sd,sw,wu;n;nwlk}
 /nop 嵩山
-/al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;u;nwlk};pr}}
+/al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
+/nop sl 方丈南院
+/al sl2fz {wlk;do eu,nw,n,n,n,nu,nd,nu,nd;nwlk}
+/al fz2sl {wlk;do su,sd,su,sd,s,s,s,se,wd;nwlk}
+/al fz2xie {wlk;do nu,nu,nu,nd,n,n,n,nu,n,n,n,ne,nw,w,w;nwlk}
+/al xie2fz {wlk;do e,e,se,sw,s,s,s,sd,s,s,s,su,sd,sd,sd;nwlk}
 /al slout {wlk;/5 {do s,su,sd,d;};nwlk}
 /al jianfangzhang {pl {wlk;ask master about 见方丈;answer 重要事;nd;nu;nd;nu;sd;nwlk};pr}
 /al fy2yetu {fyw;de1 {pl {wlk;w;nw;ne;e;ne;e;sw;s;nwlk};pr}}

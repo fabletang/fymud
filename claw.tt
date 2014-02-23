@@ -12,61 +12,93 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手} {/line {log} newaxes.log}
-/ac {^【传闻} {/line {log} newaxes.log}
-/al wpet {order wear all;order wield ironfist}
+/ac {^【新手} {/line {log} ../newclaw.log}
+/ac {^【传闻} {/line {log} ../newclaw.log}
 /al reload {/read claw.tt}
 /var haspet 0
-/ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxz;/delay {0.5}{/if {$haspet==0}{whistle}}}
-/al scorep {score xxz}
-/al skillsp {skills xxz}
-/al hpp {wlk;expp;hp xxz;nwlk}
+/var petname xxz
+/al wpet {order wield blade}
+/read pet.sc
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
 /var hasfushou 0
+/var sword2 0
+/var blade2 0
+/var hassword 0
 /al iblade {/var hasblade 1;/var hasanqi 0;/var hashand 0; /showme iblade;}
-/al noblade {/var hasblade 0;/var hashand 1; /showme noblade;}
+/al isword {/var hassword 1;/var hasanqi 0;/var hashand 0; /showme isword;}
+/al noblade {/var hasblade 0;/showme noblade;}
+/al nosword {/var hassword 0;/showme nosword;}
 /al ianqi {/var hasanqi 1;/var hasblade 0;/var hashand 0; /showme ianqi;}
 /al noanqi {/var hasanqi 0;/var hashand 1; /showme noanqi;}
 /al ihand {/var hashand 1;/var hasanqi 0;/var hasblade 0; /showme ihand;}
 /al nohand {/var hashand 0; /showme nohand;}
 /al ifushou {/var hasfushou 1;/showme ifushou;}
 /al nofushou {/var hasfushou 0;/showme nofushou;}
+/al isword2 {/var sword2 1;/var blade2 0;/showme is sword2;}
+/al nosword2 {/var sword2  0;/showme no sword2;}
+/al isblade2 {/var sword2 0;/var blade2 1;/showme is blade2;}
+/al noblade2 {/var blade2  0;/showme no blade2;}
 /ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
+/ac {^你装备神之祝福宝剑作武器}{isword}
+/ac {^你放下手中的神之祝福宝剑}{nosword}
 /ac {^你装备%0棋子作武器}{ianqi}
 /ac {^你将仙人刺握在手中}{ianqi}
 /ac {^你放下手中的圆月弯刀}{noblade}
-/ac {^你放下手中的刀鞘}{nofushou}
-/ac {^你抽出一把明晃晃的刀鞘}{ifushou}
+/ac {^你将手中的＊赤炼＊插入腰间}{nosword2}
+/ac {^你放下手中的＊百鬼夜狂＊}{noblade2}
+/ac {^你抽出一把明晃晃的＊赤炼＊}{isword2}
+/ac {^你「唰」地一声抽出一把＊赤炼＊}{isword2}
+/ac {^你抽出一把明晃晃的＊百鬼夜狂＊}{isblade2}
 /ac {^你放下手中的%0棋子}{noanqi}
 /ac {^你放下手中的仙人刺}{noanqi}
 /ac {^  √圆月弯刀(jade2)}{iblade}
 /ac {^    圆月弯刀(jade2)}{noblade}
 /ac {^  √%0(go piece)}{ianqi}
 /ac {^  √%0(cactus needle)}{ianqi}
-/ac {^  √刀鞘(jade)}{ifushou}
-/ac {^    刀鞘(jade)}{nofushou}
+/ac {^  √＊赤炼＊(sword2)}{isword2}
+/ac {^    ＊赤炼＊(sword2)}{nosword2}
+/ac {^  √＊百鬼夜狂＊(blade2)}{isblade2}
+/ac {^    ＊百鬼夜狂＊(blade2)}{noblade2}
+/ac {^  √神之祝福宝剑(zhufu sword)}{isword}
+/ac {^    神之祝福宝剑(zhufu sword)}{nosword}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
-/al wihand {wifushou;/if {$hashand==0}{unwi all}}
+/al wihand {/if {$hashand==0}{unwi all}}
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
 /al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
-/read moonbuff_hc.sc
-/al buff {exert powerup}
-/al ki {do hp,wield axe,wield jade;
+/al wis2 {
+        /if {$blade2==1}{do unwield blade2,wield sword2}{
+                                /if {$sword2==0}{wi sword2}
+                                                }
+         }
+/al wib2 {
+/showme wib2 sword2=$sword2 blade2=$blade2 ;
+        /if {$sword2==1}{do unwield sword2,wield blade2}{
+                                /if {$blade2==0}{wi blade2}
+                                                }
+         }
+/al reffs {
+            /if {$sword2==1}{do unwield sword2,wield sword2};
+            /if {$blade2==1}{do unwield blade2,wield blade2};
+            }
+/al buff {exert powerup;exert chill}
+/al ki {do wield zhufu sword;
         set target %0;
         buff;
         /delay {2.2}{
+        /if {$is_kill==0}{
+           /if {$shaqi>0}{bg}{
+                            /if {$bgok_t==1}{bg}{slcx}
+                             }
+                        }{ };
             kill %0;
                     }
         }
-/al ki {buff;wi axe;wi jade;/delay {4.2}{kill %0;set target %0;}}
-/al ki {buff;wi sword;reffs;set target %0;de4 {kill %0;shoot %0;j;startk}}
-/al k {do unwield axe,unwield jade,perform zhangjian,wield axe,wield jade}
 /al j {exert mihunshu}
-/al jj {perform dodge.lianhuanbu}
-/al kk {wi sword;perform shuanglengcanxia}
+/al jj {perform yanduhantan;/showme @@@@ sword busy}
+/al jjj {perform dodge.lianhuanbu}
+/al kk {wi sword;perform shuanglengcanxia  &&&& steps busy}
 /al k {kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
@@ -79,65 +111,49 @@
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
-/al reffs {do unwield jade,wield jade}
-/al bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
-/al qie {do enable blade ittouryu,set secon_perform gobankiri}
-/al my {reffs;do enable blade chillblade,set secon_perform mingyue}
-/al ld {reffs;do enable blade chillblade,set secon_perform leidianjiaohong}
-/al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
-/nop 『红藕香残』hongouxiangcan
-/al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
-/al fl {wianqi;perform fengloufeiyan;/showme ---- 5 hit npc}
+/nop bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
+/al bg {wib2;set secon_perform hyakki;/showme ====== 刀  bg}
+/al qie {wib2;set secon_perform gobankiri}
+/nop 『霜冷残霞』(shuanglengcanxia)
+/nop 『碧映光寒』(biyingguanghan)
+/nop 『雁渡寒潭』〔yanduhantan〕
+/nop 『意染苍云』（yirancangyun）
+/al slcx {wis2;set secon_perform shuanglengcanxia;/showme ====== 剑  slcx}
+/al yrcy {wis2;set secon_perform yirancangyun}
 /nop 技能检查
-/var myok 1
+/var yrcyok 1
 /var bgok 0
 /var bgok_t 0
 /var qpok 0
-/al okmy {/var myok 1}
+/nop todo---
+/al okyrcy {/var yrcyok 0}
 /nop 百鬼busy效果
 /var npcbusy 0
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6
 }
-/ac {^你乍然退步，旋身，反手}{
-    cks;
+/nop slcx pfm info
+/ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
-    wianqi;
-    /var myok 0;
-    /delay {242} {/var myok 1};
-    /delay {2.1} {/if {$shaqi>0}{bg}{
-                                    /if {$bgok_t==1}{bg}{ld};
+    /showme =========== slcx ==============;
+    /delay {2.1} {
+                    /if {$shaqi>0}{bg}{
+                                    /if {$bgok_t==1}{bg}{slcx};
                                     };
-                  /showme {------shaqi=$shaqi};
-                  wk;
                  };
     }
 /ac {^你突然仰天长嚎}{
-    cks;
     iskill;
-    wianqi;
+    /showme =========== bg ==============;
+    slcx;
     /var bgok 0;
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
-    /delay {2.1} {/if {$shaqi>0}{bg}{
-                                    /if {$myok==1}{my}{ld};
-                                    };
+    /delay {2.1} {
+                  cks;
                   /showme {------shaqi=$shaqi};
                  };
-    /if {$npcbusy==6}{
-        /delay {5} {wk};
-                    }
 }
-/ac {^刀云中突发裂帛之声}{
-    iskill;
-    wianqi;
-    /delay {2.1}{
-            /if {$myok==1}{my};
-            /if {$bgok==1}{bg};
-            /if {$bgok_t==1}{bg};
-    ho;
-                 }
-                         }
 /al stopk {nokill;/unticker {kill}}
 /ac {^你的法力太低}{hp}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
@@ -145,17 +161,19 @@
 /ac {^( 你已经陷入半昏迷状态，神智全失}{;}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『连环步』只能对战}{sk}
+/ac {^『雁渡寒潭』只能对战}{sk}
 /ac {^迷魂术只能对战}{sk}
-/read gag.sc
+/read gag.s
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read status.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {use baiyao}
+/al hx {exert jingxin;use baiyao}
+/al hx {use baiyao;exert jingxin}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/ac {^然而，%1已经死了}{;}
+/ac {^然而，%1已经死了}{hp}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -170,16 +188,16 @@
 }
 /read autorecover_hc.sc
 /al qq {quest}
-/al ffy {recall back;w;n;e;e;e;n;u}
+/al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
-            wifushou;
+            hp;
             /var knpc_name %0;
             iskill
                          }
-/al wim {wifushou}
+/al wim {wi zhufu sword;wi sword2}
 /ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{ho}
 /ac {^你还需等待%1秒钟才能再次施出『红藕香残』}{fl}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
@@ -195,7 +213,14 @@
 }
 /al fy2zt {fy2ztv}
 /al hj {use hugu}
-/al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小斧头 xxz};de9 {whistle;hp}}
 /ac {^粉黛的锋刃慢慢恢复了正常的光泽}{posion axe shecao}
 /ac {^破霄的锋刃慢慢恢复了正常的光泽}{posion jade shecao}
-/ac {^需等待%0秒才能再次使用迷魂术}{jj}
+/ac {^需等待%0秒才能再次使用迷魂术}{/showme ----todo ----;}
+/ac {^你手中＊赤炼＊剑气回转}{/showme *******************secon sword pfm******}
+/ac {^疗伤时至少需要有最大内力值护体}{sleep}
+/al yangcw {withdraw 50000;de2 {withdraw 50000};
+    de4 {yang pig $MAG$ 小小爪 $petname};
+    de7 whistle;
+    de9 scorep;
+    }
+/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}

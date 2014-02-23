@@ -136,13 +136,13 @@
 /al yyyy {/ticker {yang}{dismissp xhs;de2 {yangcw}}{12}}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^胡大掌柜的现钱已经不够}{
+    w;s;s;
     /unticker yang;
-    hp;
-    /delay {12}{ffy};
-    /delay {14}{d;w;w;w;n};
-    /delay {15} {withdraw 5000000};
-    /delay {20} {do s,e,e,e;fy2gw};
-    /delay {32}{do w,n,n,n,n,e;deposit 5 tenthousand-cash};
-    /delay {37}{yyyy};
+    /delay {22}{ffy};
+    /delay {24}{wlk;d;w;w;w;n};
+    /delay {25} {withdraw 5000000};
+    /delay {30} {do s,e,e,e;fy2gw};
+    /delay {42}{do w,n,n,n,n,e;deposit 5 tenthousand-cash;nwlk};
+    /delay {47}{yyyy};
 }
 /var jqs_lost_limit 0.5

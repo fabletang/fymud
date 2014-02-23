@@ -59,7 +59,7 @@
 /al hpp {wlk;expp;hp xxz;nwlk}
 /al k {wi blade;perform fengsiyunqi}
 /al j {wi jade;wi sword;perform knockdown}
-/al jj {unwi sword;unwi blade;perform panguaxe}
+/al jj {unwi all;perform panguaxe}
 /var npc_wq 1
 /ac {^你嘴角挂着一丝若有若无的微笑，食、中}{
         /showme {++++++挑兵器+-+++++++};
