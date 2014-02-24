@@ -353,6 +353,9 @@
 
 /al fy2qp {fy2qf;de1 {qf2qp}}
 /al qp2fy {qp2qf;de1 {qf2fy}}
+/nop hm ∫Û√≈
+/al qp2hm {wlk;do {e,e,e,e,e,e,e,eu,ed};nwlk}
+
 /nop ·∑√Ì∑ª
 /nop al qp2dm {pl {wlk;w;n;ne;ne;n;n;nwlk};pr}
 /al qp2dm {wlk;do w,n,ne,ne,n,n;nwlk}
