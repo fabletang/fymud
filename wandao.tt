@@ -253,3 +253,4 @@
 /ac {^开始使用「刀法」的特殊技能「冰镜七诀」}{/al ck {perform leidianjiaohong}}
 /ac {^开始使用「刀法」的特殊技能「一刀流剑术」}{/al ck {perform gobankiri}}
 /ac {^然而，%1已经死了}{ck}
+/ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{}

@@ -380,6 +380,8 @@
 /ac {^战斗中不能打坐}{iskill}
 /ac {^== 未完继续 %1 == (ENTER 继续下一页}{/cr}
 /al wearmonkclothes {gb monk clothes;remove cloth;remove surcoat;wear monk clothes}
+/al wmk {tbxl monk clothes;de4 wearmonkclothes}
+/al smk {tsell monk clothes}
 /al shouhuan+ {/ac {^│	%1 ：  豹牙手环          价值：三两}{redeem %1;/showme item_no%1}}
 /al shouhuan- {/unac {^│	%1 ：  豹牙手环          价值：三两}}
 /nop {^你赎回了豹牙手环}{shouhuan-}
@@ -441,3 +443,4 @@
 /ac {^你中的七彩蝙蝠毒发作了}{gb 1 bat drug;cure 7batpoison;}
 /ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{gb 1 bat drug;cure 7batpoison;}
 /al ts tsell;
+/al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}

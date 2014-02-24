@@ -16,7 +16,7 @@
 /nop gp  give pet
 /al gp {give %0 to $petname}
 /nop rp  order pet return to you
-/al rp {order give %0 to $myname}
+/al rp {do order remove %0,order unwield %0,order give %0 to $myname}
 /nop bat pet
 /nop 『十万神魔』〔shiwanshenmo〕：一招五式
 /nop §幻梦步法§ 『幻影千重』〔huanyinqianchong〕

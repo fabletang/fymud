@@ -354,7 +354,12 @@
 /al fy2qp {fy2qf;de1 {qf2qp}}
 /al qp2fy {qp2qf;de1 {qf2fy}}
 /nop hm 后门
-/al qp2hm {wlk;do {e,e,e,e,e,e,e,eu,ed};nwlk}
+/al qp2hm {wlk;do e,e,e,e,e,e,e,eu,ed;nwlk}
+/al hm2qp {wlk;do wu,wd,w,w,w,w,w,w,w;nwlk}
+/al hm2ss {wlk;do push door,e,e,e,push stone,nu;nwlk}
+/al ss2hm {wlk;do sd,push stone,w,w,w;nwlk}
+/al fy2ss {fy2qp;de3 qp2hm;de4 hm2ss}
+/al ss2ffy {ss2hm;de1 hm2qp;de2 qp2fy}
 
 /nop 岱庙坊
 /nop al qp2dm {pl {wlk;w;n;ne;ne;n;n;nwlk};pr}
@@ -452,8 +457,8 @@
 /al fy2byz {fy2tp;de10 {tp2byz}}
 /al byz2fy {byz2tp;de2 {tp2fy}}
 /nop 好汉庄
-/al bc2hhz {w;/4 s;se;wade;de7 {su;/2 sw;/2 w}}
-/al hhz2bc {/2 e;/2 ne;nd;wade;de7 {nw;/4 n;e}}
+/al bc2hhz {w;/4 s;se;wade;de8 {su;/2 sw;/2 w}}
+/al hhz2bc {/2 e;/2 ne;nd;wade;de8 {nw;/4 n;e}}
 /nop 关外到二郎山
 /al els2gw {els2tp;de1 {tp2gw}}
 /al gw2els {gw2tp;de4 {tp2els}}
@@ -735,8 +740,8 @@
     /ac {^楚楚向你笑道：没有白毛巾怎么洗}{/3 s;buy_white_towel};
     /ac {^你的钱不够}{fy2zt-};
     /ac {^你向小丫环买下一条白毛巾}{remove all;wear white towel;/3 n;open door;n;jump};
-    /ac {你感到全身无比的舒泰} {jump};
-    /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-}
+    /ac {你感到全身无比的舒泰} {wlk;jump};
+    /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-;nwlk}
 }
 
 /al fy2ztv {wlk;fy2ztv+;d;/3 s;w;w;sw;de1 {s;s;w;buy white towel from kid}}
@@ -756,8 +761,8 @@
     /ac {^金童向你笑道：没有白毛巾怎么洗}{/3 n;buy white towel from kid};
     /ac {^你的钱不够}{fy2ztv-};
     /ac {^你向小童买下一条白毛巾}{remove all;wear white towel;/3 s;open door;s;wash};
-    /ac {你感到全身无比的舒泰} {wash};
-    /ac {^你懒懒地从枫叶泉里站起身来} {dd leaf;ztv2fy;fy2ztv-}
+    /ac {你感到全身无比的舒泰} {wlk;wash};
+    /ac {^你懒懒地从枫叶泉里站起身来} {dd leaf;ztv2fy;fy2ztv-;nwlk}
 }
 
 /nop 沉香镇
@@ -868,8 +873,14 @@
 /nop sl 方丈南院
 /al sl2fz {wlk;do eu,nw,n,n,n,nu,nd,nu,nd;nwlk}
 /al fz2sl {wlk;do su,sd,su,sd,s,s,s,se,wd;nwlk}
+/al sl2nm {sl2fz;do nu,nu,nu,nd}
+/al nm2sl {wlk;do su,sd,sd,sd;fz2sl}
 /al fz2xie {wlk;do nu,nu,nu,nd,n,n,n,nu,n,n,n,ne,nw,w,w;nwlk}
 /al xie2fz {wlk;do e,e,se,sw,s,s,s,sd,s,s,s,su,sd,sd,sd;nwlk}
+/al sl2xie {sl2fz;de1 fz2xie}
+/al xie2sl {xie2fz;de1 fz2sl}
+/al fy2xie {fy2sl;de2 sl2xie}
+/al xie2fy {xie2sl;de2 sl2fy}
 /al slout {wlk;/5 {do s,su,sd,d;};nwlk}
 /al jianfangzhang {pl {wlk;ask master about 见方丈;answer 重要事;nd;nu;nd;nu;sd;nwlk};pr}
 /al fy2yetu {fyw;de1 {pl {wlk;w;nw;ne;e;ne;e;sw;s;nwlk};pr}}

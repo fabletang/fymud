@@ -84,6 +84,7 @@
             }
 /al buff {exert chill;de2 {exert powerup}}
 /al ki {do wield zhufu sword;
+        reffs;
         set target %0;
         buff;
         /delay {2.2}{
@@ -115,12 +116,15 @@
 /nop bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
 /al bg {wib2;set secon_perform hyakki;/showme ====== 刀  bg}
 /al qie {wib2;set secon_perform gobankiri}
+/nop 『碧映光寒』(biyingguanghan)
+/al bygh {wisword;perform sword.biyingguanghan}
 /nop 『霜冷残霞』(shuanglengcanxia)
 /nop 『碧映光寒』(biyingguanghan)
 /nop 『雁渡寒潭』〔yanduhantan〕
 /nop 『意染苍云』（yirancangyun）
 /al slcx {wis2;set secon_perform shuanglengcanxia;/showme ====== 剑  slcx}
 /al yrcy {wis2;set secon_perform yirancangyun}
+/al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
 /nop 技能检查
 /var yrcyok 1
 /var bgok 0
@@ -133,6 +137,8 @@
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6
 }
+/nop polu todo
+/ac {^在森森剑影间玫瑰色的薄雾冉冉升起}{po;/showme ------ polu &&&----}
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
@@ -164,7 +170,9 @@
 /ac {^『连环步』只能对战}{sk}
 /ac {^『雁渡寒潭』只能对战}{sk}
 /ac {^迷魂术只能对战}{sk}
-/read gag.s
+/ac {^此特技只能在战斗中使用}{sk}
+/ac {^『破颅』只能对战}{sk}
+/read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
@@ -194,7 +202,9 @@
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
-            hp;
+            /if {$shaqi>0}{bg}{
+                            /if {$bgok_t==1}{bg}{slcx}
+                             }
             /var knpc_name %0;
             iskill
                          }
@@ -218,10 +228,13 @@
 /ac {^破霄的锋刃慢慢恢复了正常的光泽}{posion jade shecao}
 /ac {^需等待%0秒才能再次使用迷魂术}{/showme ----todo ----;}
 /ac {^你手中＊赤炼＊剑气回转}{/showme *******************secon sword pfm******}
-/ac {^疗伤时至少需要有最大内力值护体}{sleep}
+/ac {^疗伤时至少需要有最大内力值护体}{sleep sleepbag}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};
     de4 {yang pig $MAG$ 小小爪 $petname};
     de7 whistle;
     de9 scorep;
     }
 /ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
+/ac {^你不可以在这里用内功}{wlk}
+/ac {^你的伤势好了一些}{de1 {exert jingxin}}
+/ac {^你必须至少空出一只手来}{i}
