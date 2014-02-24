@@ -82,7 +82,7 @@
             /if {$sword2==1}{do unwield sword2,wield sword2};
             /if {$blade2==1}{do unwield blade2,wield blade2};
             }
-/al buff {exert powerup;exert chill}
+/al buff {exert chill;de2 {exert powerup}}
 /al ki {do wield zhufu sword;
         set target %0;
         buff;
@@ -93,6 +93,7 @@
                              }
                         }{ };
             kill %0;
+            startk;
                     }
         }
 /al j {exert mihunshu}

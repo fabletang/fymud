@@ -57,9 +57,10 @@
 /read moonbuff_hc.sc
 /nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
-/al buff {bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
+/al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
 /nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
 /al k {wihand;perform finger.dian}
+/al j {wiblade;do enable blade ittouryu,perform gobankiri} 
 /al ki {
         wh;
         do i,hp;wiblade;
@@ -85,16 +86,18 @@
         /ticker {kill}{
             ps;
             pk;
-            /if {$cutshen==0}{wk}
+            /if {$cutshen==0}{
+           /nop wk
+            }
             }{12.2}
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /al reffs {do unwield jade,wield jade}
-/al bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
-/al qie {do enable blade ittouryu,set secon_perform gobankiri}
-/al my {reffs;do enable blade chillblade,set secon_perform mingyue}
-/al ld {reffs;do enable blade chillblade,set secon_perform leidianjiaohong}
+/al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
+/al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;}
+/al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
+/al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
 /nop 『红藕香残』hongouxiangcan
 /al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
@@ -119,22 +122,24 @@
     cks;
     iskill;
     pk;
-    wianqi;
+    ld;
+   /nop wianqi;
     /var myok 0;
     /delay {242} {/var myok 1};
     /delay {2.1} {/if {$shaqi>0}{bg}{
                                     /if {$bgok_t==1}{bg}{ld};
                                     };
                   /showme {------shaqi=$shaqi};
-                  wk;
+                  /nop wk;
                  };
     }
 /ac {^你突然仰天长嚎}{
     cks;
     iskill;
-    wianqi;
+   /nop wianqi;
     /var bgok 0;
     /var bgok_t 0;
+    ld;
     /delay {122}{/var bgok_t 1};
     /delay {2.1} {/if {$shaqi>0}{bg}{
                                     /if {$myok==1}{my}{ld};
@@ -142,7 +147,9 @@
                   /showme {------shaqi=$shaqi};
                  };
     /if {$npcbusy==6}{
-        /delay {5} {wk};
+        /delay {5} {
+        /nop wk
+        };
                     }
 }
 /var cutshen 0
@@ -150,7 +157,8 @@
     iskill;
     pj;
     /if {$cutshen==0}{
-    wianqi;}
+   /nop wianqi;
+    }
     /if {$cutshen==0}{
     /delay {2.1}{
             /if {$myok==1}{my};
@@ -173,17 +181,19 @@
 /ac {^『风漏飞烟』只能对战}{sk}
 /ac {^『红藕香残』只能对战}{sk}
 /ac {^『七星伴月』只能对战}{sk}
+/ac {^『棋盘切』只能对战}{sk}
+/ac {^『雷电交轰』只能对战}{sk}
+/log o ../wandao.log
 /read gag.sc
 /read path.sc
 /read normal.sc
 /read quest.sc
 /read status.sc
-/log o ../wandao.log
+/read pet.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {drink dai}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/ac {^然而，%1已经死了}{;}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -199,7 +209,7 @@
 /read autorecover_hc.sc
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
-/ac {^任务被你完}{qq;wk}
+/ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
             wi jade2;
@@ -231,10 +241,15 @@
     }
 /ac {^小小刀凝聚起天地间十万妖魔}{de5 pk}
 /ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
-/read pet.sc
 /al wh {/var haspet 0;
             xixi $petname; 
             /delay {3.2}{
                 /if {$haspet==0}{aa}}
                 }
 /ac {^你手臂酸麻，一时无法拿起这件武器}{wianqi}
+/ac {^你只觉得虎口一热，手中的}{wianqi}
+/nop check kill status
+/al ck {;}
+/ac {^开始使用「刀法」的特殊技能「冰镜七诀」}{/al ck {perform leidianjiaohong}}
+/ac {^开始使用「刀法」的特殊技能「一刀流剑术」}{/al ck {perform gobankiri}}
+/ac {^然而，%1已经死了}{ck}
