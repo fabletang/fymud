@@ -83,8 +83,8 @@
             /if {$blade2==1}{do unwield blade2,wield blade2};
             }
 /al buff {exert chill;de2 {exert powerup}}
-/al ki {do wield zhufu sword;
-        reffs;
+/al ki {wield zhufu sword;
+        slcx;
         set target %0;
         buff;
         /delay {2.2}{
@@ -114,17 +114,18 @@
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /nop bg {reffs;do enable blade ittouryu,set secon_perform hyakki}
-/al bg {wib2;set secon_perform hyakki;/showme ====== 刀  bg}
-/al qie {wib2;set secon_perform gobankiri}
+/al bg {set secon_perform hyakki;wib2;/showme ====== 刀  bg}
+/al qie {set secon_perform gobankiri;wib2}
 /nop 『碧映光寒』(biyingguanghan)
 /al bygh {wisword;perform sword.biyingguanghan}
 /nop 『霜冷残霞』(shuanglengcanxia)
 /nop 『碧映光寒』(biyingguanghan)
 /nop 『雁渡寒潭』〔yanduhantan〕
 /nop 『意染苍云』（yirancangyun）
-/al slcx {wis2;set secon_perform shuanglengcanxia;/showme ====== 剑  slcx}
-/al yrcy {wis2;set secon_perform yirancangyun}
+/al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== 剑  slcx}
+/al yrcy {set secon_perform yirancangyun;wis2}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
+/al tp {perform dodge.feiyanshi}
 /nop 技能检查
 /var yrcyok 1
 /var bgok 0
@@ -163,15 +164,17 @@
 }
 /al stopk {nokill;/unticker {kill}}
 /ac {^你的法力太低}{hp}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{;}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;tp}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{jiasi}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『连环步』只能对战}{sk}
 /ac {^『雁渡寒潭』只能对战}{sk}
 /ac {^迷魂术只能对战}{sk}
 /ac {^此特技只能在战斗中使用}{sk}
 /ac {^『破颅』只能对战}{sk}
+/ac {^『飞雁式』只能在战斗}{sk}
+/ac {^你不在战斗中，不需要假死}{sk}
 /read gag.sc
 /read path.sc
 /read normal.sc
@@ -179,7 +182,6 @@
 /read status.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {exert jingxin;use baiyao}
-/al hx {use baiyao;exert jingxin}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /ac {^然而，%1已经死了}{hp}
@@ -238,3 +240,4 @@
 /ac {^你不可以在这里用内功}{wlk}
 /ac {^你的伤势好了一些}{de1 {exert jingxin}}
 /ac {^你必须至少空出一只手来}{i}
+/ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {wi zhufu sword}}

@@ -53,7 +53,7 @@
 /ac {^【闲聊】天机老人(Tian ji)：风起云涌}{/if {$is_walk ==0 }{uptime_do;uptimedo l}}
 /al uptimedo {/al uptime_do %0}
 /nop 恢复内力需要 orb
-/al hn {recover force}
+/nop al hn {recover force}
 /al hx {exert heal}
 /al aaa {ask giftman about %0}
 /al aaal {aaa horse;aaa small bag;aaa orb;ride horse}
@@ -93,6 +93,7 @@
 }
 /ac {死了。}{look corpse}
 /ac {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
+/ac {^绿洲}{;}
 /nop ac {^大明湖}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^酒肉和尚说道：“她此番逃将出去}{open door;s;pull 小柜}
 /nop ac {你的玄灵玉盒中没有%0这个物品。}{qxl %0; /delay {3}{i}}
@@ -318,8 +319,10 @@
 /al tqst- {
     /unticker {quest}
 }
-/ac {^你胃里一阵绞痛，脸上紫气郁结}{gb pill;cure malaria}
+/ac {^你胃里一阵绞痛，脸上紫气郁结}{qt pill;de2 {cure malaria}}
+/ac {^路行至此，紫蘑林飘荡着淡而幽香的雾障}{qt pill;de2 {cure malaria}}
 /ac {^你中的瘴毒减轻了一些}{cure malaria}
+/ac {^你体内所有的瘴毒都被清除了}{store pill}
 /al getshuijing {
     get blue crystal from corpse;
     get red crystal from corpse;
@@ -379,7 +382,7 @@
 /al getcoin {keychain -coin}
 /ac {^战斗中不能打坐}{iskill}
 /ac {^== 未完继续 %1 == (ENTER 继续下一页}{/cr}
-/al wearmonkclothes {gb monk clothes;remove cloth;remove surcoat;wear monk clothes}
+/al wearmonkclothes {gb monk clothes;do remove cloth,remove surcoat,wear monk clothes,wear all}
 /al wmk {tbxl monk clothes;de4 wearmonkclothes}
 /al smk {tsell monk clothes}
 /al shouhuan+ {/ac {^│	%1 ：  豹牙手环          价值：三两}{redeem %1;/showme item_no%1}}
@@ -412,25 +415,12 @@
     dazuo;
     /delay {12}{do w,s,s,u}
     }
-/al buybx {ask xuer about 铂金经验保险}
+/al buybx {do d,w,w,n,ask xuer about 铂金经验保险,s,e,e,u}
 /ac {^水银在到处流转，舒适无比}{tuna}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
 /ac {^  兵装谱}{/var is_kill 0;/var is_walk 0;/unticker {kill}}
-/al qstore {sb;remove %0;unwield %0;store %0}
-/var q_it abc
-/al qtake {qtake+;/var q_it {%0};sb;llb}
-/al qtake+ {
-    /ac {^[ %1] %2(%3)}{
-        /var it_num %1;
-        /var it_name %3;
-        /if {$q_it==$it_name}{take $it_num 1;/showme {take $it_num 1}}{qtake-}
-            }
-            }
-/al qtake- {
-    /unac {^[ %1] %2(%3)}
-            }
 /al pickupall {
     pickup 1; pickup 2; pickup 3; pickup 4; pickup 5; pickup 6; pickup 7; pickup 8; pickup 9;
     de2 {pickup 10;pickup 11;pickup 12;pickup 13;pickup 14;pickup 15;pickup 16; pickup 17; pickup 18; pickup 19};
@@ -440,7 +430,38 @@
     de14 {pickup 50;pickup 55;pickup 55;pickup 55;pickup 55;pickup 55;pickup 56; pickup 57; pickup 58; pickup 59};
             }
 /ac {^【闲聊】拍卖师(Auctioneer)：第%0号拍卖物%1无人认领}{pickup %0} 
-/ac {^你中的七彩蝙蝠毒发作了}{gb 1 bat drug;cure 7batpoison;}
-/ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{gb 1 bat drug;cure 7batpoison;}
+/ac {^你中的七彩蝙蝠毒发作了}{qt bat drug;de2 {cure 7batpoison};}
+/ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{cure 7batpoison;}
+/ac {^你服下解药，顿时感觉好多了。你终于清除了体内所有的七彩蝙蝠毒}{store bat drug}
 /al ts tsell;
 /al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}
+/al buyall {gm 9000;de5 fy2qf;de6 {do e,e,buy beef meat from xiaofan;fyz};de7 {do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx}}
+/nop qiankundai 
+/nop {^[24]  豹牙手环(shouhuan)                        1}
+/nop qiankun bag
+/al qstore {sb;remove %0;unwield %0;store %0}
+/al qtake {qtake+;/var q_it {%0};sb;llb}
+/var it_sn 0
+/var it_num 1
+/var it_code shouhuan1
+/al qt {/var it_code {%0};sb;llb;
+    /showme ==want take $it_code;
+} 
+/ac {^[%1]  %0(%3)%s%4}{
+    /var it_sn %1;
+    /var it_num %4;
+    /if {"$it_code"=="%3"}{
+                    take %1 %4;
+                            };
+    /nop showme == $it_sn %0 %3 $it_num ==
+} 
+/ac {^[%1]  %0(%5 %6)%s%4}{
+    /var it_sn %1;
+    /var it_num %4;
+    /if {"$it_code"=="%5 %6"}{
+                    take %1 %4;
+                            };
+    /nop showme ----- $it_sn %0 %5 %6 $it_num ----- 
+}{4} 
+/ac {^你从如意乾坤袋里}{/var it_code shouhuan1}
+/ac {^你撞了大运，得到额外奖励符文%1。}{store %1}

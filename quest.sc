@@ -247,3 +247,4 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
+/al kb {ki bandit}

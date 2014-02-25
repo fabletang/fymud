@@ -443,6 +443,9 @@
 /nop 边城到二郎山
 /al bc2els {wlk;se;/4 e;se;e;nwlk}
 /al els2bc {wlk;w;nw;/4 w;nw;nwlk}
+/nop 梅花庵
+/al els2mha {wlk;do s,e,nu,nu,su,nu,wu,nu,wu;nwlk}
+/al mha2els {wlk;do ed,sd,ed,sd,nd,sd,sd,w,n;nwlk}
 /nop al fy2els {fy2bc;/delay {16}{bc2els}}
 /nop al els2fy {els2bc;de1 {bc2fy}}
 /al tp2els {wlk;ne;w;w;nw;w;n;nwlk}

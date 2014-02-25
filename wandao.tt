@@ -50,7 +50,7 @@
 /ac {^    刀鞘(jade)}{nofushou}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
 /al wihand {wifushou;/if {$hashand==0}{unwi all}}
-/al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
+/al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;wi jade2};wifushou;}
 /al wianqi {/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle,wield piece;reffs}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle;reffs}}
@@ -231,7 +231,6 @@
      remove all;
      wear all
 }
-/al kb {ki bandit}
 /ac {^沁骨的冰凉流入喉咙}{de2 hp}
 /al ks {bf3;/var cutshen 1;unwi all;ld;wiblade}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};
@@ -254,3 +253,5 @@
 /ac {^开始使用「刀法」的特殊技能「一刀流剑术」}{/al ck {perform gobankiri}}
 /ac {^然而，%1已经死了}{ck}
 /ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{}
+/ac {^你向%1开始移动。（40->35)}{}
+/ac {^你向%1开始移动。（35->30)}{qx;wiblade}
