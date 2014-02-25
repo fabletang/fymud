@@ -64,6 +64,7 @@
 /al ki {
         wh;
         do i,hp;wiblade;
+        wi jade2;
         set target %0;
         de1 buff;
         de2 wpet;
@@ -95,7 +96,8 @@
 /nop 『百鬼夜狂』（hyakki）
 /al reffs {do unwield jade,wield jade}
 /al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
-/al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;}
+/al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;/showme ------- qie-------}
+/al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
@@ -110,6 +112,8 @@
 /var bgok 0
 /var bgok_t 0
 /var qpok 0
+/var qieok 1
+/var qieok_t 0
 /al okmy {/var myok 1}
 /nop 百鬼busy效果
 /var npcbusy 0
@@ -136,22 +140,20 @@
 /ac {^你突然仰天长嚎}{
     cks;
     iskill;
-   /nop wianqi;
+    /if {$qieok==1 || $qieok_t ==1}{qie};
     /var bgok 0;
     /var bgok_t 0;
-    ld;
     /delay {122}{/var bgok_t 1};
-    /delay {2.1} {/if {$shaqi>0}{bg}{
+    /delay {2.5} {/if {$shaqi>0}{bg}{
                                     /if {$myok==1}{my}{ld};
                                     };
                   /showme {------shaqi=$shaqi};
                  };
     /if {$npcbusy==6}{
         /delay {5} {
-        /nop wk
         };
                     }
-}
+}{4}
 /var cutshen 0
 /ac {^刀云中突发裂帛之声}{
     iskill;
@@ -168,10 +170,17 @@
     }
                  }
                          }
+/ac {^自右上方直向}{
+    iskill;
+    /showme {=========== qie ==============};
+    /var qieok 0;
+    /delay {61}{/var qieok_t 1};
+    ld;
+                    }
 /ac {^奇冷的寒气包围了}{th;fl;/delay {4.1}{pk};/showme ============ freeze ===========}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj;/showme ----try to freeze again ----------------};}
-/al stopk {/var cutshen 0;nokill;/unticker {kill}}
+/al stopk {/var qieok 1;/var cutshen 0;nokill;/unticker {kill}}
 /ac {^你的法力太低}{hp}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
@@ -211,7 +220,7 @@
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
-/ac {^看起来%0想杀死你！}{
+/ac {^看起来%0想杀死你}{
             wi jade2;
             /var knpc_name %0;
             iskill
@@ -254,5 +263,5 @@
 /ac {^然而，%1已经死了}{ck}
 /ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{}
 /ac {^你向%1开始移动。（40->35)}{}
-/ac {^你向%1开始移动。（35->30)}{qx;wiblade}
-/ac {^你向%1开始移动。（30->25)}{qx;wiblade}
+/nop ac {^你向%1开始移动。（35->30)}{qx;de1 wiblade}
+/nop ac {^你向%1开始移动。（30->25)}{qx;de1 wiblade}

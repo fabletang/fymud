@@ -1220,7 +1220,9 @@ wlk;
     /ac {^你在狭窄的山缝}{/al act_1 {de4 {act_1}}};
     /ac {云雾弥漫，北面的雾气似乎在轻轻流动}{n;nu; /ticker {try}{wd;eu}{2}};
     /ac {^    这里明显的出口是 westup 和 southdown。}{fy2mx-}{3};
-    /ac {^云海孤舟}{wd};
+    /ac {^云海孤舟}{
+            de1 eu;
+            wd;};
     /ac {^黄树林}{fy2mx-;de3 {wd;nu;}};
     /ac {^山道} {/al act_1 {nu;wu}; /unticker {try}}
 }
@@ -1790,3 +1792,4 @@ nwlk;
 /al lz2fy {lz2sk;de1 {sk2fy}}
 /al gt {goto %0;de2 {%0;l}}
 /al fyz {recall back}
+/ac {^看来只有等到黎明时雾散}{keychain}

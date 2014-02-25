@@ -137,7 +137,7 @@ w;cook
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}
 /ac {^一道人影突自}{qie}
 /nop ac {^看起来四戒僧想杀死你}{qie;bs;/delay {4}{qie;bs}}
-/al qie {stopk;unwi whip;perform panguaxe;wi whip}
+/nop al qie {stopk;unwi whip;perform panguaxe;wi whip}
 /al bk {stopk;wi whip;perform firestorm}
 /al bs {stopk;wi whip;perform thousandfeather}
 /al ale {conjure summon4;conjure summon3;conjure summon2;conjure summon1;}
