@@ -2,7 +2,8 @@
 /var myname wandao
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
-/session $myname fy.sysfon.com 6000
+/nop nop session $myname fy.sysfon.com 6000
+/session $myname 124.193.186.169 6000
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
@@ -50,7 +51,7 @@
 /ac {^    刀鞘(jade)}{nofushou}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
 /al wihand {wifushou;/if {$hashand==0}{unwi all}}
-/al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;wi jade2};wifushou;}
+/al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;wi jade2};reffs}
 /al wianqi {/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle,wield piece;reffs}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle;reffs}}
@@ -69,12 +70,11 @@
         de1 buff;
         de2 wpet;
         /delay {6.2}{
-            /if {$shaqi >0}{bg}{ld};
+            qie;
             kill %0;
             gongji %0;
-            de6 pk;
             startk;
-                    }
+                    };
         }
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^只听你一声清喝，向后疾退三尺}{pj}
@@ -85,12 +85,10 @@
 /al startk {
         iskill;
         /ticker {kill}{
-            ps;
             pk;
             /if {$cutshen==0}{
-           /nop wk
             }
-            }{12.2}
+            }{5}
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
@@ -101,6 +99,13 @@
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
+/al km {exert yinlingkouming;/showme ----km 防止伤害血的百分比}
+/al wf {cast wufangbianhuan}
+/al sh {exert shuanghuaningjie}
+/al jjj sh
+/al jjjj {cast zhaoyuwanqing}
+/var kmok 0
+/ac {^忽似春临大地，万物融舒}{/var kmok 1}
 /nop 『红藕香残』hongouxiangcan
 /al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
 /al fl {wianqi;perform fengloufeiyan;/showme ---- 5 hit npc}
@@ -115,8 +120,11 @@
 /var qieok 1
 /var qieok_t 0
 /al okmy {/var myok 1}
+/nop qx
+/var qxok 1
 /nop 百鬼busy效果
 /var npcbusy 0
+/var cutshen 0
 /nop pk
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
@@ -127,9 +135,8 @@
     iskill;
     pk;
     ld;
-   /nop wianqi;
     /var myok 0;
-    /delay {242} {/var myok 1};
+    /delay {241} {/var myok 1};
     /delay {2.1} {/if {$shaqi>0}{bg}{
                                     /if {$bgok_t==1}{bg}{ld};
                                     };
@@ -143,53 +150,62 @@
     /if {$qieok==1 || $qieok_t ==1}{qie};
     /var bgok 0;
     /var bgok_t 0;
-    /delay {122}{/var bgok_t 1};
-    /delay {2.5} {/if {$shaqi>0}{bg}{
+    /delay {121}{/var bgok_t 1};
+    /delay {2.5}{/if {$shaqi>0}{bg}{
                                     /if {$myok==1}{my}{ld};
                                     };
+                /if {$qieok==1 || $qieok_t ==1}{qie};
                   /showme {------shaqi=$shaqi};
                  };
-    /if {$npcbusy==6}{
-        /delay {5} {
-        };
-                    }
 }{4}
-/var cutshen 0
 /ac {^刀云中突发裂帛之声}{
     iskill;
     pj;
     /if {$cutshen==0}{
-   /nop wianqi;
     }
     /if {$cutshen==0}{
-    /delay {2.1}{
-            /if {$myok==1}{my};
-            /if {$bgok==1}{bg};
-            /if {$bgok_t==1}{bg};
-    qx;
-    }
+            /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my};};
                  }
                          }
+/ac {^设定环境变数：secon_perform = "hyakki"}{
+            /delay {6.1}{/if {$shaqi >0}{bg}{ld}};
+}
+/unac {^设定环境变数：secon_perform = "hyakki"}
 /ac {^自右上方直向}{
+    hp;
+    pk;
     iskill;
     /showme {=========== qie ==============};
     /var qieok 0;
     /delay {61}{/var qieok_t 1};
-    ld;
+    bg;
+    /delay {2.1} {/if {$shaqi>0 || $bgok_t ==1}{bg}{
+                                    /if {$myok==1}{my}{ld};
+                                    };
+                  /showme {------shaqi=$shaqi};
+                 };
                     }
+/nop qx 
+/ac {^你一扬手，打出星星点点}{/var qxok 0;/delay {20.2}{/var qxok 1}}
 /ac {^奇冷的寒气包围了}{th;fl;/delay {4.1}{pk};/showme ============ freeze ===========}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj;/showme ----try to freeze again ----------------};}
-/al stopk {/var qieok 1;/var cutshen 0;nokill;/unticker {kill}}
+/al stopk {
+            /var cutshen 0;nokill;/unticker {kill};
+            /var qieok 1;
+            /var qieok_t 0;
+            }
 /ac {^你的法力太低}{hp}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;exert qi;/delay {3}{exert qi;hp}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{;}
+/ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{wh;wf}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{jjj}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{jjjj}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
 /ac {^『红藕香残』只能对战}{sk}
 /ac {^『七星伴月』只能对战}{sk}
+/ac {^『阴陵扣命』只能对战}{sk} 
 /ac {^『棋盘切』只能对战}{sk}
 /ac {^『雷电交轰』只能对战}{sk}
 /log o ../wandao.log
@@ -199,6 +215,7 @@
 /read quest.sc
 /read status.sc
 /read pet.sc
+/read autorecover_hc.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {drink dai}
 /al hs {drink dai}
@@ -215,13 +232,12 @@
      remove all;
      wear all
 }
-/read autorecover_hc.sc
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你}{
-            wi jade2;
+           do wield jade2,wield jade2;
             /var knpc_name %0;
             iskill
                          }
@@ -260,8 +276,11 @@
 /al ck {;}
 /ac {^开始使用「刀法」的特殊技能「冰镜七诀」}{/al ck {perform leidianjiaohong}}
 /ac {^开始使用「刀法」的特殊技能「一刀流剑术」}{/al ck {perform gobankiri}}
-/ac {^然而，%1已经死了}{ck}
-/ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{}
-/ac {^你向%1开始移动。（40->35)}{}
-/nop ac {^你向%1开始移动。（35->30)}{qx;de1 wiblade}
-/nop ac {^你向%1开始移动。（30->25)}{qx;de1 wiblade}
+/nop L40 『他心移物』（telepathy）
+/nop L80 『遗心忘恨』（yixinwanghe
+/al checkkill {cast telepathy jade}
+/ac {^然而，%1已经死了}{ck;checkkill}
+/ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{wi blade}
+/nop ac {^你向%1开始移动。（40->35)}{/if {$qxok ==1}{/delay {1}{qx;unwiled needle;wiblade}}}
+/nop ac {^你向%1开始移动。（35->30)}{/if {$qxok ==1}{qx;unwiled needle;wiblade}}
+/nop ac {^你向%1开始移动。（30->25)}{/if {$qxok ==1}{qx;unwiled needle;wiblade}}

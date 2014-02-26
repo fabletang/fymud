@@ -85,24 +85,11 @@
             /if {$blade2==1}{do unwield blade2,wield blade2};
             }
 /al buff {exert chill;de2 {exert powerup}}
-/al ki {wield zhufu sword;
-        slcx;
-        set target %0;
-        buff;
-        /delay {2.2}{
-        /if {$is_kill==0}{
-           /if {$shaqi>0}{bg}{
-                            /if {$bgok_t==1}{bg}{slcx}
-                             }
-                        }{ };
-            kill %0;
-            startk;
-                    }
-        }
 /al j {exert mihunshu}
 /al jjj {perform dodge.lianhuanbu}
 /al jjj {perform yanduhantan;/showme @@@@ sword busy}
 /al kk {wi sword;perform shuanglengcanxia  &&&& steps busy}
+/al h {exert huaxue}
 /al k {kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
@@ -135,6 +122,8 @@
 /var qieok_t 0
 /var bgok_t 0
 /var qpok 0
+/var mhok 1
+/var mhok_t 0
 /nop todo---
 /al okyrcy {/var yrcyok 1}
 /nop 百鬼busy效果
@@ -142,8 +131,22 @@
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6
 }
+/ac {^你停住了手，用飘飘的眼光}{/var mhok 0;/delay {14.2}{/var mhok_t 1}}
 /nop polu todo
 /ac {^在森森剑影间玫瑰色的薄雾冉冉升起}{po;/showme ------ polu &&&----}
+/al ki {wield zhufu sword;
+        hp;
+        reffs;
+        set target %0;
+        buff;
+        startk;
+        /delay {2.1}{
+            /if {$qieok==1}{qie}{
+                 /if {$shaqi>0 || $bgok_t==1}{bg}{slcx}
+                            };
+            kill %0;
+                    }
+        }
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
@@ -165,21 +168,35 @@
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
     /delay {2.5} {
-                    /if {$shaqi>0}{bg}{
-                                    /if {$bgok_t==1}{bg}{
-                                                    /if {$yrcyok==1}{yrcy}{slcx};
-                                                        };
+                    /if {$shaqi>0 || $bgok_t==1}{bg}{
+                        /if {$qieok==1 || $qieok_t ==1}{qie}{
+                             /if {$yrcyok==1}{yrcy}{slcx}; }
                                     };
                   /showme {------shaqi=$shaqi};
                  };
 }{4}
 /ac {^自右上方直向}{
+    hp;
     iskill;
     /showme =========== qie ==============;
     /var qieok 0;
     /delay {60}{/var qieok_t 1};
-    /if {$yrcyok==1}{yrcy}{slcx};
-                    }
+            /if {$shaqi>0}{bg}{
+             /if {$bgok_t==1}{bg}{ 
+                /if {$yrcyok==1}{yrcy}{slcx}; };
+                        }; 
+                     }
+/ac {^设定环境变数：secon_perform = "hyakki"}{
+    /delay {8.1} {
+        /if {$is_kill ==1}{
+            /if {$shaqi>0}{bg}{
+             /if {$bgok_t==1}{bg}{ 
+                /if {$yrcyok==1}{yrcy}{slcx}; };
+                        }; 
+                     }
+                     }
+}
+/unac  {^设定环境变数：secon_perform = "hyakki"}
 /nop yrcy 
 /ac {^你脸上神色惨然，猛一咬牙}{
     /var yrcyok 0;
@@ -188,9 +205,17 @@
 }
 /var qienpc 0
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
-/al stopk {/var qieok 1;nokill;/unticker {kill}}
+/al stopk {
+        nokill;/unticker {kill};
+        /var qieok 1;
+        /var qieok_t 0;
+        /var bgok_t 0;
+        /var mhok 1;
+        /var mhok_t 0;
+        }
 /ac {^你的法力太低}{hp}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue}
+/ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue;tp}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;tp}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{jiasi}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
@@ -230,9 +255,10 @@
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
-            /if {$shaqi>0}{bg}{
-                            /if {$bgok_t==1}{bg}{slcx}
-                             }
+            reffs;
+            /if {$qieok==1}{qie}{
+                 /if {$shaqi>0 || $bgok_t==1}{bg}{slcx}
+                            };
             /var knpc_name %0;
             iskill
                          }

@@ -254,6 +254,7 @@
 /al hb2tuzi {wlk;do s,s,s,s,s,n,n,n,w,w,w,w,s;wlk}
 /al hb2fy {hb2tuzi;de1 {tuzi2fy}}
 /al fy2hb {fy2tuzi;de3 {tuzi2hb}}
+/al fy2longwang {fy2hb;de4 {wlk;do n,n,n,e,walkto bow,give man meat,enter;nwlk}}
 /al fy2stj {fy2tuzi;de3 {tuzi2hb};de4 {do n,n,n,w,open door,w;give romance to master;}}
 /nop º£±ß-ÁúÍõ
 /al hb2lw {wlk;do n,n,n,n,n,e,walkto bow,give meat to man,enter;nwlk}

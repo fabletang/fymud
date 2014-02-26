@@ -435,12 +435,12 @@
 /ac {^你服下解药，顿时感觉好多了。你终于清除了体内所有的七彩蝙蝠毒}{store bat drug}
 /al ts tsell;
 /al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}
-/al buyall {gm 9000;de5 fy2qf;de6 {do e,e,buy beef meat from xiaofan;fyz};de7 {do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx}}
+/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx;nwlk}}
+/al buymeat {fy2qf;de3 {wlk;do e,e,buy beef meat from xiaofan;};de4 {wlk;w;;w;qf2fy}}
 /nop qiankundai 
 /nop {^[24]  豹牙手环(shouhuan)                        1}
 /nop qiankun bag
 /al qstore {sb;remove %0;unwield %0;store %0}
-/al qtake {qtake+;/var q_it {%0};sb;llb}
 /var it_sn 0
 /var it_num 1
 /var it_code shouhuan1
@@ -460,8 +460,10 @@
     /var it_num %4;
     /if {"$it_code"=="%5 %6"}{
                     take %1 %4;
+                    /var it_code none;
                             };
     /nop showme ----- $it_sn %0 %5 %6 $it_num ----- 
 }{4} 
 /ac {^你从如意乾坤袋里}{/var it_code shouhuan1}
+/ac {^你存入%0到如意乾坤袋}{/var it_code none}
 /ac {^你撞了大运，得到额外奖励符文%1。}{store %1}

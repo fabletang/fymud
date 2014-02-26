@@ -43,21 +43,15 @@
 /al flfy1 { wi needle;wi piece;perform fengloufeiyan;perform hongouxiangcan;}
 /al flfy {/if {$flfy_ok==1}{flfy1;/delay {1}{flfy1}}{/showme not 风漏飞烟 }}
 /al wkxl {/if {$wkxl_ok==1}{perform wukongxuanliu;}{/showme not 无空漩流 }}
-/ac {真气流转，身形飘忽灵动}{/if {$is_kill==1}{flfy;wkxl}}
-/ac {^在缕缕暗香中，%1不禁有些痴迷起来}{/if {$is_kill==1}{/delay {5}{wkxl}}}
+/nop  {真气流转，身形飘忽灵动}{/if {$is_kill==1}{flfy;wkxl}}
+/nop ac {^在缕缕暗香中，%1不禁有些痴迷起来}{/if {$is_kill==1}{/delay {5}{wkxl}}}
 /nop ac {^你微挪半尺，%1力道尽数落在你身侧冰壁}{/if {$is_kill==1}{flfy}}
-/ac {^你微挪半尺，%1力道尽数落在你身侧冰壁}{/showme ---todo---}
-/ac {^结果%1被扰得眼花潦乱，应接不暇}{/if {$is_kill==1}{/delay {5}{wkxl}}}
-/ac {^星芒流绕在%1身侧，丝丝入扣}{
-	/ac {^%1一个踉跄，张嘴喷出一口鲜血}{
-	/if {%1=='你'}{
-		/var wkxl_ok 0;/delay {5}{flfy};/delay {12}{/var wkxl_ok 1};
-		}{/delay {8}{flfy}}
- 	};   	
-     }
-/ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
-/ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{flfy;jk}}
-/ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{/var wkxl_ok 0;/delay {%1}{/var wkxl_ok 1}}
-/ac {^只听你一声清喝，向后疾退三尺}{/var flfy_ok 0;/var wkxl_ok 0;/delay {6}{/var wkxl_ok 1};/delay {20}{/var flfy_ok 1}}
-/ac {^%1只觉胸口膻中穴一麻，登时动弹不得。}{/var wkxl_ok 0;/delay {3}{/var wkxl_ok 1;wkxl}}
-/ac {^你还需等待%1秒钟才能再次施出『风漏飞烟』}{/var flfy_ok 0;/delay {%1}{/var flfy_ok 1}}
+/nop ac {^你微挪半尺，%1力道尽数落在你身侧冰壁}{/showme ---todo---}
+/nop ac {^结果%1被扰得眼花潦乱，应接不暇}{/if {$is_kill==1}{/delay {5}{wkxl}}}
+/nop ac {^星芒流绕在%1身侧，丝丝入扣}{ /ac {^%1一个踉跄，张嘴喷出一口鲜血}{ /if {%1=='你'}{ /var wkxl_ok 0;/delay {5}{flfy};/delay {12}{/var wkxl_ok 1}; }{/delay {8}{flfy}} };   	}
+/nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
+/nop ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{flfy;jk}}
+/nop ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{/var wkxl_ok 0;/delay {%1}{/var wkxl_ok 1}}
+/nop ac {^只听你一声清喝，向后疾退三尺}{/var flfy_ok 0;/var wkxl_ok 0;/delay {6}{/var wkxl_ok 1};/delay {20}{/var flfy_ok 1}}
+/nop ac {^%1只觉胸口膻中穴一麻，登时动弹不得。}{/var wkxl_ok 0;/delay {3}{/var wkxl_ok 1;wkxl}}
+/nop ac {^你还需等待%1秒钟才能再次施出『风漏飞烟』}{/var flfy_ok 0;/delay {%1}{/var flfy_ok 1}}
