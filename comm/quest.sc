@@ -4,7 +4,7 @@
 /nop {$npc(%1)}{say %1;@lowerLetter{};/var npc_name $result;say e $npc_name;say %1;say $result}
 /ac {^任务被你完成}{q_item_buy-;quest}
 /ac {^天机老人说道：请找回『%0』}{/var en_qb 1; /var is_buy 1;/var q_item %0;/var q_item_name 0;}
-/unac {^你现在的任务是杀『%0』。}{/line log quest-fy4.log}
+/nop {^你现在的任务是杀『%0』。}{/line log quest-fy4.log}
 /ac {^你现在的任务是%0寻『%1』}{/var en_qb 1; /var q_item %1}
 /al qticker {/ticker {q}{quest}{120};}
 /al unqticker {/unticker {q}}

@@ -1,4 +1,4 @@
-/nop fy2005 上海站
+/nop fy2005 上海站 HC 模式
 /nop s_status status 字符串string
 /nop hx 自己回血 thh hh 要队友治疗
 /nop eat food 食物
@@ -36,32 +36,32 @@
 /ac {^ 【精力】 %1/ %2 (%3%)    【食物】%4%}{
     /var food_ok 0;
     /var jin_ok 0;
-/var jin %1;
-/var jin_init %2;
-/var jin_per %3;
-/var food_eat %4;
-/var jin_delta 0;
-/math jin_delta {$jin_init - $jin};
-/math jin_half {$jin * 0.5};
+    /var jin %1;
+    /var jin_init %2;
+    /var jin_per %3;
+    /var food_eat %4;
+    /var jin_delta 0;
+    /math jin_delta {$jin_init - $jin};
+    /math jin_half {$jin * 0.5};
 }
 /ac {^ 【气血】 %1/ %2 (%3%)    【饮水】%4%}{
     /var qi_ok 0;
-/var qi %1;
-/var qi_init %2;
-/var qi_per %3;
-/var food_drink %4;
-/var qi_delta 0;
-/math qi_delta {$qi_init - $qi};
-/var hn_qi 0;
-/math hn_qi {$qi/2};
+    /var qi %1;
+    /var qi_init %2;
+    /var qi_per %3;
+    /var food_drink %4;
+    /var qi_delta 0;
+    /math qi_delta {$qi_init - $qi};
+    /var hn_qi 0;
+    /math hn_qi {$qi/2};
 }
 /ac {^ 【心神】 %1/ %2 (%3%)    【评价}{
     /var shen_ok 0;
-/var shen %1;
-/var shen_init %2;
-/var shen_per %3;
-/var shen_delta 0;
-/math shen_delta {$shen_init - $shen};
+    /var shen %1;
+    /var shen_init %2;
+    /var shen_per %3;
+    /var shen_delta 0;
+    /math shen_delta {$shen_init - $shen};
 }
 /ac {^ 【灵力】 %1/ %2 (  %3)    【杀气】%4}{
     /var lingli %1;
@@ -89,22 +89,22 @@
     /var shen_ok 0;
     /if {$is_walk==0 && $is_kill==0}{
     /if {$auto_en_eat==1}{
-        /if {$food_drink<4}{get wineskin from bag; drink wineskin; put wineskin in bag;dhp}{
-           /if {$food_eat<3}{get meat from bag;eat meat; put meat in bag;}{/var food_ok 1}
+        /if {$food_drink<4}{drink dai;dhp}{
+           /if {$food_eat<3}{eat meat}{/var food_ok 1}
         }}{/var food_ok 1};
     /if {$food_ok==1 && $auto_en_jin==1}{
-        /if {$jin_per < 96}{hj;tt 精力 $jin_per%;/var jin_ok 1;dhp}{
-            /if {$jin_delta > $jin_lost}{dazuo; dhp}{/var jin_ok 1};
+        /if {$jin_per < 96 && $is_walk==0}{hj;use hugu;dhp}{
+            /if {$jin_delta > $jin_lost}{sleep sleepbag;dazuo; dhp}{/var jin_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
-        /if {$qi_per < 96}{hx;tth hh $myname;tt 气血 $qi_per%; dhp}{
-            /if {$qi_delta > $qi_lost}{ dazuo; dhp}{/var qi_ok 1};
+        /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
+            /if {$qi_delta > $qi_lost}{sleep sleepbag; dazuo; dhp}{/var qi_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $qi_ok==1 && $auto_en_shen==1}{
-        /if {$shen_per < 96}{hs;tt 神 $shen_per%;}{
-            /if {$shen_delta > $shen_lost}{hs; dazuo; dhp}{/var shen_ok 1};
+        /if {$shen_per < 96 && $is_walk==0}{use dafeng}{
+            /if {$shen_delta > $shen_lost}{dazuo; dhp}{/var shen_ok 1};
             }
        };
        };
@@ -117,13 +117,13 @@
     /math max_fali {2*$fali_init};
     /if {$is_walk==0 && $is_kill==0}{
         /if {$auto_en_ll==1}{
-           /if {$lingli < $lingli_init}{hl;tt $myname 回灵力; }{/var lingli_ok 1}
+           /if {$lingli < $lingli_init}{hl; }{/var lingli_ok 1}
         }{/var lingli_ok 1};
         /if {$lingli_ok==1 && $auto_en_nl==1}{
-           /if {$neili < $neili_init}{hn;tt $myname 回内力; }{/var neili_ok 1}
+           /if {$neili < $neili_init}{hn;}{/var neili_ok 1}
         }{/var neili_ok 1};
         /if {$lingli_ok==1 && $neili_ok==1 && $auto_en_fl==1}{
-           /if {$fali < $fali_init}{hf;tt $myname 回法力; }{/var fali_ok 1}
+           /if {$fali < $fali_init}{hf;}{/var fali_ok 1}
         }{/var fali_ok 1; dhp};
         /var food_ok 0;
         /var jin_ok 0;
@@ -132,15 +132,9 @@
    }
 }
 }
-
 /ac {^你已经吃太饱了}{/showme eat:$food_eat drink:$food_drink}
-/nop al hl {exercise jing $max_lingli}
-
 /al hl {exercise jing $jin_half}
-/nop al hn {exercise qi $max_neili}
-/al hn {
-exercise qi $hn_qi
-}
+/al hn {exercise qi $hn_qi }
 /al hf {exercise shen $max_fali}
 /nop 你现在的心神太少
 /nop 你已经喝太多了
@@ -149,6 +143,6 @@ exercise qi $hn_qi
 /ac {^你盘膝而坐，静坐冥思}{/delay {2.1}{hp}}
 /ac {^你盘膝而坐，闭上眼睛}{/delay {2.1}{hp}}
 /ac {^你坐下来运气用功}{/delay {2.1}{hp}}
-/ac {^白玉小马桶已经被喝得一滴也不剩}{/var auto_en_qi 0}
-/ac {^你从井中将白玉小马桶装满不老寒泉}{/var auto_en_qi 1}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
+/ac {^你一觉醒来，只觉精力充沛}{hp}
+/ac {^你的气血治愈了}{hp}

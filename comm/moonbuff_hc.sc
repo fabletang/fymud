@@ -33,6 +33,7 @@
         /if {$buff7==0}{bf7};
     }
 }
+
 /al bf8 {cast wufangbianhuan}
 /var wkxl_ok 1
 /var flfy_ok 1

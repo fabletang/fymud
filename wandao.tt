@@ -13,8 +13,18 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/al reload {/read wandao.tt}
+/log o ../wandao.log
 /ac {^【新手} {/line {log} ../newwandao.log}
 /ac {^【传闻} {/line {log} ../newwandao.log}
+/read comm/gag.sc
+/read comm/normal.sc
+/read comm/path.sc
+/read comm/moonbuff_hc.sc
+/read comm/quest.sc
+/read comm/status.sc
+/read comm/pet.sc
+/read comm/autorecover_hc.sc
 /al wpet {order wield blade}
 /al wp wpet
 /var haspet 0
@@ -22,7 +32,6 @@
 /nop pet perform-------
 /al pj {batj}
 /al pk {batk}
-/al reload {/read wandao.tt}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -55,7 +64,6 @@
 /al wianqi {/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle,wield piece;reffs}}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle;reffs}}
-/read moonbuff_hc.sc
 /nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
 /al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
@@ -126,20 +134,20 @@
 /var npcbusy 0
 /var cutshen 0
 /nop pk
+/var qienpc 0
+/ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
     pk;
 }
 /ac {^你乍然退步，旋身，反手}{
-    cks;
     iskill;
     pk;
-    ld;
+    de1 cks;
+    /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{ld};
     /var myok 0;
     /delay {241} {/var myok 1};
-    /delay {2.1} {/if {$shaqi>0}{bg}{
-                                    /if {$bgok_t==1}{bg}{ld};
-                                    };
+    /delay {2.1} {/if {$shaqi>0 || $bgok_t==1}{bg}{ld};
                   /showme {------shaqi=$shaqi};
                   /nop wk;
                  };
@@ -147,7 +155,7 @@
 /ac {^你突然仰天长嚎}{
     cks;
     iskill;
-    /if {$qieok==1 || $qieok_t ==1}{qie};
+    /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{/if {$myok==1}{my}{ld};};
     /var bgok 0;
     /var bgok_t 0;
     /delay {121}{/var bgok_t 1};
@@ -162,22 +170,29 @@
     iskill;
     pj;
     /if {$cutshen==0}{
-    }
+    };
     /if {$cutshen==0}{
-            /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my};};
-                 }
+            /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{
+                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my};};
+                                                             };
+                 };
                          }
 /ac {^设定环境变数：secon_perform = "hyakki"}{
-            /delay {6.1}{/if {$shaqi >0}{bg}{ld}};
+            /delay {9.1}{
+                /if {$is_kill==1}{
+                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my}{ld};};
+                        };
+                        }
+            
 }
-/unac {^设定环境变数：secon_perform = "hyakki"}
+/nop unac {^设定环境变数：secon_perform = "hyakki"}
 /ac {^自右上方直向}{
     hp;
     pk;
     iskill;
     /showme {=========== qie ==============};
     /var qieok 0;
-    /delay {61}{/var qieok_t 1};
+    /delay {60.2}{/var qieok_t 1};
     bg;
     /delay {2.1} {/if {$shaqi>0 || $bgok_t ==1}{bg}{
                                     /if {$myok==1}{my}{ld};
@@ -208,14 +223,6 @@
 /ac {^『阴陵扣命』只能对战}{sk} 
 /ac {^『棋盘切』只能对战}{sk}
 /ac {^『雷电交轰』只能对战}{sk}
-/log o ../wandao.log
-/read gag.sc
-/read path.sc
-/read normal.sc
-/read quest.sc
-/read status.sc
-/read pet.sc
-/read autorecover_hc.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {drink dai}
 /al hs {drink dai}
@@ -279,7 +286,7 @@
 /nop L40 『他心移物』（telepathy）
 /nop L80 『遗心忘恨』（yixinwanghe
 /al checkkill {cast telepathy jade}
-/ac {^然而，%1已经死了}{ck;checkkill}
+/ac {^然而，%1已经死了}{/if {$is_kill==1}{cks};ck;checkkill}
 /ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{wi blade}
 /nop ac {^你向%1开始移动。（40->35)}{/if {$qxok ==1}{/delay {1}{qx;unwiled needle;wiblade}}}
 /nop ac {^你向%1开始移动。（35->30)}{/if {$qxok ==1}{qx;unwiled needle;wiblade}}

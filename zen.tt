@@ -4,7 +4,9 @@
 /nop session $myname 117.135.143.81 6666
 /nop session $myname china.fengyun.com 6000
 /nop session $myname fy.hbisp.com 3333
-/session $myname fy.sysfon.com 6000
+/nop session $myname fy.sysfon.com 6000
+/nop mud123.com 7000 
+/session $myname mud123.com 7000
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
@@ -13,125 +15,12 @@
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
-/ac {^#SESSION '%0' DIED.}{/read %0.tt}
-/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^#SESSION '%0' DIED.}{/read zen.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read zen.tt}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
-/var hasstaff 0
-/var hashand 0
-/al wistaff {/if {$hasstaff==0}{unwi all;wi staff}}
-/al wihand {/if {$hashand==0}{unwi all;wi jade}}
-/al wiw wistaff
-/al wih wihand
-/ac {^  √%1taff)}{/var hasstaff 1;/var hashand 0} 
-/ac {^  √戒指(Jade)}{/var hashand 1;/var hasstaff 0} 
-/ac {^你从怀中摸出一对戒}{/var hashand 1;/var hasstaff 0} 
-/ac {^你将手上的戒指藏入}{/var hashand 0} 
-/ac {^你把%0紧紧地握在手中}{/var hashand 0;/var hasstaff 1} 
-/al buff {i;perform dodge.gouweixudiao}
-/al xl {wihand;perform xianglongwuhui}
-/al sc {wihand;perform shichengliulong}
-/var islian 0
-/ac {^你双手猛然一抖一拢}{pj;/var hashand 1;/var hasstaff 0;/var islian 0} 
-/al ki {wihand;set target %0;buff;/delay {2}{juji %0;kill %0;startk}}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
-/nop ------------
-/var xl_max 0
-/var sc_ok 0
-/var zjbl_ok 0
-/al ak xl
-/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
-/al startk {xl;/al ak xl;kkx}
-/al kx startk
-/al ssk startk
-/ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
-    iskill;
-    /var npc %1;
-    /var zjbl_ok 0;
-    /var xl_max 0;
-    /delay {20}{/var xl_max 1;/al ak xl};
-    /var sc_ok 0;
-    /al ak sc;
-}
-/al czj {wistaff;perform chuozijue}
-/al bzj {wistaff;perform banzijue}
-/al tzj {wistaff;perform tiaozijue}
-/al yzj {wistaff;perform yinzijue}
-/al zjbl {wihand;perform zhenjingbaili}
-/al ps bzj
-/ac {^%1只觉掌风扑面，气息窒滞}{
-    iskill;
-    /var ncp %0;
-    zjbl;
-    /al ak zjbl
-}
-/ac {^你的真气被打乱了，使不出震惊百里}{/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak sc}}
-/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
-/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
-/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak bzj}
-/ac {^随着长声惨叫}{czj;/al ak sc}
-/ac {你只好招式突换，一棍随手挥出}{/al ak sc}
-/al sc+ {
-/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl}; 
-/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj};
-/ac {招架此招} {tzj};
-/ac {俨然无懈可击} {ps};
-/al {觑得亲切，不退反进，借势击向你} {yzj};
-/ac {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj}
-}
-/al sc- {
-/ac {和身扑上，旋转着但极快疾地欺近你}; 
-/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招};
-/ac {招架此招};
-/ac {俨然无懈可击};
-/al {觑得亲切，不退反进，借势击向你};
-/ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
-}
-/nop -----------------
-/ac {^你大喝一声，犹似半空响了个霹雳}{}
-/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
-/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
-/ac {^『降龙无悔』只能对战}{stopk;cks}
-/ac {^『时乘六龙』只能对战}{stopk;cks}
-/ac {^『震惊百里』只能对战}{stopk;cks}
-/ac {^『雨后初虹』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『清辉』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『连天衰草』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『阴陵扣命』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『无空漩流』只能对战斗}{stopk;cks}
-/ac {^『红藕香残』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『七星伴月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^你的法力太低}{hp}
-/nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert qi;/delay {1}{exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{/al ak bzj;exert qi;/delay {3}{exert qi;hp}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
-/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
-/read gag.sc
-/read path.sc
-/read normal.sc
-/read quest.sc
-/read team.sc
-/read status.sc
-/nop log o $myname.log
-/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {get matong from bag; drink matong; put matong in bag}
-/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
-/unac {^然而，%1已经死了}{cks}
-/al getitem {
-    pick needle;
-    get 1200 needle from cactus bonsai;
-     stack;
-     retrieve 9428;
-     retrieve 9901;
-     retrieve 7626;
-     retrieve 8360;
-     retrieve 3478;
-     remove all;
-     wear all
-}
-/read autorecover.sc
+/read comm/normal.sc
+/read comm/path.sc
+/read comm/autorecover.sc
 /al qq {fox;quest}
 /al eatall {drink hulu;de4 {eat mantou}}
 /al ffy {recall back;w;n;e;e;e;n;u}
