@@ -14,7 +14,8 @@
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /al reload {/read wandao.tt}
-/log o ../wandao.log
+/nop log o ../wandao.log
+/log a ../wandao.log
 /ac {^【新手} {/line {log} ../newwandao.log}
 /ac {^【传闻} {/line {log} ../newwandao.log}
 /read comm/gag.sc

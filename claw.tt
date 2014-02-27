@@ -213,6 +213,7 @@
                                     };
 }
 /al stopk {
+        /showme {----kill 变量重置};
         nokill;/unticker {kill};
         /var qieok 1;
         /var qieok_t 0;
@@ -220,6 +221,7 @@
         /var mhok 1;
         /var qienpc 0;
         }
+/al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue;tp}

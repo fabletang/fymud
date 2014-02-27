@@ -24,3 +24,12 @@
 /al qq {fox;quest}
 /al eatall {drink hulu;de4 {eat mantou}}
 /al ffy {recall back;w;n;e;e;e;n;u}
+/al testf { /showme format (Test man);}
+/ac {^format (%+)}{
+/showme format result;
+/var result {%1};
+/format result1 {%l}{$result}; 
+/showme result =$result1;
+/showme tsss
+}
+/nop unac {^format (%+)}

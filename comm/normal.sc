@@ -459,7 +459,9 @@
     /var it_sn %1;
     /var it_num %4;
     /if {"$it_code"=="%5 %6"}{
+                    /if {"$it_code"="zhufu sword"}{
                     take %1 %4;
+                    }{take %1 1};
                     /var it_code none;
                             };
     /nop showme ----- $it_sn %0 %5 %6 $it_num ----- 
