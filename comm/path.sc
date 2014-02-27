@@ -725,7 +725,8 @@
 
 
 /nop al fy2zt {fy2zt+;d;/3 n;w;de1 {w;n;w;w;open door;w;jump}}
-/al fy2zt {wlk;fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr;wlk}
+/al fy2zt {fy2zt+;pl {d;s;s;s;w;w;sw;w;buy_white_towel};pr;wlk}
+/al fy2zt {fy2zt+;do d,s,s,s,w,w,sw,w;wlk;buy_white_towel}
 
 /nop al zt2fy {open door;/2 e;s;e;e;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
 /al zt2fy {pl {wlk;open door;s;s;s;s;dd white towel;wear all;e;ne;e;e;n;n;n;u;fy2zt-};pr}
@@ -748,7 +749,7 @@
     /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-;nwlk}
 }
 
-/al fy2ztv {wlk;fy2ztv+;d;/3 s;w;w;sw;de1 {s;s;w;buy white towel from kid}}
+/al fy2ztv {wlk;fy2ztv+;d;/3 s;wlk;w;w;sw;de1 {s;s;w;buy white towel from kid}}
 /nop al fy2ztv {fy2ztv+;d;/3 n;e;de1 {e;n;east;east;open door;east;wash}}
 /nop al zt2fyv {open door;/2 w;s;w;w;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
 /al ztv2fy {wlk;open door;/4 n;de1 {wear baojia;wear all;e;n;n;ne;e;e;/3 n;u;fy2ztv-}}

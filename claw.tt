@@ -96,12 +96,12 @@
 /al jjj {perform yanduhantan;/showme @@@@ sword busy}
 /al kk {wi sword;perform shuanglengcanxia  &&&& steps busy}
 /al h {exert huaxue}
+/al hhh {exert chillbreath}
 /al k {kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /al startk {
-        iskill;
         /ticker {kill}{
             j;
             }{7.1}
@@ -136,22 +136,30 @@
 /nop 百鬼busy效果
 /var npcbusy 0
 /ac {^突然，一蓬鲜血激射}{
-    /var npcbusy 6
+    /var npcbusy 6;
+    /if {$fdok ==0}{hhh};
 }
+/var fdok 0
+/ac {阴风扑面，差点儿晕了过去。$}{/showme -------放毒成功----;/var fdok 1}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^你停住了手，用飘飘的眼光}{/var mhok 0;/delay {14.2}{/var mhok_t 1}}
 /nop polu todo
-/ac {^在森森剑影间玫瑰色的薄雾冉冉升起}{po;/showme ------ & & & & & & polu  & & & & & &  -----}
-/al ki {wield zhufu sword;
-        hp;
-        reffs;
+/nop 在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，你忽感天旋地转，摇摇欲坠。 
+/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{po;}}
+/var haskill 0
+/al ki {do wield zhufu sword,i,hp;
         set target %0;
         buff;
+        /delay {0.5}{
+            /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
+                          /if {$shaqi>0 || $bgok_t==1}{bg}{
+                                        /if {$yrcyok==1}{yrcy}{slcx};
+                                                    };
+                                                      };
+            /var haskill 1;
+            }
         startk;
         /delay {2.1}{
-            /if {$qieok==1}{qie}{
-                 /if {$shaqi>0 || $bgok_t==1}{bg}{slcx}
-                            };
             kill %0;
                     }
         }
@@ -159,7 +167,11 @@
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
     /showme =========== slcx ==============;
-    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{;};};
+    /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
+                            /if {$shaqi>0 || $bgok_t==1}{bg}{
+                                        /if {$yrcyok==1}{yrcy}{slcx};
+                                                    };
+                                                      };
     /delay {2.1} {
                     /if {$shaqi>0 || $bgok_t==1}{bg}{
                                                     /if {$yrcyok==1}{yrcy}{slcx};
@@ -170,23 +182,16 @@
     iskill;
     cks;
     /showme =========== bg ==============;
-    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{slcx};};
+    /if {{$qieok==1 || $qieok_t ==1 }&& $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{slcx};};
     /var bgok 0;
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
-    /delay {2.5} {
-                    /if {$shaqi>0 || $bgok_t==1}{bg}{
-                        /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
-                             /if {$yrcyok==1}{yrcy}{slcx}; }
-                                    };
-                  /showme {------shaqi=$shaqi};
-                 };
 }{4}
 /ac {^自右上方直向}{
     hp;
     iskill;
     /showme =========== qie ==============;
-    /if {$yrcyok==1}{yrcy}{slcx};
+    /nop if {$yrcyok==1}{yrcy}{slcx};
     /var qieok 0;
     /delay {60.2}{/var qieok_t 1};
     /if {$shaqi>0 || $bgok_t==1}{bg}{
@@ -195,7 +200,7 @@
                      }
 /ac {^设定环境变数：secon_perform = "hyakki"}{
     /delay {9.1} {
-        /if {$is_kill ==1}{
+        /if {$is_kill ==1 && $qienpc ==0}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{
                     /if {$yrcyok==1}{yrcy}{slcx}; 
                                             }; 
@@ -208,7 +213,7 @@
     /var yrcyok 0;
     de1 cks;
     /delay {181}{/var yrcyok 1};
-    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
+    /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{slcx};
                                     };
 }
@@ -220,6 +225,8 @@
         /nop var bgok_t 0;
         /var mhok 1;
         /var qienpc 0;
+        /var fdok 0;
+        /var haskill 0;
         }
 /al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
@@ -235,11 +242,12 @@
 /ac {^『破颅』只能对战}{sk}
 /ac {^『飞雁式』只能在战斗}{sk}
 /ac {^你不在战斗中，不需要假死}{sk}
+/ac {^『九阴毒雾』只能在战}{sk}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {do exert jingxin,use baiyao}
+/al hx {/if {$is_kill ==0 && $is_walk ==0 }{exert jingxin;use baiyao}}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{hn}}
-/ac {^然而，%1已经死了}{/if {$is_kill==1}{cks};}
+/ac {^然而，%1已经死了}{hhh;/if {$is_kill==1}{cks};}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -259,9 +267,11 @@
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
             reffs;
+            /if {$haskill == 0}{
             /if {$qieok==1}{qie}{
                  /if {$shaqi>0 || $bgok_t==1}{bg}{slcx}
                             };
+                            }
             /var knpc_name %0;
             iskill
                          }
@@ -291,4 +301,6 @@
 /ac {^你不可以在这里用内功}{wlk}
 /ac {^你的伤势好了一些}{de1 {exert jingxin}}
 /ac {^你必须至少空出一只手来}{i}
-/ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {wi sword}}
+/ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}
+/nop 水离(Shui li)	** 战斗中 **(LV 
+/ac {脸憋得通红，忽感天旋地转}{po}

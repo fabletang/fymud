@@ -7,7 +7,7 @@
 /al aa {do whistle,order wear all,wield all,xixi $petname;}
 /al wh {/var haspet 0;
             xixi $petname; 
-            /delay {2.2}{
+            /delay {0.5}{
                 /if {$haspet==0}{aa}}
                 }
 /al scorep {score $petname}

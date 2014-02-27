@@ -76,8 +76,7 @@
         do i,hp;wiblade;
         wi jade2;
         set target %0;
-        de1 buff;
-        de2 wpet;
+        de1 {wpet;buff};
         /delay {6.2}{
             qie;
             kill %0;
@@ -273,11 +272,6 @@
     }
 /ac {^小小刀凝聚起天地间十万妖魔}{de5 pk}
 /ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
-/al wh {/var haspet 0;
-            xixi $petname; 
-            /delay {3.2}{
-                /if {$haspet==0}{aa}}
-                }
 /ac {^你手臂酸麻，一时无法拿起这件武器}{wianqi}
 /ac {^你只觉得虎口一热，手中的}{wianqi}
 /nop check kill status
