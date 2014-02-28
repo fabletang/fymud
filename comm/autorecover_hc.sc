@@ -55,7 +55,7 @@
     /var hn_qi 0;
     /math hn_qi {$qi/2};
 }
-/ac {^ 【心神】%d/ %2 (%d%)    【评价}{
+/ac {^ 【心神】%s%1/%s%2 (%s%3%)    【评价}{
     /var shen_ok 0;
     /var shen %1;
     /var shen_init %2;
@@ -63,7 +63,7 @@
     /var shen_delta 0;
     /math shen_delta {$shen_init - $shen};
 }
-/ac {^ 【灵力】%s%1/ %2 (%s%3)    【杀气】%s%4}{
+/ac {^ 【灵力】%s%1/%s%2 (%s%3)    【杀气】%s%4}{
     /var lingli %1;
     /var lingli_init %2;
     /var shaqi %4;
@@ -74,7 +74,7 @@
     /var max_neili 0;
     /math max_neili {2*$neili_init};
 }
-/ac {^ 【法力】 %1/ %2 (%3) }{
+/ac {^ 【法力】%s%1/%s%2 (%s%3) }{
     /var fali %1;
     /var fali_init %2;
     /var max_fali 0;

@@ -232,6 +232,8 @@
         /var fdok 0;
         /var haskill 0;
         }
+/ac {^你向%1开始移动。（40->35)}{/if {$fdok==0}{hhh}}
+/ac {^你向%1开始移动。（35->30)}{/if {$fdok==0}{hhh}}
 /al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{h;/showme ----todo 危险-----}
@@ -276,7 +278,7 @@
                             };
                             }
             /var knpc_name %0;
-            iskill
+            de2 iskill;
                          }
 /al wim {wi zhufu sword;wi sword2}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
