@@ -99,7 +99,7 @@
        };
 /nop if hx tth hh $myname tt 气血 $qi_per% dhp
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
-        /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
+        /if {$qi_per < 97 && $is_walk==0}{hx;dhp}{
             /if {$qi_delta > $qi_lost}{ dazuo; dhp}{/var qi_ok 1};
             }
        };
@@ -153,3 +153,4 @@ exercise qi $hn_qi
 /ac {^白玉小马桶已经被喝得一滴也不剩}{/var auto_en_qi 0}
 /ac {^你从井中将白玉小马桶装满不老寒泉}{/var auto_en_qi 1}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
+/ac {^你已经喝太多了}{/var food_drink 100}

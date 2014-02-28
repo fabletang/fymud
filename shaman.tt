@@ -104,12 +104,13 @@
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{/al ak bzj;exert qi;/delay {3}{exert qi;hp}}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
 /ac {^你所选用的武功中没有这种必杀技。}{get blade;get futou}
-/read gag.sc
-/read path.sc
-/read normal.sc
-/read quest.sc
-/read team.sc
-/read status.sc
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/read comm/status.sc
+/read comm/pet.sc
+/read comm/autorecover_hc.sc
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
@@ -128,7 +129,6 @@
      remove all;
      wear all
 }
-/read autorecover_hc.sc
 /al qq {fox;quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
 /al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小和尚 xhs};de9 {whistle;hp}}

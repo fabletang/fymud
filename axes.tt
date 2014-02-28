@@ -52,7 +52,6 @@
 /al wihand {wifushou;/if {$hashand==0}{unwi all}}
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
 /al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
-/read moonbuff_hc.sc
 /al buff {
         perform herb.xiumugong;
         perform dodge.liuyun;
@@ -150,11 +149,14 @@
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
 /ac {^『掌剑』只能对战}{sk}
-/read gag.sc
-/read path.sc
-/read normal.sc
-/read quest.sc
-/read status.sc
+/read moonbuff_hc.sc
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/read comm/status.sc
+/read comm/pet.sc
+/read comm/autorecover_hc.sc
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {use baiyao}
 /al hs {drink dai}
@@ -172,7 +174,6 @@
      remove all;
      wear all
 }
-/read autorecover_hc.sc
 /al qq {quest}
 /al ffy {recall back;w;n;e;e;e;n;u}
 /ac {^任务被你完}{wk}

@@ -33,7 +33,7 @@
 /var hn_qi 0
 
 /al dhp {/delay {4.1}{hp}}
-/ac {^ 【精力】 %1/ %2 (%3%)    【食物】%4%}{
+/ac {^ 【精力】%s%1/ %2 (%d%)    【食物】%4%}{
     /var food_ok 0;
     /var jin_ok 0;
     /var jin %1;
@@ -44,7 +44,7 @@
     /math jin_delta {$jin_init - $jin};
     /math jin_half {$jin * 0.5};
 }
-/ac {^ 【气血】 %1/ %2 (%3%)    【饮水】%4%}{
+/ac {^ 【气血】%s%1/%s%2 (%s%3%)    【饮水】%s%4%}{
     /var qi_ok 0;
     /var qi %1;
     /var qi_init %2;
@@ -55,7 +55,7 @@
     /var hn_qi 0;
     /math hn_qi {$qi/2};
 }
-/ac {^ 【心神】 %1/ %2 (%3%)    【评价}{
+/ac {^ 【心神】%d/ %2 (%d%)    【评价}{
     /var shen_ok 0;
     /var shen %1;
     /var shen_init %2;
@@ -63,12 +63,12 @@
     /var shen_delta 0;
     /math shen_delta {$shen_init - $shen};
 }
-/ac {^ 【灵力】 %1/ %2 (  %3)    【杀气】%4}{
+/ac {^ 【灵力】%s%1/ %2 (%s%3)    【杀气】%s%4}{
     /var lingli %1;
     /var lingli_init %2;
     /var shaqi %4;
 }
-/ac {^ 【内力】 %1/ %2 (%3) }{
+/ac {^ 【内力】%s%1/%s%2 (%s%3) }{
     /var neili %1;
     /var neili_init %2;
     /var max_neili 0;
@@ -93,12 +93,12 @@
            /if {$food_eat<3}{eat meat}{/var food_ok 1}
         }}{/var food_ok 1};
     /if {$food_ok==1 && $auto_en_jin==1}{
-        /if {$jin_per < 96 && $is_walk==0}{hj;use hugu;dhp}{
+        /if {$jin_per < 96 && $is_walk==0}{hj;use hugu;}{
             /if {$jin_delta > $jin_lost}{sleep sleepbag;dazuo; dhp}{/var jin_ok 1};
             }
        };
     /if {$food_ok==1 && $jin_ok==1 && $auto_en_qi==1}{
-        /if {$qi_per < 96 && $is_walk==0}{hx;dhp}{
+        /if {$qi_per < 98 && $is_walk==0}{hx;}{
             /if {$qi_delta > $qi_lost}{sleep sleepbag; dazuo; dhp}{/var qi_ok 1};
             }
        };
@@ -146,3 +146,5 @@
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
 /ac {^你一觉醒来，只觉精力充沛}{hp}
 /ac {^你的气血治愈了}{hp}
+/ac {^你的心神治愈了100点。$}{de2 cks}
+/ac {^你展开一个睡袋}{sk}

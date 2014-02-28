@@ -431,7 +431,7 @@
             }
 /ac {^【闲聊】拍卖师(Auctioneer)：第%0号拍卖物%1无人认领}{pickup %0} 
 /ac {^你中的七彩蝙蝠毒发作了}{qt bat drug;de2 {cure 7batpoison};}
-/ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{cure 7batpoison;}
+/ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{qt bat drug;de1 {cure 7batpoison};}
 /ac {^你服下解药，顿时感觉好多了。你终于清除了体内所有的七彩蝙蝠毒}{store bat drug}
 /al ts tsell;
 /al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}

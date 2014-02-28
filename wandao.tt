@@ -26,6 +26,10 @@
 /read comm/status.sc
 /read comm/pet.sc
 /read comm/autorecover_hc.sc
+/var jqs_lost_limit 0.1
+/al hx {drink dai}
+/ac {^沁骨的冰凉流入喉咙}{stopk;de2 cks}
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al wpet {order wield blade}
 /al wp wpet
 /var haspet 0
@@ -46,25 +50,25 @@
 /al ifushou {/var hasfushou 1;/showme ifushou;}
 /al nofushou {/var hasfushou 0;/showme nofushou;}
 /ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
+/ac {^你装备神之祝福宝刀}{iblade}
 /ac {^你装备%0棋子作武器}{ianqi}
 /ac {^你将仙人刺握在手中}{ianqi}
 /ac {^你放下手中的圆月弯刀}{noblade}
+/ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你放下手中的刀鞘}{nofushou}
 /ac {^你抽出一把明晃晃的刀鞘}{ifushou}
 /ac {^你放下手中的%0棋子}{noanqi}
 /ac {^你放下手中的仙人刺}{noanqi}
 /ac {^  √圆月弯刀(jade2)}{iblade}
-/ac {^    圆月弯刀(jade2)}{noblade}
+/ac {^  √神之祝福宝刀(zhufu blade)}{iblade}
 /ac {^  √%0(go piece)}{ianqi}
 /ac {^  √%0(cactus needle)}{ianqi}
 /ac {^  √刀鞘(jade)}{ifushou}
 /ac {^    刀鞘(jade)}{nofushou}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
 /al wihand {wifushou;/if {$hashand==0}{unwi all}}
-/al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;wi jade2};reffs}
-/al wianqi {/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
-/al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle,wield piece;reffs}}
-/al wianqi {/if {$hasanqi==0}{do unwield jade2,wield needle;reffs}}
+/al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;/if {$cutshen==0}{wi zhufu blade}{unwi blade;wi jade2}};reffs}
+/al wianqi {/if {$hasanqi==0}{do unwield jade2,unwield blade,wield needle;reffs}}
 /nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
 /al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
@@ -74,7 +78,6 @@
 /al ki {
         wh;
         do i,hp;wiblade;
-        wi jade2;
         set target %0;
         de1 {wpet;buff};
         /delay {6.2}{
@@ -223,8 +226,6 @@
 /ac {^『阴陵扣命』只能对战}{sk} 
 /ac {^『棋盘切』只能对战}{sk}
 /ac {^『雷电交轰』只能对战}{sk}
-/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {drink dai}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al getitem {
@@ -244,7 +245,7 @@
 /ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你}{
-           do wield jade2,wield jade2;
+            wi zhufu blade;wiblade;
             /var knpc_name %0;
             iskill
                          }
@@ -263,7 +264,6 @@
      remove all;
      wear all
 }
-/ac {^沁骨的冰凉流入喉咙}{de2 hp}
 /al ks {bf3;/var cutshen 1;unwi all;ld;wiblade}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};
     de4 {yang monkey $HIG$ 小小刀 $petname};

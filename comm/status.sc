@@ -48,3 +48,4 @@
 /ac {^fystatus:gin:%1/%2/%3}{/var jin %1;/showme Getnpc}
 /ac {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}{/var qi %1;/var jin %4;/var shen %7;/showme Getnpc}
 /ac {^fystatus:force:%1/%2}{/var fce %1;/var fce_m %2;/showme Getnpc}
+/ac {^  谨慎的  宫南燕(Gong nanyan)	** 战斗中 **(LV89)}{}

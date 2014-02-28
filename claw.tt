@@ -23,6 +23,10 @@
 /read comm/status.sc
 /read comm/pet.sc
 /read comm/autorecover_hc.sc
+/var jqs_lost_limit 0.1
+/ac {^你的伤势好了一些}{stopk;de2 {exert jingxin;cks};}
+/ac {^疗伤时至少需要有最大内力值护体}{hn;sleep sleepbag;de2 cks}
+/al hx {/if {$is_kill ==0 && $is_walk ==0 }{exert jingxin;use baiyao;}}
 /var haspet 0
 /al wpet {order wield blade}
 /var hasblade 0
@@ -230,7 +234,7 @@
         }
 /al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
-/ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
+/ac {^( 你似乎十分疲惫}{h;/showme ----todo 危险-----}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue;tp}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;tp}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{jiasi}
@@ -244,7 +248,6 @@
 /ac {^你不在战斗中，不需要假死}{sk}
 /ac {^『九阴毒雾』只能在战}{sk}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {/if {$is_kill ==0 && $is_walk ==0 }{exert jingxin;use baiyao}}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{hn}}
 /ac {^然而，%1已经死了}{hhh;/if {$is_kill==1}{cks};}
@@ -291,7 +294,6 @@
 /al hj {use hugu}
 /ac {^需等待%0秒才能再次使用迷魂术}{/showme ----todo ----;}
 /ac {^你手中＊赤炼＊剑气回转}{/showme *******************       secon sword pfm   ******}
-/ac {^疗伤时至少需要有最大内力值护体}{hn;sleep sleepbag}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};
     de4 {yang pig $MAG$ 小小爪 $petname};
     de7 whistle;
@@ -299,7 +301,6 @@
     }
 /ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
 /ac {^你不可以在这里用内功}{wlk}
-/ac {^你的伤势好了一些}{de1 {exert jingxin}}
 /ac {^你必须至少空出一只手来}{i}
 /ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}
 /nop 水离(Shui li)	** 战斗中 **(LV 
