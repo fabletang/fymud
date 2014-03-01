@@ -1374,6 +1374,9 @@ wlk;
     /unac {^绿竹林}
 }
 /al wlg2fy {wlg2ljb;xsldd+;wlg2fy+}
+/nop 巴山 walk 绿松石门 
+/al wlg2sm {walk 绿松石门} 
+/al sm2tw {walk 天外集}
 /al xslin  {xslin+;/al xslin_do {n;l};l}
 /al xslin+ {
    xslout-;

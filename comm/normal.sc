@@ -1,5 +1,6 @@
 /config speedwalk off
 /nop 设定回车只动输入上次的命令。
+/config {MCCP}     {off}
 /config {repeat enter} on
 /config {ECHO COMMAND} on
 /config {SCROLL LOCK} on
@@ -420,7 +421,7 @@
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  兵装谱}{/var is_kill 0;/var is_walk 0;/unticker {kill}}
+/ac {^  兵装谱}{/var is_kill 0;stopk}
 /al pickupall {
     pickup 1; pickup 2; pickup 3; pickup 4; pickup 5; pickup 6; pickup 7; pickup 8; pickup 9;
     de2 {pickup 10;pickup 11;pickup 12;pickup 13;pickup 14;pickup 15;pickup 16; pickup 17; pickup 18; pickup 19};

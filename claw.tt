@@ -15,20 +15,31 @@
 /ac {^【新手} {/line {log} ../newclaw.log}
 /ac {^【传闻} {/line {log} ../newclaw.log}
 /al reload {/read claw.tt}
-/var petname xxz
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/quest.sc
 /read comm/status.sc
 /read comm/pet.sc
+/var petname xxz
+/var haspet 0
+/al wpet {order wear all}
+/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
+/ac {^小小爪不知从哪里窜}{/var haspet 1}
+/al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
+/al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
+/al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
+/al pk {/if {$haspet ==1}{do order wield sword,performp duxin,order unwield sword;/showme --pet pf sword ---duxin---}}
+/ac {将周身凝聚的冰块震得粉碎！！}{/var haspj 0;pj}
+/var haspj 0
+/ac {^小小爪左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
+/ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
 /var jqs_lost_limit 0.1
 /ac {^你的伤势好了一些}{stopk;de2 {exert jingxin;cks};}
 /ac {^疗伤时至少需要有最大内力值护体}{hn;sleep sleepbag;de2 cks}
 /al hx {/if {$is_kill ==0 && $is_walk ==0 }{exert jingxin;use baiyao;}}
-/var haspet 0
-/al wpet {order wield blade}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -102,12 +113,14 @@
 /al h {exert huaxue}
 /al hhh {exert chillbreath}
 /al k {kk}
-/ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
+/ac {^你对著%0！今日不是你死就是我活！} {pj;de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /al startk {
         /ticker {kill}{
             j;
+            pj;
+            de3 pj;
             }{7.1}
             }
 /nop 『棋盘切』（gobankiri）
@@ -142,36 +155,43 @@
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
     /if {$fdok ==0}{hhh};
+    pk;
 }
 /var fdok 0
 /ac {阴风扑面，差点儿晕了过去。$}{/showme -------放毒成功----;/var fdok 1}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^你停住了手，用飘飘的眼光}{/var mhok 0;/delay {14.2}{/var mhok_t 1}}
 /nop polu todo
-/nop 在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，你忽感天旋地转，摇摇欲坠。 
-/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{po;}}
+/var haspo 0
+/al trypo {/if {$haspo==0 && $is_kill==1}{po;de2 po;de4 po}}
+/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{trypo;}}
+/ac {脸憋得通红，忽感天旋地转}{trypo}
+/ac {^袖中伸出纤纤素手}{/var haspo 1}
 /var haskill 0
 /al ki {do wield zhufu sword,i,hp;
         set target %0;
-        buff;
+        wh;
         /delay {0.5}{
-            /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
+            wpet;
+            /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
                           /if {$shaqi>0 || $bgok_t==1}{bg}{
                                         /if {$yrcyok==1}{yrcy}{slcx};
                                                     };
                                                       };
             /var haskill 1;
             }
+        de1 buff;
         startk;
-        /delay {2.1}{
+        /delay {3.1}{
             kill %0;
+            gongji %0;
                     }
         }
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
     /showme =========== slcx ==============;
-    /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
+    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
                             /if {$shaqi>0 || $bgok_t==1}{bg}{
                                         /if {$yrcyok==1}{yrcy}{slcx};
                                                     };
@@ -186,16 +206,16 @@
     iskill;
     cks;
     /showme =========== bg ==============;
-    /if {{$qieok==1 || $qieok_t ==1 }&& $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{slcx};};
+    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{slcx};};
     /var bgok 0;
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
 }{4}
 /ac {^自右上方直向}{
     hp;
+    pj;
     iskill;
     /showme =========== qie ==============;
-    /nop if {$yrcyok==1}{yrcy}{slcx};
     /var qieok 0;
     /delay {60.2}{/var qieok_t 1};
     /if {$shaqi>0 || $bgok_t==1}{bg}{
@@ -203,13 +223,13 @@
                         }; 
                      }
 /ac {^设定环境变数：secon_perform = "hyakki"}{
-    /delay {9.1} {
+    /delay {checkbg} {
         /if {$is_kill ==1 && $qienpc ==0}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{
                     /if {$yrcyok==1}{yrcy}{slcx}; 
                                             }; 
                          }
-                 }
+                 } {9.1}
 }
 /nop   {^设定环境变数：secon_perform = "hyakki"}
 /nop yrcy 
@@ -231,9 +251,12 @@
         /var qienpc 0;
         /var fdok 0;
         /var haskill 0;
+        /var haspo 0;
+        /undelay {checkbg};
         }
-/ac {^你向%1开始移动。（40->35)}{/if {$fdok==0}{hhh}}
-/ac {^你向%1开始移动。（35->30)}{/if {$fdok==0}{hhh}}
+/ac {^你向%1开始移动。（40->35)}{/if {$mhok==1}{j};/if {$fdok==0}{hhh}}
+/ac {^你向%1开始移动。（35->30)}{/if {$mhok==1}{j};/if {$fdok==0}{hhh}}
+/ac {^你向%1开始移动。（30->25)}{/if {$mhok==1}{j};/if {$fdok==0}{hhh}}
 /al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{h;/showme ----todo 危险-----}
@@ -272,6 +295,7 @@
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
             reffs;
+            pj;
             /if {$haskill == 0}{
             /if {$qieok==1}{qie}{
                  /if {$shaqi>0 || $bgok_t==1}{bg}{slcx}
@@ -306,4 +330,5 @@
 /ac {^你必须至少空出一只手来}{i}
 /ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}
 /nop 水离(Shui li)	** 战斗中 **(LV 
-/ac {脸憋得通红，忽感天旋地转}{po}
+/ac {^疗伤时至少需要有最大内力值护体}{hn;de2 cks}
+/ac {^此人已经不需要使用此疗伤心法}{cks}

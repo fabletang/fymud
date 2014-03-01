@@ -181,11 +181,11 @@
                  };
                          }
 /ac {^设定环境变数：secon_perform = "hyakki"}{
-            /delay {9.1}{
+    /delay {checkbg} {
                 /if {$is_kill==1}{
                 /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my}{ld};};
                         };
-                        }
+                        }{9.1}
             
 }
 /nop unac {^设定环境变数：secon_perform = "hyakki"}
@@ -212,6 +212,7 @@
             /var cutshen 0;nokill;/unticker {kill};
             /var qieok 1;
             /var qieok_t 0;
+            /undelay {checkqie};
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}

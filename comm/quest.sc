@@ -133,6 +133,8 @@ w;cook
 /ac {^一声清幽响亮的鸽哨自远方传来，你想起与平七的约定}{ask ping qi about 任务结束}
 /unac {^天机老人说：听闻最近有神秘组织频繁活动，你不妨去找城隍庙的和尚}{wlk;d;e;s;ask chuili seng about 神秘组织;n;w;u;nwlk}
 /al maze {wlk;d;e;s;ask chuili seng about 神秘组织;n;w;u;nwlk}
+/al mazelost {wlk;do d,e,s,ask chuili seng about lost,n,w,u;nwlk}
+/ac {^垂笠老僧不满地说：你是否仔细找过？再去找%d秒钟吧。}{/delay {%1}{mazelost}}
 /ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}
 /ac {^一道人影突自}{qie}
