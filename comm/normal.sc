@@ -470,3 +470,4 @@
 /ac {^你从如意乾坤袋里}{/var it_code shouhuan1}
 /ac {^你存入%0到如意乾坤袋}{/var it_code none}
 /ac {^你撞了大运，得到额外奖励符文%1。}{store %1}
+/al getbatdrug {wlk;do w,w,w,w,d,w,get all from woodcase,store bat drug;nwlk}

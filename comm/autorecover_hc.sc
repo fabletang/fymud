@@ -33,7 +33,7 @@
 /var hn_qi 0
 
 /al dhp {/delay {4.1}{hp}}
-/ac {^ 【精力】%s%1/ %2 (%d%)    【食物】%4%}{
+/ac {^ 【精力】%s%1/ %s%2 (%s%d%)    【食物】%s%4%}{
     /var food_ok 0;
     /var jin_ok 0;
     /var jin %1;

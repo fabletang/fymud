@@ -41,7 +41,7 @@
 /var cks_l 0
 /al cks_al {hp;/delay {0.2}{/showme check status}}
 /al cks_rd {/al cks_al {hp;/delay {0.2}{/showme check status}}}
-/al cks {cks_al;/al cks_al {/showme ---has check---};/delay {0.5}{cks_rd}}
+/al cks {cks_al;/al cks_al {/showme ---has check---};/delay {0.1}{cks_rd}}
 /al clean_var {/var emy_sen 100;/var emy_kee 100;/var emy_name_en none;nokill;nwlk}
 /ac {^Enemy:sen:%1/100}{/var emy_sen %1;/showme Getnpc}
 /ac {^Enemy:kee:%1/100}{/var emy_kee %1;/showme Getnpc}

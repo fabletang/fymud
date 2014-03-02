@@ -876,8 +876,9 @@
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /nop sl 方丈南院
-/al sl2fz {wlk;do eu,nw,n,n,n,nu,nd,nu,nd;nwlk}
+/al sl2fz {wlk;do eu,nw,n,n,n,nu,ask master yuan about 见方丈,answer 重要事,answer 经书被盗,nd,nu,nd;nwlk}
 /al fz2sl {wlk;do su,sd,su,sd,s,s,s,se,wd;nwlk}
+/al fy2fz {fy2sl;de2 sl2fz}
 /al sl2nm {sl2fz;do nu,nu,nu,nd}
 /al nm2sl {wlk;do su,sd,sd,sd;fz2sl}
 /al fz2xie {wlk;do nu,nu,nu,nd,n,n,n,nu,n,n,n,ne,nw,w,w;nwlk}

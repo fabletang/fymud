@@ -36,7 +36,8 @@
 /var petname xxd 
 /nop pet perform-------
 /al pj {batj}
-/al pk {batk}
+/var haspk 0
+/al pk {/if {$haspk==0}{batk}}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -213,6 +214,7 @@
             /var qieok 1;
             /var qieok_t 0;
             /undelay {checkqie};
+            /var haspk 0;
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
@@ -271,7 +273,7 @@
     de7 whistle;
     de9 scorep;
     }
-/ac {^小小刀凝聚起天地间十万妖魔}{de5 pk}
+/ac {^小小刀凝聚起天地间十万妖魔}{/var haspk 1;de6 {/var haspk 0};de6 pk;}
 /ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
 /ac {^你手臂酸麻，一时无法拿起这件武器}{wianqi}
 /ac {^你只觉得虎口一热，手中的}{wianqi}
