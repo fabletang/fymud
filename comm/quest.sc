@@ -245,7 +245,7 @@ de8 {ask xiaonu about 神石}
 list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
-/al askqiandao {recall back;w;n;w; ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;save}}
+/al askqiandao {set ability 0;do recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;save}}
 /al qf {quest fail}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
