@@ -41,7 +41,7 @@
 /var hashxx 0
 /al hxx {/if {$hashxx==0}{exert jingxin}} 
 /ac {^你静气平声，按着清平心法}{/var hashxx 1;de2 {/var hashxx 0}}
-/al hx {/if {$is_kill ==0 && $is_walk ==0}{do exert jingxin,use baiyao}}
+/al hx {/if {$is_kill ==0 && $is_walk ==0}{do exert mingjing,use baiyao}}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -140,7 +140,9 @@
 /al jj {do unwield sword,wield blade,perform gobankiri;slcx}
 /nop 『碧映光寒』(biyingguanghan)
 /nop duanhun-spear
-/al sm {do unwiled all,wield sleepbag,perform suomengchanhun;/showme ====== smch 挑兵器=====}
+/al sm {do unwiled all,wield sleepbag,perform suomengchanhun;
+        /delay {0.5}{/showme ====== smch 挑兵器=====};
+        }
 /al sm {wispear;perform suomengchanhun;/showme smch 挑兵器=====}
 /al bygh {wisword;perform sword.biyingguanghan}
 /nop 『霜冷残霞』(shuanglengcanxia)
@@ -168,7 +170,9 @@
 /var smok 1
 /ac {^你向%1开始移动。（40->35)}{de2 {/if {$smok==1}{sm}}}
 /unac {^你向%1开始移动。（30->25)}{/if {$smok==1}{sm;/showme --- 2 try to sm--}}
-/ac {^smch 挑兵器}{/var smok 0}
+/ac {^smch 挑兵器}{
+    /if {$smok == 1}{do unwield sleepbag,wield hammer,wield hammer2};
+}
 /ac {^你使出一式『锁梦缠魂』，枪身似灵蛇}{iskill;/var smok 0;/var smnpc 1;/delay {60}{/var smok 1};
     do unwield sleepbag,wield hammer,wield hammer2;
     }
@@ -305,7 +309,7 @@
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{hn}}
-/ac {^然而，%1已经死了}{hhh;/if {$is_kill==1}{cks};}
+/ac {^然而，%1已经死了}{sm;/if {$is_kill==1}{cks};}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;

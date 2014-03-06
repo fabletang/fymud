@@ -185,7 +185,7 @@
 /al xg {get %0 from corpse;put %0 in small bag}
 /al lb {look small bag}
 /al gb {get %0 from small bag}
-/al xp {put %0 in small bag;get %0 from corpse;qput %0}
+/al xp {do put %0 in small bag,get %0 from corpse,qput %0}
 /al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
