@@ -36,7 +36,8 @@
 /ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
 /var jqs_lost_limit 0.1
-/ac {^你的伤势好了一些}{stopk;de2 {hxx;cks};}
+/ac {^你的伤势好了一些}{de2 {hx;cks};}
+/ac {^你盘坐合掌道：一微尘中入三昧}{}
 /ac {^疗伤时至少需要有最大内力值护体}{hn;sleep sleepbag;de2 cks}
 /var hashxx 0
 /al hxx {/if {$hashxx==0}{exert jingxin}} 
@@ -51,6 +52,7 @@
 /var hammer2 0
 /var hammer 0
 /var spear 0
+/var axe2 0
 /var hassword 0
 /al ishammer {/var hammer  1;/var spear 0;/showme ishammer;}
 /al nohammer {/var hammer 0;/showme nohammer;}
@@ -66,9 +68,11 @@
 /al nosword2 {/var sword2  0;/showme no sword2;}
 /al isblade2 {/var sword2 0;/var blade2 1;/showme is blade2;}
 /al noblade2 {/var blade2  0;/showme no blade2;}
-/al ishammer2 {/var hammer2 1;/var sword2 0;/var blade2 0;/showme is hammer2;}
+/al ishammer2 {/var hammer2 1;/var sword2 0;/var blade2 0;/var axe2 0;/showme is hammer2;}
 /al nohammer2 {/var hammer2  0;/showme no hammer2;}
-/al isspear {/var spear 1;/var sword2 0;/var blade2 0;/var hammer2 0;/var hammer 0;/showme is spear;}
+/al isaxe2 {/var axe2 1;/var sword2 0;/var blade2 0;/var hammer2 0;/showme is axe2;}
+/al noaxe2 {/var axe2  0;/showme no axe2;}
+/al isspear {/var spear 1;/var sword2 0;/var blade2 0;/var axe2 0;/var hammer2 0;/var hammer 0;/showme is spear;}
 /al nospear {/var spear 0;/showme no spear;}
 /ac {^你装备神之祝福铁锤}{ishammer}
 /ac {^你放下手中的神之祝福铁锤。}{nohammer}
@@ -87,8 +91,12 @@
 /ac {^  √★流星★(hammer2)(LV1)}{ishammer2}
 /ac {^你放下手中的★流星★}{nohammer2}
 /ac {^    ★流星★(hammer2)}{nohammer2}
-/ac {^  √★断魂★(sleepbag)(LV1)}{isspear}
-/ac {^    ★断魂★(sleepbag)(LV1)}{nospear}
+/ac {^你抽出一把明晃晃的★泼风★}{isaxe2}
+/ac {^  √★泼风★(axe2)}{isaxe2}
+/ac {^你放下手中的★泼风★}{noaxe2}
+/ac {^    ★泼风★(axe2)}{noaxe2}
+/ac {^  √★断魂★(sleepbag)}{isspear}
+/ac {^    ★断魂★(sleepbag)}{nospear}
 /ac {^  √＊赤炼＊(sword2)}{isword2}
 /ac {^    ＊赤炼＊(sword2)}{nosword2}
 /ac {^  √＊百鬼夜狂＊(blade2)}{isblade2}
@@ -100,6 +108,22 @@
 /al wispear {/if {$spear==0}{do unwield all,wield sleepbag}}
 /al wihammer {/if {$spear==1}{do unwield sleepbag,wield zhufu hammer}{/if {$hammer==0}{wi hammer}}}
 /al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
+/al wih2 {
+                /if {$spear==1}{do unwield spear,wield hammer2}{
+        /if {$axe2==1 || $blade2==1}{
+             do unwield axe2,unwield blade2,wield hammer2}{
+                        /if {$hammer2==0}{wield hammer2}
+                                                            }
+                                           }
+         }
+/al wia2 {
+        /if {$spear==1}{do unwield spear,wield axe2}{
+        /if {$hammer2==1 || $blade2==1}{
+            do unwield hammer2,unwield blade2,wield axe2}{
+                                /if {$axe2==0}{wield axe2}
+                                                }
+                                                        }
+         }
 /al wis2 {
         /if {$blade2==1}{do unwield blade2,wield sword2}{
                                 /if {$sword2==0}{wi sword2}
@@ -138,21 +162,13 @@
 /al bg {set secon_perform hyakki;wib2;/showme ====== 刀  bg}
 /al qie {set secon_perform gobankiri;wib2;/showme ########### 刀 qie######}
 /al jj {do unwield sword,wield blade,perform gobankiri;slcx}
-/nop 『碧映光寒』(biyingguanghan)
-/nop duanhun-spear
-/al sm {do unwiled all,wield sleepbag,perform suomengchanhun;
-        /delay {0.5}{/showme ====== smch 挑兵器=====};
-        }
-/al sm {wispear;perform suomengchanhun;/showme smch 挑兵器=====}
-/al bygh {wisword;perform sword.biyingguanghan}
-/nop 『霜冷残霞』(shuanglengcanxia)
-/nop 『碧映光寒』(biyingguanghan)
-/nop 『雁渡寒潭』〔yanduhantan〕
-/nop 『意染苍云』（yirancangyun）
-/al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== 剑  slcx}
-/al yrcy {set secon_perform yirancangyun;wis2;/showme ====== 剑  *yrcy}
-/al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
-/al tp {perform dodge.feiyanshi}
+/nop duanhun-spear『七星夺魄』（qixingduopo） 
+/al sm {/if {$smok==1}{wispear;perform suomengchanhun;de1 {/showme smch 挑兵器=====}}}
+/al qx {wispear;perform qixingduopo;de1 {/showme qxdp 夺魄=====}}
+/nop wuche-axe『三板斧』（sanbanfu） 
+/al sbf {wihammer;wia2;set secon_perform sanbanfu}
+/nop liuxing-hammer
+/al fb {wihammer;wih2;set secon_perform fanbei}
 /nop 技能检查
 /var yrcyok 1
 /var bgok 0
@@ -168,10 +184,18 @@
 /nop smch 锁梦残魂
 /var smnpc 0
 /var smok 1
-/ac {^你向%1开始移动。（40->35)}{de2 {/if {$smok==1}{sm}}}
-/unac {^你向%1开始移动。（30->25)}{/if {$smok==1}{sm;/showme --- 2 try to sm--}}
+/var qxok 1
+/ac {^你向%1开始移动。（%2->%3)}{
+    /if {%2==40||%2==35}{
+     de2 {/if {$smok == 1}{sm}{ /if {$qxok==1}{;}};
+                                        }};
+    /if {%2==25}{
+    /if {$smok == 1}{sm}{ /if {$qxok==1}{;}};
+                                        }
+                                }
 /ac {^smch 挑兵器}{
-    /if {$smok == 1}{do unwield sleepbag,wield hammer,wield hammer2};
+    /nop if {$smok == 1}{do unwield sleepbag,wield hammer,wield hammer2};
+    /if {$smok == 1}{fb};
 }
 /ac {^你使出一式『锁梦缠魂』，枪身似灵蛇}{iskill;/var smok 0;/var smnpc 1;/delay {60}{/var smok 1};
     do unwield sleepbag,wield hammer,wield hammer2;
@@ -179,7 +203,6 @@
 /ac {^你使出一式『锁梦缠魂』，手中的}{iskill;/var smok 0;/var smnpc 0;/delay {60}{/var smok 1};
     do unwield sleepbag,wield hammer,wield hammer2;
     }
-
 /nop 百鬼busy效果
 /var npcbusy 0
 /ac {^突然，一蓬鲜血激射}{
@@ -220,7 +243,7 @@
             gongji %0;
                     }
         }
-/al ki {i;buff;de1 {wihammer;wi hammer2};de2 {/var target %0;kill %0}} 
+/al ki {i;buff;de1 fb;de2 {/var target %0;kill %0}} 
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
@@ -293,23 +316,17 @@
 /al sk {stopk;cks}
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{h;/showme ----todo 危险-----}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue;tp}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;tp}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{jiasi}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『锁梦缠魂』只能对战}{sk}
-/ac {^『连环步』只能对战}{sk}
-/ac {^『雁渡寒潭』只能对战}{sk}
-/ac {^迷魂术只能对战}{sk}
+/ac {^诵经只能在战}{sk}
 /ac {^此特技只能在战斗中使用}{sk}
-/ac {^『破颅』只能对战}{sk}
-/ac {^『飞雁式』只能在战斗}{sk}
-/ac {^你不在战斗中，不需要假死}{sk}
-/ac {^『九阴毒雾』只能在战}{sk}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{hn}}
-/ac {^然而，%1已经死了}{sm;/if {$is_kill==1}{cks};}
+/ac {^然而，%1已经死了}{chant;/if {$is_kill==1}{cks};}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -327,8 +344,7 @@
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
-            wi zhufu hammer;
-            wi hammer2;
+          fb; 
            /nop reffs;
            /nop if {$is_kill==1}{wh};
             gongji $target;
@@ -371,3 +387,4 @@
 /ac {^疗伤时至少需要有最大内力值护体}{hn;de2 cks}
 /ac {^此人已经不需要使用此疗伤心法}{cks}
 /ac {^你所受到的菩提虚空步法·无物无我的效用消失了。}{}
+/ac {^结果你被%2攻了个手忙脚乱}{/var busy 1}

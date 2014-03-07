@@ -473,3 +473,4 @@
 /al getbatdrug {wlk;do w,w,w,w,d,w,get all from woodcase,store bat drug;nwlk}
 /al st {remove %0;unwield %0;store %0}
 /al gxy {give %0 to xiao yuer}
+/ac {^祭武器将会使用十两黄金}{continue yes}
