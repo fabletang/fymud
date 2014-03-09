@@ -251,7 +251,7 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
 /al kb {ki bandit}
-/ac {^此人看来是这儿的首领}{burn;de3 burn}
+/ac {^此人看来是这儿的首领}{x book;burn;de3 burn}
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
 /al askgl {cancel;de2 newtask}

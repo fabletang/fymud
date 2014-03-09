@@ -488,6 +488,7 @@
 /nop al fy2wd {fye;de1 {unwi all;/7 s};de2 {/2 s;/5 su;enter;nwlk}}
 /al fy2wd {fy2wdz;de2 {unwi all;/5 s};de3 {/5 su;enter;nwlk}}
 /al wd2fy {wlk;out;/5 nd;de1 {/5 n};de2 {wdz2fy}}
+/al fy2wd2 {fy2wd;de4 {wlk;do ne,s,s,s,s,su,su,su,su;nwlk}}
 /nop old shandong
 /al fy2shandong {fy2wdz;de2 {do s,s,s,se,e;nwlk}}
 /al shandong2fy {nwlk;w;nw;n;n;n;wdz2fy}
@@ -874,12 +875,14 @@
 /al hsin  {wlk;do wu,se,sw,se,sw,e,su,su,eu,ed,eu,se,sd,sw,wu;n;nwlk}
 /nop 嵩山
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
+/al fy2sl {fyw;de1 {wlk;do w,nw,ne,nw,nu,nu,nu;nwlk}}
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /nop sl 方丈南院
 /al sl2fz {wlk;do eu,nw,n,n,n,nu,ask master yuan about 见方丈,answer 重要事,answer 经书被盗,nd,nu,nd;nwlk}
 /al fz2sl {wlk;do su,sd,su,sd,s,s,s,se,wd;nwlk}
 /al fy2fz {fy2sl;de2 sl2fz}
 /al sl2nm {sl2fz;do nu,nu,nu,nd}
+/al fy2nm {fy2sl;de2 sl2nm}
 /al nm2sl {wlk;do su,sd,sd,sd;fz2sl}
 /al fz2xie {wlk;do nu,nu,nu,nd,n,n,n,nu,n,n,n,ne,nw,w,w;nwlk}
 /al xie2fz {wlk;do e,e,se,sw,s,s,s,sd,s,s,s,su,sd,sd,sd;nwlk}
@@ -1365,6 +1368,26 @@ wlk;
     /unac {^回风山庄};
     /unac {^舞柳阁}
 }
+/al fy2sm {
+    fy2xsl;
+    xslup+;
+    ljb2sm+
+}
+/al ljb2sm {walk 绿松石门} 
+/al ljb2sm+ {
+    wlk;
+    /ac {^两界碑}{w};
+    /ac {^千方雾障}{de2 w};
+    /ac {^劫余岭}{de2 w};
+    /ac {^黑木门}{w;ljb2sm;ljb2sm-};
+}
+/al ljb2sm- {
+    nwlk;
+    /unac {^两界碑};
+    /unac {^千方雾障};
+    /unac {^劫余岭};
+    /unac {^黑木门};
+}
 /al wlg2ljb {wlg2ljb+;l}
 /al wlg2fy+ {
     wlk;
@@ -1722,6 +1745,7 @@ nwlk;
 /al xslnt {wlk;d;/2 n;e;n;ask youngman about 差事;s;w;/2 s;u;nwlk}
 /al sqnt {wlk;n;ask master about 烦恼;s;open door;/6 s;climb down;nwlk}
 /ac {^有一批宝藏就在%1的方向！你可以用 %2 来寻找它}{%2;de1 {read afrji}}
+/ac {^有一批宝藏就在%1的方向！你可以用 %2 来寻找它}{%2;de1 {read afrji;read map}}
 /nop 龙虎寨
 /al bc2lhz {pl {se;e;e;e;e;s;s;se;listen;l south;s;disarm;se;climb tree};pr;de3 {/10 scout}}
 /nop fy to room set room 000

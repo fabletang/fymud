@@ -23,7 +23,7 @@
 /var petname xhs
 /var haspet 0
 /al wpet {order wear all}
-/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
+/ac {^你对着悟空}{/var haspet 1;/showme --pet has 1----}
 /ac {^悟空不知从哪里窜}{/var haspet 1}
 /al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
 /al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
@@ -31,7 +31,7 @@
 /al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{/var haspj 0;pj}
 /var haspj 0
-/ac {^小小爪左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
+/ac {^悟空左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
 /ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
@@ -185,23 +185,30 @@
 /var smnpc 0
 /var smok 1
 /var qxok 1
+/var juli 40
+/ac {^你纵身越到了}{/var juli 1}
+/ac {^你现在距离%1%d码。}{/var juli %2;/showme ----juli = $juli}
+/ac {向你开始移动。（%2->%3)。}{/var juli %2;/showme ====juli =$juli}
 /ac {^你向%1开始移动。（%2->%3)}{
-    /if {%2==40||%2==35}{
-     de2 {/if {$smok == 1}{sm}{ /if {$qxok==1}{;}};
-                                        }};
-    /if {%2==25}{
-    /if {$smok == 1}{sm}{ /if {$qxok==1}{;}};
-                                        }
+    /var juli %2;
+    /showme ---+ juli= $juli;
+     /if {$juli<21}{sm};
+     de1 {/if {$juli<21}{sm}};
+     de2 {/if {$juli<21}{sm}};
+                                        
                                 }
 /ac {^smch 挑兵器}{
     /nop if {$smok == 1}{do unwield sleepbag,wield hammer,wield hammer2};
-    /if {$smok == 1}{fb};
+    /if {$smok == 1}{sbf};
 }
 /ac {^你使出一式『锁梦缠魂』，枪身似灵蛇}{iskill;/var smok 0;/var smnpc 1;/delay {60}{/var smok 1};
-    do unwield sleepbag,wield hammer,wield hammer2;
+   /nop  do unwield sleepbag,wield hammer,wield hammer2;
+   sbf;
     }
+/ac {^但是被%1格开了。$}{/var smnpc 0}
 /ac {^你使出一式『锁梦缠魂』，手中的}{iskill;/var smok 0;/var smnpc 0;/delay {60}{/var smok 1};
-    do unwield sleepbag,wield hammer,wield hammer2;
+   /nop do unwield sleepbag,wield hammer,wield hammer2;
+    sbf;
     }
 /nop 百鬼busy效果
 /var npcbusy 0
@@ -243,7 +250,7 @@
             gongji %0;
                     }
         }
-/al ki {i;buff;de1 fb;de2 {/var target %0;kill %0}} 
+/al ki {i;buff;de1 sbf;de2 {/var target %0;kill %0}} 
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
@@ -311,6 +318,7 @@
         /var fdok 0;
         /var haskill 0;
         /var haspo 0;
+        /var juli 40;
         /undelay {checkbg};
         }
 /al sk {stopk;cks}
@@ -321,6 +329,7 @@
 /ac {^( 你已经陷入半昏迷状态，神智全失}{}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『锁梦缠魂』只能对战}{sk}
+/ac {^『三板斧』只能对战}{sk}
 /ac {^诵经只能在战}{sk}
 /ac {^此特技只能在战斗中使用}{sk}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
@@ -344,7 +353,7 @@
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你！}{
-          fb; 
+          sbf; 
            /nop reffs;
            /nop if {$is_kill==1}{wh};
             gongji $target;
