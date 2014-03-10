@@ -1,0 +1,149 @@
+#config {TINTIN CHAR} /
+/var myname stick
+/var passwd Sea123
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname 117.135.143.81 6666
+/nop session $myname china.fengyun.com 6000
+/session $myname fy.sysfon.com 6000
+/nop session $myname fy.hbisp.com 3333
+/read comm/login.sc
+/var hasstaff 0
+/var hashand 0
+/al wistaff {/if {$hasstaff==0}{do unwield all,wield staff}}
+/al wihand {/if {$hashand==0}{do unwield all,wield jade}}
+/al wiw wistaff
+/ac {^  √★降龙伏虎★(jade)}{/var hashand 1;/var hasstaff 0} 
+/ac {^你从怀中摸出一对★降龙伏虎★}{/var hashand 1;/var hasstaff 0} 
+/ac {^你将手上的★降龙伏虎★藏入}{/var hashand 0} 
+/ac {^    ★降龙伏虎★(jade)}{/var hashand 0} 
+/ac {^你装备神之祝福宝杖}{/var hashand 0;/var hasstaff 1} 
+/ac {^  √神之祝福宝杖(zhufu staff)}{/var hasstaff 1;/var hashand 0} 
+/ac {^你放下手中的神之祝福宝杖}{/var hasstaff 0}
+/al tbuff {/showme todo}
+/al xl {tbuff;wihand;perform xianglongwuhui}
+/al sc {tbuff;wihand;perform shichengliulong}
+/var islian 0
+/var haspet 0
+/ac {^一只小小小小宠物}{/var haspet 1}
+/al wh {/var haspet 0;l xxg;/delay {0.8}{/if {$haspet==0}{whistle;order team with xxc;wpet}}}
+/al pj {performp freeze}
+/al pjj {performp canglongzhaxian}
+/ac {将周身凝聚的冰块震得粉碎！！}{pj}
+/ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
+/al wpet {order wear all}
+/al buff {wh;perform dodge.gouweixudiao}
+/al buff {perform dodge.gouweixudiao}
+/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
+/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;}
+/nop ------------
+/var xl_max 0
+/var sc_ok 0
+/var zjbl_ok 0
+/al ak xl
+/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
+/al startk {xl;/al ak xl;kkx}
+/al kx startk
+/al ssk startk
+/ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
+    iskill;
+    /var npcn %1;
+    /var zjbl_ok 0;
+    /var xl_max 0;
+    /delay {20}{/var xl_max 1;/al ak xl};
+    /var sc_ok 0;
+    /al ak sc;
+}
+/al czj {tbuff;wistaff;perform chuozijue}
+/al bzj {tbuff;wistaff;perform banzijue}
+/al tzj {tbuff;wistaff;perform tiaozijue}
+/al yzj {tbuff;wistaff;perform yinzijue}
+/al txwg {tbuff;wistaff;perform tianxiawugou}
+/al zjbl {wihand;perform zhenjingbaili}
+/al ps tzj
+/ac {^%1只觉掌风扑面，气息窒滞}{
+    iskill;
+    /var npcn %0;
+    sc+;
+}
+/nop zjbl
+/nop al ak zjbl
+/ac {^你所受到的野狗步法%0效用消失}{/al tbuff {perform dodge.gouweixudiao};tbuff}
+/ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo};/delay {120}{/al tbuff {perform dodge.gouweixudiao}}}
+/ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
+/nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
+/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show todo}
+/ac {^你须发尽赤，浑身无俦真气}{pj}
+/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
+/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
+/ac {^随着长声惨叫}{pjj;czj;/al ak czj}
+/ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
+/ac {^你需要过%1秒才能再次使用引字诀}{czj}
+/ac {^你低喝一声『天下无狗』}{/al ak tzj}
+/ac {^对方已经手忙脚乱了。}{czj}
+/ac {^对方已经不能动弹了}{czj}
+/ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
+/ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
+/ac {^对方没有武器，无从使用『挑字诀』}{yzj}
+/ac {^这件武器看来没法挑下来}{yzj}
+/ac {^对方现在防备的很严，没希望挑下来}{bzj}
+/al sc+ {
+/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl;sc-;de8 {/al ak sc}}; 
+/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;sc-;de8 {/al ak sc}};
+/ac {招架此招} {tzj;sc-;de8 {/al ak sc}};
+/ac {俨然无懈可击} {tzj;de8 {/al ak sc}};
+/ac {觑得亲切，不退反进，借势击向你} {yzj;sc-;de8 {/al ak sc}};
+/ac {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj;sc-;de8 {/al ak sc}}
+}
+/al sc- {
+/ac {和身扑上，旋转着但极快疾地欺近你}; 
+/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招};
+/ac {招架此招};
+/ac {俨然无懈可击};
+/ac {觑得亲切，不退反进，借势击向你};
+/ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
+}
+/nop -----------------
+/ac {^你大喝一声，犹似半空响了个霹雳}{}
+/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『降龙无悔』只能对战}{stopk;cks}
+/ac {^『时乘六龙』只能对战}{stopk;cks}
+/ac {^『震惊百里』只能对战}{stopk;cks}
+/ac {^『引字诀』只能对战}{stopk;cks}
+/ac {^『绊字诀』只能对战}{stopk;cks}
+/ac {^『戳字诀』只能对战}{stopk;cks}
+/ac {^『挑字诀』只能对战}{stopk;cks}
+/ac {^『天下无狗』只能对战}{stopk;cks}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
+/ac {^使用特殊招式至少需要50点的内力}{wiw;}
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/nop log o $myname.log
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/al hx {get matong from bag; drink matong; put matong in bag}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
+/al fy2zt {fy2ztv}
+/unac {^然而，%1已经死了}{cks}
+/al getitem {
+     stack;
+     retrieve 6455;
+     retrieve 9935;
+     retrieve 7815;
+     retrieve 1577;
+     retrieve 2251;
+     remove all;
+     wear all
+}
+/read comm/autorecover_hc.sc
+/read comm/status.sc
+/al qq {fox;quest}
+/al petbuff {order wear all;order wield ironfist}
+/al ffy {recall back;do w,n,e,e,e,n,u}

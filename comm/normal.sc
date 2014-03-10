@@ -460,7 +460,7 @@
     /var it_sn %1;
     /var it_num %4;
     /if {"$it_code"=="%5 %6"}{
-                    /if {"$it_code"="zhufu sword"}{
+                    /if {"$it_code"=="zhufu sword"}{
                     take %1 %4;
                     }{take %1 1};
                     /var it_code none;
@@ -474,3 +474,4 @@
 /al st {remove %0;unwield %0;store %0}
 /al gxy {give %0 to xiao yuer}
 /ac {^祭武器将会使用十两黄金}{continue yes}
+/ac {^你的身体状况无法强化练习}{sleep sleepbag}

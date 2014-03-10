@@ -1,19 +1,10 @@
 #config {TINTIN CHAR} /
 /var myname shaman 
+/var passwd Sea123
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /session $myname fy.sysfon.com 6000
-/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
-/al ntchat {/unticker {checkchat}}
-/format ttfile {%s.tt}{$myname}
-/al reload {/read $ttfile}
-/act {^请选择您使用的内码}{0}
-/act {^您的英文名字：} {$myname}
-/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{xixi;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
-/ac {^#SESSION '%0' DIED.}{reload}
-/ac {^#SESSION '%0' ACTIVATED.}{reload}
+/read comm/login.sc
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
