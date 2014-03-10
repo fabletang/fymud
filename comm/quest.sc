@@ -255,3 +255,4 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
 /al askgl {cancel;de2 newtask}
+/al asktaobaoyi {ask tao baoyi about ÌÕÊÏ;de2 {ask tao baoyi about Ò©Òı×Ó};de3 {give fish to tao baoyi}}

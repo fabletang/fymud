@@ -34,7 +34,7 @@
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
-/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;}}
+/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;}
 /nop ------------
 /var xl_max 0
@@ -127,7 +127,7 @@
 /read comm/quest.sc
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/al hx {get matong from bag; drink matong; put matong in bag}
+/al hx {exert canhejue;use baiyao}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
 /al fy2zt {fy2ztv}
@@ -147,3 +147,5 @@
 /al qq {fox;quest}
 /al petbuff {order wear all;order wield ironfist}
 /al ffy {recall back;do w,n,e,e,e,n,u}
+/ac {^你的伤势好了一些。}{de1 hp}
+/ac {^结果%1被你攻了个手忙脚乱}{de2 czj}
