@@ -256,3 +256,4 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
 /al askgl {cancel;de2 newtask}
 /al asktaobaoyi {ask tao baoyi about 陶氏;de2 {ask tao baoyi about 药引子};de3 {give fish to tao baoyi}}
+/ac {^天机老人皱着眉头说：我也不强人所难}{/delay {181}{quest}}

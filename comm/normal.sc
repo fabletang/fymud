@@ -475,3 +475,5 @@
 /al gxy {give %0 to xiao yuer}
 /ac {^祭武器将会使用十两黄金}{continue yes}
 /ac {^你的身体状况无法强化练习}{sleep sleepbag}
+/al gmg {/math ggold {%0*1000000};wlk;do d,w,w,w,n,withdraw $ggold;de4 {convert %0 tenthousand-cash to gold};de6 {do s,e,e,e,u;nwlk}} 
+/ac {^古龙说，这点钱不够啊,恢复等级需要%0两黄金。}{give %0 gold to gulong}

@@ -51,9 +51,9 @@
 /al rx {exert bikongxi}
 /al rs {exert danxinzhao}
 /al rj {exert qingfengdang}
-/read gag.sc
-/read path.sc
-/read normal.sc
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
 /read team.sc
 /read quest.sc
 /read status.sc
@@ -102,3 +102,5 @@
      wear all
 }
 /read autorecover.sc
+/al ffy {recall back;do w,n,e,e,e,n,u}
+/ac {^ÄàµÄË®²Ý}{ga Ë®²Ý;open woodcase;ga woodcase}

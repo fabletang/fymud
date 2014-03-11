@@ -13,19 +13,21 @@
 /al wihand {/if {$hashand==0}{do unwield all,wield jade}}
 /al wiw wistaff
 /ac {^  √★降龙伏虎★(jade)}{/var hashand 1;/var hasstaff 0} 
-/ac {^你从怀中摸出一对★降龙伏虎★}{/var hashand 1;/var hasstaff 0} 
+/ac {^你从怀中摸出一对★降龙伏虎★}{/var hashand 1;/var hasstaff 0;enable parry dragonstrike} 
 /ac {^你将手上的★降龙伏虎★藏入}{/var hashand 0} 
 /ac {^    ★降龙伏虎★(jade)}{/var hashand 0} 
-/ac {^你装备神之祝福宝杖}{/var hashand 0;/var hasstaff 1} 
+/ac {^你装备神之祝福宝杖}{/var hashand 0;/var hasstaff 1;enable parry dagou-stick} 
 /ac {^  √神之祝福宝杖(zhufu staff)}{/var hasstaff 1;/var hashand 0} 
 /ac {^你放下手中的神之祝福宝杖}{/var hasstaff 0}
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
 /al sc {tbuff;wihand;perform shichengliulong}
+/al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
+/al sc {tbuff;wistaff;perform unarmed.shichengliulong}
 /var islian 0
 /var haspet 0
-/ac {^一只小小小小宠物}{/var haspet 1}
-/al wh {/var haspet 0;l xxg;/delay {0.8}{/if {$haspet==0}{whistle;order team with xxc;wpet}}}
+/read comm/pet.sc
+/var petname xxg
 /al pj {performp freeze}
 /al pjj {performp canglongzhaxian}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
@@ -34,8 +36,8 @@
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
-/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj;startk}}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;}
+/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
@@ -54,12 +56,13 @@
     /var sc_ok 0;
     /al ak sc;
 }
-/al czj {tbuff;wistaff;perform chuozijue}
-/al bzj {tbuff;wistaff;perform banzijue}
-/al tzj {tbuff;wistaff;perform tiaozijue}
-/al yzj {tbuff;wistaff;perform yinzijue}
-/al txwg {tbuff;wistaff;perform tianxiawugou}
-/al zjbl {wihand;perform zhenjingbaili}
+/al czj {tbuff;wistaff;perform staff.chuozijue}
+/al bzj {tbuff;wistaff;perform staff.banzijue}
+/al tzj {tbuff;wistaff;perform staff.tiaozijue}
+/al yzj {tbuff;wistaff;perform staff.yinzijue}
+/al txwg {tbuff;wistaff;perform staff.tianxiawugou}
+/al zjbl {wihand;perform unarmed.zhenjingbaili}
+/al zjbl {wistaff;perform unarmed.zhenjingbaili}
 /al ps tzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
@@ -72,7 +75,7 @@
 /ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo};/delay {120}{/al tbuff {perform dodge.gouweixudiao}}}
 /ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
 /nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
-/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show todo}
+/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show ----todo}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
 /ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
@@ -149,3 +152,22 @@
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^你的伤势好了一些。}{de1 hp}
 /ac {^结果%1被你攻了个手忙脚乱}{de2 czj}
+/var pcaizhi 1
+/var pyunqi 1
+/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
+/var pcaizhi %1;
+}
+/ac {^│年龄：三岁                            │运气：%s%1/}{
+    /var pyunqi %1;
+    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
+    /if {$pcaizhi <14 || $pyunqi <14}{
+    /nop dismissp $petname;
+    /nop de2 yangcw
+    }
+}
+/al yangcw {withdraw 50000;de2 {withdraw 50000};
+    de4 {yang monkey $HIY$ 小小棍 $petname};
+    de7 whistle;
+    de9 scorep;
+
+    }
