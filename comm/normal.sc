@@ -382,7 +382,7 @@
 /al ddc {drop %1 coin}
 /al getcoin {keychain -coin}
 /ac {^战斗中不能打坐}{iskill}
-/ac {^== 未完继续 %1 == (ENTER 继续下一页}{/cr}
+/ac {^== 未完继续%s%1% == (ENTER 继续下一页}{/if {%1<40}{/cr;/cr;/cr;}{/cr;/cr;}}
 /al wearmonkclothes {gb monk clothes;do remove cloth,remove surcoat,wear monk clothes,wear all}
 /al wmk {tbxl monk clothes;de4 wearmonkclothes}
 /al smk {tsell monk clothes}

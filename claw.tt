@@ -34,7 +34,7 @@
 /var haspj 0
 /ac {^小小爪左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{zm;/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
 /var jqs_lost_limit 0.1
 /ac {^你的伤势好了一些}{stopk;de2 {hxx;cks};}
@@ -140,6 +140,7 @@
 /al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== 剑  slcx}
 /al yrcy {set secon_perform yirancangyun;wis2;/showme ====== 剑  *yrcy}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
+/al zm   {do unwield all,perform dodge.zhuiming,wield zhufu sword;slcx}
 /al tp {perform dodge.feiyanshi}
 /nop 技能检查
 /var yrcyok 1
@@ -172,6 +173,8 @@
 /ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{trypo;de3 trypo}}
 /ac {脸憋得通红，忽感天旋地转}{trypo;de3 trypo}
 /ac {^袖中伸出纤纤素手}{/var haspo 1;iskill}
+/var haszm 0
+/ac {^你一声轻笑，身形展动，按着奇门八卦方位}{/var haszm 1}
 /var haskill 0
 /al ki {do wield zhufu sword,i,hp;
         set target %0;
@@ -242,7 +245,7 @@
 /ac {^你脸上神色惨然，猛一咬牙}{
     /var yrcyok 0;
     de1 cks;
-    /delay {181}{/var yrcyok 1};
+    /delay {174}{/var yrcyok 1};
     /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{slcx};
                                     };
@@ -258,6 +261,7 @@
         /var fdok 0;
         /var haskill 0;
         /var haspo 0;
+        /var haszm 0;
         /undelay {checkbg};
         }
 /ac {^你向%1开始移动。（40->35)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{hhh}}
@@ -301,6 +305,7 @@
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
             reffs;
+            gongji $target;
            /if {$is_kill==1}{wh};
             gongji $target;
             pj;
