@@ -22,8 +22,6 @@
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
 /al sc {tbuff;wihand;perform shichengliulong}
-/al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
-/al sc {tbuff;wistaff;perform unarmed.shichengliulong}
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
@@ -36,8 +34,13 @@
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
+<<<<<<< HEAD
 /al ki {wi staff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
+=======
+/al ki {i;wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill}
+>>>>>>> 71a2311b2df87c8fb123466ea17ff5a4231c27df
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
@@ -62,7 +65,6 @@
 /al yzj {tbuff;wistaff;perform staff.yinzijue}
 /al txwg {tbuff;wistaff;perform staff.tianxiawugou}
 /al zjbl {wihand;perform unarmed.zhenjingbaili}
-/al zjbl {wistaff;perform unarmed.zhenjingbaili}
 /al ps tzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
@@ -120,7 +122,7 @@
 /ac {^『天下无狗』只能对战}{stopk;cks}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{sk}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
 /ac {^使用特殊招式至少需要50点的内力}{wiw;}
@@ -171,3 +173,4 @@
     de9 scorep;
 
     }
+/ac {^看起来%0想杀死你！}{startk}
