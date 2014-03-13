@@ -200,11 +200,11 @@
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
     /showme =========== slcx ==============;
-    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
+    /nop if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
                             /if {$shaqi>0 || $bgok_t==1}{bg}{
                                         /if {$yrcyok==1}{yrcy}{slcx};
                                                     };
-                                                      };
+        /nop               };
     /delay {2.1} {
                     /if {$shaqi>0 || $bgok_t==1}{bg}{
                                                     /if {$yrcyok==1}{yrcy}{slcx};
@@ -345,3 +345,4 @@
 /nop 水离(Shui li)	** 战斗中 **(LV 
 /ac {^疗伤时至少需要有最大内力值护体}{hn;de2 cks}
 /ac {^此人已经不需要使用此疗伤心法}{cks}
+/ac {^　　只听得一声混沌初破似的巨响炸开，神之祝福宝剑化作了无数碎片}{qt zhufu sword;de3 wi zhufu sword}

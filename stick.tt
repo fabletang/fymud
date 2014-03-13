@@ -36,7 +36,7 @@
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
-/al ki {wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
+/al ki {wi staff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
 /nop ------------
 /var xl_max 0
