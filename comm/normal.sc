@@ -93,8 +93,7 @@
     /delay {4}{hp;eatall;dazuo}
 }
 /ac {死了。}{look corpse}
-/ac {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
-/ac {^绿洲}{;}
+/nop {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
 /nop ac {^大明湖}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^酒肉和尚说道：“她此番逃将出去}{open door;s;pull 小柜}
 /nop ac {你的玄灵玉盒中没有%0这个物品。}{qxl %0; /delay {3}{i}}

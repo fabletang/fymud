@@ -15,7 +15,7 @@
 /al wiw wistaff
 /var hasblade 0
 /var hasfushou 0
-/al isblade {/var hasblade 1;/var hasanqi 0;/var hashand 0; /showme isblade;}
+/al isblade {/var hasblade 1;/var hasanqi 0;/var hashand 0;/showme isblade;enable parry ittouryu}
 /al noblade {/var hasblade 0; /showme noblade;}
 /ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你装备神之祝福宝刀作武器}{isblade}
@@ -34,15 +34,20 @@
 /var haspet 0
 /read comm/pet.sc
 /var petname xxg
-/al pj {performp freeze}
-/al pjj {performp canglongzhaxian}
+/al lp {look $petname}
+/var haspj 0
+/var haspk 0
+/al pj {/if {$haspet ==1 && haspj==0}{performp freeze}}
+/al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
+/al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
+/ac {^奇冷的寒气包围了}{zjbl;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^小小棍纵身越到了}{pj}
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
-/al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
-/al ki {i;unwi all;wi zhufu blade;wi blade2;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
+/al ki {i;do unwield all,wield zhufu blade,wield blade2;wh;buff;set target %0;/var target %0;buff;/delay {2}{juji %0;kill %0;gongji %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
 /nop ------------
 /var xl_max 0
@@ -55,6 +60,7 @@
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
     iskill;
+    pj;
     /var npcn %1;
     /var zjbl_ok 0;
     /var xl_max 0;
@@ -113,10 +119,14 @@
 /ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
-/ac {^%0足尖着力，飘身后退。$}{wistaff;/showme --- sc fail wistaff todo----}
+/ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wistaff todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
-/al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
+/al stopk { 
+            /var haspj 0;
+            /var zjbl_ok 0;
+            /var xl_max 0;
+            /unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /ac {^『降龙无悔』只能对战}{stopk;cks}
 /ac {^『时乘六龙』只能对战}{stopk;cks}
@@ -131,7 +141,7 @@
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{sk}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
 /ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
-/ac {^使用特殊招式至少需要50点的内力}{wiw;}
+/ac {^使用特殊招式至少需要50点的内力}{hp}
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
@@ -179,7 +189,8 @@
     de9 scorep;
 
     }
-/ac {^看起来%0想杀死你！$}{startk}
+/ac {^看起来%0想杀死你！$}{startk;/if {$haspet==1}{wh;de2 {gongji $target}}}
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
-/ac {^突然，一蓬鲜血激射}{czj}
+/ac {^突然，一蓬鲜血激射}{czj;pk}
 /ac {^只好任%1落在一边。}{/showme todo }
+/ac {^你只觉得虎口一热，手中的神之祝福宝刀}{noblade}
