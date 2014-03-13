@@ -52,10 +52,10 @@
 /al nofushou {/var hasfushou 0;/showme nofushou;}
 /ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
 /ac {^你装备神之祝福宝刀}{iblade}
+/ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你装备%0棋子作武器}{ianqi}
 /ac {^你将仙人刺握在手中}{ianqi}
 /ac {^你放下手中的圆月弯刀}{noblade}
-/ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你放下手中的刀鞘}{nofushou}
 /ac {^你抽出一把明晃晃的刀鞘}{ifushou}
 /ac {^你放下手中的%0棋子}{noanqi}

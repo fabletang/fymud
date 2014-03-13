@@ -252,7 +252,7 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /al askxy askxiaoyuer
 /al kb {ki bandit}
 /ac {^此人看来是这儿的首领}{do get book from corpse,get book from corpse,get book from corpse;
-                            burn;de3 burn;st book;st book;st book}
+                            burn;st book;st book;st book}
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
 /al askgl {cancel;de2 newtask}

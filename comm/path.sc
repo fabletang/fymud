@@ -866,6 +866,7 @@
 
 /nop 风云到华山
 /al fy2hs {fy2cx;de7 cx2hs}
+/al fy2hs {fy2cx;de6 cx2hs}
 /nop al hs2fy {hs2cx;de2 {cx2fy}}
 /al hs2fy {hs2cx;cx2fy+}
 /al hs2hua {pl {wlk;wu;wu;wu;se;sw;se;sw;e;su;su;eu;su;slide rock;nwlk};pr}
@@ -960,6 +961,7 @@
 /al cx2yks {wlk;do s,w,wu,wu,wd,wu,n,wu,nw,ne,nu,wd,s,se;nwlk}
 /al yks2cx {wlk;do nw,n,eu,sd,sw,se,ed,s,ed,eu,ed,ed,e,n;nwlk}
 /al fy2yks {fy2cx;de7 {cx2yks}}
+/al fy2yks {fy2cx;de6 {cx2yks}}
 /al yks2fy {yks2cx;cx2fy+}
 /nop monk 洗少林匪 10 silver/次
 /al yks2monk {do sw,w;wd;sw}
@@ -1145,7 +1147,7 @@ wlk;
 /nop lz2fy {lz2cx;cx2fy+}
 /al lz2fy {lz2sk;de1 {sk2fy}}
 /nop al fy2lz {fy2cx;cx2lz+}
-/al fy2lz {fy2cx;de7 {cx2lz}}
+/al fy2lz {fy2cx;de6 {cx2lz}}
 /al cx2lz+ {
     wlk;
     /ac {^老城广场}{cx2lz};
@@ -1514,6 +1516,7 @@ nwlk;
 /al buyleaf {wlk;n;e;sd;wd;wd;give xiaofan 10 silver;nwlk}
 /nop al fy2gw {fy2cx;de9 {cx2gw}}
 /al fy2gw {fy2cx;de7 {cx2gw}}
+/al fy2gw {fy2cx;de6 {cx2gw}}
 /al fy2tx {fy2cx;de7 {cx2gw};de11 {gw2tx}}
 /al gw2fy {gw2cx;cx2fy+}
 /al fy2wlb {fy2lz;de9 {lz2wlb}}

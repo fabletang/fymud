@@ -10,8 +10,16 @@
 /var hasstaff 0
 /var hashand 0
 /al wistaff {/if {$hasstaff==0}{do unwield all,wield staff}}
+/al wistaff {/if {$hasblade==0||$hashand==1}{do unwield all,wield blade2,wield zhufu blade}}
 /al wihand {/if {$hashand==0}{do unwield all,wield jade}}
 /al wiw wistaff
+/var hasblade 0
+/var hasfushou 0
+/al isblade {/var hasblade 1;/var hasanqi 0;/var hashand 0; /showme isblade;}
+/al noblade {/var hasblade 0; /showme noblade;}
+/ac {^你放下手中的神之祝福宝刀}{noblade}
+/ac {^你装备神之祝福宝刀作武器}{isblade}
+/ac {^  √神之祝福宝刀(zhufu blade)}{isblade}
 /ac {^  √★降龙伏虎★(jade)}{/var hashand 1;/var hasstaff 0} 
 /ac {^你从怀中摸出一对★降龙伏虎★}{/var hashand 1;/var hasstaff 0;enable parry dragonstrike} 
 /ac {^你将手上的★降龙伏虎★藏入}{/var hashand 0} 
@@ -34,13 +42,8 @@
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
 /al ki {wihand;set target %0;/var npc %0;buff;/delay {2}{wpet;juji %0;kill %0;gongji %0;pj;startk}}
-<<<<<<< HEAD
-/al ki {wi staff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk}
-=======
-/al ki {i;wistaff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
+/al ki {i;unwi all;wi zhufu blade;wi blade2;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0;pj}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
->>>>>>> 71a2311b2df87c8fb123466ea17ff5a4231c27df
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
@@ -68,8 +71,10 @@
 /al ps tzj
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
+    /if {"%1"=="你"}{/showme ---npc sc me !!!}{
     /var npcn %0;
     sc+;
+    }
 }
 /nop zjbl
 /nop al ak zjbl
@@ -79,21 +84,21 @@
 /nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show ----todo}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
-/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
+/ac {^%1已经破绽毕露，还不趁机进攻}{txwg}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
 /ac {^随着长声惨叫}{pjj;czj;/al ak czj}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{czj}
 /ac {^你低喝一声『天下无狗』}{/al ak tzj}
-/ac {^对方已经手忙脚乱了。}{czj}
-/ac {^对方已经不能动弹了}{czj}
+/ac {^对方已经手忙脚乱了。}{txwg}
+/ac {^对方已经不能动弹了}{txwg}
 /ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
 /ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
 /ac {^对方没有武器，无从使用『挑字诀』}{yzj}
 /ac {^这件武器看来没法挑下来}{yzj}
 /ac {^对方现在防备的很严，没希望挑下来}{bzj}
 /al sc+ {
-/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl;sc-;de8 {/al ak sc}}; 
+/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl;wistaff;sc-;de8 {/al ak sc}}; 
 /ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;sc-;de8 {/al ak sc}};
 /ac {招架此招} {tzj;sc-;de8 {/al ak sc}};
 /ac {俨然无懈可击} {tzj;de8 {/al ak sc}};
@@ -108,6 +113,7 @@
 /ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
+/ac {^%0足尖着力，飘身后退。$}{wistaff;/showme --- sc fail wistaff todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
 /al stopk {/var zjbl_ok 0;/var xl_max 0;/unticker {kill};nokill}
@@ -173,4 +179,7 @@
     de9 scorep;
 
     }
-/ac {^看起来%0想杀死你！}{startk}
+/ac {^看起来%0想杀死你！$}{startk}
+/ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
+/ac {^突然，一蓬鲜血激射}{czj}
+/ac {^只好任%1落在一边。}{/showme todo }
