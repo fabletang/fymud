@@ -103,4 +103,5 @@
 }
 /read autorecover.sc
 /al ffy {recall back;do w,n,e,e,e,n,u}
-/ac {^泥的水草}{ga 水草;open woodcase;ga woodcase}
+/ac {^泥的水草}{ga 水草;open woodcase;ga woodcase;summonnt qiankun;st shouhuan;st potion}
+/ac {^一条眼露凶光的食人鱼。}{l;de3 {dd woodcase}}

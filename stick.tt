@@ -11,14 +11,17 @@
 /var hashand 0
 /al wistaff {/if {$hasstaff==0}{do unwield all,wield staff}}
 /al wistaff {/if {$hasblade==0||$hashand==1}{do unwield all,wield blade2,wield zhufu blade}}
+/al wistaff {/if {$hasblade==0||$hashand==1}{do unwield all,wield blade2,wield zhufu sword}}
 /al wihand {/if {$hashand==0}{do unwield all,wield jade}}
 /al wiw wistaff
 /var hasblade 0
 /var hasfushou 0
-/al isblade {/var hasblade 1;/var hasanqi 0;/var hashand 0;/showme isblade;enable parry ittouryu}
+/al isblade {/var hasblade 1;/var hasanqi 0;/var hashand 0;/showme isblade;enable parry shilin-jian}
 /al noblade {/var hasblade 0; /showme noblade;}
 /ac {^你放下手中的神之祝福宝刀}{noblade}
+/ac {^你放下手中的神之祝福宝剑}{noblade}
 /ac {^你装备神之祝福宝刀作武器}{isblade}
+/ac {^你装备神之祝福宝剑作武器}{isblade}
 /ac {^  √神之祝福宝刀(zhufu blade)}{isblade}
 /ac {^  √★降龙伏虎★(jade)}{/var hashand 1;/var hasstaff 0} 
 /ac {^你从怀中摸出一对★降龙伏虎★}{/var hashand 1;/var hasstaff 0;enable parry dragonstrike} 
@@ -42,12 +45,13 @@
 /al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
-/ac {^奇冷的寒气包围了}{zjbl;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^小小棍纵身越到了}{pj}
+/ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
-/al ki {i;do unwield all,wield zhufu blade,wield blade2;wh;buff;set target %0;/var target %0;buff;/delay {2}{juji %0;kill %0;gongji %0}}
+/al ki {i;do unwield all,wield zhufu sword,wield blade2;wh;buff;set target %0;/var target %0;buff;/delay {2}{juji %0;kill %0;gongji %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
 /nop ------------
 /var xl_max 0
@@ -75,6 +79,7 @@
 /al txwg {tbuff;wistaff;perform staff.tianxiawugou}
 /al zjbl {wihand;perform unarmed.zhenjingbaili}
 /al ps tzj
+/al luo {wistaff;perform sword.luo}
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
     /if {"%1"=="你"}{/showme ---npc sc me !!!}{
@@ -90,14 +95,14 @@
 /nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show ----todo}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
-/ac {^%1已经破绽毕露，还不趁机进攻}{txwg}
+/ac {^%1已经破绽毕露，还不趁机进攻}{luo;txwg}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
 /ac {^随着长声惨叫}{pjj;czj;/al ak czj}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{czj}
 /ac {^你低喝一声『天下无狗』}{/al ak tzj}
-/ac {^对方已经手忙脚乱了。}{txwg}
-/ac {^对方已经不能动弹了}{txwg}
+/ac {^对方已经手忙脚乱了。}{luo;txwg}
+/ac {^对方已经不能动弹了}{luo;txwg}
 /ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
 /ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
 /ac {^对方没有武器，无从使用『挑字诀』}{yzj}
@@ -189,7 +194,7 @@
     de9 scorep;
 
     }
-/ac {^看起来%0想杀死你！$}{startk;/if {$haspet==1}{wh;de2 {gongji $target}}}
+/ac {^看起来%0想杀死你！$}{startk;xixi $petname;/if {$haspet==0}{wh;de2 {gongji $target;kill $target}}}
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{czj;pk}
 /ac {^只好任%1落在一边。}{/showme todo }

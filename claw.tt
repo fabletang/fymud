@@ -179,6 +179,7 @@
 /al ki {do wield zhufu sword,i,hp;
         set target %0;
         /var target %0;
+        buff;
         wh;
         /delay {0.5}{
             wpet;
@@ -189,7 +190,6 @@
                                                       };
             /var haskill 1;
             }
-        de1 buff;
         startk;
         /delay {3.1}{
             kill %0;
@@ -306,8 +306,9 @@
 /ac {^看起来%0想杀死你！}{
             wi zhufu sword;
             reffs;
+            xixi $petname;
             gongji $target;
-           /if {$haspet==0}{wh};
+           /if {$haspet==0}{wh;de1 {gongji $target;kill $target}};
             pj;
             /if {$haskill == 0}{
             /if {$qieok==1}{qie}{

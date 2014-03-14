@@ -258,3 +258,10 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /al askgl {cancel;de2 newtask}
 /al asktaobaoyi {ask tao baoyi about 陶氏;de2 {ask tao baoyi about 药引子};de3 {give fish to tao baoyi}}
 /ac {^天机老人皱着眉头说：我也不强人所难}{/delay {181}{quest}}
+/nop daqigu yellow bandit leader cyan killer 
+/ac {^正在创建副本...$}{center;turn rock}
+/ac {^几个人影闪进石门之中来！$}{open red}
+/ac {^江湖中又有消息传来，在该副本的%1室一带还有余孽活动。$}{
+de4 {/showme dq-%1}; 
+}
+/ac {^江湖中又有消息传来，在该副本的石道一带还有余孽活动。}{}

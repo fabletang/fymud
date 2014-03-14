@@ -19,3 +19,4 @@
 /nop §幻梦步法§ 『幻影千重』〔huanyinqianchong〕
 /al batk {performp shiwanshenmo}
 /al batj {performp hyqc}
+/ac {^你现在不可以吹口哨。}{de2 wh}
