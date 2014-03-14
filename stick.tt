@@ -36,6 +36,7 @@
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
+/read comm/kill.sc
 /var petname xxg
 /al lp {look $petname}
 /var haspj 0
@@ -51,7 +52,8 @@
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao}
-/al ki {i;do unwield all,wield zhufu sword,wield blade2;wh;buff;set target %0;/var target %0;buff;/delay {2}{juji %0;kill %0;gongji %0}}
+/al ki {i;set dmg_msg 1;
+        do unwield all,wield zhufu sword,wield blade2;wh;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;gongji %0}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
 /nop ------------
 /var xl_max 0
@@ -127,7 +129,7 @@
 /ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wistaff todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
-/al stopk { 
+/al stopk { set dmg_msg 0; 
             /var haspj 0;
             /var zjbl_ok 0;
             /var xl_max 0;
@@ -194,7 +196,12 @@
     de9 scorep;
 
     }
-/ac {^看起来%0想杀死你！$}{startk;xixi $petname;/if {$haspet==0}{wh;de2 {gongji $target;kill $target}}}
+/ac {^看起来%0想杀死你！$}{
+        look;
+        startk;
+        xixi $petname;
+        /if {$haspet==0}{wh;de2 {gongji $npc;juji $npc;kill $npc}}
+        }
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{czj;pk}
 /ac {^只好任%1落在一边。}{/showme todo }

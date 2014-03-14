@@ -45,6 +45,7 @@
 /al clean_var {/var emy_sen 100;/var emy_kee 100;/var emy_name_en none;nokill;nwlk}
 /ac {^Enemy:sen:%1/100}{/var emy_sen %1;/showme Getnpc}
 /ac {^Enemy:kee:%1/100}{/var emy_kee %1;/showme Getnpc}
+/al getnpc {/showme Getnpc}
 /prompt {^Getnpc}{<039>※$myname※<099>精:$jin 气:$qi 神:$shen 内力:$fce |$npc=血:$emy_kee 神:$emy_sen}
 /ac {^fystatus:kee:%1/%2/%3}{/var qi %1;/showme Getnpc}
 /ac {^fystatus:sen:%1/%2/%3}{/var shen %1;/showme Getnpc}

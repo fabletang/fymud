@@ -308,7 +308,7 @@
             reffs;
             xixi $petname;
             gongji $target;
-           /if {$haspet==0}{wh;de1 {gongji $target;kill $target}};
+           /if {$haspet==0}{wh;/delay {pet}{gongji $target;kill $target}{1}};
             pj;
             /if {$haskill == 0}{
             /if {$qieok==1}{qie}{
