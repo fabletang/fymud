@@ -34,7 +34,7 @@
 /var haspj 0
 /ac {^小小爪左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{zm;/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;luo;de4 luo;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
 /var jqs_lost_limit 0.1
 /ac {^你的伤势好了一些}{stopk;de2 {hxx;cks};}
@@ -43,26 +43,27 @@
 /al hxx {/if {$hashxx==0}{exert jingxin}} 
 /ac {^你静气平声，按着清平心法}{/var hashxx 1;de2 {/var hashxx 0}}
 /al hx {/if {$is_kill ==0 && $is_walk ==0}{do exert jingxin,use baiyao}}
-/var hasblade 0
+/var blade 0
 /var hasanqi 0
-/var hashand 0
+/var hand 0
 /var hasfushou 0
 /var sword2 0
 /var blade2 0
-/var hassword 0
-/al iblade {/var hasblade 1;/var hasanqi 0;/var hashand 0; /showme iblade;}
-/al isword {/var hassword 1;/var hasanqi 0;/var hashand 0; /showme isword;}
-/al noblade {/var hasblade 0;/showme noblade;}
-/al nosword {/var hassword 0;/showme nosword;}
-/al ianqi {/var hasanqi 1;/var hasblade 0;/var hashand 0; /showme ianqi;}
-/al noanqi {/var hasanqi 0;/var hashand 1; /showme noanqi;}
-/al ihand {/var hashand 1;/var hasanqi 0;/var hasblade 0; /showme ihand;}
-/al nohand {/var hashand 0; /showme nohand;}
+/var sword 0
+/var seconw none 
+/al iblade {/var blade 1;/var hasanqi 0;/var hand 0; /showme iblade;}
+/al isword {/var sword 1;/var hasanqi 0;/var hand 0; /showme isword;}
+/al noblade {/var blade 0;/showme noblade;}
+/al nosword {/var sword 0;/showme nosword;}
+/al ianqi {/var hasanqi 1;/var blade 0;/var hand 0; /showme ianqi;}
+/al noanqi {/var hasanqi 0;/var hand 1; /showme noanqi;}
+/al ihand {/var hand 1;/var hasanqi 0;/var blade 0; /showme ihand;}
+/al nohand {/var hand 0; /showme nohand;}
 /al ifushou {/var hasfushou 1;/showme ifushou;}
 /al nofushou {/var hasfushou 0;/showme nofushou;}
-/al isword2 {/var sword2 1;/var blade2 0;/showme is sword2;}
+/al isword2 {/var seconw sword2;/var sword2 1;/var blade2 0;/showme is sword2;}
 /al nosword2 {/var sword2  0;/showme no sword2;}
-/al isblade2 {/var sword2 0;/var blade2 1;/showme is blade2;}
+/al isblade2 {/var seconw blade2;/var sword2 0;/var blade2 1;/showme is blade2;}
 /al noblade2 {/var blade2  0;/showme no blade2;}
 /ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
 /ac {^你装备神之祝福宝剑作武器}{isword}
@@ -80,8 +81,6 @@
 /ac {^你放下手中的仙人刺}{noanqi}
 /ac {^  √圆月弯刀(jade2)}{iblade}
 /ac {^    圆月弯刀(jade2)}{noblade}
-/ac {^  √%0(go piece)}{ianqi}
-/ac {^  √%0(cactus needle)}{ianqi}
 /ac {^  √＊赤炼＊(sword2)}{isword2}
 /ac {^    ＊赤炼＊(sword2)}{nosword2}
 /ac {^  √＊百鬼夜狂＊(blade2)}{isblade2}
@@ -90,9 +89,9 @@
 /ac {^    神之祝福宝剑(zhufu sword)}{nosword}
 /ac {^  √备用剑(sword)}{isword;/delay {0.2}{isword}}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
-/al wihand {/if {$hashand==0}{unwi all}}
-/al wiblade {wifushou;/if {$hasblade==0}{unwi piece;unwi needle;wi jade2}}
-/al wianqi {wifushou;/if {$hasanqi==0}{unwi jade2;wi needle;wi piece}}
+/al wihand {/if {$hand==0}{unwi all}}
+/al wiblade {wifushou;/if {$blade==0}{unwi piece;unwi needle;wi jade2}}
+/al wisword {/if {$sword==0}{do unwield all,wield zhufu sword,wield $seconw}}
 /al wis2 {
         /if {$blade2==1}{do unwield blade2,wield sword2}{
                                 /if {$sword2==0}{wi sword2}
@@ -104,10 +103,7 @@
                                 /if {$blade2==0}{wi blade2}
                                                 }
          }
-/al reffs {
-            /if {$sword2==1}{do unwield sword2,wield sword2};
-            /if {$blade2==1}{do unwield blade2,wield blade2};
-            }
+/al reffs {do unwield $seconw,wield $seconw}
 /al buff {exert chill;de2 {exert powerup}}
 /al j {exert mihunshu}
 /al jjj {perform dodge.lianhuanbu}
@@ -123,6 +119,7 @@
         /ticker {kill}{
             j;
             pj;
+            de2 tryyr;
             /nop de3 pj;
             }{7.1}
             }
@@ -139,8 +136,16 @@
 /nop 『意染苍云』（yirancangyun）
 /al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== 剑  slcx}
 /al yrcy {set secon_perform yirancangyun;wis2;/showme ====== 剑  *yrcy}
+/al yr {wisword;perform yirancangyun;/showme ======+ 剑  *yrcy}
+/al tryyr {/if {$yrcyok==1}{yr}{luo}}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
+/al po   {perform unarmed.polu}
 /al zm   {do unwield all,perform dodge.zhuiming,wield zhufu sword;slcx}
+/al luo {wisword;do enable sword shilin-jian,perform sword.luo,enable sword nine-moon-sword}
+/var zmok 0
+/al tryzm {/if {$zmok==1}{zm}}
+/ac {^你一声轻笑，身形展动}{/var zmok 0;/delay {300}{/var zmok 1}}
+/ac {^你需要等待%1秒才能再次使用『追命式』。$}{/var zmok 0;/delay {%1}{/var zmok 1}}
 /al tp {perform dodge.feiyanshi}
 /nop 技能检查
 /var yrcyok 1
@@ -160,21 +165,20 @@
     /var npcbusy 6;
     /if {$fdok ==0}{hhh};
     pk;
+    luo;
 }
 /nop mihun busy
 /ac {^一时之间，}{pk}
 /var fdok 0
 /ac {阴风扑面，差点儿晕了过去。$}{/showme -------放毒成功----;/var fdok 1}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
-/ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;/delay {14.2}{/var mhok_t 1}}
+/ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;de2 tryyr;de4 tryyr;/delay {14.2}{/var mhok_t 1}}
 /nop polu todo
 /var haspo 0
 /al trypo {/if {$haspo==0 && $is_kill==1}{po}}
-/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{trypo;de3 trypo}}
-/ac {脸憋得通红，忽感天旋地转}{trypo;de3 trypo}
-/ac {^袖中伸出纤纤素手}{/var haspo 1;iskill}
-/var haszm 0
-/ac {^你一声轻笑，身形展动，按着奇门八卦方位}{/var haszm 1}
+/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de1 trypo}}
+/ac {^%1的脸憋得通红，忽感天旋地转}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de1 trypo}}
+/ac {^你更不稍停，反掌间五根手指}{/var haspo 1;iskill}
 /var haskill 0
 /al ki {do wield zhufu sword,i,hp;
         set target %0;
@@ -221,7 +225,7 @@
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
 }{4}
-/ac {^自右上方直向}{
+/ac {^你根本无视%1的攻击，大吼一声}{
     hp;
     pj;
     iskill;
@@ -246,7 +250,7 @@
 /ac {^你脸上神色惨然，猛一咬牙}{
     /var yrcyok 0;
     de1 cks;
-    /delay {174}{/var yrcyok 1};
+    /delay {150}{/var yrcyok 1};
     /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{slcx};
                                     };
@@ -272,11 +276,12 @@
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{h;/showme ----todo 危险-----}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{exert huaxue;tp}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;tp}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{jiasi}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{wh;pj;tp}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{pj;jiasi}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『连环步』只能对战}{sk}
 /ac {^『雁渡寒潭』只能对战}{sk}
+/ac {^『意染苍云』只能对战}{sk}
 /ac {^迷魂术只能对战}{sk}
 /ac {^此特技只能在战斗中使用}{sk}
 /ac {^『破颅』只能对战}{sk}
@@ -347,3 +352,9 @@
 /ac {^疗伤时至少需要有最大内力值护体}{hn;de2 cks}
 /ac {^此人已经不需要使用此疗伤心法}{cks}
 /ac {^　　只听得一声混沌初破似的巨响炸开，神之祝福宝剑化作了无数碎片}{qt zhufu sword;de3 wi zhufu sword}
+/ac {幽幽的琴声时断时续}{
+    listen;
+    /delay {0.5}{maonv2hua};
+    /delay {1.5}{ask qing qing about 弯刀}
+    }
+/ac {^金灵芝和丁枫向东边荒凉的小径走去}{east}

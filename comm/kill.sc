@@ -4,12 +4,14 @@
     /format npc {%l %s}{%2}{%3};
    /showme ----npc=$npc; 
    getnpc;
+   /if {"%2"=="Killer"}{kill $npc};
 }
 /ac {^  %1(%2)	** Õ½¶·ÖÐ **(LV}{
     /var petiskill 0
     /if {"%2"=="$petn"}{/var petiskill 1}{
         /format npc {%l}{%2};
         /showme ----npc=$npc; 
+   /nop {"%2"=="Bandit"}{kill $npc};
    getnpc;
    }
 }

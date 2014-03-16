@@ -26,6 +26,12 @@
 /al de12 {/delay {12}{%1}}
 /al de13 {/delay {13}{%1}}
 /al de14 {/delay {14}{%1}}
+/al de16 {/delay {16}{%1}}
+/al de18 {/delay {18}{%1}}
+/al de20 {/delay {20}{%1}}
+/al de22 {/delay {22}{%1}}
+/al de24 {/delay {24}{%1}}
+/al de26 {/delay {26}{%1}}
 /ac {^你不能在一秒内送出这么多条信息}{
     /var can_eat 0;
     /delay {10}{/var can_eat 1}

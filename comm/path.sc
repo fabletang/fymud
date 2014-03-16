@@ -1806,7 +1806,7 @@ nwlk;
 /ac {^一棵古柏枝身扭结上耸，若虬龙蟠旋，虽然肤剥心枯}{/al answerdm {answer 汉柏凌寒};w;n;n;n;answerdm}
 /ac {^甬道下有一棵古柏，上有一枯枝向北，宛如展翅欲飞的仙鹤}{/al answerdm {answer 仙鹤展翅};w;n;n;n;answerdm}
 /ac {^一棵古柏，苍翠的树冠上，簇拥着茂密的枝叶}{/al answerdm {answer 云列三台};w;n;n;n;answerdm}
-/ac {一棵苍郁挺拔，枝繁叶茂的汉柏，在它的主干与侧枝的交接处之上长了一个^}{/al answerdm {answer 挂印封侯};w;n;n;n;answerdm}
+/ac {^一棵苍郁挺拔，枝繁叶茂的汉柏，在它的主干与侧枝的交接处之上长了一个}{/al answerdm {answer 挂印封侯};w;n;n;n;answerdm}
 /ac {^一棵古柏树干上淤结了一个球状疤瘤}{/al answerdm {answer 麒麟望月};w;n;n;n;answerdm}
 /ac {^一棵唐槐，高大茂盛}{/al answerdm {answer 唐槐抱子};w;n;n;n;answerdm}
 /al cx2hy {wlk;do n,nw,ne,nw,nw,ne,nw,nd;nwlk}

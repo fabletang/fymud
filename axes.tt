@@ -200,6 +200,44 @@
 /al fy2zt {fy2ztv}
 /al hx {herbheal with jinqian}
 /al hj {herbheal with qingmuxiang}
-/al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小斧头 xxf};de9 {whistle;hp}}
+/nop al yangcw {withdraw 50000;de3 {withdraw 50000};de6 {yang monkey $HIY$ 小斧头 xxf};de9 {whistle;hp}}
 /ac {^粉黛的锋刃慢慢恢复了正常的光泽}{posion axe shecao}
 /ac {^破霄的锋刃慢慢恢复了正常的光泽}{posion jade shecao}
+/var pcaizhi 1
+/var pyunqi 1
+/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
+/var pcaizhi %1;
+}
+/var petname xxf
+/ac {^│年龄：三岁                            │运气：%s%1/}{
+    /var pyunqi %1;
+    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
+    /if {$pcaizhi <16 || $pyunqi <16}{
+    dismissp $petname;
+    /nop de2 yangcw
+    }
+}
+/var haspet 0
+/ac {^你一脚踢在小小斧}{/var haspet 1;score xxf;hp}
+/al yangcw {
+    /var haspet 0;
+    withdraw 50000;de2 {withdraw 50000};
+    de4 {yang monkey $HIY$ 小小斧 $petname};
+    de7 whistle;
+    de8 {kick xxf};
+    /nop de9 {/if {$haspet==1}{score $petname;hp}};
+    }
+/al yyyy {/ticker {y}{yangcw}{14}}
+/ac {^胡大掌柜的现钱已经不够了}{
+        w;s;
+        /unticker {y};
+        /delay {22}{ffy;fy2fg};
+        /delay {24}{w;withdraw 4000000};
+        /delay {28}{e;fg2fy};
+        /delay {31}{do d,n,n,e,salute,w,s,s,u};
+        /delay {32}{fy2gw};
+        /delay {43}{do w,n,n,n,e,deposit 4 tenthousand-cash};
+        /delay {44}{yyyy}; 
+        }
+/ac {^胡大掌柜的现钱已经不够了}{do w,s;/delay {160}{do n,e}}
+/ac {^结果什么动静也没有。}{hp}
