@@ -265,3 +265,15 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 de4 {/showme dq-%1}; 
 }
 /ac {^江湖中又有消息传来，在该副本的石道一带还有余孽活动。}{}
+/al buymohua {
+    walk 警世书局;
+    de1 {list;buy mo from du;store mo};
+    de5 {walk 倾城胭脂店};
+    de6 {list;buy ikebana stone from fang er;store ikebana stone}
+}
+/al tbuymohua {
+    summonnt qiankun;
+    /ticker {buy}{buymohua}{16};
+    }
+/al tbuymohua- {/unticker {buy}}
+/al askmk {ask master about defense}

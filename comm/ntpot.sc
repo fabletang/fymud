@@ -36,7 +36,7 @@
 /ac {^玉龙珠宝店}{hpnt}
 /ac {^checkjingqi--}{/if {$jingqi>100}{gowork}}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
-/ac {^  教父(Priest)}{w;gofull;/delay {gowork}{w;hpnt}{8}}
+/ac {^  教父(Priest)}{de4 {gofull};/delay {gowork}{hpnt}{8}}
 /ac {^你身子虚弱到了极点，连站都站不稳了}{wtick;/var peiyao 0;/var caxie 0;/var copy 0}
 /al dfout {do su,sd,s,s,d,d,d,d,d,d,d,d;de1 {do d,d,d,d,d,d,d,d,d,d,d,ne}}
 /ac {^一阵冷风吹散了你的阴魂}{dfout;wtick}
@@ -44,7 +44,7 @@
 /ac {^  【不如归去】 孟婆(Mengpo)}{asksoup}
 /ac {^你所受到的地域幽魂的效用消失了。}{walk 奈河桥;dash mist}
 /ac {^忘川台}{do nw,s,dash mist}
-/ac {^平安道}{s}
+/nop ac {^平安道}{s}
 /ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{dash mist}
 /ac {^你狠了狠心，一头闯进了迷雾之中}{wtick}
 /al gowork {d;fyz;walk 打铁铺;wtick}

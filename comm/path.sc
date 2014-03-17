@@ -1827,3 +1827,6 @@ nwlk;
 /al gt {goto %0;de2 {%0;l}}
 /al fyz {recall back}
 /ac {^看来只有等到黎明时雾散}{keychain}
+/nop miekou
+/al fy2mingyue {fys;de1 {do s,e,se,se,s,s,s,e};de2 {walk 将军府大堂}}
+/al mingyue2fy {do s,s,s,w,w,w;de1 {walk 风云南城门};de2 {fys-}}

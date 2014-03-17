@@ -1,0 +1,11 @@
+#config {TINTIN CHAR} /
+/var myname offical 
+/var passwd Sea123
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname 117.135.143.81 6666
+/nop session $myname china.fengyun.com 6000
+/session $myname fy.sysfon.com 6000
+/read comm/login.sc
+/read comm/gag.sc
+/read comm/ntpot_3.sc
+/nop al cxt cxzzt;
