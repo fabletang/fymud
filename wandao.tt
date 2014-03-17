@@ -110,6 +110,9 @@
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
+/al kuang {wiblade;enable blade kuangfeng-blade;
+            /9 perform kuang;
+           ld}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
 /al km {exert yinlingkouming;/showme ----km 防止伤害血的百分比}
 /al wf {cast wufangbianhuan}
@@ -139,10 +142,12 @@
 /var cutshen 0
 /nop pk
 /var qienpc 0
+/ac {^你纵身越到了}{;}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
     pk;
+    kuang;
 }
 /ac {^你乍然退步，旋身，反手}{
     iskill;
