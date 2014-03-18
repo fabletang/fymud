@@ -29,26 +29,29 @@
 /al gofull2 {do w,d,recall back;de1 {do w,s,e,s,buy sleepbag,sleep sleepbag}} 
 /al gofull {do w,d,sleep sleepbag} 
 /var jingqi 100
-/ac {^【 精 气 】%s%1/%s%2%s(%3%)%s【 精 力 】}{/var jingqi %1;/showme --jingqi=$jingqi;
+/ac {^【 精 气 】%s%1/%s%2%s(%3%)%s【 精 力 】}{/var jingqi %1;
     /if {%1<90}{sleep sleepbag;sleep}}
 /al checkjingqi {/showme checkjingqi--}
 /ac {^你一觉醒来，只觉精力充沛}{look;hpnt;de1 checkjingqi}
 /ac {^玉龙珠宝店}{hpnt}
 /ac {^checkjingqi--}{/if {$jingqi>100}{gowork}}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
-/ac {^  教父(Priest)}{/var godie 0;de4 gofull;/delay {gowork}{hpnt}{8}}
-/ac {^你身子虚弱到了极点，连站都站不稳了}{/var godie 0;wtick;/var peiyao 0;/var caxie 0;/var copy 0}
+/ac {^  教父(Priest)}{/var hasdie 0;de4 gofull;/delay {gowork}{hpnt}{8}}
+/ac {^你身子虚弱到了极点，连站都站不稳了}{/var hasdie 0;wtick;/var peiyao 0;/var caxie 0;/var copy 0}
 /al dfout {do su,sd,s,s,d,d,d,d,d,d,d,d;de1 {do d,d,d,d,d,d,d,d,d,d,d,ne}}
-/ac {^一阵冷风吹散了你的阴魂}{dfout;wtick}
+/ac {^一阵冷风吹散了你的阴魂}{/var hasdie 1;dfout;wtick}
+/ac {^等你还了阳再说吧}{/var hasdie 1}
+/ac {^阎罗殿}{/var hasdie 1}
 /al asksoup {ask mengpo about soup}
-/ac {^  【不如归去】 孟婆(Mengpo)}{asksoup}
+/ac {^  【不如归去】 孟婆(Mengpo)}{/var hasdie 1;asksoup}
 /ac {^你所受到的地域幽魂的效用消失了。}{walk 奈河桥;dash mist}
-/ac {^忘川台}{do nw,s,dash mist}
+/ac {^忘川台}{/var hasdie 1;do nw,s,dash mist}
 /nop ac {^平安道}{s}
-/ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{dash mist}
+/ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{/var hasdie 1;dash mist}
 /ac {^你狠了狠心，一头闯进了迷雾之中}{wtick}
 /al gowork {d;fyz;walk 打铁铺;wtick}
 /al gowork {wtick;do w,recall back;/delay {1}{do w,s,e,e,s}}
+/ac {^大隐阁}{gowork}
 /al wtick {/ticker {work}{look}{8}}
 /al wtick- {/unticker {work}}
 /al askwork {ask tie jiang about job;}
@@ -68,11 +71,13 @@
 /var caxie 0
 /var mine 0
 /var godie 0
+/var hasdie 0
 /ac {^【 平 和 】%1【 经 验 】%s%2}{
     /var ntexp %2;
-    /showme ntexp=$ntexp;
+    /showme myname=$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
+    /if {$hasdie==0 && $jingqi >100 && $ntexp==1}{gowork};
     /if {$ntexp>10000}{/var peiyao 1};
-    /nop if {$ntexp>100000}{/var mine 1};
+    /nop if {$ntexp>100000}{/var mine 1}
     /if {$ntexp>100000}{
         /var godie 1; 
         /delay {6} {gotodie};

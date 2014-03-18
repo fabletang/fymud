@@ -277,3 +277,23 @@ de4 {/showme dq-%1};
     }
 /al tbuymohua- {/unticker {buy}}
 /al askmk {ask master about defense}
+/nop ÍÚòÇò¾
+/al getqiuyin {do get qiu yin,get qiu yin}
+/al waqiuyin {
+    wlk;
+    summonnt qiankun;walk ºó»¨Ô°;e;
+    /delay {1}{push stone;getqiuyin};
+    /delay {3}{push stone;getqiuyin};
+    /delay {6}{push stone;getqiuyin};
+    /delay {9}{push stone;getqiuyin};
+    /delay {12}{push stone;getqiuyin};
+    /delay {15}{push stone;getqiuyin};
+    /delay {20}{se;get all from ground;getqiuyin}; 
+    /delay {24}{/7 {store qiuyin}};
+    /delay {27}{/7 {store qiuyin}};
+    /delay {30}{nwlk};
+    /delay {31}{sleep sleepbag;cks};
+    }
+/al twqy {waqiuyin;/ticker {wa}{waqiuyin}{45}}
+/al twqy- {/unticker {wa}}
+

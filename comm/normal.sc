@@ -482,3 +482,35 @@
 /ac {^你的身体状况无法强化练习}{sleep sleepbag}
 /al gmg {/math ggold {%0*1000000};wlk;do d,w,w,w,n,withdraw $ggold;de4 {convert %0 tenthousand-cash to gold};de6 {do s,e,e,e,u;nwlk}} 
 /ac {^古龙说，这点钱不够啊,恢复等级需要%0两黄金。}{give %0 gold to gulong}
+/nop research skill
+/var research 0
+/var skill none
+/al res {/var skill %0;
+        /var research 1;
+        skills -$skill;
+        }
+/ac {^＊%1 (%2)%s- %3%s%4/    0$}{
+    /if {"$skill"="%2"}{
+    /var research 1;
+    /showme ---research can =$research;
+    }
+}
+/ac {^==%1==need=%2=}{
+    /if {$research==1}{
+        research %1 with %2; 
+        /showme =ok=%1 %2;
+        /var research 0;
+        /var skill none;
+    }
+}
+/var rpots 1
+/var lpots 1
+/ac {^【升至第%1级所需潜能】%2%s【所需经验等级】}{
+     /var lpots %2;
+     /math rpots {10 * %2};
+    /showme ----learn pots-=$lpots=rpots-$rpots;
+    /if {$research==1}{
+    /showme ==$skill==need=$rpots=;
+    };
+}
+/ac {^你对%1作了一番彻底的研究！}{/var pots 0;/var research 0}
