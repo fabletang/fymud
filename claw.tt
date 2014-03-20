@@ -34,7 +34,7 @@
 /var haspj 0
 /ac {^小小爪左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;kuang;de4 kuang;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;luo;de4 luo;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /read comm/autorecover_hc.sc
 /var jqs_lost_limit 0.1
 /ac {^你的伤势好了一些}{stopk;de2 {hxx;cks};}
@@ -140,12 +140,13 @@
 /al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== 剑  slcx}
 /al yrcy {set secon_perform yirancangyun;wis2;/showme ====== 剑  *yrcy}
 /al yr {wisword;perform yirancangyun;/showme ======+ 剑  *yrcy}
-/al tryyr {/if {$yrcyok==1}{yr}{kuang}}
+/al tryyr {/if {$yrcyok==1}{yr}{luo}}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
 /al po   {perform unarmed.polu}
 /al zm   {do unwield all,perform dodge.zhuiming,wield zhufu sword;slcx}
 /al luo {wisword;do enable sword shilin-jian,perform sword.luo,enable sword nine-moon-sword}
 /al kuang {wiblade;do enable blade kuangfeng-blade,perform blade.kuang,enable blade ittouryu,unwield blade,wield zhufu sword}
+/al peng {wisword;do enable sword yuenv-jian,perform pengxin,enable sword nine-moon-sword}
 /var zmok 0
 /al tryzm {/if {$zmok==1}{zm}}
 /ac {^你一声轻笑，身形展动}{/var zmok 0;/delay {300}{/var zmok 1}}
@@ -170,7 +171,7 @@
     /if {$fdok ==0}{hhh};
     pk;
     /nop luo;
-    kuang;
+    peng;
 }
 /nop mihun busy
 /ac {^一时之间，}{pk}
