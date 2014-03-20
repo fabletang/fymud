@@ -5,6 +5,225 @@
 /nop session $myname 117.135.143.81 6666
 /nop session $myname china.fengyun.com 6000
 /session $myname fy.sysfon.com 6000
+/nop session $myname fy.hbisp.com 3333
 /read comm/login.sc
+/var staff 0
+/var hand 0
+/var blade 0
+/var blade2 0
+/var hasfushou 0
+/var sword 0
+/al wistaff {/if {$staff==0||$hand==1||$blade==1||$sword==1}{do unwield all,wield zhang}}
+/al wisword {/if {$sword==0||$hand==1||$blade==1||$staff==1}{do unwield all,wield zhufu sword,wield blade2}}
+/al wiblade {/if {$blade==0||$hand==1||$sword==1||$staff==1}{do unwield all,wield zhufu blade,wield blade2}}
+/al wihand {/if {$hand==0||$blade==1||$staff==1||$sword==1}{do unwield all,wield jade}}
+/al wiw wistaff
+/al isblade {/var blade 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade;enable parry ittouryu}
+/al noblade {/var blade 0; /showme noblade;}
+/al ishand {/var hand 1;/var staff 0;/var sword 0;/var blade2 0;/var blade 0;/showme ishand;enable parry dragonstrike}
+/al nohand {/var hand 0; /showme nohand;}
+/al issword {/var sword 1;/var staff 0;/var blade 0;/var hand 0;/showme issword;enable parry ittouryu}
+/al nosword {/var sword 0; /showme nosword;}
+/al isblade2 {/var blade2 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade2;enable parry ittouryu}
+/al noblade2 {/var blade2 0; /showme noblade2;}
+/al isstaff {/var staff 1;/var blade 0;/var sword 0;/var blade2 0;/var hand 0;/showme isstaff;enable parry dagou-stick}
+/al nostaff {/var staff 0; /showme nostaff;}
+/ac {^你放下手中的神之祝福宝刀}{noblade}
+/ac {^你装备神之祝福宝刀作武器}{isblade}
+/ac {^你装备神之祝福宝剑作武器}{issword}
+/ac {^你放下手中的神之祝福宝剑}{nosword}
+/ac {^  √神之祝福宝刀(zhufu blade)}{isblade}
+/ac {^  √神之祝福宝剑(zhufu sword)}{issword}
+/ac {^  √★降龙伏虎★(jade)}{ishand} 
+/ac {^你从怀中摸出一对★降龙伏虎★}{ishand} 
+/ac {^你将手上的★降龙伏虎★藏入}{/var hand 0} 
+/ac {^    ★降龙伏虎★(jade)}{/var hand 0} 
+/ac {^你装备神之祝福宝杖}{isstaff} 
+/ac {^  √神之祝福宝杖(zhufu staff)}{isstaff} 
+/ac {^你放下手中的神之祝福宝杖}{nostaff}
+/ac {^  √＊百鬼夜狂＊(blade2)}{isblade2}
+/ac {^    ＊百鬼夜狂＊(blade2)}{noblade2}
+/ac {^你抽出一把明晃晃的＊百鬼夜狂＊}{isblade2}
+/ac {^你放下手中的＊百鬼夜狂＊}{noblade2}
+/al tbuff {/showme todo}
+/al xl {tbuff;wihand;perform xianglongwuhui}
+/al sc {tbuff;wihand;perform shichengliulong}
+/var islian 0
+/var haspet 0
+/read comm/pet.sc
+/read comm/kill.sc
+/var petname xxg
+/al lp {look $petname}
+/var haspj 0
+/var haspk 0
+/al pj {/if {$haspet ==1 && haspj==0}{performp freeze}}
+/al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
+/al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
+/ac {将周身凝聚的冰块震得粉碎！！}{pj}
+/ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
+/ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^小小棍纵身越到了}{pj}
+/ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
+/ac {^你悄悄走到%1背后，飞身纵起}{iskill;gongji $npc}
+/ac {^小小棍不知从哪里窜到你面前}{/if {$is_kill==1}{juji $npc}}
+/al wpet {order wear all}
+/al buff {wh;perform dodge.gouweixudiao}
+/al buff {perform dodge.gouweixudiao;exert douhanjue}
+/al ki {i;set dmg_msg 1;
+        wisword;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;wh}}
+/al ki {i;set dmg_msg 1;
+        wihand;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;wh;kill %0;}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill}
+/nop ------------
+/var xl_max 0
+/var sc_ok 0
+/var zjbl_ok 0
+/al ak xl
+/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
+/al startk {xl;/al ak xl;kkx}
+/al kx startk
+/al ssk startk
+/ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
+    iskill;
+    pj;
+    /var npcn %1;
+    /var zjbl_ok 0;
+    /var xl_max 0;
+    /delay {20}{/var xl_max 1;/al ak xl};
+    /var sc_ok 0;
+    /al ak sc;
+}
+/al czj {tbuff;wistaff;perform staff.chuozijue}
+/al bzj {tbuff;wistaff;perform staff.banzijue}
+/al tzj {tbuff;wistaff;perform staff.tiaozijue}
+/al yzj {tbuff;wistaff;perform staff.yinzijue}
+/al txwg {tbuff;wistaff;perform staff.tianxiawugou}
+/al zjbl {wihand;perform unarmed.zhenjingbaili}
+/al ps tzj
+/al luo {wisword;perform sword.luo}
+/al luo {wisword;perform sword.pengxin}
+/ac {^%1只觉掌风扑面，气息窒滞}{
+    iskill;
+    /if {"%1"=="你"}{/showme ---npc sc me !!!}{
+    /var npcn %0;
+    sc+;
+    }
+}
+/nop zjbl
+/nop al ak zjbl
+/ac {^你所受到的野狗步法%0效用消失}{/al tbuff {perform dodge.gouweixudiao};tbuff}
+/ac {^你双腿半曲半伸，双掌如封如攻}{/al tbuff {/showme todo};/delay {120}{/al tbuff {perform dodge.gouweixudiao}}}
+/ac {^你的真气被打乱了，使不出震惊}{pj;/var zjbl_ok 0;/if {$xl_max==1}{/al ak xl}{/al ak tzj}}
+/nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
+/ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show ----todo}
+/ac {^你须发尽赤，浑身无俦真气}{pj}
+/ac {^%1已经破绽毕露，还不趁机进攻}{luo;txwg}
+/ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
+/ac {^随着长声惨叫}{pjj;czj;/al ak czj}
+/ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
+/ac {^你需要过%1秒才能再次使用引字诀}{czj}
+/ac {^你低喝一声『天下无狗』}{/al ak tzj}
+/ac {^对方已经手忙脚乱了。}{luo;txwg}
+/ac {^对方已经不能动弹了}{luo;txwg}
+/ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
+/ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
+/ac {^对方没有武器，无从使用『挑字诀』}{yzj}
+/ac {^这件武器看来没法挑下来}{yzj}
+/ac {^对方现在防备的很严，没希望挑下来}{bzj}
+/al sc+ {
+/ac {和身扑上，旋转着但极快疾地欺近你} {zjbl;wistaff;sc-;de8 {/al ak sc}}; 
+/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招} {bzj;sc-;de8 {/al ak sc}};
+/ac {招架此招} {tzj;sc-;de8 {/al ak sc}};
+/ac {俨然无懈可击} {tzj;de8 {/al ak sc}};
+/ac {觑得亲切，不退反进，借势击向你} {yzj;sc-;de8 {/al ak sc}};
+/ac {斜斜滑出三尺，一时间中路空门大开，正是时机} {czj;sc-;de8 {/al ak sc}}
+}
+/al sc- {
+/ac {和身扑上，旋转着但极快疾地欺近你}; 
+/ac {身形乍然一矮，你掌力掠顶而过，有惊无险地避开这招};
+/ac {招架此招};
+/ac {俨然无懈可击};
+/ac {觑得亲切，不退反进，借势击向你};
+/ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
+}
+/ac {^%0足尖着力，飘身后退。$}{wiblade;pjj;/showme --- sc fail wiblade todo----}
+/ac {^%0足尖着力，飘身后退。$}{wiblade;pjj;/showme --- sc fail wiblade todo----}
+/nop -----------------
+/ac {^你大喝一声，犹似半空响了个霹雳}{}
+/al stopk { set dmg_msg 0; 
+            /var haspj 0;
+            /var zjbl_ok 0;
+            /var xl_max 0;
+            /unticker {kill};nokill}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^『降龙无悔』只能对战}{stopk;cks}
+/ac {^『时乘六龙』只能对战}{stopk;cks}
+/ac {^『震惊百里』只能对战}{stopk;cks}
+/ac {^『引字诀』只能对战}{stopk;cks}
+/ac {^『绊字诀』只能对战}{stopk;cks}
+/ac {^『戳字诀』只能对战}{stopk;cks}
+/ac {^『挑字诀』只能对战}{stopk;cks}
+/ac {^『天下无狗』只能对战}{stopk;cks}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{sk;perform dodge.goujitiaoqiang}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
+/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
+/ac {^使用特殊招式至少需要50点的内力}{hp}
 /read comm/gag.sc
-/read comm/ntpot.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/nop log o $myname.log
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/al hx {exert canhejue;use baiyao}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
+/al fy2zt {fy2ztv}
+/unac {^然而，%1已经死了}{cks}
+/al getitem {
+     stack;
+     retrieve 6455;
+     retrieve 9935;
+     retrieve 7815;
+     retrieve 1577;
+     retrieve 2251;
+     remove all;
+     wear all
+}
+/read comm/autorecover_hc.sc
+/read comm/status.sc
+/al qq {fox;quest}
+/al petbuff {order wear all;order wield ironfist}
+/al ffy {recall back;do w,n,e,e,e,n,u}
+/ac {^你的伤势好了一些。}{de1 hp}
+/ac {^结果%1被你攻了个手忙脚乱}{de2 czj}
+/var pcaizhi 1
+/var pyunqi 1
+/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
+/var pcaizhi %1;
+}
+/ac {^│年龄：三岁                            │运气：%s%1/}{
+    /var pyunqi %1;
+    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
+    /if {$pcaizhi <14 || $pyunqi <14}{
+    /nop dismissp $petname;
+    /nop de2 yangcw
+    }
+}
+/al yangcw {withdraw 50000;de2 {withdraw 50000};
+    de4 {yang monkey $HIY$ 小小棍 $petname};
+    de7 whistle;
+    de9 scorep;
+
+    }
+/ac {^看起来%0想杀死你！$}{
+        look;
+        startk;
+        xixi $petname;
+        /if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{1.2}}
+        }
+/ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
+/ac {^突然，一蓬鲜血激射}{luo;pk}
+/ac {^只好任%1落在一边。}{/showme todo }
+/ac {^你只觉得虎口一热，手中的神之祝福宝刀}{noblade}

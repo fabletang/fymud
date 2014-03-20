@@ -27,12 +27,14 @@
 /al de9 {/delay {9}{%1}}
 /al gotodie {cxt-;set wimpy 0;ffy;de1 {do d,w,w,w,w,s,s,kill huang mazi};}
 /al gofull2 {do w,d,recall back;de1 {do w,s,e,s,buy sleepbag,sleep sleepbag}} 
+/al gofull2 {do w,d,recall back;de1 {do w,s,e,s,buy sleepbag};de5 {sleep sleepbag}} 
 /al gofull {do w,d,sleep sleepbag} 
 /var jingqi 100
 /ac {^【 精 气 】%s%1/%s%2%s(%3%)%s【 精 力 】}{/var jingqi %1;
     /if {%1<90}{sleep sleepbag;sleep}}
 /al checkjingqi {/showme checkjingqi--}
 /ac {^你一觉醒来，只觉精力充沛}{look;hpnt;de1 checkjingqi}
+/ac {^你一觉醒来，只觉精力充沛}{look;stat;fyz;de1 {do w,n,w,ask nan xian about 状态恢复};de3 hpnt}
 /ac {^玉龙珠宝店}{hpnt}
 /ac {^checkjingqi--}{/if {$jingqi>100}{gowork}}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
@@ -60,7 +62,7 @@
 /ac {^铁匠说道：%0(%1)}{cxt-;%1;}
 /ac {^  铁匠铺老板 铁匠(Tie jiang)}{askwork}
 /ac {^铁匠对你道：这是给你的工钱。}{hpnt;de2 {/if {$peiyao==0}{askwork}{do n,n}}}
-/ac {^铁匠说道：让您老干这个未免屈尊了吧？}{do n,n;save}
+/ac {^铁匠说道：让您老干这个未免屈尊了吧？}{do n,n;hp;save}
 /ac {^平一指说道：就这点经验，连一百五都没有}{do s,s}
 /al askpeiyao {ask ping about job}
 /ac {^  炼药师协会会长「杀人神医」平一指(Ping yizhi)}{askpeiyao}

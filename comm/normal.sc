@@ -485,10 +485,37 @@
 /nop research skill
 /var research 0
 /var skill none
-/al res {/var skill %0;
+/al res {/var skill %1;
         /var research 1;
         skills -$skill;
         }
+/al resto {
+    /showme --skill-%1 -tolv %2;
+    /var skill %1;
+    /var tolv %2;
+    /var research 1;
+    skills -$skill;
+}
+/ac {^你的「%1」进步了！$}{
+    /if {$research==1}{
+    /showme {-ticker-resto-$skill-slv-$slv-tolv-$tolv-};
+ };
+}
+/ac {^-ticker-resto-%1-slv-%2-tolv-%3-}{
+    /var slv %2;
+    /var tolv %3;
+    /if {$slv>=$tolv}{
+    /var research 0;
+    /unticker res;
+    /showme ==stop resto==;
+    }{
+    skills -$skill;
+    }
+    /if {$research == 0}{
+    /unticker res;
+    /showme ==stop resto==;
+    };
+}
 /ac {^＊%1 (%2)%s- %3%s%4/    0$}{
     /if {"$skill"="%2"}{
     /var research 1;
@@ -496,11 +523,20 @@
     }
 }
 /ac {^==%1==need=%2=}{
+    /var spots %2;
     /if {$research==1}{
+        /if {$spots>10000}{
+        /math stimes {$spots/10000};
+        /math lpots {$spots % 10000};
+        /showme {--research times $stimes-};
+        /showme {--research lpots $lpots-};
+        /$stimes {/showme research 10000 $stimes};
+        /$stimes {research %1 with 10000};
+        research %1 with $lpots;
+        }{
         research %1 with %2; 
-        /showme =ok=%1 %2;
-        /var research 0;
-        /var skill none;
+        }
+        /showme {=ok=%1 %2};
     }
 }
 /var rpots 1
@@ -508,9 +544,10 @@
 /ac {^【升至第%1级所需潜能】%2%s【所需经验等级】}{
      /var lpots %2;
      /math rpots {10 * %2};
-    /showme ----learn pots-=$lpots=rpots-$rpots;
+     /var slv %1;
+    /showme ----learn pots-=$lpots=rpots-$rpots-cur slv=$slv;
     /if {$research==1}{
     /showme ==$skill==need=$rpots=;
     };
 }
-/ac {^你对%1作了一番彻底的研究！}{/var pots 0;/var research 0}
+/ac {^你对%1作了一番彻底的研究！}{;}

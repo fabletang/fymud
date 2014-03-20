@@ -78,23 +78,17 @@
     /showme myname=$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
     /if {$hasdie==0 && $jingqi >100 && $ntexp==1}{gowork};
     /if {$ntexp>10000}{/var peiyao 1};
-    /nop if {$ntexp>100000}{/var mine 1}
     /if {$ntexp>100000}{
-        /var godie 1; 
-        /delay {6} {gotodie};
+        /showme startfish;
         /delay {12}{hpnt};
     };
     }
 /ac {^startfish}{
-/5 {drop shoeshine};
- wtick;
+    /5 {drop shoeshine};
+    wtick;
     cxt-;
     /var fish 1;
-    /delay {281}{d;fyz;do w,s,e,s,buy diao gan,buy 5000 yu er;};
-    /delay {283}{buyyuer};
-}
-/ac {^startfish}{
-/nop gotodie;
+    /delay {4}{buyyuer};
 }
 /ac {^铁匠说道：你还是歇会儿吧}{gofull}
 /ac {^平一指说道：让你干这活，也太屈就你了吧。}{walk 书院}
@@ -105,14 +99,14 @@
 /ac {^朱熹说道：虽然我这里只是抄抄书}{gowork}
 /ac {^通过这次锻炼，你获得了}{;}
 /ac {^朱熹看了你抄写的书}{hpnt;de1 askcopy}
-/ac {^朱熹说道：大侠你也来抄书？}{s;gotodie}
+/ac {^朱熹说道：大侠你也来抄书？}{s;hpnt}
 /ac {^看来是拉杆(draw)拉晚了，白白的赔了一个鱼饵}{fish}
 /ac {^汉水南岸}{fish}
 /ac {^你的浮子猛然向下一窜}{draw diao gan}
 /ac {^你的浮子忽左忽右摇摆个不停。}{draw diao gan}
 /ac {^你钓到了一条鲫鱼}{drop jiyu}
 /ac {^你身上没有鱼饵了。}{s;buyyuer}
-/al buyyuer {fyz;w;s;e;s;buy 5000 yu er;de2 {do n,w,n,n,n,n,n,n,n,n;fish}}
+/al buyyuer {fyz;w;s;e;s;buy 5000 yu er;de4 {do buy diao gan,drop diao gan 2};de8 {do n,w,n,n,n,n,n,n,n,n;fish}}
 /ac {^这里看不出有鱼的样子。}{buyyuer}
 /ac {^你顺势一拉杆}{de1 fish}
 /al fhz {do w,recall back,e,goto hangzhou}
