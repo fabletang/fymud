@@ -1,0 +1,22 @@
+/al xp {do get %0 from corpse,store %0}
+/al mmp {mazemap}
+/al alw {
+/al w {west;mmp};
+/al s {south;mmp};
+/al n {north;mmp};
+/al e {east;mmp};
+}
+/al unalw {
+/unal w;
+/unal s;
+/unal n;
+/unal e;
+}
+
+/al gotof {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};/delay {5}{enter forest;alw}}
+/al ghunter {unalw;do give tiger xxx to hunter,give dragon scale to hunter,give xiong dan to hunter,give bear hand to hunter}
+/ac {^  一根虎鞭(tiger xxx)}{xp tiger xxx}
+/ac {^  一副熊胆(xiong dan)}{xp xiong dan}
+/ac {^  一块熊掌(bear hand)}{xp bear hand}
+/ac {^  一张龙鳞(dragon scale)}{xp dragon scale}
+/ac {^%1熊王喝道}{kill bear king}

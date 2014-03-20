@@ -219,10 +219,16 @@
     }
 /ac {^看起来%0想杀死你！$}{
         look;
+        /if {$is_kill==0}{
         startk;
-        xixi $petname;
-        /if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{1.2}}
         }
+        xixi $petname;
+        /delay {pet}{/showme checkpet--}{2};
+        }
+/ac {^checkpet--}{
+/showme --checkpet pet=$haspet==;
+/if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{1.2}}{/undelay pet};
+}
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{luo;pk}
 /ac {^只好任%1落在一边。}{/showme todo }

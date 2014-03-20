@@ -34,7 +34,9 @@
     /if {%1<90}{sleep sleepbag;sleep}}
 /al checkjingqi {/showme checkjingqi--}
 /ac {^ÄãÒ»¾õÐÑÀ´£¬Ö»¾õ¾«Á¦³äÅæ}{look;hpnt;de1 checkjingqi}
-/ac {^ÄãÒ»¾õÐÑÀ´£¬Ö»¾õ¾«Á¦³äÅæ}{look;stat;fyz;de1 {do w,n,w,ask nan xian about ×´Ì¬»Ö¸´};de3 hpnt}
+/ac {^ÄãÒ»¾õÐÑÀ´£¬Ö»¾õ¾«Á¦³äÅæ}{look;stat;fyz;
+        de1 {do w,n,w,ask nan xian about ×´Ì¬»Ö¸´};
+        de4 {hpnt}}
 /ac {^ÓñÁúÖé±¦µê}{hpnt}
 /ac {^checkjingqi--}{/if {$jingqi>100}{gowork}}
 /ac {^ÄãÈàÈàÑÛ¡¢´ò¸ö¹þÇ·£¬Á¢¿ÌÌÉµ¹ÔÚµØÉÏÁË}{gofull2}
@@ -86,6 +88,14 @@
        /delay {12}{hpnt};
        cxt-;
     };
+    /if {$ntexp >100 && $ntexp<500000}{
+    /if {$caxie==0}{
+    /if {$peiyao==0}{
+    gowork;
+    }
+    };
+    /if {$caxie==1}{};
+    }
     }
 /ac {^startfish}{
 /5 {drop shoeshine};
