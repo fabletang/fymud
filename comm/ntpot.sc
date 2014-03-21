@@ -50,7 +50,7 @@
 /ac {^一阵冷风吹散了你的阴魂}{/var hasdie 1;dfout;wtick}
 /al asksoup {ask mengpo about soup}
 /ac {^  【不如归去】 孟婆(Mengpo)}{asksoup}
-/ac {^你所受到的地域幽魂的效用消失了。}{walk 奈河桥;dash mist}
+/ac {^你所受到的地域幽魂的效用}{walk 奈河桥;de1 {dash mist}}
 /ac {^忘川台}{/var hasdie 1;do nw,s,dash mist}
 /nop ac {^平安道}{s}
 /ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{/var hasdie 1;dash mist}
@@ -70,7 +70,7 @@
 /ac {^  炼药师协会会长「杀人神医」平一指(Ping yizhi)}{askpeiyao}
 /ac {^平一指说道：%0(%1)}{%1}
 /ac {^平一指说道：让你干的活你干完了么？}{peiyao}
-/ac {^平一指看了你配的药}{hpnt;de1 {askpeiyao}}
+/ac {^平一指看了你配的药}{/var peiyao 1;hpnt;de1 {askpeiyao}}
 /var fish 0
 /var peiyao 0
 /var copy 0
@@ -90,7 +90,7 @@
     };
     /if {$ntexp >100 && $ntexp<500000}{
     /if {$caxie==0}{
-    /if {$peiyao==0}{
+    /if {$copy ==0 || $peiyao ==0}{
     gowork;
     }
     };
@@ -116,8 +116,8 @@ gotodie
 /ac {^朱熹说道：让你抄的书你抄完了？}{copy}
 /ac {^朱熹说道：虽然我这里只是抄抄书}{gowork}
 /ac {^通过这次锻炼，你获得了}{;}
-/ac {^朱熹看了你抄写的书}{hpnt;de1 askcopy}
-/ac {^朱熹说道：大侠你也来抄书？}{/unticker work;walk 杂货铺;de1 {buy brush};de2 {cxt}}
+/ac {^朱熹看了你抄写的书}{/var copy 1;hpnt;de1 askcopy}
+/ac {^朱熹说道：大侠你也来抄书？}{/var copy 1;/unticker work;walk 杂货铺;de1 {buy brush};de2 {cxt}}
 /nop ac {^朱熹说道：大侠你也来抄书？}{s;gotodie}
 /var shoeshines 0
 /var cani 1

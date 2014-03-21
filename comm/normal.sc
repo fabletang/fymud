@@ -422,7 +422,8 @@
     /delay {12}{do w,s,s,u}
     }
 /al buybx {do d,w,w,n,ask xuer about 铂金经验保险,s,e,e,u}
-/ac {^水银在到处流转，舒适无比}{tuna}
+/unac {^水银在到处流转，舒适无比}{tuna}
+/al tuna3 {walk 风云天骄门;/delay {1}{tuna};/delay {7}{tuna};/delay {13}{tuna}}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}

@@ -64,7 +64,7 @@
 /ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^小小棍纵身越到了}{pj}
 /ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
-/ac {^你悄悄走到%1背后，飞身纵起}{iskill;gongji $npc}
+/ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill;gongji $npc}
 /ac {^小小棍不知从哪里窜到你面前}{/if {$is_kill==1}{juji $npc}}
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
@@ -72,15 +72,15 @@
 /al ki {i;set dmg_msg 1;
         wisword;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;wh}}
 /al ki {i;set dmg_msg 1;
-        wihand;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;wh;kill %0;}}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill}
+        wistaff;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;wh;de2 {juji %0;kill %0};}}
+/ac {^你对著%0！今日不是你死就是我活！} {de2 iskill}
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
 /var zjbl_ok 0
 /al ak xl
 /al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
-/al startk {xl;/al ak xl;kkx}
+/al startk {ak;kkx}
 /al kx startk
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
@@ -155,15 +155,16 @@
             /var zjbl_ok 0;
             /var xl_max 0;
             /unticker {kill};nokill}
-/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{de2 iskill;startk}
 /ac {^『降龙无悔』只能对战}{stopk;cks}
 /ac {^『时乘六龙』只能对战}{stopk;cks}
 /ac {^『震惊百里』只能对战}{stopk;cks}
 /ac {^『引字诀』只能对战}{stopk;cks}
 /ac {^『绊字诀』只能对战}{stopk;cks}
 /ac {^『戳字诀』只能对战}{stopk;cks}
-/ac {^『挑字诀』只能对战}{stopk;cks}
+/ac {^『挑字诀』只能对战}{sk}
 /ac {^『天下无狗』只能对战}{stopk;cks}
+/ac {^「西子捧心」只能在战}{sk}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{sk;perform dodge.goujitiaoqiang}
@@ -219,15 +220,13 @@
     }
 /ac {^看起来%0想杀死你！$}{
         look;
-        /if {$is_kill==0}{
         startk;
-        }
         xixi $petname;
         /delay {pet}{/showme checkpet--}{2};
         }
 /ac {^checkpet--}{
 /showme --checkpet pet=$haspet==;
-/if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{1.2}}{/undelay pet};
+/if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{2.2}}{/undelay pet};
 }
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{luo;pk}
