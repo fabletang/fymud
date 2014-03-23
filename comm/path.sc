@@ -1825,7 +1825,8 @@ nwlk;
 /al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
 /al lz2fy {lz2sk;de1 {sk2fy}}
 /al gt {goto %0;de2 {%0;l}}
-/al fyz {recall back}
+/al fyz {do d,recall back}
+/al ffy {do recall back,w,n,e,e,e,n,u}
 /ac {^看来只有等到黎明时雾散}{keychain}
 /nop miekou
 /al fy2mingyue {fys;de1 {do s,e,se,se,s,s,s,e};de2 {walk 将军府大堂}}

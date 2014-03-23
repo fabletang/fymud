@@ -154,6 +154,7 @@
             /var haspj 0;
             /var zjbl_ok 0;
             /var xl_max 0;
+            /al ak xl;
             /unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{de2 iskill;startk}
 /ac {^『降龙无悔』只能对战}{stopk;cks}
@@ -196,7 +197,6 @@
 /read comm/status.sc
 /al qq {fox;quest}
 /al petbuff {order wear all;order wield ironfist}
-/al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^你的伤势好了一些。}{de1 hp}
 /ac {^结果%1被你攻了个手忙脚乱}{de2 czj}
 /var pcaizhi 1

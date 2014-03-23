@@ -7,5 +7,14 @@
 /session $myname fy.sysfon.com 6000
 /read comm/login.sc
 /read comm/gag.sc
-/read comm/ntpot.sc
-/al cxt cxzzt;
+/nop read comm/ntpot_diaoyu.sc
+/read comm/normal.sc
+/read comm/path.sc
+/read comm/quest.sc
+/read comm/autorecover_hc.sc
+/read comm/status.sc
+/nop read comm/fb_forest.tt
+/al buff {exert powerup}
+/al ki {buff;wi zhufu sword;/delay {2}{kill %0}}
+/ac {^你纵身越到了}{kk}
+/al fy2zt fy2ztv

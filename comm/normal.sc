@@ -533,7 +533,7 @@
         /showme {--research lpots $lpots-};
         /$stimes {/showme research 10000 $stimes};
         /$stimes {research %1 with 10000};
-        research %1 with $lpots;
+        de1 {research %1 with $lpots};
         }{
         research %1 with %2; 
         }

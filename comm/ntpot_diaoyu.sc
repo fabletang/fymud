@@ -78,7 +78,7 @@
     /showme myname=$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
     /if {$hasdie==0 && $jingqi >100 && $ntexp==1}{gowork};
     /if {$ntexp>10000}{/var peiyao 1};
-    /if {$ntexp>100000}{
+    /if {$ntexp>100000 && $fish==0}{
         /showme startfish;
         /delay {12}{hpnt};
     };
@@ -108,7 +108,7 @@
 /ac {^你身上没有鱼饵了。}{s;buyyuer}
 /al buyyuer {fyz;w;s;e;s;buy 5000 yu er;de4 {do buy diao gan,drop diao gan 2};de8 {do n,w,n,n,n,n,n,n,n,n;fish}}
 /ac {^这里看不出有鱼的样子。}{buyyuer}
-/ac {^你顺势一拉杆}{de1 fish}
+/ac {^你顺势一拉杆}{/var fish 1;de1 fish}
 /al fhz {do w,recall back,e,goto hangzhou}
 /al askmine {ask jian gong about mine}
 /al gomine {wtick;fhz;/delay {5}{walk 铜矿山};/delay {6} {askmine}}

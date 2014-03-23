@@ -28,7 +28,7 @@
 /al gotodie {cxt-;set wimpy 0;ffy;de1 {do d,w,w,w,w,s,s,kill huang mazi};}
 /al gofull2 {do w,d,recall back;de1 {do w,s,e,s,buy sleepbag,sleep sleepbag}} 
 /al gofull2 {do w,d,recall back;de1 {do w,s,e,s,buy sleepbag};de5 {sleep sleepbag}} 
-/al gofull {do w,d,sleep sleepbag} 
+/al gofull {do w,d,sleep sleepbag,sleep} 
 /var jingqi 100
 /ac {^【 精 气 】%s%1/%s%2%s(%3%)%s【 精 力 】}{/var jingqi %1;
     /if {%1<90}{sleep sleepbag;sleep}}
@@ -36,16 +36,16 @@
 /ac {^你一觉醒来，只觉精力充沛}{look;hpnt;de1 checkjingqi}
 /ac {^你一觉醒来，只觉精力充沛}{look;stat;fyz;
         de1 {do w,n,w,ask nan xian about 状态恢复};
-        de4 {hpnt}}
+        de4 {e;hpnt}}
 /ac {^玉龙珠宝店}{hpnt}
-/ac {^checkjingqi--}{/if {$jingqi>100}{gowork}}
+/ac {^checkjingqi--}{hpnt;}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
 /var godie 0
 /var hasdie 0
 /ac {^等你还了阳再说吧}{/var hasdie 1}
 /ac {^阎罗殿}{/var hasdie 1}
 /ac {^  教父(Priest)}{/var hasdie 0;de4 {gofull};/delay {gowork}{hpnt}{8}}
-/ac {^你身子虚弱到了极点，连站都站不稳了}{/var hasdie 0;wtick;/var peiyao 0;/var caxie 0;/var copy 0}
+/ac {^你身子虚弱到了极点，连站都站不稳了}{/var hasdie 0;wtick;/var peiyao 0;/var work 0;/var caxie 0;/var copy 0}
 /al dfout {do su,sd,s,s,d,d,d,d,d,d,d,d;de1 {do d,d,d,d,d,d,d,d,d,d,d,ne}}
 /ac {^一阵冷风吹散了你的阴魂}{/var hasdie 1;dfout;wtick}
 /al asksoup {ask mengpo about soup}
@@ -54,23 +54,27 @@
 /ac {^忘川台}{/var hasdie 1;do nw,s,dash mist}
 /nop ac {^平安道}{s}
 /ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{/var hasdie 1;dash mist}
-/ac {^你狠了狠心，一头闯进了迷雾之中}{wtick}
-/al gowork {d;fyz;walk 打铁铺;wtick}
-/al gowork {wtick;do w,recall back;/delay {1}{do w,s,e,e,s}}
-/ac {^大隐阁}{gowork}
+/ac {^你狠了狠心，一头闯进了迷雾之中}{/var peiyao 0;/var work 0;/var caxie 0;/var copy 0;wtick}
+/var work 0
+/al gowork {/if {$work==0}{d;fyz;walk 打铁铺;wtick}}
+/al gopeiyao {/if {$peiyao==0}{d;fyz;walk 药铺;wtick}}
+/al gocopy {/if {$copy==0}{d;fyz;walk 书院;wtick}}
+/nop al gowork {wtick;do w,recall back;/delay {1}{do w,s,e,e,s}}
+/ac {^大隐阁}{hpnt}
 /al wtick {/ticker {work}{look}{8}}
 /al wtick- {/unticker {work}}
 /al askwork {ask tie jiang about job;}
 /ac {^铁匠说道：%0(%1)}{cxt-;%1;}
 /ac {^  铁匠铺老板 铁匠(Tie jiang)}{askwork}
-/ac {^铁匠对你道：这是给你的工钱。}{hpnt;de2 {/if {$peiyao==0}{askwork}{do n,n}}}
-/ac {^铁匠说道：让您老干这个未免屈尊了吧？}{do n,n;hp;save}
-/ac {^平一指说道：就这点经验，连一百五都没有}{do s,s}
+/nop ac {^铁匠对你道：这是给你的工钱。}{hpnt;de2 {/if {$peiyao==0}{askwork}{do n,n}}}
+/ac {^铁匠对你道：这是给你的工钱。}{/var work 1;hpnt}
+/ac {^铁匠说道：让您老干这个未免屈尊了吧？}{/var peiyao 1;hp;save;gopeiyao}
+/ac {^平一指说道：就这点经验，连一百五都没有}{/var work 1;/var peiyao 0;do s,s}
 /al askpeiyao {ask ping about job}
 /ac {^  炼药师协会会长「杀人神医」平一指(Ping yizhi)}{askpeiyao}
-/ac {^平一指说道：%0(%1)}{%1}
+/ac {^平一指说道：%0(%1)}{/var peiyao 1;%1}
 /ac {^平一指说道：让你干的活你干完了么？}{peiyao}
-/ac {^平一指看了你配的药}{/var peiyao 1;hpnt;de1 {askpeiyao}}
+/ac {^平一指看了你配的药}{hpnt;de1 {askpeiyao}}
 /var fish 0
 /var peiyao 0
 /var copy 0
@@ -78,9 +82,6 @@
 /ac {^【 平 和 】%1【 经 验 】%s%2}{
     /var ntexp %2;
     /showme myname =$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
-    /if {$hasdie==0 && $jingqi >100 && $ntexp==1}{gowork};
-    /if {$ntexp>10000}{/var peiyao 1};
-    /if {$ntexp>100000}{/var caxie 1};
     /if {$ntexp>500000 && $fish==0}{
         /unticker {cx};
        wtick;
@@ -88,14 +89,20 @@
        /delay {12}{hpnt};
        cxt-;
     };
-    /if {$ntexp >100 && $ntexp<500000}{
-    /if {$caxie==0}{
-    /if {$copy ==0 || $peiyao ==0}{
-    gowork;
-    }
+    /if {$hasdie==0 && $jingqi >100 && $ntexp<5000}{
+     gowork;
     };
-    /if {$caxie==1}{};
-    }
+    /if {$ntexp >5000 && $ntexp<50000}{
+    /var work 1;
+     gopeiyao;
+    };
+    /if {$ntexp >50000 && $ntexp<100000}{
+    /var peiyao 1;
+     gocopy;
+    };
+    /if {$ntexp >100000 && $ntexp<500000}{
+
+    };
     }
 /ac {^startfish}{
 /5 {drop shoeshine};
@@ -109,16 +116,15 @@
 gotodie
 }
 /ac {^铁匠说道：你还是歇会儿吧}{gofull}
-/ac {^平一指说道：让你干这活，也太屈就你了吧。}{walk 书院}
+/ac {^平一指说道：让你干这活，也太屈就你了吧。}{/var peiyao 1;walk 书院}
 /al askcopy {ask zhu xi about job}
 /ac {^  朱熹(Zhu xi)}{askcopy}
 /ac {^朱熹说道：好，你就帮我抄书(%1)}{%1}
 /ac {^朱熹说道：让你抄的书你抄完了？}{copy}
-/ac {^朱熹说道：虽然我这里只是抄抄书}{gowork}
+/ac {^朱熹说道：虽然我这里只是抄抄书}{/var copy 0;/var peiyao 0;gopeiyao}
 /ac {^通过这次锻炼，你获得了}{;}
 /ac {^朱熹看了你抄写的书}{/var copy 1;hpnt;de1 askcopy}
 /ac {^朱熹说道：大侠你也来抄书？}{/var copy 1;/unticker work;walk 杂货铺;de1 {buy brush};de2 {cxt}}
-/nop ac {^朱熹说道：大侠你也来抄书？}{s;gotodie}
 /var shoeshines 0
 /var cani 1
 /ac {^你身上带著下列这些东西(负重 %1%, 携带量 %2/%3 )：}{/math cani {%3-%2}}
