@@ -36,7 +36,9 @@
 /ac {^ÄãÒ»¾õÐÑÀ´£¬Ö»¾õ¾«Á¦³äÅæ}{look;hpnt;de1 checkjingqi}
 /ac {^ÄãÒ»¾õÐÑÀ´£¬Ö»¾õ¾«Á¦³äÅæ}{look;stat;fyz;
         de1 {do w,n,w,ask nan xian about ×´Ì¬»Ö¸´};
-        de4 {e;hpnt}}
+        de4 {e;hpnt};
+/var peiyao 0;/var work 0;/var caxie 0;/var copy 0;
+        }
 /ac {^ÓñÁúÖé±¦µê}{hpnt}
 /ac {^checkjingqi--}{hpnt;}
 /ac {^ÄãÈàÈàÑÛ¡¢´ò¸ö¹þÇ·£¬Á¢¿ÌÌÉµ¹ÔÚµØÉÏÁË}{gofull2}
@@ -93,8 +95,8 @@
      gowork;
     };
     /if {$ntexp >=5000 && $ntexp<50000}{
-    /var work 1;
      gopeiyao;
+    /var work 1;
     };
     /if {$ntexp >=50000 && $ntexp<100000}{
     /var peiyao 1;
