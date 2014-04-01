@@ -92,15 +92,15 @@
     /if {$hasdie==0 && $jingqi >100 && $ntexp<5000}{
      gowork;
     };
-    /if {$ntexp >5000 && $ntexp<50000}{
+    /if {$ntexp >=5000 && $ntexp<50000}{
     /var work 1;
      gopeiyao;
     };
-    /if {$ntexp >50000 && $ntexp<100000}{
+    /if {$ntexp >=50000 && $ntexp<100000}{
     /var peiyao 1;
      gocopy;
     };
-    /if {$ntexp >100000 && $ntexp<500000}{
+    /if {$ntexp >=100000 && $ntexp<500000}{
 
     };
     }
@@ -116,6 +116,7 @@
 gotodie
 }
 /ac {^铁匠说道：你还是歇会儿吧}{gofull}
+/ac {^朱熹说道：我看你脸色不行啊}{gofull}
 /ac {^平一指说道：让你干这活，也太屈就你了吧。}{/var peiyao 1;walk 书院}
 /al askcopy {ask zhu xi about job}
 /ac {^  朱熹(Zhu xi)}{askcopy}

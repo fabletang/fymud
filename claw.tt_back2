@@ -1,0 +1,12 @@
+#config {TINTIN CHAR} /
+/var myname claw 
+/var passwd Sea123
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname 117.135.143.81 6666
+/session $myname fy.sysfon.com 6000
+/ac {^【新手} {/line {log} ../newclaw.log}
+/ac {^【传闻} {/line {log} ../newclaw.log}
+/read comm/login.sc
+/read comm/gag.sc
+/read comm/ntpot.sc
+/al cxt cxzzt;

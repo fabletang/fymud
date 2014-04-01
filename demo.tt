@@ -18,3 +18,26 @@
 /al ki {buff;wi zhufu sword;/delay {2}{kill %0}}
 /ac {^你纵身越到了}{kk}
 /al fy2zt fy2ztv
+/var petname xjx
+/read comm/pet.sc
+/ac {^│年龄：三岁                            │运气：%s%1/}{
+    /var pyunqi %1;
+    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
+    /if {$pcaizhi <14 || $pyunqi <14}{
+    /nop dismissp $petname;
+    /nop de2 yangcw
+    }
+}
+/var haspet 0
+/ac {^你一脚踢在小}{/var haspet 1;score xjx;hp}
+/al yangcw {
+    /var haspet 0;
+    withdraw 50000;de2 {withdraw 50000};
+    de4 {yang monkey $HIY$ 小九邪 xjx};
+    de7 whistle;
+    de8 {kick xjx};
+    /nop de9 {/if {$haspet==1}{score $petname;hp}};
+    }
+/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
+/var pcaizhi %1;
+}
