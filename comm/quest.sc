@@ -277,15 +277,16 @@ de4 {/showme dq-%1};
     }
 /al tbuymohua- {/unticker {buy}}
 /al askmk {ask master mingyue about defense}
-/al askreward {ask master mingyue about reward}
+/al askreward {hp;ask master mingyue about reward}
 /al gotomy {walk 将军府大堂}
 /ac {^【传闻】明月：天下英豪，当群起而逐之}{gotomy;de1 askmk}
 /ac {^【灭寇】明月：各路英雄请到城门协助加强城防}{gotomy;de1 askmk}
-/ac {^你向明月打听有关『defense』的消息。}{set ability 0}
+/ac {^你向明月打听有关『defense』的消息。}{set ability 1}
 /ac {^【灭寇】明月：这次全靠大家齐心协力}{gotomy;de1 {askreward;askmk}}
 /ac {^【灭寇】明月：倭寇主力已距日出城不远}{askmk}
 /ac {^【灭寇】明月：战斗已结束，请各位英雄来将军府领赏}{gotomy;de1 askreward}
 /ac {^明月说道：目前并无倭寇的踪迹。}{}
+/ac {^伤兵营}{return}
 /nop 挖蚯蚓
 /al getqiuyin {do get qiu yin,get qiu yin}
 /al waqiuyin {

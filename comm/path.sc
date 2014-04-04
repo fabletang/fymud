@@ -333,6 +333,8 @@
 /nop 济南
 
 /al fy2jn {wlk;fy2qf;de2 {e;/3 s;nwlk}}
+/al fy2jn {wlk;fyn;de1 {walk 观川亭;}}
+/al askhuwei {fy2jn;de3 {walk 问礼碑;ask yinxian about huwei}}
 /nop al jn2fy {wlk;n;/3 w;/2 s;de1 {/3 s;sw;s;se};de2 {/4 s;u;nwlk}}
 /al jn2fy {wlk;/3 n;w;/delay {0.5}{qf2fy}}
 /nop qf2master yin
@@ -463,6 +465,8 @@
 /nop 好汉庄
 /al bc2hhz {w;/4 s;se;wade;de8 {su;/2 sw;/2 w}}
 /al hhz2bc {/2 e;/2 ne;nd;wade;de8 {nw;/4 n;e}}
+/nop bc2cuinong
+/al bc2cuinong {walk 销金窟;de1 {open door;s;enter}} 
 /nop 关外到二郎山
 /al els2gw {els2tp;de1 {tp2gw}}
 /al gw2els {gw2tp;de4 {tp2els}}

@@ -56,12 +56,12 @@
         perform herb.xiumugong;
         perform dodge.liuyun;
         poison jade shecao;
-        de3 {poison axe shecao};
+        de4 {poison axe shecao};
             }
 /al ki {do hp,wield axe,wield jade;
         set target %0;
         buff;
-        /delay {2.2}{
+        /delay {3.2}{
             kill %0;
                     }
         }

@@ -42,6 +42,7 @@
 /ac {^玉龙珠宝店}{hpnt}
 /ac {^checkjingqi--}{hpnt;}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
+/ac {^你所受到的还魂·虚弱不堪的效用消失了。}{sleep}
 /var godie 0
 /var hasdie 0
 /ac {^等你还了阳再说吧}{/var hasdie 1}
