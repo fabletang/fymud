@@ -41,3 +41,4 @@
 /ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
 /var pcaizhi %1;
 }
+/ac {^符文闪电般穿过}{perform zhutianjianzhen}

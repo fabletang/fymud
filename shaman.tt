@@ -158,6 +158,7 @@
 /al qx {wispear;perform qixingduopo;de1 {/showme qxdp 夺魄=====}}
 /nop wuche-axe『三板斧』（sanbanfu） 
 /al sbf {wihammer;wia2;set secon_perform sanbanfu}
+/nop al sbf {wihammer;wia2;set secon_perform spear.suomengchanhun}
 /nop liuxing-hammer
 /al fb {wihammer;wih2;set secon_perform fanbei}
 /nop 技能检查

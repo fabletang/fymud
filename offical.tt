@@ -12,3 +12,30 @@
 /read comm/quest.sc
 /read comm/status.sc
 /read comm/autorecover_hc.sc
+/al dian {do unwield all,perform finger.dian,wield blade2,wield blade}
+/read comm/pet.sc
+/var petname xgwy
+/ac {^│年龄：三岁                            │运气：%s%1/}{
+    /var pyunqi %1;
+    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
+    /if {$pcaizhi <14 || $pyunqi <14}{
+    /nop dismissp $petname;
+    /nop de2 yangcw
+    }
+}
+/var haspet 0
+/ac {^你一脚踢在小}{/var haspet 1;score $petname;hp}
+/al yangcw {
+    /var haspet 0;
+    withdraw 50000;de3 {withdraw 50000};
+    de6 {yang monkey $HIY$ 小公务员 xgwy};
+    de8 whistle;
+    de10 {kick $petname};
+    de11 {/if {$haspet==1}{score $petname;hp}};
+    }
+/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
+/var pcaizhi %1;
+}
+/ac {^你的护卫状态不佳，无法发动『七星斩将陣』}{de2 kk}
+/ac {^『七星斩将阵』只能在战}{sk}
+/ac {^你需要等待片刻（%1秒）才能再次变幻阵法。}{/delay {%1}{kk}}
