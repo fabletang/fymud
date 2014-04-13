@@ -183,7 +183,6 @@
 }
 /ac {^你乍然退步，旋身，反手}{
     iskill;
-    pk;
     de1 cks;
     /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{ld};
     /var myok 0;
@@ -229,7 +228,6 @@
 /ac {^自右上方直向}{
     hp;
     /nop pk;
-    kuang;
     iskill;
     /showme {=========== qie ==============};
     /var qieok 0;
@@ -246,7 +244,7 @@
 /ac {^奇冷的寒气包围了}{pk;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
 /ac {^奇冷的寒气包围了}{fl;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
-/ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj;/showme ----try to freeze again ----------------};}
+/ac {^但是被%1机灵地躲开了。}{de5 {pjj;/showme ----try to freeze again ----------------};}
 /al stopk {
             /var cutshen 0;nokill;/unticker {kill};
             /var qieok 1;
