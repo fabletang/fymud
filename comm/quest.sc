@@ -306,3 +306,4 @@ de4 {/showme dq-%1};
     }
 /al twqy {waqiuyin;/ticker {wa}{waqiuyin}{45}}
 /al twqy- {/unticker {wa}}
+/ac {^你看到古柏树下有微微的黄光一闪而逝。}{/10 search}

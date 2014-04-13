@@ -1,6 +1,6 @@
 /var haspet 0
 /ac {^一只小小小小宠物}{/var haspet 1}
-/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
+/ac {^你对着小}{/var haspet 1;/showme --pet has 1----}
 /al lp {look $petname}
 /al aa {do whistle,order wear all,wield all,xixi $petname;}
 /al wh {/var haspet 0;
@@ -20,3 +20,5 @@
 /al batk {performp shiwanshenmo}
 /al batj {performp hyqc}
 /ac {^你现在不可以吹口哨。}{/if {$is_kill==1||$is_walk==0}{/delay {pet}{wh}{2.1}}}
+/al wpet {do order wear all,order wield all}
+/al wwh {whistle}

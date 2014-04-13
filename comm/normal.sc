@@ -442,7 +442,9 @@
 /ac {^你服下解药，顿时感觉好多了。你终于清除了体内所有的七彩蝙蝠毒}{store bat drug}
 /al ts tsell;
 /al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}
-/al buyall {gm 14000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx;nwlk}}
+/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx;nwlk}}
+/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;};de7 ffy;de8 qr;de9 {buybx;nwlk}}
+/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai};de8 ffy;de9 {buybx;nwlk}}
 /al buymeat {fy2qf;de3 {wlk;do e,e,buy beef meat from xiaofan;};de4 {wlk;w;;w;qf2fy}}
 /nop qiankundai 
 /nop {^[24]  豹牙手环(shouhuan)                        1}
@@ -533,6 +535,7 @@
         /showme {--research lpots $lpots-};
         /$stimes {/showme research 10000 $stimes};
         /$stimes {research %1 with 10000};
+        conjure xiuxian;
         de1 {research %1 with $lpots};
         }{
         research %1 with %2; 
@@ -540,6 +543,14 @@
         /showme {=ok=%1 %2};
     }
 }
+/ac {^==%1==need=%2=}{
+    /var spots %2;
+    /if {$research==1}{
+        /if {$spots<100}{/var spots 100};
+        research %1 with $spots; 
+        /showme {=ok=%1 $spots};
+        }
+    }
 /var rpots 1
 /var lpots 1
 /ac {^【升至第%1级所需潜能】%2%s【所需经验等级】}{
@@ -548,7 +559,10 @@
      /var slv %1;
     /showme ----learn pots-=$lpots=rpots-$rpots-cur slv=$slv;
     /if {$research==1}{
+        conjure xiuxian;
+        /delay {0.5}{
     /showme ==$skill==need=$rpots=;
+        }
     };
 }
 /ac {^你对%1作了一番彻底的研究！}{;}

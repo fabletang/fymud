@@ -15,8 +15,10 @@
 /read comm/status.sc
 /nop read comm/fb_forest.tt
 /al buff {exert powerup}
-/al ki {buff;wi zhufu sword;/delay {2}{kill %0}}
-/ac {^你纵身越到了}{kk}
+/al ki {wh;buff;do unwield sleepbag,wield sleepbag,wield zhufu sword;set target %0;/delay {2}{wpet;gongji %0;startk;/delay {2.2}{kill %0}}}
+/al pk {performp tianwaifeixian}
+/al startk {/ticker {kill}{pk}{6}}
+/ac {^你纵身越到了}{iskill;peng}
 /al fy2zt fy2ztv
 /var petname xjx
 /read comm/pet.sc
@@ -41,4 +43,28 @@
 /ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
 /var pcaizhi %1;
 }
-/ac {^符文闪电般穿过}{perform zhutianjianzhen}
+/ac {^符文闪电般穿过}{de2 {perform zhutianjianzhen}}
+/ac {^符文闪电般穿过}{peng}
+/ac {^【新手} {/line {log} ../newdemo.log}
+/ac {^【传闻} {/line {log} ../newdemo.log}
+/ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
+/al stopk {
+        /showme {----kill 变量重置};
+        nokill;
+        /unticker {kill};
+        /var qieok 1;
+        /var qieok_t 0;
+        /nop var bgok_t 0;
+        /var mhok 1;
+        /var qienpc 0;
+        /var fdok 0;
+        /var haskill 0;
+        /var haspo 0;
+        /var haszm 0;
+        /undelay {checkbg};
+        }
+/al sk {stopk;cks}
+/ac {^『诛天剑阵』只能对战}{sk}
+/ac {^然而，%0已经死了}{j}
+/al kb {ki bandit;/delay {2}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
+/al peng {wi sword;do enable sword yuenv-jian,perform pengxin,enable sword demosword}

@@ -21,7 +21,7 @@
 /read comm/gag.sc
 /read comm/normal.sc
 /read comm/path.sc
-/nop read comm/moonbuff_hc.sc
+/read comm/moonbuff_hc.sc
 /read comm/quest.sc
 /read comm/status.sc
 /read comm/pet.sc
@@ -30,25 +30,14 @@
 /al hx {drink dai}
 /ac {^沁骨的冰凉流入喉咙}{stopk;de2 cks}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
-/nop al wpet {order wield blade}
-/al wpet {order wear all}
+/al wpet {order wield blade}
 /al wp wpet
 /var haspet 0
-/var petname xwd 
+/var petname xxd 
+/nop pet perform-------
+/al pj {batj}
 /var haspk 0
-/var haspj 0
-/al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
-/al pj {/if {$haspj==0}{performp freeze;/showme --pet freeze---}}
-/al pj {performp freeze;/showme --pet freeze---}
-/al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
-/al pk {/if {$haspet ==1}{do order wield all,performp sharenruma,order unwield all;/showme --pet pf sword ---sharenruma---}}
-/ac {将周身凝聚的冰块震得粉碎！！}{/var haspj 0;pj}
-/var haspj 0
-/ac {^小弯刀左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
-/ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
-/ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de4 {/var haspj 0;};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};/showme ============ freeze ===========}
+/al pk {/if {$haspk==0}{batk}}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -81,26 +70,21 @@
 /al wihand {wifushou;/if {$hashand==0}{unwi all}}
 /al wiblade {/if {$hasblade==0}{unwi piece;unwi needle;/if {$cutshen==0}{wi zhufu blade}{unwi blade;wi jade2}};reffs}
 /al wianqi {/if {$hasanqi==0}{do unwield jade2,unwield blade,wield needle;reffs}}
+/nop al buff {wi yue;wi all;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
+/nop al buff {bf1;/delay {4.1}{bf2;bf6;bf7}}
 /al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
-/al buff {ld;exert powerup;/delay {4.1}{bf2;perform dodge.hanxueliulan}}
-/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;exert powerup;}
-/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;exert bingpojingbi;}
-/ac {^你所受到的天岚凝舞·霜天雪舞的效用消失了。}{/if {$is_kill==1}{perform dodge.shuangtianxuewu}}
-/ac {^你所受到的天岚凝舞·寒雪流岚的效用消失了。}{/if {$is_kill==1}{perform dodge.hanxueliulan}}
+/nop al buff {wi jade;wi jade2;bf2;bf3;bf4;bf5;bf6;bf7;bf8}
 /al k {wihand;perform finger.dian}
 /al j {wiblade;do enable blade ittouryu,perform gobankiri} 
 /al ki {
         wh;
-        /var haspj 0;
-        do i,hp;wianqi;
+        do i,hp;wiblade;
         set target %0;
-        /var target %0;
-        de1 {buff};
-        /delay {4.2}{
-            wpet;
-            bg;
-            gongji %0;
+        de1 {wpet;buff};
+        /delay {6.2}{
+            qie;
             kill %0;
+            gongji %0;
             startk;
                     };
         }
@@ -110,40 +94,29 @@
 /ac {^小小刀纵身越到了}{pk}
 /nop ------------
 /al ps {/showme  === auto pf ===}
-/ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{gongji $target;kill $target}}
 /al startk {
+        iskill;
         /ticker {kill}{
-            /nop xixi $petname;
-            wh;
-            pj;
-            buff;
-            wk;
+            pk;
             /if {$cutshen==0}{
             }
-            }{4.1}
+            }{5}
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /al reffs {do unwield jade,wield jade}
-/al reffs {;}
 /al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
 /al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;/showme ------- qie-------}
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
-/al kuang {do unwield all,wield blade,enable blade kuangfeng-blade;
-            /8 perform kuang;
-            do unwield blade,wield jade,wield needle;
+/al kuang {wiblade;enable blade kuangfeng-blade;
+            /9 perform kuang;
            ld}
-/al wk {wianqi;perform wukongxuanliu;/showme ---- wk busy npc}
-/var wkok 1
-/ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{ffl;/var wkok 0;/delay {%1}{/var wkok 1}}
-/ac {^你微微一笑，突然翻转大袖}{/var wkok 0;/delay {12}{/var wkok 1}}
-/al wwk {/if {$wkok==1}{wk}{ffl}} 
+/al wk {wianqi;perform wukongxuanliu;/showme ---- busy npc}
 /al km {exert yinlingkouming;/showme ----km 防止伤害血的百分比}
 /al wf {cast wufangbianhuan}
 /al sh {exert shuanghuaningjie}
-/al zywq {cast zhaoyuwanqing}
 /al jjj sh
 /al jjjj {cast zhaoyuwanqing}
 /var kmok 0
@@ -151,11 +124,6 @@
 /nop 『红藕香残』hongouxiangcan
 /al ho {wianqi;perform hongouxiangcan;/showme ---- stop npc}
 /al fl {wianqi;perform fengloufeiyan;/showme ---- 5 hit npc}
-/al fl {wianqi;do perform qixingbanyue,perform fengloufeiyan;/showme ---- 5 hit npc}
-/var flok 1;
-/ac {^风漏飞烟需%1秒后才能再次使用。}{/var flok 0;/delay {%1}{/var flok 1}}
-/ac {^只听你一声清喝，向后疾退三尺}{/var flok 0;/delay {12}{/var flok 1}}
-/al ffl {/if {$flok==1}{fl}}
 /al th {wianqi;perform tianheyixian;/showme ---- 天河 hit npc}
 /nop『七星伴月』（qixingbanyue） 
 /al qx {wianqi;perform qixingbanyue;/showme ---- 回血  npc}
@@ -175,11 +143,11 @@
 /nop pk
 /var qienpc 0
 /ac {^你纵身越到了}{;}
-/ac {^面对你雷霆一般的一击}{/var qienpc 1;kuang}
+/ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
+    pk;
     kuang;
-    /nop kuang;
 }
 /ac {^你乍然退步，旋身，反手}{
     iskill;
@@ -209,6 +177,7 @@
 }{4}
 /ac {^刀云中突发裂帛之声}{
     iskill;
+    pj;
     /if {$cutshen==0}{
     };
     /if {$cutshen==0}{
@@ -228,8 +197,7 @@
 /nop unac {^设定环境变数：secon_perform = "hyakki"}
 /ac {^自右上方直向}{
     hp;
-    /nop pk;
-    kuang;
+    pk;
     iskill;
     /showme {=========== qie ==============};
     /var qieok 0;
@@ -243,8 +211,7 @@
                     }
 /nop qx 
 /ac {^你一扬手，打出星星点点}{/var qxok 0;/delay {20.2}{/var qxok 1}}
-/ac {^奇冷的寒气包围了}{pk;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
-/ac {^奇冷的寒气包围了}{fl;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{th;fl;/delay {4.1}{pk};/showme ============ freeze ===========}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj;pjj;/showme ----try to freeze again ----------------};}
 /al stopk {
@@ -253,14 +220,11 @@
             /var qieok_t 0;
             /undelay {checkqie};
             /var haspk 0;
-            /var haspj 0;
-            /var wkok 1;
-            /var flok 1;
             }
 /ac {^你的法力太低}{hp}
-/ac {^( 你似乎十分疲惫}{wf}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jjj}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq}
+/ac {^( 你似乎十分疲惫}{/showme ----todo 危险-----}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{wh;wf}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{jjj}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{jjjj}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
@@ -274,23 +238,29 @@
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al getitem {
     pick needle;
-    get needle from cactus bonsai;
+    get 1200 needle from cactus bonsai;
      stack;
-     /nop retrieve 3478;
+     retrieve 9428;
+     retrieve 9901;
+     retrieve 7626;
+     retrieve 8360;
+     retrieve 3478;
+     remove all;
+     wear all
 }
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你}{
-           wianqi;
+            wi zhufu blade;wiblade;
             /var knpc_name %0;
             iskill
                          }
 /al wim {wifushou}
-/ac {^你还需等待%1秒钟才能再次施出『红藕香残』}{qx}
-/ac {^你还需等待%1秒钟才能再次施出『七星伴月』}{;}
-/ac {^『天河一线』消耗体力极大，无法连续施展,需再等待%1秒。}{;}
+/ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{qx}
+/ac {^你还需等待%1秒钟才能再次施出『红藕香残』}{fl}
+/ac {^你还需等待%1秒钟才能再次施出『七星伴月』}{fl}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
 /al roomin {928}
@@ -303,8 +273,13 @@
      wear all
 }
 /al ks {bf3;/var cutshen 1;unwi all;ld;wiblade}
+/al yangcw {withdraw 50000;de2 {withdraw 50000};
+    de4 {yang monkey $HIG$ 小小刀 $petname};
+    de7 whistle;
+    de9 scorep;
+    }
 /ac {^小小刀凝聚起天地间十万妖魔}{/var haspk 1;de6 {/var haspk 0};de6 pk;}
-/ac {^你对着小}{/var haspet 1}
+/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
 /ac {^你手臂酸麻，一时无法拿起这件武器}{wianqi}
 /ac {^你只觉得虎口一热，手中的}{wianqi}
 /nop check kill status
@@ -314,36 +289,8 @@
 /nop L40 『他心移物』（telepathy）
 /nop L80 『遗心忘恨』（yixinwanghe
 /al checkkill {cast telepathy jade}
-/al checkkill {perform blade.gobankiri;perform blade.leidianjiaohong}
-/ac {^然而，%1已经死了}{cks;/if {$is_kill==1}{checkkill}}
-/ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{wi jade2}
+/ac {^然而，%1已经死了}{/if {$is_kill==1}{cks};ck;checkkill}
+/ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{wi blade}
 /nop ac {^你向%1开始移动。（40->35)}{/if {$qxok ==1}{/delay {1}{qx;unwiled needle;wiblade}}}
 /nop ac {^你向%1开始移动。（35->30)}{/if {$qxok ==1}{qx;unwiled needle;wiblade}}
 /nop ac {^你向%1开始移动。（30->25)}{/if {$qxok ==1}{qx;unwiled needle;wiblade}}
-/ac {^│年龄：三岁                            │运气：%s%1/}{
-    /var pyunqi %1;
-    de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
-    /if {$pcaizhi <14 || $pyunqi <14}{
-    /nop dismissp $petname;
-    /nop de2 yangcw
-    }
-}
-/var haspet 0
-/nop ac {^你一脚踢在小}{/var haspet 1;scorep;hp}
-/al yangcw {
-    /var haspet 0;
-    withdraw 50000;de3 {withdraw 50000};
-    de6 {yang monkey $HIY$ 小弯刀 $petname};
-    de8 whistle;
-    de10 {kick $petname};
-    de11 {/if {$haspet==1}{score $petname;hp}};
-    }
-/ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
-/var pcaizhi %1;
-}
-/gag {^你已经在}
-/ac {^你纵身越到}{kuang}
-/nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
-/ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{ffl}}
-/al kb {ki bandit;/delay {4}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
-/ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de3 wianqi}

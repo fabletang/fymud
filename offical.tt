@@ -36,6 +36,33 @@
 /ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
 /var pcaizhi %1;
 }
-/ac {^你的护卫状态不佳，无法发动『七星斩将陣』}{de2 kk}
+/ac {^你的护卫状态不佳，无法发动『七星斩将陣』}{kill $target;}
 /ac {^『七星斩将阵』只能在战}{sk}
+/ac {^『玉环鸳鸯拳』只能对战}{sk}
 /ac {^你需要等待片刻（%1秒）才能再次变幻阵法。}{/delay {%1}{kk}}
+/ac {^你接道：“百鬼夜狂”。}{de1 {perform unarmed.yuhuan}}
+/al stopk {
+        /showme {----kill 变量重置};
+        nokill;
+        /unticker {kill};
+        /var qieok 1;
+        /var qieok_t 0;
+        /nop var bgok_t 0;
+        /var mhok 1;
+        /var qienpc 0;
+        /var fdok 0;
+        /var haskill 0;
+        /var haspo 0;
+        /var haszm 0;
+        /undelay {checkbg};
+        }
+/al sk {stopk;cks}
+/al buff {perform dodge.san}
+/al buff2 {perform dodge.er}
+/al ki {wh;do unwield blade2,wield blade2,wield blade;buff;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
+/al pk {performp tianwaifeixian}
+/al startk {/ticker {kill}{pk;perform dodge.qi}{4.1}}
+/ac {^你挥动手中银枪，但见身后护卫移形换位}{de8 kk}
+/ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
+/ac {^小公务员纵身越到了}{pk}
+/al kb {ki bandit;/delay {2}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
