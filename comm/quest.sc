@@ -245,14 +245,22 @@ de8 {ask xiaonu about 神石}
 list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
-/al askqiandao {set ability 0;do recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;save}}
+/al askqiandao {set ability 0;do d,recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;set ability 1;save}}
 /al qf {quest fail}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
 /al kb {ki bandit}
-/ac {^此人看来是这儿的首领}{do get book from corpse,get book from corpse,get book from corpse;
-                            burn;st book;st book;st book}
+/ac {^此人看来是这儿的首领}{
+    /delay {5}{
+    do get book from corpse,get book from corpse,get book from corpse;
+    /3 {get book from corpse};
+    look corpse;
+    };
+    /delay {6}{
+    do get book from corpse,get book from corpse,get book from corpse,get book from corpse;
+    do burn,store book,store book,store book};
+    }
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
 /al askgl {cancel;de2 newtask}

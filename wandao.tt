@@ -18,6 +18,8 @@
 /log a ../wandao.log
 /ac {^【新手} {/line {log} ../newwandao.log}
 /ac {^【传闻} {/line {log} ../newwandao.log}
+/ac {^%1回答%2：} {/line {log} ../newwandao.log}
+/ac {^%1(%2)告诉你：} {/line {log} ../newwandao.log}
 /read comm/gag.sc
 /read comm/normal.sc
 /read comm/path.sc
@@ -37,18 +39,17 @@
 /var petname xwd 
 /var haspk 0
 /var haspj 0
-/al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
-/al pj {/if {$haspj==0}{performp freeze;/showme --pet freeze---}}
-/al pj {performp freeze;/showme --pet freeze---}
+/al pj {/if {$haspet==1}{performp freeze}}
+/al pj {/if {$haspj==0 && $haspet==1}{performp freeze}}
 /al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
+/al pjj {/if {$haspet==1}{performp canglongzhaxian;/showme ---pet -try to busy}}
 /al pk {/if {$haspet ==1}{do order wield all,performp sharenruma,order unwield all;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{/var haspj 0;pj}
 /var haspj 0
 /ac {^小弯刀左手虚握，形成一团奇冷}{/var haspet 1;/var haspj 1}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de5 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de4 {/var haspj 0;};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;ffl;de4 {/var haspj 0};/delay {4}{pk};/showme ============ freeze ===========}
 /var hasblade 0
 /var hasanqi 0
 /var hashand 0
@@ -98,7 +99,8 @@
         de1 {buff};
         /delay {4.2}{
             wpet;
-            bg;
+           /nop bg;
+           juezhao;
             gongji %0;
             kill %0;
             startk;
@@ -106,16 +108,15 @@
         }
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^只听你一声清喝，向后疾退三尺}{pj}
-/ac {^你凌空翻身，右手紧执左手，左掌中}{pk}
+/ac {^你凌空翻身，右手紧执左手，左掌中}{;}
 /ac {^小小刀纵身越到了}{pk}
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{gongji $target;kill $target}}
 /al startk {
         /ticker {kill}{
-            /nop xixi $petname;
-            wh;
             pj;
+            wh;
             buff;
             wk;
             /if {$cutshen==0}{
@@ -131,8 +132,22 @@
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
+/al juezhao {
+    /if {$tdrmok==1}{tdrm};
+    /if {$jclhok==1}{jclh};
+    /if {$tdrmok==0 && jclhok==0}{qie};
+        }
+/nop CDT300秒 又名『神机八刀』，谢掌柜所创 
+/var jclhok 1
+/al jclh {/if {$jclhok==1}{set secon_perform jichulianhuanjue}}
+/ac {^你挥出神机刀法中的绝天灭地的一式－－－计－出－连－环}{/var jclhok 0;/delay {300}{/var jclhok 1}}
+/nop CDT300秒  全名『天地人魔连环八刀』 
+/var tdrmok 1
+/al tdrm {/if {$tdrmok==1}{set secon_perform tiandirenmojue}}
+/ac {^你神气贯通，将天地人魔连环八式一气呵成！}{/var tdrmok 0;/delay {300}{/var tdrmok 1}}
 /al kuang {do unwield all,wield blade,enable blade kuangfeng-blade;
-            /8 perform kuang;
+            /nop 4 {do perform kuang,perform kuang,perform kuang};
+            /8 {perform kuang};
             do unwield blade,wield jade,wield needle;
            ld}
 /al wk {wianqi;perform wukongxuanliu;/showme ---- wk busy npc}
@@ -175,10 +190,9 @@
 /nop pk
 /var qienpc 0
 /ac {^你纵身越到了}{;}
-/ac {^面对你雷霆一般的一击}{/var qienpc 1;kuang}
+/ac {^面对你雷霆一般的一击}{/var qienpc 1;}
 /ac {^突然，一蓬鲜血激射}{
     /var npcbusy 6;
-    kuang;
     /nop kuang;
 }
 /ac {^你乍然退步，旋身，反手}{
@@ -241,8 +255,6 @@
                     }
 /nop qx 
 /ac {^你一扬手，打出星星点点}{/var qxok 0;/delay {20.2}{/var qxok 1}}
-/ac {^奇冷的寒气包围了}{pk;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
-/ac {^奇冷的寒气包围了}{fl;/delay {4.1}{pk};de5 pj;/showme ============ freeze ===========}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pjj;/showme ----try to freeze again ----------------};}
 /al stopk {
@@ -259,7 +271,7 @@
 /ac {^( 你似乎十分疲惫}{wf}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jjj}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{jjjj}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{cast mengyanjue}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
@@ -270,12 +282,6 @@
 /ac {^『雷电交轰』只能对战}{sk}
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
-/al getitem {
-    pick needle;
-    get needle from cactus bonsai;
-     stack;
-     /nop retrieve 3478;
-}
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{qq}
@@ -294,11 +300,9 @@
 /al roomin {928}
 /al getitem {
     pick needle;
-    get 1200 needle from cactus bonsai;
+    get needle from cactus bonsai;
      stack;
      retrieve 5954;
-     remove all;
-     wear all
 }
 /al ks {bf3;/var cutshen 1;unwi all;ld;wiblade}
 /ac {^小小刀凝聚起天地间十万妖魔}{/var haspk 1;de6 {/var haspk 0};de6 pk;}
@@ -345,3 +349,5 @@
 /ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{ffl}}
 /al kb {ki bandit;/delay {4}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
 /ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de3 wianqi}
+/ac {^星芒流绕在}{pjj;qx}
+/ac {^你现在不可以吹口哨。}{}

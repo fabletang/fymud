@@ -1,6 +1,6 @@
 /config speedwalk off
 /nop 设定回车只动输入上次的命令。
-/config {MCCP}     {off}
+/config {MCCP}     {on}
 /config {repeat enter} on
 /config {ECHO COMMAND} on
 /config {SCROLL LOCK} on
@@ -567,3 +567,5 @@
 }
 /ac {^你对%1作了一番彻底的研究！}{;}
 /ac {^你所受到的地域幽魂的效用}{walk 奈河桥;de2 {dash mist}}
+/nop ab2 绝招
+/al jmj {unwield all;perform jiemaijue}
