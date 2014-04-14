@@ -465,6 +465,8 @@
 /nop 好汉庄
 /al bc2hhz {w;/4 s;se;wade;de8 {su;/2 sw;/2 w}}
 /al hhz2bc {/2 e;/2 ne;nd;wade;de8 {nw;/4 n;e}}
+/nop 地狱谷
+/al hhz2dyg {walk 地狱谷}
 /nop bc2cuinong
 /al bc2cuinong {walk 销金窟;de1 {open door;s;enter}} 
 /nop 关外到二郎山
@@ -1115,6 +1117,8 @@ wlk;
 /al er2lz {er2tp;de2 {tp2lz}}
 /al tp2er {pl {wlk;ne;w;w;nw;nu;nu;su;nu;l rock;northdown;nd;nd;e;nwlk};pr}
 /al er2tp {pl {wlk;w;su;su;southup;l rock;sd;nd;sd;sd;se;e;e;sw;nwlk};pr}
+/nop wan
+/al er2wan {walk 回春阁}
 
 /al gw2er {gw2tp;de3 {tp2er}}
 /al er2gw {er2tp;de3 {tp2gw}}

@@ -136,6 +136,7 @@ w;cook
 /al mazelost {wlk;do d,e,s,ask chuili seng about lost,n,w,u;nwlk}
 /al mazefail {wlk;do d,e,s,ask chuili seng about fail,n,w,u;nwlk}
 /al mazeto {wlk;/math coin {%0*10000};gm $coin;de5 {do d,e,s,give %0 gold to chuili seng,n,w,u;nwlk}}
+/al em {entermaze;de1 {maphere}}
 /ac {^垂笠老僧不满地说：你是否仔细找过？再去找%d秒钟吧。}{/delay {%1}{mazelost}}
 /ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}

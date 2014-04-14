@@ -28,6 +28,7 @@
 /read comm/status.sc
 /read comm/pet.sc
 /read comm/autorecover_hc.sc
+/read comm/juezhao.sc
 /var jqs_lost_limit 0.1
 /al hx {drink dai}
 /ac {^沁骨的冰凉流入喉咙}{stopk;de2 cks}
@@ -92,15 +93,15 @@
 /al j {wiblade;do enable blade ittouryu,perform gobankiri} 
 /al ki {
         wh;
+        cjz;
         /var haspj 0;
-        do i,hp;wianqi;
-        set target %0;
+        do i,set target %0;
+        cks;wianqi;
         /var target %0;
         de1 {buff};
         /delay {4.2}{
             wpet;
-           /nop bg;
-           juezhao;
+           /if {$shaqi>0 || $bgok_t==1}{bg}{ld;juezhao};
             gongji %0;
             kill %0;
             startk;
@@ -126,25 +127,12 @@
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /al reffs {do unwield jade,wield jade}
-/al reffs {;}
+/al reffs {wield jade}
 /al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
 /al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;/showme ------- qie-------}
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
 /al ld {do enable blade chillblade,set secon_perform leidianjiaohong;reffs;}
-/al juezhao {
-    /if {$tdrmok==1}{tdrm};
-    /if {$jclhok==1}{jclh};
-    /if {$tdrmok==0 && jclhok==0}{qie};
-        }
-/nop CDT300秒 又名『神机八刀』，谢掌柜所创 
-/var jclhok 1
-/al jclh {/if {$jclhok==1}{set secon_perform jichulianhuanjue}}
-/ac {^你挥出神机刀法中的绝天灭地的一式－－－计－出－连－环}{/var jclhok 0;/delay {300}{/var jclhok 1}}
-/nop CDT300秒  全名『天地人魔连环八刀』 
-/var tdrmok 1
-/al tdrm {/if {$tdrmok==1}{set secon_perform tiandirenmojue}}
-/ac {^你神气贯通，将天地人魔连环八式一气呵成！}{/var tdrmok 0;/delay {300}{/var tdrmok 1}}
 /al kuang {do unwield all,wield blade,enable blade kuangfeng-blade;
             /nop 4 {do perform kuang,perform kuang,perform kuang};
             /8 {perform kuang};
@@ -214,9 +202,9 @@
     /var bgok_t 0;
     /delay {121}{/var bgok_t 1};
     /delay {2.5}{/if {$shaqi>0}{bg}{
-                                    /if {$myok==1}{my}{ld};
+                                    /if {$myok==1}{my}{ld;juezhao};
                                     };
-                /if {$qieok==1 || $qieok_t ==1}{qie};
+                /if {$qieok==1 || $qieok_t ==1}{qie;juezhao};
                   /showme {------shaqi=$shaqi};
                  };
 }{4}
@@ -233,22 +221,20 @@
 /ac {^设定环境变数：secon_perform = "hyakki"}{
     /delay {checkbg} {
                 /if {$is_kill==1}{
-                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my}{ld};};
+                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my}{ld;juezhao};};
                         };
                         }{9.1}
             
 }
-/nop unac {^设定环境变数：secon_perform = "hyakki"}
-/ac {^自右上方直向}{
+/ac {^你根本无视%1的攻击，大吼一声}{
     hp;
-    /nop pk;
     iskill;
     /showme {=========== qie ==============};
     /var qieok 0;
     /delay {60.2}{/var qieok_t 1};
     bg;
     /delay {2.1} {/if {$shaqi>0 || $bgok_t ==1}{bg}{
-                                    /if {$myok==1}{my}{ld};
+                                    /if {$myok==1}{my}{ld;juezhao};
                                     };
                   /showme {------shaqi=$shaqi};
                  };
