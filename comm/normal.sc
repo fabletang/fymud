@@ -449,6 +449,8 @@
 /nop qiankundai 
 /nop {^[24]  ±ªÑÀÊÖ»·(shouhuan)                        1}
 /nop qiankun bag
+/al sb {summonnt qiankun bag}
+/al llb {l qiankun}
 /al qstore {sb;remove %0;unwield %0;store %0}
 /var it_sn 0
 /var it_num 1

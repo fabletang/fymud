@@ -369,6 +369,8 @@
 /al qp2dm {wlk;do w,n,ne,ne,n,n;nwlk}
 /al dm2qp {wlk;do s,s,sw,sw,s,e;nwlk}
 /al dm2ts {wlk;do n,e,e,n,n,n,n,w,w,n,nu;nwlk}
+/nop á·Ãíin
+/al dmin {walk ¶«Åäµî;de2 {l picture}}
 /al ts2dm {wlk;do sd,s,e,e,s,s,s,s,w,w,s;nwlk}
 /al qp2ts {qp2dm;de1 {dm2ts}}
 /al ts2qp {ts2dm;de1 {dm2qp}}

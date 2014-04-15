@@ -246,7 +246,7 @@ de8 {ask xiaonu about 神石}
 list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
-/al askqiandao {set ability 0;do d,recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;set ability 1;save}}
+/al askqiandao {set ability 0;set pet 0;do d,recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;set ability 1;save}}
 /al qf {quest fail}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
@@ -286,14 +286,15 @@ de4 {/showme dq-%1};
     }
 /al tbuymohua- {/unticker {buy}}
 /al askmk {ask master mingyue about defense}
-/al askreward {hp;ask master mingyue about reward}
+/al askreward {ask master mingyue about reward;de2 askmk}
+/al askrw askreward
 /al gotomy {walk 将军府大堂}
-/ac {^【传闻】明月：天下英豪，当群起而逐之}{gotomy;de1 askmk}
-/ac {^【灭寇】明月：各路英雄请到城门协助加强城防}{gotomy;de1 askmk}
-/ac {^你向明月打听有关『defense』的消息。}{set ability 1}
-/ac {^【灭寇】明月：这次全靠大家齐心协力}{gotomy;de1 {askreward;askmk}}
-/ac {^【灭寇】明月：倭寇主力已距日出城不远}{askmk}
-/ac {^【灭寇】明月：战斗已结束，请各位英雄来将军府领赏}{gotomy;de1 askreward}
+/ac {^【传闻】明月：天下英豪，当群起而逐之}{gotomy;de3 askmk;de6 askmk}
+/ac {^【灭寇】明月：各路英雄请到城门协助加强城防}{gotomy;de3 askmk;de6 askmk}
+/ac {^你向明月打听有关『defense』的消息。}{set ability 1;set pet 0}
+/ac {^【灭寇】明月：这次全靠大家齐心协力}{gotomy;de3 {askreward;de3 askmk}}
+/ac {^【灭寇】明月：倭寇主力已距日出城不远}{gotomy;de3 askreward}
+/ac {^【灭寇】明月：战斗已结束，请各位英雄来将军府领赏}{gotomy;de3 askreward;de6 askrw}
 /ac {^明月说道：目前并无倭寇的踪迹。}{}
 /ac {^伤兵营}{return}
 /nop 挖蚯蚓

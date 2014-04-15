@@ -364,3 +364,8 @@
     /delay {1.5}{ask qing qing about 弯刀}
     }
 /ac {^金灵芝和丁枫向东边荒凉的小径走去}{east}
+/al gotofb {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};}
+/ac {^  绿林暴风盟 %1 沙漠贼盗(Shamo zeidao)(LV}{ki zeidao}
+/ac {^  %1(chipped sapphire)(LV1)}{get chipped sapphire;l}
+/ac {^  %1(flawless sapphire)(LV}{get flawless sapphire;l}
+/ac {^  %1(chipped topaz)(LV}{get chipped topaz;l}

@@ -119,7 +119,7 @@
             pj;
             wh;
             buff;
-            wk;
+            wwk;
             /if {$cutshen==0}{
             }
             }{4.1}
@@ -157,7 +157,7 @@
 /al fl {wianqi;do perform qixingbanyue,perform fengloufeiyan;/showme ---- 5 hit npc}
 /var flok 1;
 /ac {^风漏飞烟需%1秒后才能再次使用。}{/var flok 0;/delay {%1}{/var flok 1}}
-/ac {^只听你一声清喝，向后疾退三尺}{/var flok 0;/delay {12}{/var flok 1}}
+/ac {^只听你一声清喝，向后疾退三尺}{/var flok 0;/delay {20}{/var flok 1}}
 /al ffl {/if {$flok==1}{fl}}
 /al th {wianqi;perform tianheyixian;/showme ---- 天河 hit npc}
 /nop『七星伴月』（qixingbanyue） 
