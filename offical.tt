@@ -59,10 +59,14 @@
 /al sk {stopk;cks}
 /al buff {perform dodge.san}
 /al buff2 {perform dodge.er}
-/al ki {wh;do unwield blade2,wield blade2,wield blade;buff;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
+/al ki {wh;do unwield blade2,wield blade2,wield blade;buff;buff2;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
 /al pk {performp tianwaifeixian}
-/al startk {/ticker {kill}{pk;perform dodge.qi}{4.1}}
+/al startk {/ticker {kill}{pk;wh;do perform spear.likangqunmo,perform dodge.qi}{4.1}}
 /ac {^你挥动手中银枪，但见身后护卫移形换位}{de8 kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^小公务员纵身越到了}{pk}
 /al kb {ki bandit;/delay {2}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
+/al checkkill {perform blade.gobankiri;perform blade.leidianjiaohong}
+/ac {^然而，%1已经死了}{cks;/if {$is_kill==1}{checkkill}}
+/ac {^你现在不可以吹口哨。}{}
+/ac {^你对%1一指，对小公务员命令}{kill $target}

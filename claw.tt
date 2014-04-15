@@ -192,7 +192,6 @@
         buff;
         wh;
         /delay {0.5}{
-            wpet;
             /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
                           /if {$shaqi>0 || $bgok_t==1}{bg}{
                                         /if {$yrcyok==1}{yrcy}{slcx};
@@ -202,6 +201,7 @@
             }
         startk;
         /delay {3.1}{
+            wpet;
             kill %0;
             /if {$haspet==0}{wh;de2 gongji %0};
            /nop gongji %0;
@@ -319,7 +319,7 @@
             reffs;
             xixi $petname;
             gongji $target;
-           /if {$haspet==0}{wh;/delay {pet}{gongji $target;kill $target}{1}};
+           /if {$haspet==0}{wh;/delay {pet}{wpet;gongji $target;kill $target}{1}};
             pj;
             /if {$haskill == 0}{
             /if {$qieok==1}{qie}{

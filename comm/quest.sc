@@ -252,15 +252,16 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
 /al kb {ki bandit}
+/al getbooks {do get book from corpse,get book from corpse,get book from corpse,get book from corpse}
 /ac {^此人看来是这儿的首领}{
+    getbooks;
     /delay {5}{
-    do get book from corpse,get book from corpse,get book from corpse;
-    /3 {get book from corpse};
+    getbooks;
     look corpse;
     };
     /delay {6}{
-    do get book from corpse,get book from corpse,get book from corpse,get book from corpse;
-    do burn,store book,store book,store book};
+    getbooks;
+    do burn,store book,store book,store book,store book};
     }
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
@@ -296,7 +297,7 @@ de4 {/showme dq-%1};
 /ac {^【灭寇】明月：倭寇主力已距日出城不远}{gotomy;de3 askreward}
 /ac {^【灭寇】明月：战斗已结束，请各位英雄来将军府领赏}{gotomy;de3 askreward;de6 askrw}
 /ac {^明月说道：目前并无倭寇的踪迹。}{}
-/ac {^伤兵营}{return}
+/ac {^伤兵营}{return;de2 l}
 /nop 挖蚯蚓
 /al getqiuyin {do get qiu yin,get qiu yin}
 /al waqiuyin {

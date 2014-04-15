@@ -449,7 +449,7 @@
 /nop qiankundai 
 /nop {^[24]  豹牙手环(shouhuan)                        1}
 /nop qiankun bag
-/al sb {summonnt qiankun bag}
+/al sb {summonnt qiankun}
 /al llb {l qiankun}
 /al qstore {sb;remove %0;unwield %0;store %0}
 /var it_sn 0
@@ -571,3 +571,9 @@
 /ac {^你所受到的地域幽魂的效用}{walk 奈河桥;de2 {dash mist}}
 /nop ab2 绝招
 /al jmj {unwield all;perform jiemaijue}
+/ac {^%1突然将右手拇指食指相屈，眼神变得迷离而朦胧}{
+/if {'%1'!='你’}{
+/delay {1.5}{unwield all};
+/showme ===npc dian wuqi====;
+}
+}
