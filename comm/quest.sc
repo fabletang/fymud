@@ -246,7 +246,10 @@ de8 {ask xiaonu about 神石}
 list;
 de1 {buy ikebana stone from fang;arrange;ki fang}
 }
-/al askqiandao {set ability 0;set pet 0;do d,recall back,w,n,w,ask qiandao npc about 签到;de1 {e;e;e;e;n;hp;set ability 1;save}}
+/al askqiandao {set ability 0;set pet 0;do d,recall back,w,n,w,ask qiandao npc about 签到;
+                de1 {wwh};
+                de2 {order ask qiandao npc about 签到};
+                de3 {e;e;e;e;n;hp;set ability 1;save}}
 /al qf {quest fail}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
@@ -296,8 +299,13 @@ de4 {/showme dq-%1};
 /ac {^【灭寇】明月：这次全靠大家齐心协力}{gotomy;de3 {askreward;de3 askmk}}
 /ac {^【灭寇】明月：倭寇主力已距日出城不远}{gotomy;de3 askreward}
 /ac {^【灭寇】明月：战斗已结束，请各位英雄来将军府领赏}{gotomy;de3 askreward;de6 askrw}
+/ac {^【灭寇】明月喝道：敌人就要到达城下}{gotomy;de3 askmk;de6 askmk}
+/ac {^你已经到达将军府大堂}{de2 askrw}
+/ac {^【灭寇】明月：各营加紧抢修城门}{gotomy}
 /ac {^明月说道：目前并无倭寇的踪迹。}{}
-/ac {^伤兵营}{return;de2 l}
+/ac {^【灭寇】明月双手抱拳}{gotomy;de3 askmk;de6 askrw}
+/ac {^看起来海盗倭寇}{ki wokou}
+/ac {^伤兵营}{return;de4 l}
 /nop 挖蚯蚓
 /al getqiuyin {do get qiu yin,get qiu yin}
 /al waqiuyin {

@@ -86,7 +86,13 @@
 /al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
 /al buff {ld;exert powerup;/delay {4.1}{bf2;perform dodge.hanxueliulan}}
 /al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;exert powerup;}
-/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;exert bingpojingbi;}
+/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;bpjb}
+/var bpjbok 1
+/al bpjb {/if {$bpjbok==1}{exert bingpojingbi}}
+/ac {^『冰魄晶壁』还需要等待%1秒钟。}{/var bpjbok 0;/delay {%1}{/var bpjbok 1}}
+/ac {^你运转心诀，层层寒雾在身边笼聚}{/var bpjbok 0;/delay {60}{/var bpjbok 1}}
+/ac {^你身边冰壁逐渐溶解}{/var bpjbok 1;/if {$is_kill==1}{bpjb}}
+/al stxw {perform dodge.shuangtianxuewu}
 /ac {^你所受到的天岚凝舞·霜天雪舞的效用消失了。}{/if {$is_kill==1}{perform dodge.shuangtianxuewu}}
 /ac {^你所受到的天岚凝舞·寒雪流岚的效用消失了。}{/if {$is_kill==1}{perform dodge.hanxueliulan}}
 /al k {wihand;perform finger.dian}
@@ -252,6 +258,7 @@
             /var haspj 0;
             /var wkok 1;
             /var flok 1;
+            /var bpjb 1;
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{wf}
@@ -338,3 +345,4 @@
 /ac {^星芒流绕在}{pjj;qx}
 /ac {^你现在不可以吹口哨。}{}
 /ac {^你对%1一指，对小弯刀命令}{kill $target}
+/ac {^  小弯刀的尸体(Corpse)}{hpp;wpet}{4}

@@ -70,3 +70,4 @@
 /ac {^然而，%1已经死了}{cks;/if {$is_kill==1}{checkkill}}
 /ac {^你现在不可以吹口哨。}{}
 /ac {^你对%1一指，对小公务员命令}{kill $target}
+/ac {^  小公务员的尸体(Corpse)}{hpp;wpet}{4}

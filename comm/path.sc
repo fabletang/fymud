@@ -1141,7 +1141,8 @@ wlk;
 /nop 藏藏北快活林
 /al bc2khl {pl {wlk;se;e;e;e;e;s;s;w;w;su;sw;sw;sw;sd;nwlk};pr}
 /al khl2bc {pl {wlk;w;w;w;nu;ne;ne;ne;nd;e;e;n;n;w;w;w;w;nw;nwlk};pr}
-
+/nop 小屋
+/al bc2xw {walk 林间空地;de2 {do open door,s}}
 /nop 关外到乌拉泊
 /al gw2wlb {gw2lz;de2 {lz2wlb}}
 /al wlb2gw {wlb2lz;de3 {lz2gw}}

@@ -421,7 +421,7 @@
     dazuo;
     /delay {12}{do w,s,s,u}
     }
-/al buybx {do d,w,w,n,ask xuer about 铂金经验保险,s,e,e,u}
+/al buybx {do d,w,w,n,ask xuer about 铂金经验保险;de2 {do ask shangguan xuer about treasurebox,s,e,e,u}}
 /unac {^水银在到处流转，舒适无比}{tuna}
 /al tuna3 {walk 风云天骄门;/delay {1}{tuna};/delay {7}{tuna};/delay {13}{tuna}}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
@@ -444,7 +444,7 @@
 /al buypill {fy2wdz;de2 {wlk;s;w;/2 buy pill from xinghua};de4 {e;n;wdz2fy}}
 /al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx;nwlk}}
 /al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;};de7 ffy;de8 qr;de9 {buybx;nwlk}}
-/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai};de8 ffy;de9 {buybx;nwlk}}
+/al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w};de8 ffy;de9 {buybx;nwlk}}
 /al buymeat {fy2qf;de3 {wlk;do e,e,buy beef meat from xiaofan;};de4 {wlk;w;;w;qf2fy}}
 /nop qiankundai 
 /nop {^[24]  豹牙手环(shouhuan)                        1}
@@ -521,8 +521,8 @@
     /showme ==stop resto==;
     };
 }
-/ac {^＊%1 (%2)%s- %3%s%4/    0$}{
-    /if {"$skill"="%2"}{
+/ac {^＊%1%s(%2)%s-%s%3%s%4/%s0}{
+    /if {"$skill"=="%2"}{
     /var research 1;
     /showme ---research can =$research;
     }
@@ -555,7 +555,7 @@
     }
 /var rpots 1
 /var lpots 1
-/ac {^【升至第%1级所需潜能】%2%s【所需经验等级】}{
+/ac {^【升至第%1级所需潜能】%s%2%s【所需经验等级】}{
      /var lpots %2;
      /math rpots {10 * %2};
      /var slv %1;
