@@ -8,6 +8,7 @@
     /if {$tdrmok==1}{tdrm};
     /if {$jclhok==1}{jclh};
         }
+/ac {^你还要需要等待%1秒才能使用叱咤风云之特技。}{ability2;juezhao}
 /nop CDT300秒 又名『神机八刀』，谢掌柜所创 
 /var jclhok 1
 /al jclh {/if {$jclhok==1}{set secon_perform jichulianhuanjue}}

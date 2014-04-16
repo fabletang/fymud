@@ -68,4 +68,6 @@
 /ac {^然而，%0已经死了}{j}
 /al kb {ki bandit;/delay {2}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
 /al peng {wi sword;do enable sword yuenv-jian,perform pengxin,enable sword demosword}
-/al wh {xixi}
+/al checkkill {perform blade.gobankiri}
+/al q checkkill
+/ac {^然而，%1已经死了}{cks;/if {$is_kill==1}{checkkill}}

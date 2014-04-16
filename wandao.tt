@@ -86,7 +86,10 @@
 /al buff {ld;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7}}
 /al buff {ld;exert powerup;/delay {4.1}{bf2;perform dodge.hanxueliulan}}
 /al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;exert powerup;}
-/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;bpjb}
+/al buff {perform dodge.shuangtianxuewu;perform dodge.hanxueliulan;wf;bpjb}
+/al wf {/if {$wfok==1}{cast wufangbianhuan}}
+/var wfok 1
+/ac {^你还需等待%1秒钟左右才能再次施出『无方变幻』}{/var wfok 0;/delay {%1}{/var wfok 1}}
 /var bpjbok 1
 /al bpjb {/if {$bpjbok==1}{exert bingpojingbi}}
 /ac {^『冰魄晶壁』还需要等待%1秒钟。}{/var bpjbok 0;/delay {%1}{/var bpjbok 1}}
@@ -150,7 +153,6 @@
 /ac {^你微微一笑，突然翻转大袖}{/var wkok 0;/delay {12}{/var wkok 1}}
 /al wwk {/if {$wkok==1}{wk}{ffl}} 
 /al km {exert yinlingkouming;/showme ----km 防止伤害血的百分比}
-/al wf {cast wufangbianhuan}
 /al sh {exert shuanghuaningjie}
 /al zywq {cast zhaoyuwanqing}
 /al jjj sh
@@ -254,11 +256,13 @@
             /var qieok 1;
             /var qieok_t 0;
             /undelay {checkqie};
+            /undelay {checkbg};
             /var haspk 0;
             /var haspj 0;
             /var wkok 1;
             /var flok 1;
-            /var bpjb 1;
+            /var bpjbok 1;
+            /var wfok 1;
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{wf}

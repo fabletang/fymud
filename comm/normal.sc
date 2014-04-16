@@ -1,6 +1,6 @@
 /config speedwalk off
 /nop 设定回车只动输入上次的命令。
-/config {MCCP}     {on}
+/config {MCCP}     {off}
 /config {repeat enter} on
 /config {ECHO COMMAND} on
 /config {SCROLL LOCK} on
@@ -555,7 +555,7 @@
     }
 /var rpots 1
 /var lpots 1
-/ac {^【升至第%1级所需潜能】%s%2%s【所需经验等级】}{
+/ac {^【升至第%1级所需潜能】%2%s【所需经验等级】}{
      /var lpots %2;
      /math rpots {10 * %2};
      /var slv %1;
@@ -566,6 +566,19 @@
     /showme ==$skill==need=$rpots=;
         }
     };
+}
+/ac {^【学习至第%1级所需潜能】%2%s【所需经验等级】}{
+     /var lpots %2;
+     /math rpots {10 * %2};
+     /var slv %1;
+    /showme ----learn pots-=$lpots=rpots-$rpots-cur slv=$slv;
+    /if {$research==1}{
+        conjure xiuxian;
+        /delay {0.5}{
+    /showme ==$skill==need=$rpots=;
+        }
+    };
+
 }
 /ac {^你对%1作了一番彻底的研究！}{;}
 /ac {^你所受到的地域幽魂的效用}{walk 奈河桥;de2 {dash mist}}
