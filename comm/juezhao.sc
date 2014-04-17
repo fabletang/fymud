@@ -12,11 +12,12 @@
 /nop CDT300秒 又名『神机八刀』，谢掌柜所创 
 /var jclhok 1
 /al jclh {/if {$jclhok==1}{set secon_perform jichulianhuanjue}}
-/ac {^你挥出神机刀法中的绝天灭地的一式－－－计－出－连－环}{/var jclhok 0;/delay {300}{/var jclhok 1};juezhao}
+/ac {^你挥出神机刀法中的绝天灭地的一式－－－计－出－连－环}{/var jclhok 0;/delay {300}{/var jclhok 1};ability2;de1 juezhao}
 /nop CDT300秒  全名『天地人魔连环八刀』 
 /var tdrmok 1
 /al tdrm {/if {$tdrmok==1}{set secon_perform tiandirenmojue}}
-/ac {^你神气贯通，将天地人魔连环八式一气呵成！}{/var tdrmok 0;/delay {300}{/var tdrmok 1};juezhao}
+/ac {^你神气贯通，将天地人魔连环八式一气呵成！}{/var tdrmok 0;
+    /delay {300}{/var tdrmok 1};ability2;de1 juezhao}
 /nop 1	天地人魔     tiandirenmojue      8	（2/3）	  0	
 /nop 2	计出连环     jichulianhuanjue    10	（0/3）	219	
 /ac {^1	天地人魔     tiandirenmojue%s%1%s（%2/3）%s%3}{

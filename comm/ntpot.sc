@@ -145,7 +145,7 @@ gotodie
     /delay {12}{do s,caxie meipo};
     /delay {16}{do s,caxie ouyang};
     /delay {20}{do s,caxie li apo};
-    /delay {24}{do n,n,w,caxie nan xian};
+    /delay {24}{do n,n};
 }
 /al cxyzs {
     caxie wu;

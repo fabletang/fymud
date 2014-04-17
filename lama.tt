@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname wandao
+/var myname lama
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /nop nop session $myname fy.sysfon.com 6000
@@ -13,11 +13,7 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/al reload {/read wandao.tt}
-/nop log o ../wandao.log
-/log a ../wandao.log
-/ac {^【新手} {/line {log} ../newwandao.log}
-/ac {^【传闻} {/line {log} ../newwandao.log}
+/al reload {/read lama.tt}
 /ac {^%1回答%2：} {/line {log} ../newwandao.log}
 /ac {^%1(%2)告诉你：} {/line {log} ../newwandao.log}
 /read comm/gag.sc
@@ -117,6 +113,7 @@
             startk;
                     };
         }
+/al ki {set target %0;kill %0}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^只听你一声清喝，向后疾退三尺}{pj}
 /ac {^你凌空翻身，右手紧执左手，左掌中}{;}
@@ -341,7 +338,7 @@
 /var pcaizhi %1;
 }
 /gag {^你已经在}
-/ac {^你纵身越到}{kuang}
+/ac {^你纵身越到}{}
 /nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
 /ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{ffl}}
 /al kb {ki bandit;/delay {4}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
