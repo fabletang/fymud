@@ -6,3 +6,4 @@
 /ac {^你只觉得虎口一热，手中的}{stat;/showme ===debuff noweapon 武器掉了=====;}
 /ac {^鹰爪功·锁脉%s%1%ssec}{/showme ===debuff nopfm %1;}
 /ac {^一刀流剑术·棋盘切%s%1%ssec}{/delay {%1} {do wield sword,stat,i}}
+/ac {^你手臂酸麻，一时无法拿起这件武器。}{i}

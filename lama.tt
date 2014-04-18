@@ -113,7 +113,7 @@
             startk;
                     };
         }
-/al ki {set target %0;kill %0}
+/al ki {unwi jade;wi staff;set target %0;kill %0;fh}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^只听你一声清喝，向后疾退三尺}{pj}
 /ac {^你凌空翻身，右手紧执左手，左掌中}{;}

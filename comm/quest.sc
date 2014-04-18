@@ -249,14 +249,15 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /al askqiandao {set ability 0;set pet 0;do d,recall back,w,n,w,ask qiandao npc about 签到;
                 de1 {wwh};
                 de2 {order ask qiandao npc about 签到};
-                de3 {e;e;e;e;n;hp;set ability 1;save}}
+                de12 {hpp;wwh};
+                de13 {do e,e,e,e,n,n,e,hp,set ability 1;save}}
 /al qf {quest fail}
 /al qc {quest cancel}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
 /al kb {ki bandit}
-/al getbooks {do get book from corpse,get book from corpse,get book from corpse,get book from corpse}
+/al getbooks {do get book from corpse,get book from corpse,get book from corpse,get book from corpse,get book from corpse}
 /ac {^此人看来是这儿的首领}{
     getbooks;
     /delay {5}{
@@ -264,12 +265,14 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
     look corpse;
     };
     /delay {6}{
+    /if {$is_kill==0}{
     getbooks;
     do burn,store book,store book,store book,store book};
     }
+    }
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
-/al askgl {cancel;de2 newtask}
+/al askgl {cancel;/delay {6.1}{newtask}}
 /al asktaobaoyi {ask tao baoyi about 陶氏;de2 {ask tao baoyi about 药引子};de3 {give fish to tao baoyi}}
 /ac {^天机老人皱着眉头说：我也不强人所难}{/delay {181}{quest}}
 /nop daqigu yellow bandit leader cyan killer 
@@ -327,3 +330,26 @@ de4 {/showme dq-%1};
 /al twqy {waqiuyin;/ticker {wa}{waqiuyin}{45}}
 /al twqy- {/unticker {wa}}
 /ac {^你看到古柏树下有微微的黄光一闪而逝。}{/10 search}
+/nop gulong
+/ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{}
+/al askgl2 {
+    choose 5;
+    askgl2+;
+    /ticker {askgl}{askgl}{6.3};
+}
+/al askgl2+ {
+    wlk;
+    /ac {^古龙说道：在%1的%2有一正派人士}{
+    /if {'%1'=='风云城' || '%1'=='富贵山庄' || '%1'=='老屋'}{askgl2-};
+    /if {'%1'=='济南' || '%1'=='清平山庄' || '%1'=='武当镇'}{askgl2-};
+    /if {'%1'=='武当山' || '%1'=='塞口' || '%1'=='嵩山'}{askgl2-};
+    }
+}
+/al askgl2- {
+    /showme ========= %1  ^^^  %2==========;
+    n;
+    nwlk;
+    /unac {^古龙说道：在%1的%2有一正派人士};
+    /unticker {askgl};
+}
+/ac {^天机老人掂了掂手里的%1百两银子乐呵呵地说：既然不想做这个就换一个吧。}{quest}
