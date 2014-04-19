@@ -113,6 +113,7 @@ w;cook
     }
 /ac {一阵悠悠的琴声不知从何处传来}{listen}
 /ac {琴声戛然而止}{/delay {1}{apprentice hua zhenzhen}}
+/ac {琴声戛然而止}{/delay {1}{;}}
 /ac {^满了各式各样的藤萝}{unwi all; wi jade; chop vine; make tengluo}
 /ac {^你掏出一条藤萝绳}{climb down;
     /delay {6}{get all from 树冠; climb up};
@@ -191,6 +192,9 @@ n;
 /ac {^司空摘星拍了拍你的头，哈哈笑道：不错不错}{unwi all;learn monkey-claw from sikong with 1;/unticker {qiuyin};/unac {^司空摘星拍了拍你的头，哈哈笑道：不错不错}};
 /ticker {qiuyin}{giveqiuyin}{120}}
 /ac {^卡卡木说道：我受伤了}{give 1 baiyao to kaka mu;de3 {fi kaka mu}}
+/ac {^卡卡木说道：我一时大意}{stopk;nokill;cks;de4 {fi kaka mu}}
+/ac {^卡卡木说道：我还没准备好}{stopk;nokill;cks;de4 {fi kaka mu}}
+/ac {^卡卡木说道：我现在方知天外有天}{/showme ===fi kaka mu ok}
 /al askwurong {ask wurong about 国色天香;answer 不丑}
 /ac {^吕南人说道：我受伤了，这样打不公平吧}{give 1 baiyao to nanren;de3 {fi nanren}}
 /ac {^勾魂使者对你说道：想过我这一关？}{accept test;tell ghost no face}
@@ -272,12 +276,21 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
     }
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
-/al askgl {cancel;/delay {6.1}{newtask}}
+/al askgl {cancel;/delay {4.1}{newtask}}
 /al asktaobaoyi {ask tao baoyi about 陶氏;de2 {ask tao baoyi about 药引子};de3 {give fish to tao baoyi}}
 /ac {^天机老人皱着眉头说：我也不强人所难}{/delay {181}{quest}}
 /nop daqigu yellow bandit leader cyan killer 
 /ac {^正在创建副本...$}{center;turn rock}
 /ac {^几个人影闪进石门之中来！$}{open red}
+/ac {^%1说道：老子杀人无数，多杀你}{ki killer}
+/ac {^%1说道：竟敢与我神教为敌}{ki loster}
+/ac {^( 吕南人气喘嘘嘘}{quanfu nanren;de3 {quanfu nanren}}
+/ac {^( 吕南人似乎十分疲惫}{quanfu nanren;de3 {quanfu nanren}}
+/ac {^只听各个门里传来阵阵嗡鸣}{de2 {ki thief;kill thief 2;kill thief 4;kill thief 3}}
+/ac {^入侵敌人全部消灭！}{center;turn rock}
+/ac {^一个高大的人影闪进石门之中来！}{de2 {ki boss}}
+/ac {^青室里一阵响动，通往藏宝室的机关打开}{open cyan;cyan;do open picture,s,s}
+/ac {^宝箱消失了。}{l finger}
 /ac {^江湖中又有消息传来，在该副本的%1室一带还有余孽活动。$}{
 de4 {/showme dq-%1}; 
 }
@@ -353,3 +366,4 @@ de4 {/showme dq-%1};
     /unticker {askgl};
 }
 /ac {^天机老人掂了掂手里的%1百两银子乐呵呵地说：既然不想做这个就换一个吧。}{quest}
+/ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{}

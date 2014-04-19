@@ -1,6 +1,6 @@
 #config {TINTIN CHAR} /
 /var myname maoer 
-/var passwd Sea321
+/var passwd Mao321
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /nop session $myname china.fengyun.com 6000
@@ -19,9 +19,8 @@
 /al ki {wh;buff;do unwield sleepbag,wield sleepbag,wield zhufu sword;set target %0;/delay {2}{wpet;gongji %0;startk;/delay {2.2}{kill %0}}}
 /al ki {kill %0;startk}
 /al pk {performp tianwaifeixian}
-/al startk {/ticker {kill}{k}{6}}
+/al startk {/ticker {kill}{zz}{4}}
 /ac {^你纵身越到了}{iskill;peng}
-/al fy2zt fy2ztv
 /var petname xjx
 /read comm/pet.sc
 /ac {^│年龄：三岁                            │运气：%s%1/}{
@@ -74,3 +73,5 @@
 /ac {^五阴焚灭只能对战斗中的对手使用}{sk}
 /ac {^『%0』(scroll)}{x scroll;de2 lc} 
 /ac {^阳关三叠只能对战}{sk}
+/ac {^%1回答%2：} {/line {log} ../newwandao.log}
+/ac {^%1(%2)告诉你：} {/line {log} ../newwandao.log}

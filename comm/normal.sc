@@ -37,7 +37,7 @@
     /delay {10}{/var can_eat 1}
 }
 /al iskill {/var is_kill 1}
-/al nokill {/var is_kill 0}
+/al nokill {/var is_kill 0;/var is_fight 0}
 /variable is_walk 0
 /al wlk {/var is_walk 1; /var at_tj 0;follow none}
 /al nwlk {/delay {2}{/var is_walk 0}}
@@ -402,7 +402,8 @@
 /al digstatue {/ticker {dig}{l 杨树;l 新土;dig;get box}{4}}
 /al notdig {/unticker {dig}}
 /ac {^三仙碑}{do get skin from small bag,fill skin}
-/al fi {buff;iskill;de2 {fight %0;set targe %0;/var npc %0}}
+/var is_fight 0
+/al fi {buff;/var is_fight 1;de2 {fight %0;set targe %0;/var npc %0}}
 /ac {^可是什么事情都没有发生}{fff}
 /ac {^看起来金衣卫首领想杀死你}{tk sentry}{3}
 /nop full pet
@@ -590,3 +591,4 @@
 /showme ===npc dian wuqi====;
 }
 }
+/al wzhanjia {do remove cloth,remove cloth 2,remove cloth 3,wear zhanjia}

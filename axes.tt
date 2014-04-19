@@ -214,7 +214,7 @@
     de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
     /if {$pcaizhi <16 || $pyunqi <16}{
     dismissp $petname;
-    /nop de2 yangcw
+    /nop de2 yangcw;
     }
 }
 /var haspet 0

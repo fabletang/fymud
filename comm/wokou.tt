@@ -1,0 +1,13 @@
+/al kwk {ki jap badguy;de3 {kill jap badguy 2;kill jap badguy 3;kill jap badguy 4;kill jap badguy 5;}}
+/ac {^%0倭寇一眼瞥见你}{kwk}
+/ac {^%0倭寇和你一碰面}{kwk}
+/ac {^%0倭寇和你仇人相见}{kwk}
+/ac {^%0倭寇对著你大喝}{kwk}
+/ac {^%0倭寇喝道：「你，}{kwk}
+/ac {^%0忍者一眼瞥见你}{kwk}
+/ac {^%0忍者和你一碰面}{kwk}
+/ac {^%0忍者和你仇人相见}{kwk}
+/ac {^%0忍者对著你大喝}{kwk}
+/ac {^%0忍者喝道：「你，}{kwk}
+/al askwkr {ask master about reward}
+/ac {^你刚去过，再去太危险了，等等吧？}{/delay {4}{sail}}

@@ -102,7 +102,6 @@
 /al j {wiblade;do enable blade ittouryu,perform gobankiri} 
 /al ki {
         wh;
-        cjz;
         /var haspj 0;
         /var is_walk 0;
         do i,set target %0;
@@ -125,8 +124,10 @@
 /al ps {/showme  === auto pf ===}
 /al startk {
         /ticker {kill}{
+        /if {$is_fight==0}{
             pj;
             wh;
+            }
             buff;
             wwk;
             /if {$cutshen==0}{
@@ -314,6 +315,7 @@
 /nop L80 『遗心忘恨』（yixinwanghe
 /al checkkill {cast telepathy jade}
 /al checkkill {perform blade.gobankiri;perform blade.leidianjiaohong}
+/al checkkill {perform blade.gobankiri}
 /ac {^然而，%1已经死了}{cks;/if {$is_kill==1}{checkkill}}
 /ac {你手中的圆月弯刀一震，不知怎么就落在了地下}{wi jade2}
 /nop ac {^你向%1开始移动。（40->35)}{/if {$qxok ==1}{/delay {1}{qx;unwiled needle;wiblade}}}
@@ -348,7 +350,7 @@
 /ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de3 wianqi}
 /ac {^星芒流绕在}{pjj;qx}
 /ac {^你现在不可以吹口哨。}{}
-/ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{de1 {kill $target}}}
+/ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{kill $target}}
 /ac {^  小弯刀的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;gongji $target}}}
-/al hj jmj
+/ac {^你所选用的武功中没有这种必杀技}{take 8 300;de2 {wi needle}}

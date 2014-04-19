@@ -753,7 +753,7 @@
     wlk;
     /ac {^楚楚向你笑道：没有白毛巾怎么洗}{/3 s;buy_white_towel};
     /ac {^你的钱不够}{fy2zt-};
-    /ac {^你向小丫环买下一条白毛巾}{remove all;wear white towel;/3 n;open door;n;jump};
+    /ac {^你向小丫环买下一条白毛巾}{remove all;wear white towel;/3 n;open door;n;jump;wear all};
     /ac {你感到全身无比的舒泰} {wlk;jump};
     /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-;nwlk}
 }
@@ -774,7 +774,7 @@
     wlk;
     /ac {^金童向你笑道：没有白毛巾怎么洗}{/3 n;buy white towel from kid};
     /ac {^你的钱不够}{fy2ztv-};
-    /ac {^你向小童买下一条白毛巾}{remove all;wear white towel;/3 s;open door;s;wash};
+    /ac {^你向小童买下一条白毛巾}{remove all;wear white towel;/3 s;open door;s;wash;wear all};
     /ac {你感到全身无比的舒泰} {wlk;wash};
     /ac {^你懒懒地从枫叶泉里站起身来} {dd leaf;ztv2fy;fy2ztv-;nwlk}
 }
@@ -1838,7 +1838,11 @@ nwlk;
 /al gt {goto %0;de2 {%0;l}}
 /al fyz {do d,recall back}
 /al ffy {do recall back,w,n,e,e,e,n,u}
+/al wfy {walk 天机阁}
 /ac {^看来只有等到黎明时雾散}{keychain}
 /nop miekou
 /al fy2mingyue {fys;de1 {do s,e,se,se,s,s,s,e};de2 {walk 将军府大堂}}
 /al mingyue2fy {do s,s,s,w,w,w;de1 {walk 风云南城门};de2 {fys-}}
+/al fy2wk {walk 风云南城门;de2 fys2luori;de4 luori2wk}
+/al fys2luori {walk 落日外门}
+/al luori2wk {walk 旭日海边}
