@@ -1,6 +1,7 @@
 /config speedwalk off
 /nop 设定回车只动输入上次的命令。
-/config {MCCP}     {off}
+/nop config {MCCP}     {off}
+/config {MCCP}     {on}
 /config {repeat enter} on
 /config {ECHO COMMAND} on
 /config {SCROLL LOCK} on
@@ -454,16 +455,20 @@
 /al llb {l qiankun}
 /al qstore {sb;remove %0;unwield %0;store %0}
 /var it_sn 0
-/var it_num 1
+/var it_num 0
+/var it_n 0
 /var it_code shouhuan1
 /al qt {/var it_code {%0};sb;llb;
     /showme ==want take $it_code;
-} 
+}
+/al qtg {/var it_code %1;/var it_n %2;sb;llb;/showme ==qtg take %1 %2}
 /ac {^[%1]  %0(%3)%s%4}{
     /var it_sn %1;
     /var it_num %4;
     /if {"$it_code"=="%3"}{
-                    take %1 %4;
+                    /if {$it_n>1}{take %1 $it_n}{
+                    take %1 $it_num;
+                    }
                             };
     /nop showme == $it_sn %0 %3 $it_num ==
 } 
@@ -478,8 +483,8 @@
                             };
     /nop showme ----- $it_sn %0 %5 %6 $it_num ----- 
 }{4} 
-/ac {^你从如意乾坤袋里}{/var it_code shouhuan1}
-/ac {^你存入%0到如意乾坤袋}{/var it_code none}
+/ac {^你从如意乾坤袋里}{/var it_code shouhuan1;/var it_num 0;/var it_n 0}
+/ac {^你存入%0到如意乾坤袋}{/var it_code none;/var it_num 0;}
 /ac {^你撞了大运，得到额外奖励符文%1。}{store %1}
 /al getbatdrug {wlk;do w,w,w,w,d,w,get all from woodcase,store bat drug;nwlk}
 /al st {remove %0;unwield %0;store %0}
@@ -592,3 +597,4 @@
 }
 }
 /al wzhanjia {do remove cloth,remove cloth 2,remove cloth 3,wear zhanjia}
+/ac {^一片火光中，}{ga forge}

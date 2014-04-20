@@ -137,6 +137,8 @@ w;cook
 /al mazelost {wlk;do d,e,s,ask chuili seng about lost,n,w,u;nwlk}
 /al mazefail {wlk;do d,e,s,ask chuili seng about fail,n,w,u;nwlk}
 /al mazeto {wlk;/math coin {%0*10000};gm $coin;de5 {do d,e,s,give %0 gold to chuili seng,n,w,u;nwlk}}
+/nop 139级以后你可以通过给我10～17两黄金接能增加经验前值的maze1任务，用entermaze1命令进入。给我50～57两黄金更可以获得双倍经验奖励。 
+/al m1to {wlk;/math gold {50 + %1};qtg gold $gold;de3 {do d,e,s,give $gold gold to chuili seng,n,w,u;nwlk}} 
 /al em {entermaze;de1 {maphere}}
 /ac {^垂笠老僧不满地说：你是否仔细找过？再去找%d秒钟吧。}{/delay {%1}{mazelost}}
 /ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}

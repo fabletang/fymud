@@ -33,7 +33,7 @@
 /al wpet {order wear all}
 /al wp wpet
 /var haspet 0
-/var petname xwd 
+/var petname xlm 
 /var haspk 0
 /var haspj 0
 /al pj {/if {$haspet==1}{performp freeze}}
@@ -320,19 +320,19 @@
     /var pyunqi %1;
     de1 {/showme pcaizhi =$pcaizhi pyunqi =$pyunqi};
     /if {$pcaizhi <14 || $pyunqi <14}{
-    /nop dismissp $petname;
-    /nop de2 yangcw
+    dismissp $petname;
+    de2 yangcw
     }
 }
 /var haspet 0
-/nop ac {^你一脚踢在小}{/var haspet 1;scorep;hp}
+/ac {^你一脚踢在小}{/var haspet 1;scorep;hp}
 /al yangcw {
     /var haspet 0;
     withdraw 50000;de3 {withdraw 50000};
-    de6 {yang monkey $HIY$ 小弯刀 $petname};
+    de6 {yang monkey $HIY$ 小喇嘛 $petname};
     de8 whistle;
     de10 {kick $petname};
-    de11 {/if {$haspet==1}{score $petname;hp}};
+    /nop de11 {/if {$haspet==1}{score $petname;hp}};
     }
 /ac {^│种族：野兽  性别：雄性  民族：本地生  │才智：%s%1/}{
 /var pcaizhi %1;
@@ -346,6 +346,6 @@
 /ac {^星芒流绕在}{pjj;qx}
 /ac {^你现在不可以吹口哨。}{}
 /ac {^你对%1一指，对小弯刀命令}{kill $target}
-/ac {^  小弯刀的尸体(Corpse)}{wh}{4}
+/ac {^  小喇嘛的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;gongji $target}}}
 /al hj jmj

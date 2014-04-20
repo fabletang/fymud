@@ -109,10 +109,9 @@
         /var target %0;
         de1 {buff};
         /delay {4.2}{
-            wpet;
+            hpp;
            /if {$shaqi>0 || $bgok_t==1}{bg}{ld;juezhao};
-            gongji %0;
-            kill %0;
+            do gongji %0,kill %0;
             startk;
                     };
         }
@@ -235,6 +234,7 @@
                         }{9.1}
             
 }
+/unac {^设定环境变数：secon_perform = "hyakki"};
 /ac {^你根本无视%1的攻击，大吼一声}{
     hp;
     iskill;
@@ -268,7 +268,7 @@
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{wf}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jjj}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq;cast mengyanjue}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{cast mengyanjue}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
@@ -347,10 +347,10 @@
 /nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
 /ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{ffl}}
 /al kb {ki bandit;/delay {4}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
-/ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de3 wianqi}
+/ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de1 wianqi}
 /ac {^星芒流绕在}{pjj;qx}
 /ac {^你现在不可以吹口哨。}{}
-/ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{kill $target}}
+/ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{startk}}
 /ac {^  小弯刀的尸体(Corpse)}{wh}{4}
-/ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;gongji $target}}}
-/ac {^你所选用的武功中没有这种必杀技}{take 8 300;de2 {wi needle}}
+/ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
+/ac {^你所选用的武功中没有这种必杀技}{take 8 200;wi needle}

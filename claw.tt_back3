@@ -68,13 +68,10 @@
 /al noblade2 {/var blade2  0;/showme no blade2;}
 /ac {^你抽出一把明晃晃的圆月弯刀}{iblade}
 /ac {^你装备神之祝福宝剑作武器}{isword}
-/ac {^你「唰」地一声抽出一把宠物专用 强壮的多孔的羽神锋握在手中。}{isword}
-/ac {^  √宠物专用 %1(sword)(LV}{isword}
 /ac {^你装备神之祝福宝刀}{iblade}
 /ac {^  √神之祝福宝刀(zhufu blade)}{iblade}
 /ac {^你「唰」地一声抽出一把备用剑}{isword}
 /ac {^你放下手中的神之祝福宝剑}{nosword}
-/ac {^你将手中的宠物专用 %1剑鞘。}{nosword}
 /ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你装备%0棋子作武器}{ianqi}
 /ac {^你将仙人刺握在手中}{ianqi}
@@ -111,7 +108,7 @@
                                                 }
          }
 /al reffs {do unwield $seconw,wield $seconw}
-/al buff {wi sword;exert chill;de2 {exert powerup}}
+/al buff {exert chill;de2 {exert powerup}}
 /al j {exert mihunshu}
 /al jjj {perform dodge.lianhuanbu}
 /al jjj {perform yanduhantan;/showme @@@@ sword busy}
@@ -128,16 +125,7 @@
             pj;
             de2 tryyr;
             /nop de3 pj;
-            }{4.1}
-            }
-/al startk {
-        /ticker {kill}{
-            j;
-            buff;
-        /if {$is_fight==0}{
-            /delay {4}{pj;wh;}
-            };
-            }{4.1}
+            }{7.1}
             }
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
@@ -379,7 +367,6 @@
 /ac {^金灵芝和丁枫向东边荒凉的小径走去}{east}
 /al gotofb {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};}
 /ac {^  绿林暴风盟 %1 沙漠贼盗(Shamo zeidao)(LV}{ki zeidao}
-/ac {^你现在不可以吹口哨。}{}
-/ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{startk}}
-/ac {^  小小爪的尸体(Corpse)}{wh}{4}
-/ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
+/ac {^  %1(chipped sapphire)(LV1)}{get chipped sapphire;l}
+/ac {^  %1(flawless sapphire)(LV}{get flawless sapphire;l}
+/ac {^  %1(chipped topaz)(LV}{get chipped topaz;l}

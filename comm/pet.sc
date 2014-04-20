@@ -10,7 +10,7 @@
                 }
 /al scorep {score $petname}
 /al skillsp {skills $petname}
-/al hpp {wlk;expp;hp $petname;nwlk}
+/al hpp {wlk;expp;hp $petname;wpet;nwlk}
 /nop gp  give pet
 /al gp {give %0 to $petname}
 /nop rp  order pet return to you
@@ -19,6 +19,6 @@
 /nop §幻梦步法§ 『幻影千重』〔huanyinqianchong〕
 /al batk {performp shiwanshenmo}
 /al batj {performp hyqc}
-/ac {^你现在不可以吹口哨。}{/if {$is_kill==1||$is_walk==0}{/delay {pet}{wh}{2.1}}}
+/nop ac {^你现在不可以吹口哨。}{/if {$is_kill==1||$is_walk==0}{/delay {pet}{wh}{2.1}}}
 /al wpet {do order wear all,order wield all}
 /al wwh {whistle}
