@@ -288,7 +288,7 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^%1说道：竟敢与我神教为敌}{ki loster}
 /ac {^( 吕南人气喘嘘嘘}{quanfu nanren;de3 {quanfu nanren}}
 /ac {^( 吕南人似乎十分疲惫}{quanfu nanren;de3 {quanfu nanren}}
-/ac {^只听各个门里传来阵阵嗡鸣}{de4 {ki thief;kill thief 2;kill thief 4;kill thief 3}}
+/ac {^只听各个门里传来阵阵嗡鸣}{center;de4 {ki thief;kill thief 2;kill thief 4;kill thief 3}}
 /ac {^入侵敌人全部消灭！}{center;turn rock}
 /ac {^一个高大的人影闪进石门之中来！}{de2 {ki boss}}
 /ac {^青室里一阵响动，通往藏宝室的机关打开}{open cyan;cyan;do open picture,s,s}

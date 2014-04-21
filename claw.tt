@@ -26,6 +26,7 @@
 /read comm/status.sc
 /read comm/pet.sc
 /read comm/juezhao.sc
+/al juezhao {;}
 /read comm/debuff.sc
 /var petname xxz
 /var haspet 0

@@ -10,4 +10,4 @@
 /ac {^%1突然将右手拇指食指相屈，眼神变得迷离而朦胧}{
 /delay {1.5}{unwield all};
 }
-/ac {你手中的%0，不知怎么就落在了地下！$}{i;wi all}
+/ac {你手中的%0，不知怎么就落在了地下！$}{get sword;get blade;get hammer;get needle;wi all}
