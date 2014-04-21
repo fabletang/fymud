@@ -3,13 +3,20 @@
 /var jz_2 0
 /var jz_3 180
 /al cjz {/var jz_1 0;/var jz_2 0;/var jz_3 180;ab2}
+/al pjuezhao {
+         /if {$twfxok==1}{perform tianwaifeixianjue}{
+            /if {$jclhok==1}{perform jichulianhuanjue}{
+                /if {$tdrmok==1}{perform tiandirenmojue};
+            }
+         }
+         }
 /al juezhao {
     ability2;
     /delay {0.5}{
     /if {$tdrmok==0 && $twfxok==0 && $jclhok==0}{qie};
-    /if {$jclhok==1}{jclh};
-    /if {$tdrmok==1}{tdrm};
-    /if {$twfxok==1}{twfx};
+    /if {$jclhok==1}{jclh;wi blade2};
+    /if {$tdrmok==1}{tdrm;wi blade2};
+    /if {$twfxok==1}{twfx;wi blade2};
         }
         }
 /ac {^你还要需要等待%1秒才能使用叱咤风云之特技。}{ability2;juezhao}

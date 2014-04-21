@@ -278,7 +278,7 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
     }
 /nop fatman job
 /al askpang {ask fatman about job;accept mission;answer lady;follow fat lady}
-/al askgl {cancel;/delay {4.1}{newtask}}
+/al askgl {cancel;/delay {4.1}{cancel;newtask}}
 /al asktaobaoyi {ask tao baoyi about 陶氏;de2 {ask tao baoyi about 药引子};de3 {give fish to tao baoyi}}
 /ac {^天机老人皱着眉头说：我也不强人所难}{/delay {181}{quest}}
 /nop daqigu yellow bandit leader cyan killer 
@@ -288,7 +288,7 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^%1说道：竟敢与我神教为敌}{ki loster}
 /ac {^( 吕南人气喘嘘嘘}{quanfu nanren;de3 {quanfu nanren}}
 /ac {^( 吕南人似乎十分疲惫}{quanfu nanren;de3 {quanfu nanren}}
-/ac {^只听各个门里传来阵阵嗡鸣}{de2 {ki thief;kill thief 2;kill thief 4;kill thief 3}}
+/ac {^只听各个门里传来阵阵嗡鸣}{de4 {ki thief;kill thief 2;kill thief 4;kill thief 3}}
 /ac {^入侵敌人全部消灭！}{center;turn rock}
 /ac {^一个高大的人影闪进石门之中来！}{de2 {ki boss}}
 /ac {^青室里一阵响动，通往藏宝室的机关打开}{open cyan;cyan;do open picture,s,s}

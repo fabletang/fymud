@@ -7,3 +7,7 @@
 /ac {^鹰爪功·锁脉%s%1%ssec}{/showme ===debuff nopfm %1;}
 /ac {^一刀流剑术·棋盘切%s%1%ssec}{/delay {%1} {do wield sword,stat,i}}
 /ac {^你手臂酸麻，一时无法拿起这件武器。}{i}
+/ac {^%1突然将右手拇指食指相屈，眼神变得迷离而朦胧}{
+/delay {1.5}{unwield all};
+}
+/ac {你手中的%0，不知怎么就落在了地下！$}{i;wi all}

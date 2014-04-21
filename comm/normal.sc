@@ -598,3 +598,6 @@
 }
 /al wzhanjia {do remove cloth,remove cloth 2,remove cloth 3,wear zhanjia}
 /ac {^一片火光中，}{ga forge}
+/ac {^%1突然将右手拇指食指相屈，眼神变得迷离而朦胧}{
+/delay {1.5}{unwield all};
+}
