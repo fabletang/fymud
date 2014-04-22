@@ -31,6 +31,7 @@
 /read comm/pet.sc
 /read comm/autorecover_hc.sc
 /read comm/juezhao.sc
+/read comm/combat.sc
 /al juezhao {;}
 /var jqs_lost_limit 0.1
 /al hx {drink dai}
@@ -267,6 +268,7 @@
             /var bpjbok 1;
             /var wfok 1;
             get needle;
+            de1 look;
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{wf}

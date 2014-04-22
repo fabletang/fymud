@@ -262,19 +262,15 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
 /ac {^天机老人说道：请到少林寺替天机老人杀了}{stat}
 /ac {^你现在的任务是: 到少林寺去杀}{stat}
 /al askxy askxiaoyuer
-/al kb {ki bandit}
-/al getbooks {do get book from corpse,get book from corpse,get book from corpse,get book from corpse,get book from corpse}
+/al kb {ki bandit;}
+/al kb {ki bandit;de2 {do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit 5,kill bandit leader}}
+/al getbooks {do get book from corpse,store book,get book from corpse,store book,get book from corpse,store book,get book from corpse,store book}
 /ac {^此人看来是这儿的首领}{
     getbooks;
-    /delay {5}{
-    getbooks;
-    /nop look corpse;
-    };
-    /delay {6}{
-    /if {$is_kill==0}{
-    getbooks;
-    /nop do burn,store book,store book,store book,store book};
-    do store book,store book,store book,store book};
+    de2 getbooks;
+    /delay {4}{
+    lc;
+    /if {$is_kill==0}{;};
     }
     }
 /nop fatman job
@@ -347,7 +343,6 @@ de4 {/showme dq-%1};
 /al twqy- {/unticker {wa}}
 /ac {^你看到古柏树下有微微的黄光一闪而逝。}{/10 search}
 /nop gulong
-/ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{}
 /al askgl2 {
     choose 5;
     askgl2+;
@@ -369,4 +364,4 @@ de4 {/showme dq-%1};
     /unticker {askgl};
 }
 /ac {^天机老人掂了掂手里的%1百两银子乐呵呵地说：既然不想做这个就换一个吧。}{quest}
-/ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{}
+/ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{;}

@@ -26,6 +26,7 @@
 /read comm/status.sc
 /read comm/pet.sc
 /read comm/juezhao.sc
+/read comm/combat.sc
 /al juezhao {;}
 /read comm/debuff.sc
 /var petname xxz
@@ -138,8 +139,8 @@
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /al startk {
+        /var kticker 1;
         /ticker {kill}{
-        /showme  -------- 2 tick --------==================================;
             wi sword;
             j;
             buff;
@@ -147,6 +148,8 @@
             /delay {2}{pj;wh;};
             /nop pj;wh;
             };
+        /math ticks {1+$ticks};
+        /delay {0.1}{/showme  =============================================== tick == $ticks ==};
             }{4.1}
             }
 /nop 『棋盘切』（gobankiri）
@@ -214,6 +217,7 @@
 /nop {^%1心头如针刺般剧痛}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de2 trypo}}
 /ac {^你更不稍停，反掌间五根手指}{/var haspo 1;iskill}
 /var haskill 0
+/var ticks 0
 /al ki {do ability2,wield sword,wield blade2,hp,set target %0;
         i;
         /var target %0;
@@ -228,8 +232,7 @@
             /var haskill 1;
             };
         /delay {2.1}{
-            hpp;
-            gongji %0;
+            /if {$haspet==1}{hpp;gongji %0};
             kill %0;
             startk;
             /nop if {$haspet==0}{wh;de2 gongji %0};
@@ -289,6 +292,7 @@
             /if {$shaqi>0 || $bgok_t==1}{bg}{slcx;};
                                     };
 }
+/var kticker 0
 /al stopk {
         /showme {----kill 变量重置};
         nokill;/unticker {kill};
@@ -305,7 +309,10 @@
         /var is_fight 0;
         /var chillok 0;
         /var powerup 0;
+        /var ticks 0;
+        /var kticker 0;
         /undelay {checkbg};
+        de1 look;
         }
 /ac {^你向%1开始移动。（40->35)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
 /ac {^你向%1开始移动。（35->30)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
@@ -348,7 +355,7 @@
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
-/ac {^看起来%0想杀死你！}{
+/ac {^看起来%0想杀死你}{
             wi sword;
             reffs;
             xixi $petname;
@@ -363,7 +370,7 @@
             /var knpc_name %0;
             /nop de2 iskill;
                          }
-/ac {^看起来%0想杀死你}{wi sword;iskill;}
+/ac {^看起来%0想杀死你}{wi sword;iskill}
 /al wim {wi zhufu sword;wi sword2}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
@@ -407,6 +414,6 @@
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
 /ac {^『棋盘切』只能对战}{sk}
 /ac {^「西子捧心」只能在战斗}{sk}
-/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 6}}
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 7}}
 /al em {entermaze1}
 /ac {^你身上没有这样东西}{get sword}
