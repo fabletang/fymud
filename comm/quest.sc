@@ -268,12 +268,13 @@ de1 {buy ikebana stone from fang;arrange;ki fang}
     getbooks;
     /delay {5}{
     getbooks;
-    look corpse;
+    /nop look corpse;
     };
     /delay {6}{
     /if {$is_kill==0}{
     getbooks;
-    do burn,store book,store book,store book,store book};
+    /nop do burn,store book,store book,store book,store book};
+    do store book,store book,store book,store book};
     }
     }
 /nop fatman job

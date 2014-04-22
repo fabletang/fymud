@@ -144,7 +144,7 @@
             j;
             buff;
         /if {$is_fight==0}{
-            /delay {3.5}{pj;wh;};
+            /delay {2}{pj;wh;};
             /nop pj;wh;
             };
             }{4.1}
@@ -164,7 +164,7 @@
 /al yrcy {set secon_perform yirancangyun;wis2;/showme ====== 剑  *yrcy}
 /al yr {wisword;perform yirancangyun;/showme ======+ 剑  *yrcy}
 /al tryyr {/if {$yrcyok==1}{yr}{peng}}
-/al tryyr {/if {$yrcyok==1}{yr}{pjuezhao}}
+/al tryyr {/if {$yrcyok==1}{yr}{pjuezhao;fd}}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
 /al po   {perform unarmed.polu}
 /al zm   {do unwield all,perform dodge.zhuiming,wield zhufu sword;slcx}
@@ -202,14 +202,15 @@
 /ac {^一时之间，}{pk}
 /var fdok 0
 /ac {阴风扑面，差点儿晕了过去。$}{/showme -------放毒成功----;/var fdok 1;/delay {120}{/var fdok 0}}
+/ac {^%1吐一口浊气，中的『九阴毒雾』终于失效了}{}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
 /ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;de2 tryyr;/delay {14}{/var mhok 1}}
 /ac {^需等待%1秒才能再次使用迷魂术}{/var mhok_t 0;/var mhok 0;/delay {%1}{/var mhok_t 1;/var mhok 1}}
 /nop polu todo
 /var haspo 0
 /al trypo {/if {$haspo==0 && $is_kill==1}{po;/showme *****polu********;}}
-/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de2 trypo}}
-/ac {^%1的脸憋得通红，忽感天旋地转}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de2 trypo}}
+/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de3 trypo}}
+/ac {^%1的脸憋得通红，忽感天旋地转}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de3 trypo}}
 /nop {^%1心头如针刺般剧痛}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de2 trypo}}
 /ac {^你更不稍停，反掌间五根手指}{/var haspo 1;iskill}
 /var haskill 0
@@ -406,5 +407,6 @@
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
 /ac {^『棋盘切』只能对战}{sk}
 /ac {^「西子捧心」只能在战斗}{sk}
-/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 4}}
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 6}}
 /al em {entermaze1}
+/ac {^你身上没有这样东西}{get sword}

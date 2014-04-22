@@ -11,3 +11,6 @@
 /delay {1.5}{unwield all};
 }
 /ac {你手中的%0，不知怎么就落在了地下！$}{get sword;get blade;get hammer;get needle;wi all}
+/ac {^你距离目标距离不够。}{/if {$runok==1}{run $target}}
+/var runok 1
+/ac {^冲锋每30秒(非铁雪2分钟)最多用一次（%1）}{/var runok 0;/var runt %1;/math runt {120-$runt};/delay {$runt}{/var runok 1}}
