@@ -20,7 +20,12 @@
         /var target %0;
         /delay {2}{wpet;gongji %0;startk;/delay {2.2}{kill %0}}}
 /al pk {performp tianwaifeixian}
-/al startk {/ticker {kill}{pk;wh;exert powerup}{4.1}}
+/al startk {/ticker {kill}{
+        /if {$is_fight==0}{
+            /delay {2}{pk;wh;};
+            };
+    exert powerup;
+    }{4.1}}
 /ac {^你纵身越到了}{iskill;peng}
 /al fy2zt fy2ztv
 /var petname xjx
