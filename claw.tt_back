@@ -256,7 +256,7 @@
 /ac {^你脸上神色惨然，猛一咬牙}{
     /var yrcyok 0;
     de1 cks;
-    /delay {150}{/var yrcyok 1};
+    /delay {120}{/var yrcyok 1};
     /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{slcx};
                                     };

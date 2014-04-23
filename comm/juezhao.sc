@@ -11,8 +11,12 @@
 /al jzno {/var lrok 0;/var htok 0;/var tdrmok 0;/var twfxok 0;/var jclhok 0}
 /al pjuezhao {
             /if {$twfxok==1}{perform tianwaifeixianjue;};
-            /if {$jclhok==1}{perform jichulianhuanjue;};
             /if {$tdrmok==1}{perform tiandirenmojue;};
+            de1 {
+            /if {$htok==1}{do unwield all,perform hantianjue;widef};
+            /if {$lrok==1}{do unwield all,perform luorijue;widef};
+            /if {$jclhok==1}{perform jichulianhuanjue;};
+            };
          }
 /al pjuezhao2 {
             /if {$htok==1}{do unwield all,perform hantianjue;widef};
