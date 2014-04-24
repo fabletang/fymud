@@ -308,6 +308,11 @@
 /ac {^你将手中的牛肉干吃得干干净净}{gb meat;/showme buy meat !!!;team talk $myname no meat!!!}
 /ac {^你从%0的尸体身上搜出一件布衣}{drop cloth}
 /ac {^你从%0的尸体身上搜出一把长剑}{drop sword}
+/ac {^你从%0的尸体身上搜出一把短斧}{drop axe}
+/ac {^你从%0的尸体身上搜出一根木棍}{drop staff}
+/ac {^你从%0的尸体身上搜出一根长矛}{drop spear}
+/ac {^你从%0的尸体身上搜出一把单刀}{drop blade}
+/ac {^你从%0的尸体身上搜出一把铁锤}{drop hammer}
 /ac {^一股强劲的罡气挡住了你}{play qin;keychain;e}
 /al buyshuijin {
     sell green crystal;

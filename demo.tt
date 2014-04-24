@@ -14,6 +14,7 @@
 /read comm/autorecover_hc.sc
 /read comm/status.sc
 /read comm/debuff.sc
+/read comm/combat.sc
 /nop read comm/fb_forest.tt
 /al buff {exert powerup}
 /al ki {wh;buff;do unwield sleepbag,wield sleepbag,wield zhufu sword;set target %0;
