@@ -48,6 +48,7 @@
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
 /al sc {tbuff;wihand;perform shichengliulong}
+/al sc {tbuff;wihand;perform unarmed.shichengliulong}
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
@@ -176,6 +177,8 @@
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/quest.sc
+/read comm/debuff.sc
+/read comm/combat.sc
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {exert canhejue;use baiyao}
@@ -219,14 +222,14 @@
 
     }
 /ac {^看起来%0想杀死你！$}{
-        look;
+        /nop look;
         startk;
         xixi $petname;
         /delay {pet}{/showme checkpet--}{2};
         }
 /ac {^checkpet--}{
 /showme --checkpet pet=$haspet==;
-/if {$haspet==0}{wh;/delay {pet}{gongji $npc;juji $npc;kill $npc}{2.2}}{/undelay pet};
+/if {$haspet==0}{wh;/delay {pet}{ch $npc;gongji $npc;juji $npc;kill $npc}{2.2}}{/undelay pet};
 }
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{luo;pk}

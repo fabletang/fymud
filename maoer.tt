@@ -19,7 +19,7 @@
 /al ki {wh;buff;do unwield sleepbag,wield sleepbag,wield zhufu sword;set target %0;/delay {2}{wpet;gongji %0;startk;/delay {2.2}{kill %0}}}
 /al ki {kill %0;startk}
 /al pk {performp tianwaifeixian}
-/al startk {/ticker {kill}{zz}{4}}
+/al startk {/ticker {kill}{exert powerup;j;zz}{4}}
 /ac {^你纵身越到了}{iskill;peng}
 /var petname xjx
 /read comm/pet.sc
@@ -75,3 +75,4 @@
 /ac {^阳关三叠只能对战}{sk}
 /ac {^%1回答%2：} {/line {log} ../newwandao.log}
 /ac {^%1(%2)告诉你：} {/line {log} ../newwandao.log}
+/ac {^只有战斗中才能施展左右互搏}{sk}

@@ -370,7 +370,7 @@
             /var knpc_name %0;
             /nop de2 iskill;
                          }
-/ac {^看起来%0想杀死你}{wi sword;iskill}
+/ac {^看起来%0想杀死你}{wi sword;iskill;startk}
 /al wim {wi zhufu sword;wi sword2}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
