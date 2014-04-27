@@ -1846,3 +1846,4 @@ nwlk;
 /al fy2wk {walk 风云南城门;de2 fys2luori;de4 luori2wk}
 /al fys2luori {walk 落日外门}
 /al luori2wk {walk 旭日海边}
+/al gotosm {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};/delay {5}{enter desert;alw}}

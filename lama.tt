@@ -94,7 +94,6 @@
 /al stxw {perform dodge.shuangtianxuewu}
 /ac {^你所受到的天岚凝舞·霜天雪舞的效用消失了。}{/if {$is_kill==1}{perform dodge.shuangtianxuewu}}
 /ac {^你所受到的天岚凝舞·寒雪流岚的效用消失了。}{/if {$is_kill==1}{perform dodge.hanxueliulan}}
-/al k {wihand;perform finger.dian}
 /al j {wiblade;do enable blade ittouryu,perform gobankiri} 
 /al ki {
         wh;
@@ -113,7 +112,7 @@
             startk;
                     };
         }
-/al ki {unwi jade;wi staff;set target %0;kill %0;fh}
+/al ki {wi staff;set target %0;kill %0;startk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^只听你一声清喝，向后疾退三尺}{pj}
 /ac {^你凌空翻身，右手紧执左手，左掌中}{;}
@@ -125,7 +124,7 @@
             pj;
             wh;
             buff;
-            wwk;
+            k;
             /if {$cutshen==0}{
             }
             }{4.1}
@@ -349,3 +348,4 @@
 /ac {^  小喇嘛的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;gongji $target}}}
 /al hj jmj
+/al hx {exert bolo}

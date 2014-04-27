@@ -313,6 +313,7 @@
 /ac {^你从%0的尸体身上搜出一根长矛}{drop spear}
 /ac {^你从%0的尸体身上搜出一把单刀}{drop blade}
 /ac {^你从%0的尸体身上搜出一把铁锤}{drop hammer}
+/ac {^你从%0的尸体身上搜出一条皮鞭}{drop whip}
 /ac {^一股强劲的罡气挡住了你}{play qin;keychain;e}
 /al buyshuijin {
     sell green crystal;
@@ -434,7 +435,7 @@
 /al yangcw {withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle}
 /al yangcw2 {dismissp xxz;withdraw 50000;de2 {withdraw 50000};de4 {yang monkey $HIY$ 小小真 xxz};de6 whistle;de7 scorep}
 /al yyyy {/ticker {yang}{dismissp xxz;de2 {yangcw}}{11}}
-/ac {^  兵装谱}{/var is_kill 0;stopk}
+/ac {^  兵装谱}{/var is_kill 0;}
 /al pickupall {
     pickup 1; pickup 2; pickup 3; pickup 4; pickup 5; pickup 6; pickup 7; pickup 8; pickup 9;
     de2 {pickup 10;pickup 11;pickup 12;pickup 13;pickup 14;pickup 15;pickup 16; pickup 17; pickup 18; pickup 19};
@@ -606,3 +607,5 @@
 /ac {^%1突然将右手拇指食指相屈，眼神变得迷离而朦胧}{
 /delay {1.5}{unwield all};
 }
+/al mmp {mazemap}
+/al mh {maphere %0}

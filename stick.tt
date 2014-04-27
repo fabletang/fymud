@@ -18,15 +18,21 @@
 /al wiblade {/if {$blade==0||$hand==1||$sword==1||$staff==1}{do unwield all,wield zhufu blade,wield blade2}}
 /al wihand {/if {$hand==0||$blade==1||$staff==1||$sword==1}{do unwield all,wield jade}}
 /al wiw wistaff
+/al widef wistaff
 /al isblade {/var blade 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade;enable parry ittouryu}
+/al isblade {/var blade 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade;}
 /al noblade {/var blade 0; /showme noblade;}
 /al ishand {/var hand 1;/var staff 0;/var sword 0;/var blade2 0;/var blade 0;/showme ishand;enable parry dragonstrike}
+/al ishand {/var hand 1;/var staff 0;/var sword 0;/var blade2 0;/var blade 0;/showme ishand;}
 /al nohand {/var hand 0; /showme nohand;}
 /al issword {/var sword 1;/var staff 0;/var blade 0;/var hand 0;/showme issword;enable parry ittouryu}
+/al issword {/var sword 1;/var staff 0;/var blade 0;/var hand 0;/showme issword;}
 /al nosword {/var sword 0; /showme nosword;}
 /al isblade2 {/var blade2 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade2;enable parry ittouryu}
+/al isblade2 {/var blade2 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade2;}
 /al noblade2 {/var blade2 0; /showme noblade2;}
 /al isstaff {/var staff 1;/var blade 0;/var sword 0;/var blade2 0;/var hand 0;/showme isstaff;enable parry dagou-stick}
+/al isstaff {/var staff 1;/var blade 0;/var sword 0;/var blade2 0;/var hand 0;/showme isstaff;}
 /al nostaff {/var staff 0; /showme nostaff;}
 /ac {^你放下手中的神之祝福宝刀}{noblade}
 /ac {^你装备神之祝福宝刀作武器}{isblade}
@@ -47,14 +53,15 @@
 /ac {^你放下手中的＊百鬼夜狂＊}{noblade2}
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
+/al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
 /al sc {tbuff;wihand;perform shichengliulong}
 /al sc {tbuff;wihand;perform unarmed.shichengliulong}
+/al sc {tbuff;wistaff;perform unarmed.shichengliulong}
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
-/read comm/kill.sc
 /var petname xxg
-/al lp {look $petname}
+/nop comm/kill.sc
 /var haspj 0
 /var haspk 0
 /al pj {/if {$haspet ==1 && haspj==0}{performp freeze}}
@@ -65,29 +72,43 @@
 /ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^小小棍纵身越到了}{pj}
 /ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
-/ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill;gongji $npc}
-/ac {^小小棍不知从哪里窜到你面前}{/if {$is_kill==1}{juji $npc}}
+/ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill;gongji $target}
+/ac {^小小棍不知从哪里窜到你面前}{/if {$is_kill==1}{juji $target}}
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
 /al buff {perform dodge.gouweixudiao;exert douhanjue}
 /al ki {i;set dmg_msg 1;
-        wisword;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;kill %0;wh}}
+        wisword;buff;set target %0;/var target %0;buff;juji %0;/delay {2}{juji %0;kill %0;wh}}
 /al ki {i;set dmg_msg 1;
-        wistaff;buff;set target %0;/var npc %0;buff;/delay {2}{juji %0;wh;de2 {juji %0;kill %0};}}
-/ac {^你对著%0！今日不是你死就是我活！} {de2 iskill}
+        wistaff;buff;set target %0;/var target %0;/var target %0;buff;/delay {2}{juji %0;wh;de2 {juji %0;kill %0};}}
+/al ki {
+        wistaff;buff;set target %0;
+        /var target %0;/var target %0;juji %0;
+        /delay {2}{juji %0;kill %0;startk}}
+/al ki {
+        wistaff;buff;set target %0;
+        /var target %0;juji %0;
+        /delay {2}{kill %0;startk}}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill}
 /nop ------------
 /var xl_max 0
 /var sc_ok 0
 /var zjbl_ok 0
 /al ak xl
-/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{ak}}{2.1}}
+/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{
+                                                /if {$is_fight==0}{pj;
+                                                                        /if {$whok==1}{wwh};
+                                                                        };
+                                                ak};
+                                                /var kticker 1;
+                        }{2.1}}
 /al startk {ak;kkx}
 /al kx startk
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
     iskill;
     pj;
-    /var npcn %1;
+    /var targetn %1;
     /var zjbl_ok 0;
     /var xl_max 0;
     /delay {20}{/var xl_max 1;/al ak xl};
@@ -105,8 +126,8 @@
 /al luo {wisword;perform sword.pengxin}
 /ac {^%1只觉掌风扑面，气息窒滞}{
     iskill;
-    /if {"%1"=="你"}{/showme ---npc sc me !!!}{
-    /var npcn %0;
+    /if {"%1"=="你"}{/showme ---target sc me !!!}{
+    /var targetn %0;
     sc+;
     }
 }
@@ -118,14 +139,17 @@
 /nop ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/var zjbl_ok 1}
 /ac {^你将要触到%1身子，突施劲力，－－－－－－－－－震　惊　百　里！}{/show ----todo}
 /ac {^你须发尽赤，浑身无俦真气}{pj}
-/ac {^%1已经破绽毕露，还不趁机进攻}{luo;txwg}
 /ac {足尖着力，飘身后退。}{/var zjbl_ok 0;/al ak sc}
 /ac {^随着长声惨叫}{pjj;czj;/al ak czj}
 /ac {你只好招式突换，一棍随手挥出}{pj;/al ak tzj}
 /ac {^你需要过%1秒才能再次使用引字诀}{czj}
 /ac {^你低喝一声『天下无狗』}{/al ak tzj}
 /ac {^对方已经手忙脚乱了。}{luo;txwg}
+/ac {^对方已经手忙脚乱了。}{czj}
+/ac {^%1已经破绽毕露，还不趁机进攻}{luo;txwg}
+/ac {^%1已经破绽毕露，还不趁机进攻}{czj}
 /ac {^对方已经不能动弹了}{luo;txwg}
+/ac {^对方已经不能动弹了}{czj}
 /ac {^你迎面一棒刺去，似神龙}{/al ak tzj}
 /ac {^你捏个棒诀将手中}{/showme ---todo tiao;/al ak bzj}
 /ac {^对方没有武器，无从使用『挑字诀』}{yzj}
@@ -148,15 +172,20 @@
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
 /ac {^%0足尖着力，飘身后退。$}{wiblade;pjj;/showme --- sc fail wiblade todo----}
-/ac {^%0足尖着力，飘身后退。$}{wiblade;pjj;/showme --- sc fail wiblade todo----}
+/ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wiblade todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
 /al stopk { set dmg_msg 0; 
             /var haspj 0;
             /var zjbl_ok 0;
             /var xl_max 0;
+            /var kticker 0;
             /al ak xl;
-            /unticker {kill};nokill}
+            /unticker {kill};
+            nokill;
+            l;
+            /var whok 1;
+            }
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{de2 iskill;startk}
 /ac {^『降龙无悔』只能对战}{stopk;cks}
 /ac {^『时乘六龙』只能对战}{stopk;cks}
@@ -179,6 +208,12 @@
 /read comm/quest.sc
 /read comm/debuff.sc
 /read comm/combat.sc
+/ac {^【新手} {/line {log} ../newstick.log}
+/ac {^【传闻} {/line {log} ../newstick.log}
+/ac {^%1回答%2：} {/line {log} ../newstick.log}
+/ac {^%1(%2)告诉你：} {/line {log} ../newstick.log}
+/ac {^你告诉} {/line {log} ../newstick.log}
+/ac {^你回答} {/line {log} ../newstick.log}
 /nop log o $myname.log
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {exert canhejue;use baiyao}
@@ -224,14 +259,27 @@
 /ac {^看起来%0想杀死你！$}{
         /nop look;
         startk;
-        xixi $petname;
-        /delay {pet}{/showme checkpet--}{2};
+       /nop xixi $petname;
+        /nop delay {pet}{/showme checkpet--}{2};
         }
+/ac {^看起来%0想杀死你！$}{}
 /ac {^checkpet--}{
 /showme --checkpet pet=$haspet==;
-/if {$haspet==0}{wh;/delay {pet}{ch $npc;gongji $npc;juji $npc;kill $npc}{2.2}}{/undelay pet};
+/if {$haspet==0}{wh;/delay {pet}{gongji $target;juji $target;kill $target}{2.2}}{/undelay pet};
 }
 /ac {^疗伤时至少需要有最大内力值护体。}{de2 hn}
 /ac {^突然，一蓬鲜血激射}{luo;pk}
 /ac {^只好任%1落在一边。}{/showme todo }
 /ac {^你只觉得虎口一热，手中的神之祝福宝刀}{noblade}
+/al checkkill {perform blade.gobankiri}
+/ac {^然而，%1已经死了}{ch $target;checkkill;fd;/if {$is_kill==1}{;};}
+/ac {^你现在不可以吹口哨。}{}
+/ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{wpet;gongji $target;juji $target}}
+/var whok 1
+/ac {^你对%1一指，对小小棍命令}{/var whok 0;/delay {10}{/var whok 1};/if {$is_kill==0}{juji $target;kill $target}}
+/ac {^小小棍一闪就不见了}{/var whok 0;/delay {10}{/var whok 1}}
+/ac {^『棋盘切』只能对战}{sk}
+/al lp {l $petname}
+/ac {^当前在战斗中的憎恨最多对象：0}{;}
+/ac {^当前在战斗中的憎恨最多对象：/obj/target/pet#%1 ("小小棍")}{juji $target}
+/al bbb {do burn,burn,burn;ab + 14}

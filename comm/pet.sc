@@ -19,6 +19,6 @@
 /nop §幻梦步法§ 『幻影千重』〔huanyinqianchong〕
 /al batk {performp shiwanshenmo}
 /al batj {performp hyqc}
-/nop ac {^你现在不可以吹口哨。}{/if {$is_kill==1||$is_walk==0}{/delay {pet}{wh}{2.1}}}
+/nop {^你现在不可以吹口哨。}{/if {$is_kill==1||$is_walk==0}{/delay {pet}{wh}{2.1}}}
 /al wpet {do order wear all,order wield all}
 /al wwh {whistle}
