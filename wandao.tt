@@ -140,7 +140,7 @@
 /nop 『百鬼夜狂』（hyakki）
 /al reffs {do unwield jade,wield jade}
 /al reffs {wield jade}
-/al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
+/al bg {/if {$hasbg==0}{do enable blade ittouryu,set secon_perform hyakki;reffs;}}
 /al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;/showme ------- qie-------}
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
@@ -196,28 +196,22 @@
 }
 /ac {^你乍然退步，旋身，反手}{
     iskill;
-    de1 cks;
+    /delay {0.3}{cks};
     /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{ld};
     /var myok 0;
     /delay {241} {/var myok 1};
-    /delay {2.1} {/if {$shaqi>0 || $bgok_t==1}{bg}{ld};
-                  /showme {------shaqi=$shaqi};
-                  /nop wk;
-                 };
+    de1 {/showme {------shaqi=$shaqi}};
+    /nop delay {2.1} {/if {$shaqi>0 || $bgok_t==1}{bg}{ld}; /showme {------shaqi=$shaqi}; /nop wk; };
     }
 /ac {^你突然仰天长嚎}{
-    cks;
+    /delay {0.3}{cks};
     iskill;
     /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{/if {$myok==1}{my}{ld};};
     /var bgok 0;
     /var bgok_t 0;
     /delay {121}{/var bgok_t 1};
-    /delay {2.5}{/if {$shaqi>0}{bg}{
-                                    /if {$myok==1}{my}{ld;};
-                                    };
-                /if {$qieok==1 || $qieok_t ==1}{qie;};
-                  /showme {------shaqi=$shaqi};
-                 };
+    de1 {/showme {------shaqi=$shaqi}};
+    /nop delay {2.5}{/if {$shaqi>0}{bg}{ /if {$myok==1}{my}{ld;}; }; /if {$qieok==1 || $qieok_t ==1}{qie;}; /showme {------shaqi=$shaqi}; };
 }{4}
 /ac {^刀云中突发裂帛之声}{
     iskill;
@@ -229,28 +223,30 @@
                                                              };
                  };
                          }
-/ac {^设定环境变数：secon_perform = "hyakki"}{
-    /delay {checkbg} {
-                /if {$is_kill==1}{
-                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my}{ld;};};
-                        };
-                        }{9.1}
-            
+/var hasbg 0
+/ac {^设定环境变数：secon_perform = "%1"}{
+    /if {'%1'=='hyakki'}{/var hasbg 1}{/var hasbg 0};
 }
-/unac {^设定环境变数：secon_perform = "hyakki"};
+/nop {^设定环境变数：secon_perform = "hyakki"}
+/ac {^------shaqi=%1}{
+    /if {%1>0}{bg}{
+        /if {$bgok_t ==1}{bg}{
+            /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{
+                    /if {$myok==1}{my}{ld;};
+                            };
+        };
+    };
+    }
 /ac {^你根本无视%1的攻击，大吼一声}{
-    hp;
     iskill;
+    cks;
     /showme {=========== qie ==============};
     /var qieok 0;
     /delay {60.2}{/var qieok_t 1};
-    bg;
-    /delay {2.1} {/if {$shaqi>0 || $bgok_t ==1}{bg}{
-                                    /if {$myok==1}{my}{ld;};
-                                    };
-                  /showme {------shaqi=$shaqi};
-                 };
-                    }
+    de1 {/showme {------shaqi=$shaqi}};
+    /nop bg;
+    /nop delay {2.1} { /if {$shaqi>0 || $bgok_t ==1}{bg}{ /if {$myok==1}{my}{ld;}; }; /showme {------shaqi=$shaqi}; }; 
+    }
 /nop qx 
 /ac {^你一扬手，打出星星点点}{/var qxok 0;/delay {20.2}{/var qxok 1}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj;pjj}
@@ -268,13 +264,14 @@
             /var bpjbok 1;
             /var wfok 1;
             get needle;
+            /var hasbg 0;
             de1 look;
             }
 /ac {^你的法力太低}{hp}
 /ac {^( 你似乎十分疲惫}{wf}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jjj}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq;cast mengyanjue}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{cast mengyanjue}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{zywq;zh}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{zh}
 /ac {^你所选用的武功中没有这种必杀技。}{;}
 /ac {^『无空漩流』只能对战}{sk}
 /ac {^『风漏飞烟』只能对战}{sk}
@@ -360,7 +357,7 @@
 /ac {^  小弯刀的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
 /ac {^你所选用的武功中没有这种必杀技}{take 8 200;wi needle}
-/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 3}}
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 7}}
 /al em {entermaze1}
 /ac {^此人已经在极度忙乱中了（>3）}{pjuezhao2}
 /ac {^你捡起一把仙人刺。}{i}

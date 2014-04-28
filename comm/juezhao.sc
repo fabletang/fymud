@@ -9,6 +9,8 @@
 /var twfxok 1
 /var jclhok 1
 /al jzno {/var lrok 0;/var htok 0;/var tdrmok 0;/var twfxok 0;/var jclhok 0}
+/var zhok 1
+/al zh {/if {$zhok==1}{do unwield all,cast mengyanjue;widef}}
 /al pjuezhao {
             /if {$twfxok==1}{perform tianwaifeixianjue;};
             /if {$tdrmok==1}{perform tiandirenmojue;};
@@ -161,4 +163,22 @@
                                     };
                     };
     /showme ---htok=$htok  -$jz_1-$jz_2-$jz_3=--;
+    }
+/ac {^10	√Œ˜ ’ŸªΩ     mengyanjue%s%1%s£®%2/3£©%s%3}{
+    /var jz_1 %1;
+    /var jz_2 %2;
+    /var jz_3 %3;
+    /if {$jz_1==100}{
+        /if {$jz_3==0}{/var zhok 1}{
+            /var zhok 0;/delay {$jz_3}{/var zhok 1};
+            };
+        };
+    /if {$jz_1!=100}{
+        /if {$jz_2==0}{/var zhok 0}{
+            /if {$jz_3==0}{/var zhok 1}{
+        /var zhok 0;/delay {$jz_3}{/var zhok 1};
+                                          };
+                                    };
+                    };
+    /showme ---zhok=$zhok  -$jz_1-$jz_2-$jz_3=--;
     }

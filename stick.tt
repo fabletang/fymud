@@ -107,7 +107,7 @@
 /al ssk startk
 /ac {^你将降龙十八掌的十八式融会贯通，幻出十八个掌影一连击向%1的十八处要害}{
     iskill;
-    pj;
+   /nop pj;
     /var targetn %1;
     /var zjbl_ok 0;
     /var xl_max 0;
@@ -171,7 +171,6 @@
 /ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
-/ac {^%0足尖着力，飘身后退。$}{wiblade;pjj;/showme --- sc fail wiblade todo----}
 /ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wiblade todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
@@ -208,6 +207,7 @@
 /read comm/quest.sc
 /read comm/debuff.sc
 /read comm/combat.sc
+/read comm/juezhao.sc
 /ac {^【新手} {/line {log} ../newstick.log}
 /ac {^【传闻} {/line {log} ../newstick.log}
 /ac {^%1回答%2：} {/line {log} ../newstick.log}
