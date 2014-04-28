@@ -13,11 +13,12 @@
 /al zh {/if {$zhok==1}{do unwield all,cast mengyanjue;widef}}
 /al pjuezhao {
             /if {$twfxok==1}{perform tianwaifeixianjue;};
-            /if {$tdrmok==1}{perform tiandirenmojue;};
             de1 {
             /if {$htok==1}{do unwield all,perform hantianjue;widef};
             /if {$lrok==1}{do unwield all,perform luorijue;widef};
+            zh;
             /if {$jclhok==1}{perform jichulianhuanjue;};
+            /if {$tdrmok==1}{perform tiandirenmojue;};
             };
          }
 /al pjuezhao2 {

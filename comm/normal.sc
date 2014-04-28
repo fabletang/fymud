@@ -609,3 +609,28 @@
 }
 /al mmp {mazemap}
 /al mh {maphere %0}
+/al getr11 {/2 buy rune10 from xuer;combine1 rune10 & rune10 2}
+/al getr12 {combine1 rune11 & rune11 2}
+/al getr13 {combine1 rune12 & rune12 2}
+/al getr14 {combine1 rune13 & rune13 2}
+/al getr15 {combine1 rune14 & rune14 2}
+/al getrune14 {
+    getr11;
+    /delay {3}{getr11};
+    /delay {6}{getr11};
+    /delay {9}{getr11};
+    /delay {12}{getr11};
+    /delay {15}{getr11};
+    /delay {18}{getr11};
+    /delay {21}{getr11};
+
+    /delay {24}{getr12};
+    /delay {27}{getr12};
+    /delay {30}{getr12};
+    /delay {33}{getr12};
+
+    /delay {36}{getr13};
+    /delay {39}{getr13};
+
+    /delay {42}{getr14};
+}

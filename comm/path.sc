@@ -1847,3 +1847,4 @@ nwlk;
 /al fys2luori {walk 落日外门}
 /al luori2wk {walk 旭日海边}
 /al gotosm {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};/delay {5}{enter desert;alw}}
+/ac {^你的『逍遥游』失败了}{de1 usemark}
