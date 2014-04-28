@@ -141,6 +141,7 @@
 /al reffs {do unwield jade,wield jade}
 /al reffs {wield jade}
 /al bg {/if {$hasbg==0}{do enable blade ittouryu,set secon_perform hyakki;reffs;}}
+/al bg {do enable blade ittouryu,set secon_perform hyakki;reffs;}
 /al qie {do enable blade ittouryu,set secon_perform gobankiri;reffs;/showme ------- qie-------}
 /al jj {do enable blade ittouryu,unwield needle,wield jade2,perform gobankiri;ld}
 /al my {do enable blade chillblade,set secon_perform mingyue;reffs;}
@@ -196,7 +197,7 @@
 }
 /ac {^你乍然退步，旋身，反手}{
     iskill;
-    /delay {0.3}{cks};
+    /delay {0.5}{cks};
     /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{ld};
     /var myok 0;
     /delay {241} {/var myok 1};
@@ -204,7 +205,7 @@
     /nop delay {2.1} {/if {$shaqi>0 || $bgok_t==1}{bg}{ld}; /showme {------shaqi=$shaqi}; /nop wk; };
     }
 /ac {^你突然仰天长嚎}{
-    /delay {0.3}{cks};
+    /delay {0.5}{cks};
     iskill;
     /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{/if {$myok==1}{my}{ld};};
     /var bgok 0;
@@ -215,12 +216,11 @@
 }{4}
 /ac {^刀云中突发裂帛之声}{
     iskill;
+    /delay {0.5}{cks};
     /if {$cutshen==0}{
-    };
-    /if {$cutshen==0}{
-            /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{
-                /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my};};
-                                                             };
+    de1 {
+        /showme {------shaqi=$shaqi}};
+            /if {$qieok==1 || $qieok_t ==1 && qienpc==0}{qie}{ /if {$shaqi>0 || $bgok_t==1}{bg}{/if {$myok==1}{my};}; };
                  };
                          }
 /var hasbg 0
