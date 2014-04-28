@@ -239,7 +239,7 @@
     }
 /ac {^你根本无视%1的攻击，大吼一声}{
     iskill;
-    cks;
+    /delay {0.5}{cks};
     /showme {=========== qie ==============};
     /var qieok 0;
     /delay {60.2}{/var qieok_t 1};
