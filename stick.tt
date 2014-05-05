@@ -13,7 +13,7 @@
 /var blade2 0
 /var hasfushou 0
 /var sword 0
-/al wistaff {/if {$staff==0||$hand==1||$blade==1||$sword==1}{do unwield all,wield zhang}}
+/al wistaff {/if {$staff==0||$hand==1||$blade==1||$sword==1}{do unwield all,wield staff}}
 /al wisword {/if {$sword==0||$hand==1||$blade==1||$staff==1}{do unwield all,wield zhufu sword,wield blade2}}
 /al wiblade {/if {$blade==0||$hand==1||$sword==1||$staff==1}{do unwield all,wield zhufu blade,wield blade2}}
 /al wihand {/if {$hand==0||$blade==1||$staff==1||$sword==1}{do unwield all,wield jade}}
@@ -45,8 +45,11 @@
 /ac {^你将手上的★降龙伏虎★藏入}{/var hand 0} 
 /ac {^    ★降龙伏虎★(jade)}{/var hand 0} 
 /ac {^你装备神之祝福宝杖}{isstaff} 
+/ac {^你「唰」的一声抽出一根凌云杖}{isstaff} 
 /ac {^  √神之祝福宝杖(zhufu staff)}{isstaff} 
+/ac {^  √凌云杖(lingyun staff)}{isstaff} 
 /ac {^你放下手中的神之祝福宝杖}{nostaff}
+/ac {^你将手中的凌云杖背到背上}{nostaff}
 /ac {^  √＊百鬼夜狂＊(blade2)}{isblade2}
 /ac {^    ＊百鬼夜狂＊(blade2)}{noblade2}
 /ac {^你抽出一把明晃晃的＊百鬼夜狂＊}{isblade2}
