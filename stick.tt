@@ -71,7 +71,7 @@
 /al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
-/ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^小小棍纵身越到了}{pj}
 /ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
 /ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill;gongji $target}
@@ -289,3 +289,5 @@
 /ac {^当前在战斗中的憎恨最多对象：/obj/target/pet#%1 ("小小棍")}{juji $target}
 /al bbb {do burn,burn,burn;ab + 14}
 /al widef wistaff
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 4}}
+/ac {^棍的任务改变成maze1了，请用entermaze1进入！}{/al em {entermaze1}}
