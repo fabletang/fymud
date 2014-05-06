@@ -55,6 +55,7 @@
 /ac {^你放下手中的＊百鬼夜狂＊}{noblade2}
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
+/al xl {tbuff;wihand;perform unarmed.xianglongwuhui}
 /al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
 /al sc {tbuff;wihand;perform shichengliulong}
 /al sc {tbuff;wihand;perform unarmed.shichengliulong}
@@ -89,7 +90,7 @@
         /var target %0;/var target %0;juji %0;
         /delay {2}{juji %0;kill %0;startk}}
 /al ki {
-        wistaff;buff;do ability2,i,set target %0;
+        wi staff;buff;do ability2,i,set target %0;
         /var target %0;juji %0;
         /delay {2}{kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
@@ -118,10 +119,10 @@
     /var sc_ok 0;
     /al ak sc;
 }
-/al czj {tbuff;wistaff;perform staff.chuozijue}
-/al bzj {tbuff;wistaff;perform staff.banzijue}
-/al tzj {tbuff;wistaff;perform staff.tiaozijue}
-/al yzj {tbuff;wistaff;perform staff.yinzijue}
+/al czj {wistaff;perform staff.chuozijue}
+/al bzj {wistaff;perform staff.banzijue}
+/al tzj {tbuff;wi staff;perform staff.tiaozijue}
+/al yzj {eeeff;wistaff;perform staff.yinzijue}
 /al txwg {tbuff;wistaff;perform staff.tianxiawugou}
 /al zjbl {wihand;perform unarmed.zhenjingbaili}
 /al ps tzj
@@ -174,7 +175,7 @@
 /ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
-/ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wiblade todo----}
+/ac {^%0足尖着力，飘身后退。$}{/showme --- sc fail wiblade todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
 /al stopk { set dmg_msg 0; 
