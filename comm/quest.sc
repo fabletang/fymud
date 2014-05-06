@@ -366,3 +366,4 @@ de4 {/showme dq-%1};
 /ac {^天机老人掂了掂手里的%1百两银子乐呵呵地说：既然不想做这个就换一个吧。}{quest}
 /ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{;}
 /al bbb {do burn,burn,burn}
+/al giveduanbook {qt book;de2 {do give duan book,give duan book,give duan book,give duan book,give duan book,give duan book,give duan book}}

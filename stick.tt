@@ -186,6 +186,7 @@
             /unticker {kill};
             nokill;
             l;
+            get staff;
             /var whok 1;
             }
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{de2 iskill;startk}
@@ -261,7 +262,8 @@
     }
 /ac {^看起来%0想杀死你！$}{
         /nop look;
-        startk;
+        /nop startk;
+        /if {$kticker==0}{startk};
         zh;
        /nop xixi $petname;
         /nop delay {pet}{/showme checkpet--}{2};
@@ -289,5 +291,5 @@
 /ac {^当前在战斗中的憎恨最多对象：/obj/target/pet#%1 ("小小棍")}{juji $target}
 /al bbb {do burn,burn,burn;ab + 14}
 /al widef wistaff
-/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 4}}
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 7}}
 /ac {^棍的任务改变成maze1了，请用entermaze1进入！}{/al em {entermaze1}}

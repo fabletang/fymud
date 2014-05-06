@@ -464,32 +464,39 @@
 /var it_num 0
 /var it_n 0
 /var it_code shouhuan1
-/al qt {/var it_code {%0};sb;llb;
+/al qt {/var hasqt 0;/var it_code {%0};sb;llb;
     /showme ==want take $it_code;
 }
-/al qtg {/var it_code %1;/var it_n %2;sb;llb;/showme ==qtg take %1 %2}
+/al qtg {/var hasqt 0;/var it_code %1;/var it_n %2;sb;llb;/showme ==qtg take %1 %2}
+/al qt- {
+/unac {^[%1]  %0(%3)%s%4};
+/unac {^[%1]  %0(%5 %6)%s%4};
+}
 /ac {^[%1]  %0(%3)%s%4}{
     /var it_sn %1;
     /var it_num %4;
-    /if {"$it_code"=="%3"}{
+    /if {"$it_code"=="%3" && $hasqt==0}{
                     /if {$it_n>1}{take %1 $it_n}{
-                    take %1 $it_num;
+                    take $it_sn $it_num;
                     }
                             };
-    /nop showme == $it_sn %0 %3 $it_num ==
-} 
+}
 /ac {^[%1]  %0(%5 %6)%s%4}{
     /var it_sn %1;
     /var it_num %4;
-    /if {"$it_code"=="%5 %6"}{
-                    /if {"$it_code"=="zhufu sword"}{
-                    take %1 %4;
-                    }{take %1 1};
+    /if {"$it_code"=="%5 %6" && $hasqt==0}{
+                    /if {"$it_code"=="zhufu hammer"||"$it_code"=="zhufu staff"||"$it_code"=="zhufu sword"}{
+                    take $it_sn 1;
+                    }{take $it_sn $it_num};
                     /var it_code none;
+                    /var it_sn 101; 
                             };
-    /nop showme ----- $it_sn %0 %5 %6 $it_num ----- 
-}{4} 
-/ac {^你从如意乾坤袋里}{/var it_code shouhuan1;/var it_num 0;/var it_n 0}
+}{4}
+/al qt+ {
+/showme ---- qt+ -----;
+}
+/var hasqt 0
+/ac {^你从如意乾坤袋里}{/var hasqt 1;/var it_sn 101;/var it_code shouhuan1;/var it_num 0;/var it_n 0}{4}
 /ac {^你存入%0到如意乾坤袋}{/var it_code none;/var it_num 0;}
 /ac {^你撞了大运，得到额外奖励符文%1。}{store %1}
 /al getbatdrug {wlk;do w,w,w,w,d,w,get all from woodcase,store bat drug;nwlk}
