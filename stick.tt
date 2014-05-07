@@ -57,9 +57,11 @@
 /al xl {tbuff;wihand;perform xianglongwuhui}
 /al xl {tbuff;wihand;perform unarmed.xianglongwuhui}
 /al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
+/al xl {do wield staff,perform unarmed.xianglongwuhui,unwield staff}
 /al sc {tbuff;wihand;perform shichengliulong}
 /al sc {tbuff;wihand;perform unarmed.shichengliulong}
 /al sc {tbuff;wistaff;perform unarmed.shichengliulong}
+/al sc {do wield staff,perform unarmed.shichengliulong,unwield staff}
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
@@ -99,13 +101,22 @@
 /var sc_ok 0
 /var zjbl_ok 0
 /al ak xl
-/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{
-                                                /if {$is_fight==0}{pj;
-                                                                        /if {$whok==1}{wwh};
-                                                                        };
+/var isbusy 1
+/ac {^ ¡¾¹¥»÷£º%s%1%s¡¿ %2%s¡¾É±ÉË¡¿}{
+    /var wgcn %1;
+    /if {%2==1}{/var isbusy 1}{/var isbusy 0};
+    /showme ==isbusy---$isbusy---%1;
+}
+/ac {^==isbusy---%1---}{
+                        /if {%1==0}{
+                        /if {$zjbl_ok==1}{zjbl}{/if {$is_fight==0}{pj;/if {$whok==1}{wwh};};
                                                 ak};
-                                                /var kticker 1;
-                        }{2.1}}
+                                                }
+}
+/al kkx {/ticker {kill}{
+                        score2; 
+                        /var kticker 1;
+                        }{2.2}}
 /al startk {ak;kkx}
 /al kx startk
 /al ssk startk
@@ -120,11 +131,17 @@
     /al ak sc;
 }
 /al czj {wistaff;perform staff.chuozijue}
+/al czj {do wield staff,perform staff.chuozijue,unwield staff}
 /al bzj {wistaff;perform staff.banzijue}
+/al bzj {tbuff;do wield staff,perform staff.banzijue,unwield staff}
 /al tzj {tbuff;wi staff;perform staff.tiaozijue}
-/al yzj {eeeff;wistaff;perform staff.yinzijue}
+/al tzj {tbuff;do wield staff,perform staff.tiaozijue,unwield staff}
+/al yzj {tbuff;wistaff;perform staff.yinzijue}
+/al yzj {tbuff;do wield staff,perform staff.yinzijue,unwield staff}
 /al txwg {tbuff;wistaff;perform staff.tianxiawugou}
+/al txwg {tbuff;do wield staff,perform staff.tianxiawugou,unwield staff}
 /al zjbl {wihand;perform unarmed.zhenjingbaili}
+/al zjbl {perform unarmed.zhenjingbaili}
 /al ps tzj
 /al luo {wisword;perform sword.luo}
 /al luo {wisword;perform sword.pengxin}
