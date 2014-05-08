@@ -27,6 +27,7 @@
 /read comm/pet.sc
 /read comm/juezhao.sc
 /read comm/combat.sc
+/read comm/yaliang.sc
 /al juezhao {;}
 /read comm/debuff.sc
 /var petname xxz

@@ -8,6 +8,7 @@
 /config {CONNECT RETRY} 30
 /config {DEBUG TELNET} off
 /config {CONVERT META} off
+/config {packet patch} 0.5
 /split 0 1
 /nop al reload {/read $myname.tt}
 /variable is_kill 0
