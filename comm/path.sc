@@ -297,6 +297,10 @@
 /nop fyn {wlk;do d,n,n,n,n,nw,n,ne,n,n;nwlk;}
 /nop  fy2qf {fyn;/delay {1.5}{fyn2qf}}
 /al fy2qf {wlk;do d,n,n,n,n,nw,n,ne,n,n,n,n,n,e,e;nwlk}
+/nop baihuagu
+/al qf2bh {do e,e,s,around flower,w,westup,northup,climb up,ask laoren about 公子羽}
+/al bhout {ask master about leave}
+/al bh2qf {bhout;de4 {do southdown,eastdown,e,n,w,w}}
 /nop fyn2qf {pl {wlk;n;n;n;e;e;nwlk};pr}
 /al fyn2qf {wlk;do n,n,n,e,e;nwlk}
 /al qf2fyn {pl {wlk;w;w;s;s;s;nwlk};pr}
@@ -1528,6 +1532,7 @@ nwlk;
 /nop al fy2gw {fy2cx;de9 {cx2gw}}
 /al fy2gw {fy2cx;de7 {cx2gw}}
 /al fy2gw {fy2cx;de6 {cx2gw}}
+/al fy2gw {ffy;walk 马厩;de1 {goto guanwai}}
 /al fy2tx {fy2cx;de7 {cx2gw};de11 {gw2tx}}
 /al gw2fy {gw2cx;cx2fy+}
 /al fy2wlb {fy2lz;de9 {lz2wlb}}
@@ -1836,8 +1841,9 @@ nwlk;
 /al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
 /al lz2fy {lz2sk;de1 {sk2fy}}
 /al gt {goto %0;de2 {%0;l}}
-/al fyz {do d,recall back}
+/al fyz {ffy;do w,s,s,goto yangzhou}
 /al ffy {do recall back,w,n,e,e,e,n,u}
+/al ffy {recall back}
 /al wfy {walk 天机阁}
 /ac {^看来只有等到黎明时雾散}{keychain}
 /nop miekou
@@ -1848,3 +1854,4 @@ nwlk;
 /al luori2wk {walk 旭日海边}
 /al gotosm {do d,recall back,e,goto luoyang;/delay {4}{walk 文庙};/delay {5}{enter desert;alw}}
 /ac {^你的『逍遥游』失败了}{de1 usemark}
+/al gw2fy {walk 马厩;de1 {goto fy}}

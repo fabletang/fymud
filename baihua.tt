@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname wandao
+/var myname baihua
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /nop nop session $myname fy.sysfon.com 6000
@@ -14,15 +14,15 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/al reload {/read wandao.tt}
-/nop log o ../wandao.log
-/log a ../wandao.log
-/ac {^【新手} {/line {log} ../newwandao.log}
-/ac {^【传闻} {/line {log} ../newwandao.log}
-/ac {^%1回答%2：} {/line {log} ../newwandao.log}
-/ac {^%1(%2)告诉你：} {/line {log} ../newwandao.log}
-/ac {^你告诉} {/line {log} ../newwandao.log}
-/ac {^你回答} {/line {log} ../newwandao.log}
+/al reload {/read baihua.tt}
+/nop log o ../baihua.log
+/log a ../baihua.log
+/ac {^【新手} {/line {log} ../newbaihua.log}
+/ac {^【传闻} {/line {log} ../newbaihua.log}
+/ac {^%1回答%2：} {/line {log} ../newbaihua.log}
+/ac {^%1(%2)告诉你：} {/line {log} ../newbaihua.log}
+/ac {^你告诉} {/line {log} ../newbaihua.log}
+/ac {^你回答} {/line {log} ../newbaihua.log}
 /read comm/gag.sc
 /read comm/normal.sc
 /read comm/path.sc
@@ -284,7 +284,6 @@
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al qq {quest}
-/al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{qq}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你}{
@@ -363,3 +362,5 @@
 /ac {^此人已经在极度忙乱中了（>3）}{pjuezhao2}
 /ac {^你捡起一把仙人刺。}{i}
 /al widef {wianqi}
+/read comm/ntpot2.sc
+/al cxt cxzzt

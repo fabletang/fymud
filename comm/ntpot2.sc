@@ -11,7 +11,7 @@
 /ac {^【闲聊】天机老人(Tian ji)：风起云涌}{save;look;de2 hpnt}
 /ac {^天机阁}{d}
 /al ffy {recall back}
-/al fyz {recall back;do w,s,s,goto yangzhou}
+/al fyz {ffy;do w,s,s,goto yangzhou}
 /al fys {walk 风云南城门}
 /al fyn {walk 风云北城门}
 /al fye {walk 风云东城门}
@@ -39,6 +39,8 @@
         de4 {e;hpnt};
 /var peiyao 0;/var work 0;/var caxie 0;/var copy 0;
         }
+/ac {^你一觉醒来，只觉精力充沛}{l;stat;
+        }
 /ac {^玉龙珠宝店}{hpnt}
 /ac {^checkjingqi--}{hpnt;}
 /ac {^你揉揉眼、打个哈欠，立刻躺倒在地上了}{gofull2}
@@ -59,25 +61,28 @@
 /ac {^  (鬼气) 【三世轮回】 玉蕊(Yurui)}{/var hasdie 1;dash mist}
 /ac {^你狠了狠心，一头闯进了迷雾之中}{/var peiyao 0;/var work 0;/var caxie 0;/var copy 0;wtick}
 /var work 0
-/al gowork {/if {$work==0}{d;fyz;/delay {8}{walk 打铁铺;wtick}}}
-/al gopeiyao {/if {$peiyao==0}{d;fyz;walk 药铺;wtick}}
-/al gocopy {/if {$copy==0}{d;fyz;walk 书院;wtick}}
-/nop al gowork {wtick;do w,recall back;/delay {1}{do w,s,e,e,s}}
+/al gowork {/if {$work==0 && $atwork==0}{d;fyz;/delay {8}{walk 打铁铺;wtick}}}
+/al gopeiyao {/if {$peiyao==0 && $atpeiyao==0}{d;fyz;/delay {8}{walk 药铺;wtick}}}
+/al gocopy {/if {$copy==0 && $atcopy==0}{d;fyz;/delay {8}{walk 书院;wtick}}}
 /ac {^大隐阁}{hpnt}
 /al wtick {/ticker {work}{look}{8}}
 /al wtick- {/unticker {work}}
 /al askwork {ask tie jiang about job;}
 /ac {^铁匠说道：%0(%1)}{cxt-;%1;}
-/ac {^  铁匠铺老板 铁匠(Tie jiang)}{askwork}
+/var atwork 0
+/ac {^  铁匠铺老板 铁匠(Tie jiang)}{/var atwork 1;askwork}
 /nop ac {^铁匠对你道：这是给你的工钱。}{hpnt;de2 {/if {$peiyao==0}{askwork}{do n,n}}}
 /ac {^铁匠对你道：这是给你的工钱。}{/var work 1;hpnt}
+/ac {^铁匠对你道：这是给你的工钱。}{/var work 1;de2 {do n,n}}
 /ac {^铁匠说道：让您老干这个未免屈尊了吧？}{/var peiyao 1;hp;save;gopeiyao}
 /ac {^平一指说道：就这点经验，连一百五都没有}{/var work 1;/var peiyao 0;do s,s}
 /al askpeiyao {ask ping about job}
-/ac {^  炼药师协会会长「杀人神医」平一指(Ping yizhi)}{askpeiyao}
+/var atpeiyao 0
+/ac {^  炼药师协会会长「杀人神医」平一指(Ping yizhi)}{/var atpeiyao 1;askpeiyao}
 /ac {^平一指说道：%0(%1)}{/var peiyao 1;%1}
 /ac {^平一指说道：让你干的活你干完了么？}{peiyao}
 /ac {^平一指看了你配的药}{hpnt;de1 {askpeiyao}}
+/ac {^平一指说道：你还是先歇歇吧，万一累出人命}{sleep}
 /var fish 0
 /var peiyao 0
 /var copy 0
@@ -86,11 +91,11 @@
     /var ntexp %2;
     /showme myname =$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
     /if {$ntexp>500000 && $fish==0}{
-        /unticker {cx};
+        /nop unticker {cx};
        wtick;
-        /delay {6} {gotodie};
-       /delay {12}{hpnt};
-       cxt-;
+        /delay {6} {l;};
+       /nop delay {12}{hpnt};
+      /nop cxt-;
     };
     /if {$hasdie==0 && $jingqi >100 && $ntexp<5000}{
      gowork;
@@ -118,11 +123,12 @@
 /ac {^startfish}{
 gotodie
 }
-/ac {^铁匠说道：你还是歇会儿吧}{gofull}
-/ac {^朱熹说道：我看你脸色不行啊}{gofull}
+/ac {^铁匠说道：你还是歇会儿吧}{sleep}
+/ac {^朱熹说道：我看你脸色不行啊}{sleep}
 /ac {^平一指说道：让你干这活，也太屈就你了吧。}{/var peiyao 1;walk 书院}
 /al askcopy {ask zhu xi about job}
-/ac {^  朱熹(Zhu xi)}{askcopy}
+/var atcopy 0
+/ac {^  朱熹(Zhu xi)}{/var atcopy 1;askcopy}
 /ac {^朱熹说道：好，你就帮我抄书(%1)}{%1}
 /ac {^朱熹说道：让你抄的书你抄完了？}{copy}
 /ac {^朱熹说道：虽然我这里只是抄抄书}{/var copy 0;/var peiyao 0;gopeiyao}
@@ -131,13 +137,16 @@ gotodie
 /ac {^朱熹说道：大侠你也来抄书？}{/var copy 1;/unticker work;walk 杂货铺;de1 {buy brush};de2 {cxt}}
 /var shoeshines 0
 /var cani 1
+/al cunsilver {walk 钱庄;de2 {do cun 1 gold,cun 25 silver,cun 10 silver,cun 5 silver}}
 /ac {^你身上带著下列这些东西(负重 %1%, 携带量 %2/%3 )：}{/math cani {%3-%2}}
-/al buyxieyou {fyz;do w,s,e,s,buy 9 shoeshine,drop shoeshine 9;de2 {do buy brush,drop brush 2}}
+/al buyxieyou {fyz;/delay {8}{do w,w,s,e,s,buy 9 shoeshine,drop shoeshine 9;de2 {do buy brush,drop brush 2}}}
+/al buyxieyou {fyz;/delay {6}{do w,w,s,e,s,buy 6 shoeshine,drop shoeshine 8,give richman silver;};/delay {7}{cunsilver}}
 /ac {^你从杨永福那里买下了一支鞋油。}{}
-/al yzn {fyz;walk 北门}
-/al yzs {fyz;walk 南门}
-/al yze {fyz;walk 东门}
+/al yzn {walk 北门}
+/al yzs {walk 南门}
+/al yze {walk 东门}
 /al yzw {fyz;walk 西门}
+/al yzw {walk 西门}
 /al cxyzn {
     caxie wu;
     de4 {caxie bing 1};
@@ -236,7 +245,8 @@ gotodie
     /delay {38}{cxfy};
     /delay {55}{fyn};
     /delay {56}{cxfy};
-    /delay {73}{drop coin;ffy};
+    /nop delay {73}{drop coin;ffy};
+    /delay {73}{ffy};
     /delay {74}{cxfy4sw};
     /delay {95}{cxfy2nwn};
     /delay {110}{cxfyw};
@@ -253,7 +263,7 @@ gotodie
     /delay {60}{cxyzn};
     /delay {89}{yzs};
     /delay {90}{cxyzs};
-    /delay {119}{dd coin;/showme cxyzall--finish}
+    /delay {119}{/showme cxyzall--finish}
 }
 /al cx+ {
 /showme --cx+;
@@ -264,8 +274,9 @@ gotodie
 /unac {^  武将(Wu jiang)(LV7)};
 }
 /nop 115 168
-/al cx {buyxieyou;de5 {cxyzall};/delay {124}{cxfyall}}
-/al cxt {cx;/ticker {cx}{cx}{311}}
+/al cx {buyxieyou;/delay {12}{cxyzall};/delay {134}{cxfyall}}
+/nop al cxt {cx;/ticker {cx}{cx}{311}}
+/al cxt {cx;/ticker {cx}{cx}{321}}
 /al cxt- {/unticker {cx}}
 /ac {^看来是拉杆(draw)拉晚了，白白的赔了一个鱼饵}{fish}
 /ac {^汉水南岸}{fish}
@@ -276,9 +287,10 @@ gotodie
 /al buyyuer {fyz;w;s;e;s;buy 5000 yu er;do n,w,n,n,n,n,n,n,n,n;fish}
 /ac {^这里看不出有鱼的样子。}{buyyuer}
 /ac {^你顺势一拉杆}{de1 fish}
-/al fzz {do w,recall back,e,goto zhongzhou}
+/al fzz {ffy;do w,s,s,goto zhongzhou}
 /al zzbuyxieyou {fzz;de4 {walk 杂货铺};de5 {do buy brush,drop brush 2};de8 {do buy 7 shoeshine,drop shoeshine 7,drop coin};}
-/al cxzz {zzbuyxieyou;/delay {12}{cxzzall}}
+/al zzbuyxieyou {fzz;/delay {6} {walk 杂货铺};de7 {do buy 6 shoeshine,drop shoeshine 8,give richman silver};/delay {8}{cunsilver};}
+/al cxzz {zzbuyxieyou;/delay {22}{cxzzall}}
 /al cxzzt {cxzz;/ticker {cx}{cxzz}{280}}
 /al cxzzall {
     cxzzs;

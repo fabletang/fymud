@@ -2,8 +2,8 @@
 /var myname lama
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
-/nop nop session $myname fy.sysfon.com 6000
-/session $myname 124.193.186.169 6000
+/session $myname fy.fengyun2014.com 6000
+/nop session $myname 124.193.186.169 6000
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
