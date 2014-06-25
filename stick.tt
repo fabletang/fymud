@@ -18,7 +18,6 @@
 /al wiblade {/if {$blade==0||$hand==1||$sword==1||$staff==1}{do unwield all,wield zhufu blade,wield blade2}}
 /al wihand {/if {$hand==0||$blade==1||$staff==1||$sword==1}{do unwield all,wield jade}}
 /al wiw wistaff
-/al widef wistaff
 /al isblade {/var blade 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade;enable parry ittouryu}
 /al isblade {/var blade 1;/var staff 0;/var sword 0;/var hand 0;/showme isblade;}
 /al noblade {/var blade 0; /showme noblade;}
@@ -56,10 +55,13 @@
 /ac {^你放下手中的＊百鬼夜狂＊}{noblade2}
 /al tbuff {/showme todo}
 /al xl {tbuff;wihand;perform xianglongwuhui}
+/al xl {tbuff;wihand;perform unarmed.xianglongwuhui}
 /al xl {tbuff;wistaff;perform unarmed.xianglongwuhui}
+/al xl {do wield staff,perform unarmed.xianglongwuhui,unwield staff}
 /al sc {tbuff;wihand;perform shichengliulong}
 /al sc {tbuff;wihand;perform unarmed.shichengliulong}
 /al sc {tbuff;wistaff;perform unarmed.shichengliulong}
+/al sc {do wield staff,perform unarmed.shichengliulong,unwield staff}
 /var islian 0
 /var haspet 0
 /read comm/pet.sc
@@ -72,10 +74,11 @@
 /al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
 /ac {将周身凝聚的冰块震得粉碎！！}{pj}
 /ac {^但是被%1机灵地躲开了。}{de5 {pj};/showme ====todo====}
-/ac {^奇冷的寒气包围了}{luo;/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
 /ac {^小小棍纵身越到了}{pj}
 /ac {^小小棍一招不慎，露出了好大的一个破绽！！！$}{de4 pj}
 /ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill;gongji $target}
+/ac {^你悄悄走到%1背后，飞身纵起}{de2 iskill}
 /ac {^小小棍不知从哪里窜到你面前}{/if {$is_kill==1}{juji $target}}
 /al wpet {order wear all}
 /al buff {wh;perform dodge.gouweixudiao}
@@ -89,7 +92,7 @@
         /var target %0;/var target %0;juji %0;
         /delay {2}{juji %0;kill %0;startk}}
 /al ki {
-        wistaff;buff;set target %0;
+        wi staff;buff;do ability2,i,set target %0;
         /var target %0;juji %0;
         /delay {2}{kill %0;startk}}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill}
@@ -98,13 +101,22 @@
 /var sc_ok 0
 /var zjbl_ok 0
 /al ak xl
-/al kkx {/ticker {kill}{/if {$zjbl_ok==1}{zjbl}{
-                                                /if {$is_fight==0}{pj;
-                                                                        /if {$whok==1}{wwh};
-                                                                        };
+/var isbusy 1
+/ac {^ 【攻击：%s%1%s】 %2%s【杀伤】}{
+    /var wgcn %1;
+    /if {%2==1}{/var isbusy 1}{/var isbusy 0};
+    /showme ==isbusy---$isbusy---%1;
+}
+/ac {^==isbusy---%1---}{
+                        /if {%1==0}{
+                        /if {$zjbl_ok==1}{zjbl}{/if {$is_fight==0}{pj;/if {$whok==1}{wwh};};
                                                 ak};
-                                                /var kticker 1;
-                        }{2.1}}
+                                                }
+}
+/al kkx {/ticker {kill}{
+                        score2; 
+                        /var kticker 1;
+                        }{2.2}}
 /al startk {ak;kkx}
 /al kx startk
 /al ssk startk
@@ -118,12 +130,18 @@
     /var sc_ok 0;
     /al ak sc;
 }
-/al czj {tbuff;wistaff;perform staff.chuozijue}
-/al bzj {tbuff;wistaff;perform staff.banzijue}
-/al tzj {tbuff;wistaff;perform staff.tiaozijue}
+/al czj {wistaff;perform staff.chuozijue}
+/al czj {do wield staff,perform staff.chuozijue,unwield staff}
+/al bzj {wistaff;perform staff.banzijue}
+/al bzj {tbuff;do wield staff,perform staff.banzijue,unwield staff}
+/al tzj {tbuff;wi staff;perform staff.tiaozijue}
+/al tzj {tbuff;do wield staff,perform staff.tiaozijue,unwield staff}
 /al yzj {tbuff;wistaff;perform staff.yinzijue}
+/al yzj {tbuff;do wield staff,perform staff.yinzijue,unwield staff}
 /al txwg {tbuff;wistaff;perform staff.tianxiawugou}
+/al txwg {tbuff;do wield staff,perform staff.tianxiawugou,unwield staff}
 /al zjbl {wihand;perform unarmed.zhenjingbaili}
+/al zjbl {perform unarmed.zhenjingbaili}
 /al ps tzj
 /al luo {wisword;perform sword.luo}
 /al luo {wisword;perform sword.pengxin}
@@ -174,7 +192,7 @@
 /ac {觑得亲切，不退反进，借势击向你};
 /ac {斜斜滑出三尺，一时间中路空门大开，正是时机}
 }
-/ac {^%0足尖着力，飘身后退。$}{wistaff;pjj;/showme --- sc fail wiblade todo----}
+/ac {^%0足尖着力，飘身后退。$}{/showme --- sc fail wiblade todo----}
 /nop -----------------
 /ac {^你大喝一声，犹似半空响了个霹雳}{}
 /al stopk { set dmg_msg 0; 
@@ -186,6 +204,7 @@
             /unticker {kill};
             nokill;
             l;
+            get staff;
             /var whok 1;
             }
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{de2 iskill;startk}
@@ -202,7 +221,7 @@
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{sk;perform dodge.goujitiaoqiang}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{sk}
-/ac {^你所选用的武功中没有这种必杀技。}{get jade;get staff}
+/ac {^你所选用的武功中没有这种必杀技。}{get staff}
 /ac {^使用特殊招式至少需要50点的内力}{hp}
 /read comm/gag.sc
 /read comm/path.sc
@@ -261,7 +280,9 @@
     }
 /ac {^看起来%0想杀死你！$}{
         /nop look;
-        startk;
+        /nop startk;
+        /if {$kticker==0}{startk};
+        zh;
        /nop xixi $petname;
         /nop delay {pet}{/showme checkpet--}{2};
         }
@@ -275,7 +296,8 @@
 /ac {^只好任%1落在一边。}{/showme todo }
 /ac {^你只觉得虎口一热，手中的神之祝福宝刀}{noblade}
 /al checkkill {perform blade.gobankiri}
-/ac {^然而，%1已经死了}{ch $target;checkkill;fd;/if {$is_kill==1}{;};}
+/ac {^然而，%1已经死了}{ch $target;checkkill;/if {$is_kill==1}{;};}
+/ac {^然而，%1已经死了}{ch $target;tzj}
 /ac {^你现在不可以吹口哨。}{}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{wpet;gongji $target;juji $target}}
 /var whok 1
@@ -286,3 +308,6 @@
 /ac {^当前在战斗中的憎恨最多对象：0}{;}
 /ac {^当前在战斗中的憎恨最多对象：/obj/target/pet#%1 ("小小棍")}{juji $target}
 /al bbb {do burn,burn,burn;ab + 14}
+/al widef wistaff
+/ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 7}}
+/ac {^棍的任务改变成maze1了，请用entermaze1进入！}{/al em {entermaze1}}

@@ -33,6 +33,7 @@
 /read comm/autorecover_hc.sc
 /read comm/juezhao.sc
 /read comm/combat.sc
+/read comm/debuff.sc
 /al juezhao {;}
 /var jqs_lost_limit 0.1
 /al hx {drink dai}
@@ -350,14 +351,14 @@
 /nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
 /ac {^此人身形未滞，想以『无空漩流』困}{/if {$is_kill==1}{ffl}}
 /al kb {ki bandit;/delay {4}{do kill bandit 2,kill bandit 3,kill bandit 4,kill bandit leader}}
-/ac {^『风漏飞烟』至少需要6枚暗器。}{take 8 1000;de1 wianqi}
+/ac {^『风漏飞烟』至少需要6枚暗器。}{take 7 1000;de1 wianqi}
 /ac {^星芒流绕在}{pjj;qx}
 /ac {^星芒流绕在}{pjuezhao2}
 /ac {^你现在不可以吹口哨。}{}
 /ac {^你对%1一指，对小弯刀命令}{/if {$is_kill==0}{startk}}
 /ac {^  小弯刀的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
-/ac {^你所选用的武功中没有这种必杀技}{take 8 200;wi needle}
+/ac {^你所选用的武功中没有这种必杀技}{take 7 200;wi needle}
 /ac {^139级以后你可以通过给我10～17两黄金}{de2 {m1to 7}}
 /al em {entermaze1}
 /ac {^此人已经在极度忙乱中了（>3）}{pjuezhao2}

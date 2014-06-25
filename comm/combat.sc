@@ -12,3 +12,5 @@
 /ac {(Loster)	** 战斗中 **(LV}{/if {$is_kill==0}{ki loster}{rekicker loster}}
 /ac {沙漠贼盗(Shamo zeidao)	** 战斗中 **(LV}{/if {$is_kill==0}{ki zeidao}{rekicker zeidao}}{4}
 /ac {^你已经在战斗中了，还想偷袭？}{iskill}
+/ac {(Menggu %1)	** 战斗中 **(LV}{/if {$is_kill==0}{ki menggu %1}{rekicker menggu %1}}
+/ac {(Menggu %1)<冻僵中>	** 战斗中 **(LV}{/if {$is_kill==0}{ki menggu %1}{rekicker menggu %1}}

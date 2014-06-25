@@ -1,0 +1,35 @@
+#CLASS {busy} {disable}
+#CLASS {draw} {enable}
+#CLASS 0
+#ALIAS busycmd {map here}
+#ALIAS initloc {#var {rto_loc} {xuedao|wudang|quanzhen|lingjiu|heimuya|emei|zhongnan|zhongzhou|wugong|nanyang|lingzhou|kaifeng|henyang|fuzhou|changan|yanziwu|xingxiu|tangmen|mojiao|hujia|gumu|dali|taishan|yongdeng|suzhou|nanhai|lanzhou|jingzhou|hangzhou|foshan|beijing|xueshan|xiaoyao|shaolin|mingjiao|huashan|guiyun|baituo|kunlun|xiangyang|quanzhou|luoyang|kunming|jiaxing|guanwai|chengdu|yangzhou}}
+#ALIAS start {#t- con;initloc;#var n 1;gooo}
+#ALIAS nextloc {#var n {%eval(@n+1)}}
+#ALIAS rr {r %word(@{rto_loc},@n,|)}
+#ALIAS loc49 {r nanyang;n;n}
+#ALIAS loc50 {r nanyang;n;n;n;e;ask lao chuanfu about 出海}
+#ALIAS loc51 {r beijing;#7 s;se;sw}
+#ALIAS loc52 {r huashan;nw;w}
+#ALIAS loc53 {r henyang;#5 w}
+#ALIAS loc54 {r nanhai;n;w}
+#ALIAS loc55 {r dali;#7 n;nw;nd;w;w;w;wu;su;wu;wd;nd;w}
+#ALIAS loc56 {r nanyang;n;n;w}
+#ALIAS loc57 {r chengdu;e;e;n;nw;w;n;n;n}
+#ALIAS loc58 {r gc;#6 e;se;s;e;e;e;ask lao chuanfu about 出海}
+#ALIAS loc59 {r hangzhou;n;sw;w;sw;nw;sw;wu;n;n}
+#ALIAS loc60 {r lanzhou;#4 n;w;w}
+#ALIAS loc61 {r dali;#4 n;nw;n;ne;e;s}
+#ALIAS loc62 {r xingxiu;su;s;ed}
+#ALIAS gooo {#if (@n>47) {loc@n} {rr};map here}
+#ALIAS loc48 {r henyang;n;n}
+#ALIAS loc63 {r nanyang;e;ask xu xiake about map}
+#VAR n {} {}
+#VAR rto_loc {} {}
+#ALARM {*3} {busycmd} "busy"
+#TRIGGER {^??{通过绘制地图，你获得了|你已经绘制过这附近的地图了}} {#t- busy;#wa 3000;nextloc;gooo} "draw"
+#TRIGGER {^你现在正忙，没有时间绘制地图。} {#t+ busy} "draw"
+#TRIGGER {^只有在户外才aa有必要绘制地图。} {#t+ busy} "draw"
+#TRIGGER {^通过向徐霞客讨教地理山川知识，你} {#t- busy;#wa 5000;#t- busy} "draw"
+#TRIGGER {^你在纸上涂抹了一会儿，连自己都看不出是什么东西。} {#sh !!! 先去鲁班那里学drawing}
+#BUTTON 1 {户外点击开始} {start} {} {} {} {} {} {Size} {80} {23} {} {} {} {78} {} {} {} "" {} {} {}
+#STAT {步骤: @n  首先跟入门师傅ask 历练领取地图册, 然后跟鲁班(r gc;#6 n;e)学习drawing至少30级, 再点击开始按钮}

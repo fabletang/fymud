@@ -11,14 +11,15 @@
 /al jzno {/var lrok 0;/var htok 0;/var tdrmok 0;/var twfxok 0;/var jclhok 0}
 /var zhok 1
 /al zh {/if {$zhok==1}{do unwield all,cast mengyanjue;widef}}
+/ac {^你喃喃地念了几句咒语，双手一挥}{ability2}
 /al pjuezhao {
             zh;
-            /if {$lrok==1}{do unwield all,perform luorijue;widef};
-            /if {$htok==1}{do unwield all,perform hantianjue;widef};
-            de1 {
             /if {$twfxok==1}{perform tianwaifeixianjue;};
             /if {$jclhok==1}{perform jichulianhuanjue;};
             /if {$tdrmok==1}{perform tiandirenmojue;};
+            de1 {
+            /if {$lrok==1}{do unwield all,perform luorijue;widef};
+            /if {$htok==1}{do unwield all,perform hantianjue;widef};
             };
          }
 /al pjuezhao2 {

@@ -1,0 +1,216 @@
+[tintin++]map入门
+
+本帖最后由 yuerr 于 2013-12-7 10:24 PM 编辑
+
+
+论坛里也有几篇关于tintin画地图的帖子了，但是我还是总结一下给新手看看。
+
+由于绝大部分中国mud都有房子重复问题，所以自动化地图有点难度，如果新人有兴趣手动画图，那欢迎参考我下面的内容
+
+建议使用下面的alias 和 mapper class
+#nop mapoff命令关闭所有自动画图功能，不想自动画图就执行这个命令，你就不用担心地图被弄乱了
+#ALIAS {mapoff}
+{
+        #map {flag} {static} {on};
+        #class mapper kill;
+        #echo {Room writes disabled!}
+}
+
+#nop mapof 命令激活自动画图，而且会导入我下面提供的mapper class
+#ALIAS {mapon}
+{
+           #class mapper read mapper.tin;
+        #echo {Mapping enabled!};
+        #map {flag} {static} {off}
+}
+
+#nop mapper class 提供基本手动画图辅助和命令
+#class mapper open;
+
+#nop 自动match "金水桥 - (你目前在长安城)"  触发，把名字和区域提取出来存在当前地图id下。方便实用，有的时候也把名字改错，嘿嘿，手动走几步就会纠正好了
+#act {^{[^ ]*} %2目前在{[^\)]*})} {#var roomname %1;#var roomarea %3;setmap};
+
+#alias setmap {#map set roomarea $roomarea;#MAP name $roomname};
+
+#nop 设置当前地图为static, 方便自动创建overlap的房间，也是中文mud必须的，把一个房间设置好以后一定记得要执行这个命令！
+#alias staticon {#map roomflag static on};
+
+#nop 设置 void 房间
+#alias void 
+{
+    #if {"%1" == ""}
+    {
+       #echo {please provide the void room location: void e = #map insert e void}
+    }
+    {
+       #map insert %1 void;
+    };
+};
+
+＃设置新房间，避免已存在房间被错误link在一起
+#alias new 
+{
+    #if {"%1" == ""}
+    {
+       #echo {please provide the new room location: new e = create new room at entry e}
+    }
+    {
+       #map dig {%1} {new}
+    };
+
+}
+
+#nop 方便查看当前房间的属性，防止忘了设置static和确保路径正确.
+#alias info {#map info}
+
+#class mapper close;
+复制代码
+好吧，先把我现成的东西贴出来，下面才是正式说明
+
+1. 看系统说明
+#help map
+         #map
+复制代码
+2. 创建地图／倒入地图
+如果你还没有地图，那第一步就是创建一个空的地图
+#map create
+复制代码
+如果已有地图，可以直接导入
+#map read xxx.map
+复制代码
+3. 定位当前位置
+必须订位以后tintin才知道你在哪里，一般常用的就是去扬州中心广场坐标
+#nop goto 地图坐标，加入中心广场是1，那就 #map goto 1
+复制代码
+4. 开始画图！
+用上面的alias “mapon" 激活辅助方程，然后就是左右行走自动画图了。
+一般的主街道都可以自动走一遍画，但是要小心系统自动提示的自动操作
+#nop 下面三行说明自动创建了新的房间，而且自动设置了回走命令，如果你希望的是link到现存房间，请用#map undo 取消操作，回到原来房间，#map goto 重新设置目标，记得"l" 一下自动更新房间名字
+#MAP CREATE ROOM   276 {}.
+#MAP CREATE EXIT   276 {wd} {wd}.
+#MAP CREATE EXIT   275 {eu} {eu}.
+
+
+#nop 下面这句说明自动创建了和已存在房间的链接，如果你希望新房间，请undo 重新定位然后手动创建房间
+#MAP CREATE LINK   206 {康府大院}.
+复制代码
+5. 避免重复的link到别的房间
+这个问题是国内mud普遍存在的,也是tintin画图比较头痛的地方
+
+细节参考 http://pkuxkx.net/forum/viewthread.php?tid=22043&extra=&page=5
+redcoat 41楼详细描述了这个问题而且提供几个解决方案，相当不错
+
+我这里要提的就是static属性，这个可以让tintin知道有overlap的房间存在，然后会自动创建新的
+
+                   钱庄 - 北大街
+                   金店       |
+某某地方 - 西大街 - 中心广场 - 东大街 - 某某地方
+                                |
+
+重新用redcoat的例子，我们可以先创建钱庄，只需要走到钱庄，然后直接执行static即可
+因为钱庄只有一个出入口，“走进钱庄”这个动作就会自动创建全部需要的信息，设成static就会避免tintin自动加出入口
+然后你再走到金店，tintin会检查到这是个重叠的房间，然后自动创建新房间
+
+下面是例子。
+#MAP: Linkable room is marked static. Creating overlapping room instead.
+
+这个方法很方便，但是也不能100%避免所有的问题, 大家使用中慢慢体会
+
+差点忘了，要备份已经花完的地图，请用下面命令
+#map write mud.map
+复制代码
+
+自动跑图
+
+#map run 1  #nop 自动跑到room 1
+复制代码
+
+
+
+创建不在pathdir的路径,现在速成快餐mud不少， rideto 可以直接乱飞等等，所以我们需要手动创建path,也适合创建需要特殊命令的解密房间
+
+
+#nop 在扬州中心广场飞北京#nop 调用new alias创建一个房间，在beijing 路径;
+new beijing;
+#nop 修改beijing命令的实际mud命令,加入你实际输入的命令是;r beijing
+#map exit {beijing} {command} {r beijing};
+#nop 输入beijing,你就会跑到北京了，然后创建回走命令， r gc  (飞扬州广场)
+#map link gc 1;
+#map exit {gc} {command} {r gc};
+复制代码
+
+这样你就把北京和扬州连在一起了，tintin会自动走到广场然后飞去对方城市，当然傻了点，实际上mud在空地就能飞
+
+
+
+
+
+
+[tintin++]map进阶
+
+tintin++的map功能相当强大，功能非常丰富，稍加应用，就会得到很多意想不到的效果。
+地图制作时的细节问题
+
+
+地图制作经常会遇到特殊exit的问题。这个很简单，一般的mud客户端都支持这个功能，作为tt的特殊exit，我就在这里罗嗦一句，解释一下。
+比如中心广场有个exit是enter shudong，于是就可以#map exit {中心广场} {command} {enter shudong}.
+
+过河exit无非就是复杂一点，可以这样#map exit {长江堤岸} {command} {#act {一叶扁舟缓缓地驶了过来，艄公将一块踏脚板搭上堤岸} {enter boat};#act {艄公说“到啦，上岸吧”，随即把一块踏脚板搭上堤岸} {#map goto 长江对岸;#map run 目的地};ask shao gong about jiang;yell boat}
+
+还有一些地区有busy，比如蜀道，这个就更容易了，加上delay的时间就行。#map run someplace 延时时间;
+
+以上只是地图制作时需要注意的问题，这也是最基本的问题，有了这些知识，才能制作出完整的地图来。
+
+地图制作完毕后的应用举例（因人而异，因任务而异）
+
+
+这一部分就看你的地图信息是否完整，或者说是更有技巧性。
+map有一个name属性，一般而言就是诸如中心广场，无量后山等等。但这样制作远远不够，只能属于一个基本的地图。
+为了高效利用name属性，可以这样应用：区分重复性区域，如青石官道，这个简单，编号即可，青石官道1，青石官道2...
+name的信息还可以包括npc，没错，就是npc的信息。这个语法随意，比如#map name 书院-朱熹(zhu xi)。甚至还可以加上物品信息。
+有了这个，地图就强大无比！
+
+
+下面举例应用：
+
+#map list <roomname> <exits> <roomdesc> <roomarea> <roomnote> 
+
+
+这个是list语法，稍加应用即可达到自己的目的。比如：
+
+#map list {%*} {n} {} {昆明} {武士}
+
+这句话的意思是在所有房间中搜索，并列出满足有北方向的出口，且是昆明区域，且房间中有武士的房间.
+
+tintin支持table（一种bt的数据结构），于是可以这样，比如慕容任务：
+
+『叛徒在无量山附近出现』
+
+#var area[无量山] {小路,天龙山脚,无量山后山,等等}
+
+#loop {1} {$area[无量山]} {cnt}
+{
+    #map run $area[$cnt];
+}
+
+这样可以遍历叛徒所有可能出现的地方。
+
+map的高级属性
+
+
+map还有很多属性我没有提及，因为上面的属性对于一个基本的任务机器人来说就足够了。当然，为了高效的完成任务，其他属性也是必不可少的。
+
+一千个人有一千个思路，所以机器人就像mud里扮演的角色一样，体验出自己的特色。
+
+最后惯例，一句话总结：自己动手，丰衣足食!
+
+
+#class xxx open和#class xxx close之间定义的内容都属于某个class
+#class xxx read yy.tin相当于在yy.tin这个文件的开始和结束分别加上了class open和class close
+用这种方式读入a.tin，其中定义的变量比如x属于一个类，比如class a
+再用这种方式读入b.tin，其中定义的变量比如y属于另一个类，比如class b
+在class a没有kill时，可以直接引用变量x
+在class a已经kill后，需要把x的值保存到别的地方或者存入一个全局变量才能使用
+
+丢包问题
+#config {packet patch} 0.5
