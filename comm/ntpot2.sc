@@ -90,7 +90,7 @@
 /ac {^【 平 和 】%1【 经 验 】%s%2}{
     /var ntexp %2;
     /showme myname =$myname ntexp=$ntexp godie =$godie jingqi =$jingqi hasdie =$hasdie;
-    /if {$ntexp>500000 && $fish==0}{
+    /if {$ntexp>5100000 && $fish==0}{
         /nop unticker {cx};
        wtick;
         /delay {6} {l;};

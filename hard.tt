@@ -7,7 +7,7 @@
 /nop session $myname china.fengyun.com 6000
 /nop session $myname 122.200.77.32 6000
 /nop fy.sysfon.com (124.193.186.169)
-/session $myname fy.sysfon.com 6000
+/session $myname fy.fengyun2014.com 5900
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
