@@ -1,12 +1,9 @@
-/var team_header hard;
+/var team_header curer;
 /var teamer_1 tank;
-/var teamer_4 light;
-/var teamer_5 shine;
-/var teamer_3 gun;
-/var teamer_2 nurse;
+/var teamer_3 sinker;
+/var teamer_2 gun;
 /var helper nurse;
-/var healer_1 nurse;
-/var healer_2 hard;
+/var healer_1 curer;
 /var is_together 0;
 /al setheader {/var team_header %0}
 
@@ -21,17 +18,17 @@
 /al tk {
 tat;
 /delay {1.5}{/if {$is_together > 1}{
-    /delay {2.1}{whisper $teamer_1 KKK%0;whisper $teamer_2 KKK%0;};
-    /delay {3.2}{whisper $teamer_3 KKK%0};
-    /delay {3.5}{ki %0}
+    /delay {2.0}{whisper $teamer_1 KKK%0;whisper $teamer_2 KKK%0;};
+    /delay {2.5}{whisper $teamer_3 KKK%0};
+    /delay {3.0}{ki %0}
     }{/showme 队员 数量 $is_together;team talk 队员 $teamer_1 丢失}};
 /delay {3}{/var is_together 0}
 }
 /al ttk {
-    whisper $teamer_2 KKK%0;
-    /delay {0.2}{whisper $teamer_3 KKK%0};
-    /delay {2}{whisper $teamer_1 KKK%0;whisper $teamer_4 KKK%0;whisper $teamer_5 KKK%0};
-    /delay {3}{ki %0}
+    whisper $teamer_1 KKK%0;
+    /delay {0.5}{whisper $teamer_2 KKK%0};
+    /delay {1}{whisper $teamer_3 KKK%0;};
+    /delay {1.5}{ki %0}
 }
 /ac {你的耳边悄声说道：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
 /ac {告诉你：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
@@ -50,7 +47,7 @@ tat;
     /delay {0.8}{whisper $teamer_3 EX%0};
     /var EX %0;
     /replace {EX}{,}{;};
-    /delay {2.5}{$EX}
+    /delay {1.5}{$EX}
     }{/showme you not leader}}
 /ac {^如果你愿意加入，请用 %0。}{%0}
 /ac {^队友 %0 的任务被你完成}{tt quest}
@@ -71,10 +68,10 @@ whisper $teamer_3 EXfollow $team_header
 /ac {^你又在流沙中陷深了一些！！你几乎在绝望中哭了出来}{tell $team_header 掉流沙里了}
 /al csoulto {conjure soul_sense on %0;conjure soul_sense on $myname}
 /ac {^%0告诉你：teamsoul}{csoulto $teamer_2; /delay {2}{csoulto kisskill}; /delay {4}{csoul}}
-/al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3}; /delay {6}{csoulto $teamer_4}; /delay {8}{csoulto $teamer_5}; /delay {10}{csoul}}
+/al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoul}}
 /al tcks {
-    tta stat;ttb stat;ttc stat;ttd stat;tte stat;stat;
-    tta cks;ttb cks;ttc cks;ttd cks;tte cks;cks
+    tta stat;ttb stat;ttc stat;stat;
+    tta cks;ttb cks;ttc cks;cks
 }
 /al thh1 {tell $healer_1 EXhh $myname}
 /al thh2 {tell $healer_2 EXhh $myname}
@@ -86,6 +83,4 @@ whisper $teamer_3 EXfollow $team_header
     team with $teamer_1;
    /delay {2} {team with $teamer_2};
    /delay {4} {team with $teamer_3};
-   /delay {6} {team with $teamer_4};
-   /delay {8} {team with $teamer_5}
 }

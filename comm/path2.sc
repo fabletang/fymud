@@ -244,7 +244,7 @@
 }
 /al dqgout {wlk;wear all;center;go cyan;open hua;s;nwlk}
 
-/al dqgin {wlk;ask yin bin about man;remove all;de3 {ask zhu zao about 过阵;remove all;nwlk}}
+/al dqgin {wlk;ask yin bin about man;remove all;de3 {ask zhu zao about 过阵;nwlk}}
 
 /al fy2tuzi {fye;de1 {pl {e;e;n;e;e;e;eu;eu;eu;sd;e;ed;nwlk};pr}}
 /nop al fy2tuzi {fye;de1 {do e,e,n,e,e,e,eu,eu,eu,sd,e,ed;nwlk}}
@@ -255,9 +255,7 @@
 /nop al hb2tuzi {wlk;do s,s,s,s,s,n,n,n,w,w,w,w,s;wlk}
 /al hb2fy {hb2tuzi;de1 {tuzi2fy}}
 /al fy2hb {fy2tuzi;de3 {tuzi2hb}}
-/al fy2longwang {fy2hb;de6 {wlk;n;n;n;e;walkto bow;give man meat;enter;nwlk}}
-/al longwangout {out;walkto bank}
-/al longwan2fy {wlk;longwangout;de2 {w;s;s;s;hb2fy}}
+/al fy2longwang {fy2hb;de4 {wlk;do n,n,n,e,walkto bow,give man meat,enter;nwlk}}
 /al fy2stj {fy2tuzi;de3 {tuzi2hb};de4 {n;n;n;w;open door;w;give romance to master}}
 /al stj2fy {open door;e;e;s;s;s;de1 {hb2tuzi};de2 {tuzi2fy}}
 /nop 海边-龙王
@@ -438,7 +436,7 @@
 /al lw2fy {pl {wlk;w;se;s;s;s;s;s;s;s;fyn-};pr}
 
 /nop 三清
-/al qf2sq {qf2sq+;/3 w;/2 wu;/delay {0.5}{/4 nu;climb up};de3 {climb up};de5 {/7 n;knock door}}
+/al qf2sq {qf2sq+;/3 w;/2 wu;/delay {0.5}{/4 nu;climb up};de3 {climb up};de5 {/5 n;knock door}}
 /al qf2sq+ {
     wlk;
     /ac {^吱的一声，门向里开了}{de2 {n;n;qf2sq-}};
@@ -605,7 +603,7 @@
         };
     /ac {^＂呀＂地一声}{pl {east;east;east;open door;east;east;east;};pr};
     /ac {^石壁上的门户又无声无息的合了起来}{toucheren};
-    /ac {^谷地}{de1 {s;s;s;w;w;w}};
+    /ac {^谷地}{nhq2dw-;pl {s;s;s;w;w;w};pr;};
     /ac {^山阁}{nhq2dw-}
 }
 /al nhq2dw- {
@@ -622,7 +620,7 @@
 /al dw2nhq+ {
     wlk;
     /ac {^山阁}{pl {e;e;e;n;n;n};pr;};
-    /ac {^谷地}{/delay {1.0}{/3 w;open door;/3 w}};
+    /ac {^谷地}{/delay {0.5}{/3 w;open door;/3 w}};
     /ac {^坑底}{u};
     /ac {^坑道边}{/delay {0.5}{/6 w}};
     /ac {^鬼域}{dw2nhq-;/delay {0.2}{n;}}
@@ -794,7 +792,7 @@
 /nop 沉香镇
 /nop fy2cx {cx2fy-;fy2ml;fy2cx+}
 /nop al fy2cx {cx2fy-;fy2ml;/delay {5.5}{swing west;swing west};/delay {6}{w;w;w;w;nwlk}}
-/al fy2cx {fy2ml;/delay {6}{/showme --swing;swing west;swing west;w;w;w;w;nwlk}}
+/al fy2cx {fy2ml;/delay {6}{/showme --swing;swing west};/delay {6.5}{swing west};de7 {w;w;w;w;nwlk}}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -891,15 +889,15 @@
 /al hs2cx {pl {wlk;ed;ed;nd;n;n;n;e;e;se;su;sw;se;se;sw;se;s;nwlk};pr}
 
 /nop 风云到华山
-/nop al fy2hs {fy2cx;de7 cx2hs}
-/al fy2hs {fy2cx;de8 cx2hs}
+/al fy2hs {fy2cx;de7 cx2hs}
+/al fy2hs {fy2cx;de6 cx2hs}
 /nop al hs2fy {hs2cx;de2 {cx2fy}}
 /al hs2fy {hs2cx;cx2fy+}
 /al hs2hua {pl {wlk;wu;wu;wu;se;sw;se;sw;e;su;su;eu;su;slide rock;nwlk};pr}
 /al maonv2hua {nd;sw;se;sw;e;su;su;eu;su;apprentice hua zhenzhen;slide rock}
 /al hua2hs {pl {wlk;nd;slide rock;nd;wd;nd;nd;w;ne;nw;ne;nw;ed;ed;ed;nwlk};pr}
-/al hsout {wlk;pl {s;ed;ne;nu;nw;wd;wu;wd;nd;nd;w;ne;nw;ne;nw;ed;nwlk};pr}
-/al hsin  {wlk;pl {wu;se;sw;se;sw;e;su;su;eu;ed;eu;se;sd;sw;wu;n;nwlk};pr}
+/al hsout {wlk;do s,ed,ne,nu,nw,wd,wu,wd,nd,nd,w,ne,nw,ne;nw;ed;nwlk}
+/al hsin  {wlk;do wu,se,sw,se,sw,e,su,su,eu,ed,eu,se,sd,sw,wu;n;nwlk}
 /nop 嵩山
 /al fy2sl {fyw;de1 {wlk;do w,nw,ne,nw,nu,nu,nu;nwlk}}
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
@@ -937,8 +935,8 @@
 /al guo2fg {pl {wlk;se;ne;se;ne;se;se;e;s;s;s;s};pr}
 /al fy2guo {fy2fg;de2 {fg2guo}}
 /al guo2fy {guo2fg;de1 {fg2fy}}
-/al fgin {wlk;pl {n;n;n;n;jie gaoshi;drop yaopai;nu;wu;nu;nu;wu;nu;ne;nu;nu;enter;nwlk};pr}
-/al fgout {wlk;out;sd;sd;sw;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk}
+/al fgin {wlk;do n,n,n,n,jie gaoshi,drop yaopai,nu,wu,nu,nu,wu,nu,ne,nu,nu;enter;nwlk}
+/al fgout {wlk;do out,sd,sd,sw,sd,ed,sd,sd,ed,sd,s,s,s,s;nwlk}
 /al fy2fg1 {fy2fg;de3 {fgin}}
 /al fg12fy {fgout;de2 {fg2fy}}
 
@@ -1102,7 +1100,6 @@ wlk;
 /nop al cx2sj {wlk;n;nw;do northeast,nw,nw,northeast,n,nd,n,nw,e,w,w,w,w;nwlk}
 /al cx2sj {wlk;n;nw;northeast;nw;nw;northeast;n;nd;n;nw;e;w;w;w;w;nwlk}
 /al cx2lz {pl {wlk;n;e;e;nw;ne;nw;nw;ne;n;nd;n;nw;nw;w;w;w};pr}
-/al cx2lz {pl {wlk;n;nw;ne;nw;nw;ne;n;nd;n;nw;nw;w;w;w};pr}
 /nop al cx2lz {wlk;n;e;do e,nw,ne,nw,nw,ne,n,nd,n,nw,nw,w,w,w;}
 /nop al gw2sj {wlk;do w,n,e,e,e,e,e,e,e,e,e,e;nwlk}
 /al gw2sj {wlk;w;n;e;e;e;e;e;e;e;e;e;e;nwlk}
@@ -1126,7 +1123,7 @@ wlk;
 /al tp2yhy+ {
     wlk;
     /ac {^门是开着的}{w};
-    /ac {^吱的一声，红门}{de4 {w}};
+    /ac {^吱的一声，红门}{de3 {w}};
     /ac {^怡红小院}{tp2yhy-}
 }
 /al tp2yhy- {
@@ -1155,7 +1152,7 @@ wlk;
 
 /al gw2er {gw2tp;de3 {tp2er}}
 /al er2gw {er2tp;de3 {tp2gw}}
-/al fy2er {fy2lz;de9 {lz2er}}
+/al fy2er {fy2lz;de8 {lz2er}}
 /al er2fy {er2lz;de4 {lz2fy}}
 /nop 关外到边城
 /al gw2bc {gw2lz;de2 {lz2bc}}
@@ -1191,7 +1188,7 @@ wlk;
 /nop lz2fy {lz2cx;cx2fy+}
 /nop al lz2fy {lz2sk;de1 {sk2fy}}
 /nop al fy2lz {fy2cx;cx2lz+}
-/al fy2lz {fy2cx;de7 {cx2lz}}
+/al fy2lz {fy2cx;de8 {cx2lz}}
 /al cx2lz+ {
     wlk;
     /ac {^老城广场}{cx2lz};
@@ -1567,10 +1564,10 @@ nwlk;
 /al buyleaf {wlk;n;e;sd;wd;wd;give xiaofan 10 silver;nwlk}
 /nop al fy2gw {fy2cx;de9 {cx2gw}}
 /al fy2gw {ffy;walk 马厩;de1 {goto guanwai}}
-/al fy2gw {fy2cx;de8 {cx2gw}}
-/al fy2tx {fy2cx;de8 {cx2gw};de12 {gw2tx}}
+/al fy2gw {fy2cx;de9 {cx2gw}}
+/al fy2tx {fy2cx;de9 {cx2gw};de12 {gw2tx}}
 /nop al gw2fy {gw2cx;cx2fy+}
-/nop al fy2wlb {fy2lz;de9 {lz2wlb}}
+/al fy2wlb {fy2lz;de9 {lz2wlb}}
 /al fy2wlb {fy2cx;de8 {pl {n;e;e;nw;ne;nw;nw;ne;n;nd;n;nw;nw;w;w;w;lz2wlb};pr;}}
 /nop al fy2qj {fy2wm;de10 {/6 e;swim}}
 /nop al fy2qj {wlk;d;/4 s;/delay {0.5}{/3 w;sw;nw;sw;w;n;nwlk}}
@@ -1633,38 +1630,28 @@ nwlk;
 /nop al erg2tp {pl {wlk;w;su;su;wu;wu;ed;sd;ed;sd;nd;sd;sd;se;e;e;sw;nwlk};pr}
 
 /nop 兴国in
-/al xgin {wlk;xgin+;/3 n}
+/al xgin {wlk;xgin+;/4 n;touch mark}
 /al xgin+ {
-    /ac {^大雄宝殿}{touch mark};
-    /ac {铜人眼睛忽然睁开}{;};
-    /ac {^你将一股内力}{n};
-    /ac {^天王殿}{xgin-;}
+    /ac {铜人眼睛忽然睁开}{n;xgin-}
 }
 /al xgin- {
     nwlk;
-    /unac {^大雄宝殿};
-    /unac {铜人眼睛忽然睁开};
-    /unac {^你将一股内力};
-    /unac {^天王殿}
+    /unac {铜人眼睛忽然睁开}
 }
 
-/nop al xgin2 {wlk;xgin2+;n;n;n;smile}
-/al xgin2 {wlk;xgin2+;n;n;n;}
-/al xgin2 {wlk;xgin2+;n;n}
+/al xgin2 {wlk;xgin2+;n;n;n;smile}
 
 /al xgin2+ {
-    /ac {你愉快地笑了笑。}{l;};
-    /ac {^弥勒佛似乎也和你一起笑了起来}{n;};
-    /ac {^弥勒殿}{de05 {smile}};
+    /ac {你愉快地笑了笑。}{l;/delay {0.5}{smile}};
+    /ac {弥勒佛似乎也和你一起笑了起来}{n;xgin2-}
     /ac {^韦驮殿}{xgin2-};
-    /ac {^观音殿}{s;xgin2-}
+    /ac {^观音殿}{xgin2-}
 }
 /al xgin2- {
     nwlk;
     /unac {你愉快地笑了笑。};
-    /unac {^弥勒佛似乎也和你一起笑了起来};
+    /unac {弥勒佛似乎也和你一起笑了起来};
     /unac {^韦驮殿};
-    /unac {^弥勒殿};
     /unac {^观音殿}
 }
 
@@ -1674,14 +1661,14 @@ nwlk;
 /al xgout {pl {wlk;w;w;push button;s;e;s;s;s;s;s;s;s;nwlk};pr}
 /al fy2xg1 {fy2xg;de4 {xgin}}
 /al fy2xg2 {fy2xg;de4 {xgin};de6 {xgin2}}
-/al fy2xg3 {fy2xg;de4 {xgin};de5 {xgin2};/delay {9}{xgin3}}
+/al fy2xg3 {fy2xg;de4 {xgin};de8 {xgin2};/delay {15}{xgin3}}
 
 /nop al fy2dqg {/7 e;de1 {/3 east;n;e;/3 eu;};de2 {sd;ed;n;w;w;/2 w};de3 {wd;/2 w;n;w;/3 wd}}
 /nop 云雨舟千金
 /al qj2yyz {pl {wlk;n;n;nw;w;w;w;w;w;w;n;n;w;s;nwlk};pr}
 /al yyz2qj {pl {wlk;n;e;s;s;e;e;e;e;e;e;se;s;s;nwlk};pr}
 /al yyz2fy {yyz2qj;de2 {qj2fy}}
-/al fy2yyz {fy2qj;/delay {26}{qj2yyz}}
+/al fy2yyz {fy2qj;/delay {24}{qj2yyz}}
 /狼山 太平客栈 -
 /al ls2cx {pl {wlk;nw;nd;ne;nd;nd;wd;nw;nd;nd;ed;n;e;e;e;n;n;n;n;nwlk};pr}
 /al cx2ls {pl {wlk;s;s;s;s;w;w;w;s;wu;give meat to fighter wolf;su;su;su;keychain;se;eu;su;su;sw;su;se;nwlk};pr}
@@ -1690,8 +1677,8 @@ nwlk;
 /al fy2ls {fy2cx;de9 {cx2ls}}
 /al fy2ls {fy2cx;de7 {cx2ls}}
 /al ls2langwo {wlk;nw;nd;crawl up;nwlk}
-/al langwo2ls {wlk;crawl down;de4 {su;se;nwlk}}
-/al langwo2fy {langwo2ls;de5 {ls2fy}}
+/al langwo2ls {wlk;crawl down;de3 {su;se;nwlk}}
+/al langwo2fy {langwo2ls;de4 {ls2fy}}
 /al fy2langwo {fy2ls;de14 {ls2langwo}}
 /al lsin {pl {wlk;s;se;su;su;su;su;su;se;su;/3 knock door;enter;nwlk};pr}
 /al lsout {pl {wlk;n;out;nd;nw;nd;nd;nd;nd;nd;nw;n};pr}

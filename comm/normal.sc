@@ -14,6 +14,7 @@
 /variable is_kill 0
 /variable can_eat 1
 /al de0 {/delay {0.5}%1}
+/al de05 {/delay {0.5}%1}
 /al de1 {/delay {1}{%1}}
 /al de2 {/delay {2}{%1}}
 /al de3 {/delay {3}{%1}}
@@ -102,6 +103,7 @@
 }
 /ac {死了。}{look corpse}
 /nop {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
+/ac {^绿洲 -}{gb skin;fill skin;pp skin}
 /nop ac {^大明湖}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^酒肉和尚说道：“她此番逃将出去}{open door;s;pull 小柜}
 /nop ac {你的玄灵玉盒中没有%0这个物品。}{qxl %0; /delay {3}{i}}
@@ -209,7 +211,7 @@
 /nop fill jiudai
 /al filljiudai {fykz;/delay {1}{/2 {gb wineskin}; /2 {fill wineskin;fill wineskin 2 ;pp wineskin}}; /delay {2}{kzfy}}
 /al fjd {fykz;/delay {1}{
-    do get skin from small bag,get skin from small bag,fill skin,put skin in small bag,fill skin,put skin in small bag,drop skin 2,get skin,fill skin; 
+    get skin from small bag;get skin from small bag;fill skin;put skin in small bag;fill skin;put skin in small bag;drop skin 2;get skin;fill skin; 
     /delay {2}{kzfy}
     }
     }
@@ -642,3 +644,6 @@
 
     /delay {42}{getr14};
 }
+/al dz {dazuo}
+/al tickl {/ticker {learn}{dol}{8}}
+/al tickl- {/unticker {learn};}

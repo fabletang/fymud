@@ -48,10 +48,14 @@
     /var qi_ok 0;
 /var qi %1;
 /var qi_init %2;
+/nop math qi {$qi+ 1};
 /var qi_per %3;
 /var food_drink %4;
 /var qi_delta 0;
 /math qi_delta {$qi_init - $qi};
+/var qi_per_delta 0.1;
+/math qi_per_delta {$qi*100};
+/math qi_per_delta {$qi_per_delta/$qi_init};
 /var hn_qi 0;
 /math hn_qi {$qi/2};
 }
@@ -149,8 +153,14 @@ exercise qi $hn_qi
 /ac {^你从忘我的境界中回神敛气}{l;hp}
 /ac {^你盘膝而坐，静坐冥思}{/delay {2.1}{hp}}
 /ac {^你盘膝而坐，闭上眼睛}{/delay {2.1}{hp}}
-/ac {^你坐下来运气用功}{/delay {2.1}{hp}}
+/ac {^你坐下来运气用功}{/delay {2.1}{hp};de3 {/if {$qi_per_delta<50}{dz}{/showme 气==$qi_per_delta}}}
 /ac {^白玉小马桶已经被喝得一滴也不剩}{/var auto_en_qi 0}
 /ac {^你从井中将白玉小马桶装满不老寒泉}{/var auto_en_qi 1}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
 /ac {^你已经喝太多了}{/var food_drink 100}
+/ac {^你的食物或饮水为零，打坐}{eatall;de6 {dazuo}}
+/ac {^这种法术只能对战斗}{sk}
+/nop 学习
+/ac {^你的身体状况无法强化练习}{hn}
+/ac {^你的「%1」进步了}{hp;de2 {/showme --check qi}}
+/ac {^--check qi}{/if {$qi_per_delta<60}{dz;/showme ##$qi_per_delta;}{/showme 气==$qi_per_delta}}

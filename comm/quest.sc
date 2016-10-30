@@ -2,7 +2,7 @@
 /var npc_name
 /var en_qb 0
 /nop {$npc(%1)}{say %1;@lowerLetter{};/var npc_name $result;say e $npc_name;say %1;say $result}
-/ac {^任务被你完成}{quest}
+/ac {任务被你完成}{quest}
 /ac {^天机老人说道：请找回『%0』}{/var en_qb 1; /var is_buy 1;/var q_item %0;/var q_item_name 0;}
 /nop {^你现在的任务是杀『%0』。}{/line log quest-fy4.log}
 /ac {^你现在的任务是%0寻『%1』}{/var en_qb 1; /var q_item %1}
@@ -43,7 +43,7 @@ buy lycii from waiter;
 w;cook
 }
 /al wdnt {fy2wdz; /delay {2}{/4 s;e;ask farmer about 难题}}
-/al bycs {wlk;do d,n,n,e,n,ask youngman about 差事,s,w,s,s,u,quest;nwlk}
+/al bycs {pl {wlk;d;n;n;e;n;ask youngman about 差事;s;w;s;s;u;quest;nwlk};pr}
 /ac {^你现在的任务是: 去武当老农处解决难题}{}
 /ac {^你向老农打听有关『难题』}{
     gototh;
@@ -367,3 +367,4 @@ de4 {/showme dq-%1};
 /ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{;}
 /al bbb {do burn,burn,burn}
 /al giveduanbook {qt book;de2 {do give duan book,give duan book,give duan book,give duan book,give duan book,give duan book,give duan book}}
+/ac {^  任务宝箱(Baoxiang)}{x baoxiang}

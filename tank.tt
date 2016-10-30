@@ -2,12 +2,12 @@
 /var myname tank
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname china.fengyun.com 6000
-/session $myname fy.sysfon.com 6000
+/session $myname main.fengyun6666.com 6666
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read $myname.tt}
+/al reload {/read tank.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
@@ -15,7 +15,7 @@
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /al jd {th jd $myname}
-/al wim {wield jade}
+/al wim {wield blade}
 /al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.xiaosha}}
 /nop al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.wuye}}
 /ac {^你停止保护你的妻子}{baohu nurse}
@@ -32,7 +32,7 @@
 /ac {^dg}{/if {$t_dgcm > 2}{initk}}
 /al kkk {
     /if {$ok_cm==1 || $ok_dg==1}{initk};
-    /if {$is_dg==0 && $is_cm==0}{unwi all; zc; wim; jj; k};
+    /if {$is_dg==0 && $is_cm==0}{unwi all; zc; wim; j; k};
     /if {$is_dg==0 && $is_cm==1}{cm_k};
     /if {$is_dg==1 && $is_cm==0}{dg_k};
     /if {$is_dg==1 && $is_cm==1}{cm_k}
@@ -50,11 +50,14 @@
     changmeng_pf
 }
 /al ki {initk;set target %0;buff;/delay {2}{kill %0}}
+/al ki {initk;set target %0;buff;/delay {1}{kill %0}}
+/al startk {nwlk;iskill;wi blade;j;k; /ticker {kill} {j;k} {5}}
 /al startk {initk;nwlk;iskill;kkk; /ticker {kill} {kkk} {5}}
 /al stopk {initk; /unticker {kill};nokill}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var knpc %0}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;unwi all;perform taunt;startk;/var knpc %0}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk;/var knpc %0}
 /nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
+/ac {^『落叶秋风』只能对战}{stopk;cks}
 /ac {^『短歌长梦』只能对战斗}{stopk;cks}
 /ac {^『长梦』只能对战斗}{stopk;initk}
 /ac {^『短歌』只能对战斗}{stopk;initk}
@@ -64,12 +67,12 @@
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{thh;exert qi;/delay {3}{thh;exert qi}}
 /ac {^( 你已经陷入半昏迷状态，神智全失}{juxue $myname;thh}
 /ac {^你所选用的武功中没有这种必杀技。}{unwi all;get jade;wim}
-/read gag.sc
-/read path.sc
-/read normal.sc
-/read quest.sc
-/read team.sc
-/read status.sc
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/read comm/team/team4.sc
+/read comm/status.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
@@ -246,4 +249,5 @@
 }
 /gag {^结果}
 /ac {^可惜%1看出了你的身法，向你倏然攻击}{tt busy fails}
-/read autorecover.sc
+/read comm/autorecover.sc
+/nop al eatall {eat mantou;/delay {3}{drink hulu}}

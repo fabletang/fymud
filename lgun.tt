@@ -1,54 +1,53 @@
 #config {TINTIN CHAR} /
-/var myname gun 
+/var myname gun
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /session $myname main.fengyun6666.com 6666
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
-/act {^ÇëÑ¡ÔñÄúÊ¹ÓÃµÄÄÚÂë}{0}
-/act {^ÄúµÄÓ¢ÎÄÃû×Ö£º} {$myname}
-/ac {´ËÓ¢ÎÄÃû×ÖÒÑ±»Ê¹ÓÃ£¬ÇëÊäÈë´ËÕÊºÅµÄÃÜÂë}{Sea123}
-/ac {^ÇëÇÃ»Ø³µ¼ü£Û£Ò£Å£Ô£Õ£Ò£Î£İ}{/cr;/ticker {noidle}{xixi;}{280}}
-/ac {^ÖØĞÂÁ¬ÏßÍê±Ï¡£}{/cr;/ticker {noidle}{hehe}{280}}
+/act {^è¯·é€‰æ‹©æ‚¨ä½¿ç”¨çš„å†…ç }{0}
+/act {^æ‚¨çš„è‹±æ–‡åå­—ï¼š} {$myname}
+/ac {^è¯·æ•²å›è½¦é”®ï¼»ï¼²ï¼¥ï¼´ï¼µï¼²ï¼®ï¼½}{/cr;/ticker {noidle}{xixi;}{280}}
+/ac {^é‡æ–°è¿çº¿å®Œæ¯•ã€‚}{/cr;/ticker {noidle}{hehe}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /al reload {/read gun.tt}
 /read comm/gag.sc
+/read comm/team/team4.sc
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/quest.sc
 /read comm/status.sc
-/read comm/team/team4.sc
 /nop read comm/pet.sc
 /nop read comm/juezhao.sc
-/read comm/combat.sc
+/nop read comm/combat.sc
 /nop read comm/yaliang.sc
 /al juezhao {;}
-/read comm/debuff.sc
+/nop read comm/debuff.sc
 /var petname xxz
 /var haspet 0
 /al wpet {order wear all}
-/ac {^Äã¶Ô×ÅĞ¡}{/var haspet 1;}
-/ac {^Ğ¡Ğ¡×¦²»Öª´ÓÄÄÀï´Ü}{/var haspet 1}
+/ac {^ä½ å¯¹ç€å°}{/var haspet 1;}
+/ac {^å°å°çˆªä¸çŸ¥ä»å“ªé‡Œçªœ}{/var haspet 1}
 /al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
 /al pj {/if {$haspj==0}{performp freeze}}
 /al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
 /al pk {/if {$haspet ==1}{do order wield sword,performp duxin,order unwield sword;/showme --pet pf sword ---duxin---}}
 /al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
-/ac {½«ÖÜÉíÄı¾ÛµÄ±ù¿éÕğµÃ·ÛËé£¡£¡}{/var haspj 0;pj}
+/ac {å°†å‘¨èº«å‡èšçš„å†°å—éœ‡å¾—ç²‰ç¢ï¼ï¼}{/var haspj 0;pj}
 /var haspj 0
-/ac {^Ğ¡Ğ¡×¦×óÊÖĞéÎÕ£¬ĞÎ³ÉÒ»ÍÅÆæÀä}{iskill;/var haspet 1;/var haspj 1}
-/ac {^µ«ÊÇ±»%1»úÁéµØ¶ã¿ªÁË¡£}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^ÆæÀäµÄº®Æø°üÎ§ÁË}{/var haspj 1;/var haspet 1;peng;de4 peng;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
-/ac {^ÆæÀäµÄº®Æø°üÎ§ÁË}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};/showme ============ freeze ===========}
+/ac {^å°å°çˆªå·¦æ‰‹è™šæ¡ï¼Œå½¢æˆä¸€å›¢å¥‡å†·}{iskill;/var haspet 1;/var haspj 1}
+/ac {^ä½†æ˜¯è¢«%1æœºçµåœ°èº²å¼€äº†ã€‚}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
+/ac {^å¥‡å†·çš„å¯’æ°”åŒ…å›´äº†}{/var haspj 1;/var haspet 1;peng;de4 peng;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
+/ac {^å¥‡å†·çš„å¯’æ°”åŒ…å›´äº†}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};/showme ============ freeze ===========}
 /nop read comm/autorecover_hc.sc
 /read comm/autorecover.sc
 /var jqs_lost_limit 0.1
-/ac {^ÄãµÄÉËÊÆºÃÁËÒ»Ğ©}{stopk;de2 {hxx;cks};}
-/ac {^ÁÆÉËÊ±ÖÁÉÙĞèÒªÓĞ×î´óÄÚÁ¦Öµ»¤Ìå}{hn;sleep sleepbag;de2 cks}
+/ac {^ä½ çš„ä¼¤åŠ¿å¥½äº†ä¸€äº›}{stopk;de2 {hxx;cks};}
+/ac {^ç–—ä¼¤æ—¶è‡³å°‘éœ€è¦æœ‰æœ€å¤§å†…åŠ›å€¼æŠ¤ä½“}{hn;sleep sleepbag;de2 cks}
 /var hashxx 0
 /al hxx {/if {$hashxx==0}{exert jingxin}} 
-/ac {^Äã¾²ÆøÆ½Éù£¬°´×ÅÇåÆ½ĞÄ·¨}{/var hashxx 1;de2 {/var hashxx 0}}
+/ac {^ä½ é™æ°”å¹³å£°ï¼ŒæŒ‰ç€æ¸…å¹³å¿ƒæ³•}{/var hashxx 1;de2 {/var hashxx 0}}
 /al hx {/if {$is_kill ==0 && $is_walk ==0}{do exert jingxin,use baiyao}}
 /var blade 0
 /var hasanqi 0
@@ -72,35 +71,35 @@
 /al nosword2 {/var sword2  0;/showme no sword2;}
 /al isblade2 {/var seconw blade2;/var sword2 0;/var blade2 1;/showme is blade2;}
 /al noblade2 {/var blade2  0;/showme no blade2;}
-/ac {^Äã³é³öÒ»°ÑÃ÷»Î»ÎµÄÔ²ÔÂÍäµ¶}{iblade}
-/ac {^Äã×°±¸ÉñÖ®×£¸£±¦½£×÷ÎäÆ÷}{isword}
-/ac {^Äã¡¸à§¡¹µØÒ»Éù³é³öÒ»°Ñ³èÎï×¨ÓÃ Ç¿×³µÄ¶à¿×µÄÓğÉñ·æÎÕÔÚÊÖÖĞ¡£}{isword}
-/ac {^  ¡Ì³èÎï×¨ÓÃ %1(sword)(LV}{isword}
-/ac {^Äã×°±¸ÉñÖ®×£¸£±¦µ¶}{iblade}
-/ac {^  ¡ÌÉñÖ®×£¸£±¦µ¶(zhufu blade)}{iblade}
-/ac {^Äã¡¸à§¡¹µØÒ»Éù³é³öÒ»°Ñ±¸ÓÃ½£}{isword}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄÉñÖ®×£¸£±¦½£}{nosword}
-/ac {^Äã½«ÊÖÖĞµÄ³èÎï×¨ÓÃ %1½£ÇÊ¡£}{nosword}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄÉñÖ®×£¸£±¦µ¶}{noblade}
-/ac {^Äã×°±¸%0Æå×Ó×÷ÎäÆ÷}{ianqi}
-/ac {^Äã½«ÏÉÈË´ÌÎÕÔÚÊÖÖĞ}{ianqi}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄÔ²ÔÂÍäµ¶}{noblade}
-/ac {^Äã½«ÊÖÖĞµÄ£ª³àÁ¶£ª²åÈëÑü¼ä}{nosword2}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄ£ª°Ù¹íÒ¹¿ñ£ª}{noblade2}
-/ac {^Äã³é³öÒ»°ÑÃ÷»Î»ÎµÄ£ª³àÁ¶£ª}{isword2}
-/ac {^Äã¡¸à§¡¹µØÒ»Éù³é³öÒ»°Ñ£ª³àÁ¶£ª}{isword2}
-/ac {^Äã³é³öÒ»°ÑÃ÷»Î»ÎµÄ£ª°Ù¹íÒ¹¿ñ£ª}{isblade2}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄ%0Æå×Ó}{noanqi}
-/ac {^Äã·ÅÏÂÊÖÖĞµÄÏÉÈË´Ì}{noanqi}
-/ac {^  ¡ÌÔ²ÔÂÍäµ¶(jade2)}{iblade}
-/ac {^    Ô²ÔÂÍäµ¶(jade2)}{noblade}
-/ac {^  ¡Ì£ª³àÁ¶£ª(sword2)}{isword2}
-/ac {^    £ª³àÁ¶£ª(sword2)}{nosword2}
-/ac {^  ¡Ì£ª°Ù¹íÒ¹¿ñ£ª(blade2)}{isblade2}
-/ac {^    £ª°Ù¹íÒ¹¿ñ£ª(blade2)}{noblade2}
-/ac {^  ¡ÌÉñÖ®×£¸£±¦½£(zhufu sword)}{isword}
-/ac {^    ÉñÖ®×£¸£±¦½£(zhufu sword)}{nosword}
-/ac {^  ¡Ì±¸ÓÃ½£(sword)}{isword;/delay {0.2}{isword}}
+/ac {^ä½ æŠ½å‡ºä¸€æŠŠæ˜æ™ƒæ™ƒçš„åœ†æœˆå¼¯åˆ€}{iblade}
+/ac {^ä½ è£…å¤‡ç¥ä¹‹ç¥ç¦å®å‰‘ä½œæ­¦å™¨}{isword}
+/ac {^ä½ ã€Œå”°ã€åœ°ä¸€å£°æŠ½å‡ºä¸€æŠŠå® ç‰©ä¸“ç”¨ å¼ºå£®çš„å¤šå­”çš„ç¾½ç¥é”‹æ¡åœ¨æ‰‹ä¸­ã€‚}{isword}
+/ac {^  âˆšå® ç‰©ä¸“ç”¨ %1(sword)(LV}{isword}
+/ac {^ä½ è£…å¤‡ç¥ä¹‹ç¥ç¦å®åˆ€}{iblade}
+/ac {^  âˆšç¥ä¹‹ç¥ç¦å®åˆ€(zhufu blade)}{iblade}
+/ac {^ä½ ã€Œå”°ã€åœ°ä¸€å£°æŠ½å‡ºä¸€æŠŠå¤‡ç”¨å‰‘}{isword}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„ç¥ä¹‹ç¥ç¦å®å‰‘}{nosword}
+/ac {^ä½ å°†æ‰‹ä¸­çš„å® ç‰©ä¸“ç”¨ %1å‰‘é˜ã€‚}{nosword}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„ç¥ä¹‹ç¥ç¦å®åˆ€}{noblade}
+/ac {^ä½ è£…å¤‡%0æ£‹å­ä½œæ­¦å™¨}{ianqi}
+/ac {^ä½ å°†ä»™äººåˆºæ¡åœ¨æ‰‹ä¸­}{ianqi}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„åœ†æœˆå¼¯åˆ€}{noblade}
+/ac {^ä½ å°†æ‰‹ä¸­çš„ï¼Šèµ¤ç‚¼ï¼Šæ’å…¥è…°é—´}{nosword2}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„ï¼Šç™¾é¬¼å¤œç‹‚ï¼Š}{noblade2}
+/ac {^ä½ æŠ½å‡ºä¸€æŠŠæ˜æ™ƒæ™ƒçš„ï¼Šèµ¤ç‚¼ï¼Š}{isword2}
+/ac {^ä½ ã€Œå”°ã€åœ°ä¸€å£°æŠ½å‡ºä¸€æŠŠï¼Šèµ¤ç‚¼ï¼Š}{isword2}
+/ac {^ä½ æŠ½å‡ºä¸€æŠŠæ˜æ™ƒæ™ƒçš„ï¼Šç™¾é¬¼å¤œç‹‚ï¼Š}{isblade2}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„%0æ£‹å­}{noanqi}
+/ac {^ä½ æ”¾ä¸‹æ‰‹ä¸­çš„ä»™äººåˆº}{noanqi}
+/ac {^  âˆšåœ†æœˆå¼¯åˆ€(jade2)}{iblade}
+/ac {^    åœ†æœˆå¼¯åˆ€(jade2)}{noblade}
+/ac {^  âˆšï¼Šèµ¤ç‚¼ï¼Š(sword2)}{isword2}
+/ac {^    ï¼Šèµ¤ç‚¼ï¼Š(sword2)}{nosword2}
+/ac {^  âˆšï¼Šç™¾é¬¼å¤œç‹‚ï¼Š(blade2)}{isblade2}
+/ac {^    ï¼Šç™¾é¬¼å¤œç‹‚ï¼Š(blade2)}{noblade2}
+/ac {^  âˆšç¥ä¹‹ç¥ç¦å®å‰‘(zhufu sword)}{isword}
+/ac {^    ç¥ä¹‹ç¥ç¦å®å‰‘(zhufu sword)}{nosword}
+/ac {^  âˆšå¤‡ç”¨å‰‘(sword)}{isword;/delay {0.2}{isword}}
 /al wifushou {/if {$hasfushou==0}{wi jade}}
 /al wihand {/if {$hand==0}{unwi all}}
 /al wiblade {/if {$blade==0||$sword==1}{do unwield sword,wield zhufu blade}}
@@ -123,16 +122,17 @@
 /var powerup 0
 /al buff1 {/if {$chillok==0}{exert chill}}
 /al buff2 {/if {$powerupok==0}{exert powerup}}
-/ac {^Äãî¨Ä¿ÆÁÏ¢£¬ÔËÆğ¾ÅÒõĞÄ¾­}{/var chillok 1;/delay {300}{/var chillok 0}}
-/ac {^ÄãÑÛ¹Û±Ç£¬±Ç¹Û¿Ú}{/var powerupok 1;/delay {900}{/var powerupok 0}}
+/ac {^ä½ ç‘ç›®å±æ¯ï¼Œè¿èµ·ä¹é˜´å¿ƒç»}{/var chillok 1;/delay {300}{/var chillok 0}}
+/ac {^ä½ çœ¼è§‚é¼»ï¼Œé¼»è§‚å£}{/var powerupok 1;/delay {900}{/var powerupok 0}}
 /al j {/if {$mhok==1}{exert mihunshu}}
 /al jjj {perform dodge.lianhuanbu}
 /al jjj {perform yanduhantan;/showme @@@@ sword busy}
 /al kk {wi sword;perform shuanglengcanxia  &&&& steps busy}
+/al kk {perform shuanglengcanxia}
 /al h {exert huaxue}
 /al fd {/if {$fdok==0}{exert chillbreath}}
-/nop al k {kk}
-/ac {^Äã¶ÔÖø%0£¡½ñÈÕ²»ÊÇÄãËÀ¾ÍÊÇÎÒ»î£¡} {pj;de2 iskill;}
+/al k {kk}
+/ac {^ä½ å¯¹è‘—%0ï¼ä»Šæ—¥ä¸æ˜¯ä½ æ­»å°±æ˜¯æˆ‘æ´»ï¼} {de2 iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
 /al startk {
@@ -149,21 +149,23 @@
         /showme  =============================================== tick == $ticks ==;
             }{4.1}
             }
-/al startk {nwlk;wi sword;iskill;j;k;/ticker {kill} {j;k} {5}}
-/nop ¡ºÆåÅÌÇĞ¡»£¨gobankiri£©
-/nop ¡º°Ù¹íÒ¹¿ñ¡»£¨hyakki£©
-/al bg {set secon_perform hyakki;wib2;/showme ====== µ¶  bg}
-/al qie {set secon_perform gobankiri;wib2;/showme ########### µ¶ qie######}
+/al startk {
+    /ticker {kill}{j;k}{5}
+}
+/nop ã€æ£‹ç›˜åˆ‡ã€ï¼ˆgobankiriï¼‰
+/nop ã€ç™¾é¬¼å¤œç‹‚ã€ï¼ˆhyakkiï¼‰
+/al bg {set secon_perform hyakki;wib2;/showme ====== åˆ€  bg}
+/al qie {set secon_perform gobankiri;wib2;/showme ########### åˆ€ qie######}
 /al jj {do unwield sword,wield blade,perform gobankiri;slcx}
-/nop ¡º±ÌÓ³¹âº®¡»(biyingguanghan)
+/nop ã€ç¢§æ˜ å…‰å¯’ã€(biyingguanghan)
 /al bygh {wisword;perform sword.biyingguanghan}
-/nop ¡ºËªÀä²ĞÏ¼¡»(shuanglengcanxia)
-/nop ¡º±ÌÓ³¹âº®¡»(biyingguanghan)
-/nop ¡ºÑã¶Éº®Ì¶¡»¡²yanduhantan¡³
-/nop ¡ºÒâÈ¾²ÔÔÆ¡»£¨yirancangyun£©
-/al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== ½£  slcx}
-/al yrcy {set secon_perform yirancangyun;wis2;/showme ====== ½£  *yrcy}
-/al yr {wisword;perform yirancangyun;/showme ======+ ½£  *yrcy}
+/nop ã€éœœå†·æ®‹éœã€(shuanglengcanxia)
+/nop ã€ç¢§æ˜ å…‰å¯’ã€(biyingguanghan)
+/nop ã€é›æ¸¡å¯’æ½­ã€ã€”yanduhantanã€•
+/nop ã€æ„æŸ“è‹äº‘ã€ï¼ˆyirancangyunï¼‰
+/al slcx {set secon_perform shuanglengcanxia;wis2;/showme ====== å‰‘  slcx}
+/al yrcy {set secon_perform yirancangyun;wis2;/showme ====== å‰‘  *yrcy}
+/al yr {wisword;perform yirancangyun;/showme ======+ å‰‘  *yrcy}
 /al tryyr {/if {$yrcyok==1}{yr}{peng}}
 /al tryyr {/if {$yrcyok==1}{yr}{pjuezhao;fd}}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
@@ -175,10 +177,10 @@
 /al peng {wisword;do enable sword yuenv-jian,perform pengxin,enable sword nine-moon-sword}
 /var zmok 0
 /al tryzm {/if {$zmok==1}{zm}}
-/ac {^ÄãÒ»ÉùÇáĞ¦£¬ÉíĞÎÕ¹¶¯}{/var zmok 0;/delay {300}{/var zmok 1}}
-/ac {^ÄãĞèÒªµÈ´ı%1Ãë²ÅÄÜÔÙ´ÎÊ¹ÓÃ¡º×·ÃüÊ½¡»¡£$}{/var zmok 0;/delay {%1}{/var zmok 1}}
+/ac {^ä½ ä¸€å£°è½»ç¬‘ï¼Œèº«å½¢å±•åŠ¨}{/var zmok 0;/delay {300}{/var zmok 1}}
+/ac {^ä½ éœ€è¦ç­‰å¾…%1ç§’æ‰èƒ½å†æ¬¡ä½¿ç”¨ã€è¿½å‘½å¼ã€ã€‚$}{/var zmok 0;/delay {%1}{/var zmok 1}}
 /al tp {perform dodge.feiyanshi}
-/nop ¼¼ÄÜ¼ì²é
+/nop æŠ€èƒ½æ£€æŸ¥
 /var yrcyok 1
 /var bgok 0
 /var qieok 1
@@ -190,9 +192,9 @@
 /var qienpc 0
 /nop todo---
 /al okyrcy {/var yrcyok 1}
-/nop °Ù¹íbusyĞ§¹û
+/nop ç™¾é¬¼busyæ•ˆæœ
 /var npcbusy 0
-/ac {^Í»È»£¬Ò»ÅîÏÊÑª¼¤Éä}{
+/ac {^çªç„¶ï¼Œä¸€è“¬é²œè¡€æ¿€å°„}{
     /var npcbusy 6;
     /if {$fdok ==0}{fd};
     pk;
@@ -200,20 +202,20 @@
     /nop peng;
 }
 /nop mihun busy
-/ac {^Ò»Ê±Ö®¼ä£¬}{pk}
+/ac {^ä¸€æ—¶ä¹‹é—´ï¼Œ}{pk}
 /var fdok 0
-/ac {Òõ·çÆËÃæ£¬²îµã¶ùÔÎÁË¹ıÈ¥¡£$}{/showme -------·Å¶¾³É¹¦----;/var fdok 1;/delay {120}{/var fdok 0}}
-/ac {^%1ÍÂÒ»¿Ú×ÇÆø£¬ÖĞµÄ¡º¾ÅÒõ¶¾Îí¡»ÖÕÓÚÊ§Ğ§ÁË}{}
-/ac {^Ãæ¶ÔÄãÀ×öªÒ»°ãµÄÒ»»÷}{/var qienpc 1}
-/ac {^ÄãÍ£×¡ÁËÊÖ£¬ÓÃÆ®Æ®µÄÑÛ¹â}{iskill;/var mhok 0;de2 tryyr;/delay {14}{/var mhok 1}}
-/ac {^ĞèµÈ´ı%1Ãë²ÅÄÜÔÙ´ÎÊ¹ÓÃÃÔ»êÊõ}{/var mhok_t 0;/var mhok 0;/delay {%1}{/var mhok_t 1;/var mhok 1}}
+/ac {é˜´é£æ‰‘é¢ï¼Œå·®ç‚¹å„¿æ™•äº†è¿‡å»ã€‚$}{/showme -------æ”¾æ¯’æˆåŠŸ----;/var fdok 1;/delay {120}{/var fdok 0}}
+/ac {^%1åä¸€å£æµŠæ°”ï¼Œä¸­çš„ã€ä¹é˜´æ¯’é›¾ã€ç»ˆäºå¤±æ•ˆäº†}{}
+/ac {^é¢å¯¹ä½ é›·éœ†ä¸€èˆ¬çš„ä¸€å‡»}{/var qienpc 1}
+/ac {^ä½ åœä½äº†æ‰‹ï¼Œç”¨é£˜é£˜çš„çœ¼å…‰}{iskill;/var mhok 0;de2 tryyr;/delay {14}{/var mhok 1}}
+/ac {^éœ€ç­‰å¾…%1ç§’æ‰èƒ½å†æ¬¡ä½¿ç”¨è¿·é­‚æœ¯}{/var mhok_t 0;/var mhok 0;/delay {%1}{/var mhok_t 1;/var mhok 1}}
 /nop polu todo
 /var haspo 0
 /al trypo {/if {$haspo==0 && $is_kill==1}{po;/showme *****polu********;}}
-/ac {^ÔÚÉ­É­½£Ó°¼äÃµ¹åÉ«µÄ±¡ÎíÈ½È½ÉıÆğ£¬Ëµ²»¾¡µÄÆàÃÔÓÄÑŞ£¬%1ºö¸Ğ}{/if {"%1"=="Äã¡°}{}{/var haspo 0;trypo;de3 trypo}}
-/ac {^%1µÄÁ³±ïµÃÍ¨ºì£¬ºö¸ĞÌìĞıµØ×ª}{/if {"%1"=="Äã¡°}{}{/var haspo 0;trypo;de3 trypo}}
-/nop {^%1ĞÄÍ·ÈçÕë´Ì°ã¾çÍ´}{/if {"%1"=="Äã¡°}{}{/var haspo 0;trypo;de2 trypo}}
-/ac {^Äã¸ü²»ÉÔÍ££¬·´ÕÆ¼äÎå¸ùÊÖÖ¸}{/var haspo 1;iskill}
+/ac {^åœ¨æ£®æ£®å‰‘å½±é—´ç«ç‘°è‰²çš„è–„é›¾å†‰å†‰å‡èµ·ï¼Œè¯´ä¸å°½çš„å‡„è¿·å¹½è‰³ï¼Œ%1å¿½æ„Ÿ}{/if {"%1"=="ä½ â€œ}{}{/var haspo 0;trypo;de3 trypo}}
+/ac {^%1çš„è„¸æ†‹å¾—é€šçº¢ï¼Œå¿½æ„Ÿå¤©æ—‹åœ°è½¬}{/if {"%1"=="ä½ â€œ}{}{/var haspo 0;trypo;de3 trypo}}
+/nop {^%1å¿ƒå¤´å¦‚é’ˆåˆºèˆ¬å‰§ç—›}{/if {"%1"=="ä½ â€œ}{}{/var haspo 0;trypo;de2 trypo}}
+/ac {^ä½ æ›´ä¸ç¨åœï¼ŒåæŒé—´äº”æ ¹æ‰‹æŒ‡}{/var haspo 1;iskill}
 /var haskill 0
 /var ticks 0
 /al ki {do ability2,wield sword,wield blade2,hp,set target %0;
@@ -237,9 +239,9 @@
            /nop gongji %0;
                     }
         }
-/al ki {wi sword;hp;exert powerup;set target %0;de2 {kill %0;shoot %0;j;k;startk};}
+/al ki {wi sword;hp;set target %0;kill %0;shoot %0;j;k;startk;}
 /nop slcx pfm info
-/ac {^ÄãÊÖÖĞ£ª³àÁ¶£ªÌùÉíĞ±Ö¸ÏòÉÏ}{
+/ac {^ä½ æ‰‹ä¸­ï¼Šèµ¤ç‚¼ï¼Šè´´èº«æ–œæŒ‡å‘ä¸Š}{
     iskill;
     /showme =========== slcx ==============;
     /nop if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
@@ -253,7 +255,7 @@
                                                     };
                  };
     }
-/ac {^ÄãÍ»È»ÑöÌì³¤º¿}{
+/ac {^ä½ çªç„¶ä»°å¤©é•¿åš}{
     iskill;
     cks;
     /showme =========== bg ==============;
@@ -262,7 +264,7 @@
     /var bgok_t 0;
     /delay {122}{/var bgok_t 1};
 }{4}
-/ac {^Äã¸ù±¾ÎŞÊÓ%1µÄ¹¥»÷£¬´óºğÒ»Éù}{
+/ac {^ä½ æ ¹æœ¬æ— è§†%1çš„æ”»å‡»ï¼Œå¤§å¼ä¸€å£°}{
     cks;
     iskill;
     /showme =========== qie ==============;
@@ -272,7 +274,7 @@
         /if {$yrcyok==1}{yrcy}{slcx}; 
                         }; 
                      }
-/ac {^Éè¶¨»·¾³±äÊı£ºsecon_perform = "hyakki"}{
+/ac {^è®¾å®šç¯å¢ƒå˜æ•°ï¼šsecon_perform = "hyakki"}{
     /delay {checkbg} {
         /if {$is_kill ==1 && $qienpc ==0}{
             /if {$shaqi>0 || $bgok_t==1}{bg}{
@@ -281,9 +283,9 @@
                          }
                  }{9.1}
 }
-/nop   {^Éè¶¨»·¾³±äÊı£ºsecon_perform = "hyakki"}
+/nop   {^è®¾å®šç¯å¢ƒå˜æ•°ï¼šsecon_perform = "hyakki"}
 /nop yrcy 
-/ac {^ÄãÁ³ÉÏÉñÉ«²ÒÈ»£¬ÃÍÒ»Ò§ÑÀ}{
+/ac {^ä½ è„¸ä¸Šç¥è‰²æƒ¨ç„¶ï¼ŒçŒ›ä¸€å’¬ç‰™}{
     /var yrcyok 0;
     de1 cks;
     /delay {90}{/var yrcyok 1};
@@ -293,7 +295,7 @@
 }
 /var kticker 0
 /al stopk {
-        /showme {----kill ±äÁ¿ÖØÖÃ};
+        /showme {----kill å˜é‡é‡ç½®};
         nokill;/unticker {kill};
         /var qieok 1;
         /var qieok_t 0;
@@ -313,31 +315,31 @@
         /undelay {checkbg};
         de1 look;
         }
-/ac {^ÄãÏò%1¿ªÊ¼ÒÆ¶¯¡££¨40->35)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
-/ac {^ÄãÏò%1¿ªÊ¼ÒÆ¶¯¡££¨35->30)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
-/ac {^ÄãÏò%1¿ªÊ¼ÒÆ¶¯¡££¨30->25)}{/if {$mhok==1}{j};/if {$fdok==0}{fd}}
+/ac {^ä½ å‘%1å¼€å§‹ç§»åŠ¨ã€‚ï¼ˆ40->35)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
+/ac {^ä½ å‘%1å¼€å§‹ç§»åŠ¨ã€‚ï¼ˆ35->30)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
+/ac {^ä½ å‘%1å¼€å§‹ç§»åŠ¨ã€‚ï¼ˆ30->25)}{/if {$mhok==1}{j};/if {$fdok==0}{fd}}
 /al sk {stopk;cks}
-/ac {^ÄãµÄ·¨Á¦Ì«µÍ}{hp}
-/ac {^( ÄãËÆºõÊ®·ÖÆ£±¹}{h;/showme ----todo Î£ÏÕ-----}
-/ac {^( ÄãÍ·ÖØ½ÅÇá£¬ÕıÔÚÃãÁ¦Ö§³ÅÖø²»µ¹ÏÂÈ¥)}{exert huaxue;tp}
-/ac {^( ÄãÒ¡Í·»ÎÄÔ¡¢ÍáÍáĞ±Ğ±£¬±ôÓÚÔÎµ¹}{tp}
-/ac {^( ÄãÒÑ¾­ÏİÈë°ë»èÃÔ×´Ì¬£¬ÉñÖÇÈ«Ê§}{/if {$haspet==1}{do whistle,jiasi}}
-/ac {^ÄãËùÑ¡ÓÃµÄÎä¹¦ÖĞÃ»ÓĞÕâÖÖ±ØÉ±¼¼¡£}{;}
-/ac {^¡ºÁ¬»·²½¡»Ö»ÄÜ¶ÔÕ½}{sk}
-/ac {^¡ºÑã¶Éº®Ì¶¡»Ö»ÄÜ¶ÔÕ½}{sk}
-/ac {^¡ºÒâÈ¾²ÔÔÆ¡»Ö»ÄÜ¶ÔÕ½}{sk}
-/ac {^ÃÔ»êÊõÖ»ÄÜ¶ÔÕ½}{sk}
-/ac {^´ËÌØ¼¼Ö»ÄÜÔÚÕ½¶·ÖĞÊ¹ÓÃ}{sk}
-/ac {^¡ºÆÆÂ­¡»Ö»ÄÜ¶ÔÕ½}{sk}
-/ac {^¡º·ÉÑãÊ½¡»Ö»ÄÜÔÚÕ½¶·}{sk}
-/ac {^Äã²»ÔÚÕ½¶·ÖĞ£¬²»ĞèÒª¼ÙËÀ}{sk}
-/ac {^¡º¾ÅÒõ¶¾Îí¡»Ö»ÄÜÔÚÕ½}{sk}
+/ac {^ä½ çš„æ³•åŠ›å¤ªä½}{hp}
+/ac {^( ä½ ä¼¼ä¹ååˆ†ç–²æƒ«}{h;/showme ----todo å±é™©-----}
+/ac {^( ä½ å¤´é‡è„šè½»ï¼Œæ­£åœ¨å‹‰åŠ›æ”¯æ’‘è‘—ä¸å€’ä¸‹å»)}{exert huaxue;tp}
+/ac {^( ä½ æ‘‡å¤´æ™ƒè„‘ã€æ­ªæ­ªæ–œæ–œï¼Œæ¿’äºæ™•å€’}{tp}
+/ac {^( ä½ å·²ç»é™·å…¥åŠæ˜è¿·çŠ¶æ€ï¼Œç¥æ™ºå…¨å¤±}{/if {$haspet==1}{do whistle,jiasi}}
+/ac {^ä½ æ‰€é€‰ç”¨çš„æ­¦åŠŸä¸­æ²¡æœ‰è¿™ç§å¿…æ€æŠ€ã€‚}{;}
+/ac {^ã€è¿ç¯æ­¥ã€åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^ã€é›æ¸¡å¯’æ½­ã€åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^ã€æ„æŸ“è‹äº‘ã€åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^è¿·é­‚æœ¯åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^æ­¤ç‰¹æŠ€åªèƒ½åœ¨æˆ˜æ–—ä¸­ä½¿ç”¨}{sk}
+/ac {^ã€ç ´é¢…ã€åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^ã€é£é›å¼ã€åªèƒ½åœ¨æˆ˜æ–—}{sk}
+/ac {^ä½ ä¸åœ¨æˆ˜æ–—ä¸­ï¼Œä¸éœ€è¦å‡æ­»}{sk}
+/ac {^ã€ä¹é˜´æ¯’é›¾ã€åªèƒ½åœ¨æˆ˜}{sk}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hs {drink dai}
-/ac {^ÄãµÄÕæÆø²»¹»¡£}{/if {$is_kill==0 && $is_walk==0}{hn}}
+/ac {^ä½ çš„çœŸæ°”ä¸å¤Ÿã€‚}{/if {$is_kill==0 && $is_walk==0}{hn}}
 /al checkkill {perform blade.gobankiri}
-/ac {^È»¶ø£¬%1ÒÑ¾­ËÀÁË}{checkkill;fd;/if {$is_kill==1}{cks};}
-/ac {^È»¶ø£¬%1ÒÑ¾­ËÀÁË}{checkkill;fd;/if {$is_kill==1}{;};}
+/ac {^ç„¶è€Œï¼Œ%1å·²ç»æ­»äº†}{checkkill;fd;/if {$is_kill==1}{cks};}
+/ac {^ç„¶è€Œï¼Œ%1å·²ç»æ­»äº†}{checkkill;fd;/if {$is_kill==1}{;};}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
@@ -352,9 +354,9 @@
 }
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
-/ac {^ÈÎÎñ±»ÄãÍê}{wk}
+/ac {^ä»»åŠ¡è¢«ä½ å®Œ}{wk}
 /al eatall {gb meat;drink dai;de2 {eat meat}}
-/ac {^¿´ÆğÀ´%0ÏëÉ±ËÀÄã}{
+/ac {^çœ‹èµ·æ¥%0æƒ³æ€æ­»ä½ }{
             wi sword;
             reffs;
             xixi $petname;
@@ -369,8 +371,7 @@
             /var knpc_name %0;
             /nop de2 iskill;
                          }
-/ac {^¿´ÆğÀ´%0ÏëÉ±ËÀÄã}{wi sword;iskill;/if {$kticker ==0}{startk}}
-/ac {^¿´ÆğÀ´%0ÏëÉ±ËÀÄã}{wi sword;iskill;}
+/ac {^çœ‹èµ·æ¥%0æƒ³æ€æ­»ä½ }{wi sword;iskill;/if {$kticker ==0}{startk}}
 /al wim {wi zhufu sword;wi sword2}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
@@ -385,37 +386,37 @@
 }
 /al fy2zt {fy2ztv}
 /al hj {use hugu}
-/ac {^ĞèµÈ´ı%0Ãë²ÅÄÜÔÙ´ÎÊ¹ÓÃÃÔ»êÊõ}{/showme ----todo ----;}
-/ac {^ÄãÊÖÖĞ£ª³àÁ¶£ª½£Æø»Ø×ª}{/showme *******************       secon sword pfm   ******}
+/ac {^éœ€ç­‰å¾…%0ç§’æ‰èƒ½å†æ¬¡ä½¿ç”¨è¿·é­‚æœ¯}{/showme ----todo ----;}
+/ac {^ä½ æ‰‹ä¸­ï¼Šèµ¤ç‚¼ï¼Šå‰‘æ°”å›è½¬}{/showme *******************       secon sword pfm   ******}
 /al yangcw {withdraw 50000;de2 {withdraw 50000};
-    de4 {yang pig $MAG$ Ğ¡Ğ¡×¦ $petname};
+    de4 {yang pig $MAG$ å°å°çˆª $petname};
     de7 whistle;
     de9 scorep;
     }
-/ac {^Äã¶Ô×ÅĞ¡Ğ¡}{/var haspet 1;/showme --pet has 1----}
-/ac {^Äã²»¿ÉÒÔÔÚÕâÀïÓÃÄÚ¹¦}{wlk}
-/ac {^Äã±ØĞëÖÁÉÙ¿Õ³öÒ»Ö»ÊÖÀ´}{i}
-/ac {^Ê¹³öÒ»Ê½¡ºÒ»ÇĞËæÔµ¡»£¬½£ÉíËÆÁéÉß°ã²ø×¡ÄãÊÖÖĞµÄ±øÈĞ£¬ÉñÖ®×£¸£±¦½£ÍÑÊÖ¶ø·É}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}
-/nop Ë®Àë(Shui li)	** Õ½¶·ÖĞ **(LV 
-/ac {^ÁÆÉËÊ±ÖÁÉÙĞèÒªÓĞ×î´óÄÚÁ¦Öµ»¤Ìå}{hn;de2 cks}
-/ac {^´ËÈËÒÑ¾­²»ĞèÒªÊ¹ÓÃ´ËÁÆÉËĞÄ·¨}{cks}
-/ac {^¡¡¡¡Ö»ÌıµÃÒ»Éù»ìãç³õÆÆËÆµÄ¾ŞÏìÕ¨¿ª£¬ÉñÖ®×£¸£±¦½£»¯×÷ÁËÎŞÊıËéÆ¬}{qt zhufu sword;de3 wi zhufu sword}
-/ac {ÓÄÓÄµÄÇÙÉùÊ±¶ÏÊ±Ğø}{
+/ac {^ä½ å¯¹ç€å°å°}{/var haspet 1;/showme --pet has 1----}
+/ac {^ä½ ä¸å¯ä»¥åœ¨è¿™é‡Œç”¨å†…åŠŸ}{wlk}
+/ac {^ä½ å¿…é¡»è‡³å°‘ç©ºå‡ºä¸€åªæ‰‹æ¥}{i}
+/ac {^ä½¿å‡ºä¸€å¼ã€ä¸€åˆ‡éšç¼˜ã€ï¼Œå‰‘èº«ä¼¼çµè›‡èˆ¬ç¼ ä½ä½ æ‰‹ä¸­çš„å…µåˆƒï¼Œç¥ä¹‹ç¥ç¦å®å‰‘è„±æ‰‹è€Œé£}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}
+/nop æ°´ç¦»(Shui li)	** æˆ˜æ–—ä¸­ **(LV 
+/ac {^ç–—ä¼¤æ—¶è‡³å°‘éœ€è¦æœ‰æœ€å¤§å†…åŠ›å€¼æŠ¤ä½“}{hn;de2 cks}
+/ac {^æ­¤äººå·²ç»ä¸éœ€è¦ä½¿ç”¨æ­¤ç–—ä¼¤å¿ƒæ³•}{cks}
+/ac {^ã€€ã€€åªå¬å¾—ä¸€å£°æ··æ²Œåˆç ´ä¼¼çš„å·¨å“ç‚¸å¼€ï¼Œç¥ä¹‹ç¥ç¦å®å‰‘åŒ–ä½œäº†æ— æ•°ç¢ç‰‡}{qt zhufu sword;de3 wi zhufu sword}
+/ac {å¹½å¹½çš„ç´å£°æ—¶æ–­æ—¶ç»­}{
     listen;
     /delay {0.5}{maonv2hua};
-    /delay {1.5}{ask qing qing about Íäµ¶}
+    /delay {1.5}{ask qing qing about å¼¯åˆ€}
     }
-/ac {^½ğÁéÖ¥ºÍ¶¡·ãÏò¶«±ß»ÄÁ¹µÄĞ¡¾¶×ßÈ¥}{east}
-/al gotofb {do d,recall back,e,goto luoyang;/delay {4}{walk ÎÄÃí};}
-/ac {^  ÂÌÁÖ±©·çÃË %1 É³Ä®ÔôµÁ(Shamo zeidao)(LV}{ki zeidao}
-/ac {^ÄãÏÖÔÚ²»¿ÉÒÔ´µ¿ÚÉÚ¡£}{}
-/ac {^Äã¶Ô%1Ò»Ö¸£¬¶ÔĞ¡Íäµ¶ÃüÁî}{/if {$is_kill==0}{/if {$kticker==0}{startk}}}
-/ac {^  Ğ¡Ğ¡×¦µÄÊ¬Ìå(Corpse)}{wh}{4}
-/ac {^ÄãÇáÇáµØ´µÁËÉù¿ÚÉÚ¡£}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
-/ac {^¡ºÆåÅÌÇĞ¡»Ö»ÄÜ¶ÔÕ½}{sk}
-/ac {^¡¸Î÷×ÓÅõĞÄ¡¹Ö»ÄÜÔÚÕ½¶·}{sk}
-/ac {^139¼¶ÒÔºóÄã¿ÉÒÔÍ¨¹ı¸øÎÒ10¡«17Á½»Æ½ğ}{de2 {m1to 7}}
+/ac {^é‡‘çµèŠå’Œä¸æ«å‘ä¸œè¾¹è’å‡‰çš„å°å¾„èµ°å»}{east}
+/al gotofb {do d,recall back,e,goto luoyang;/delay {4}{walk æ–‡åº™};}
+/ac {^  ç»¿æ—æš´é£ç›Ÿ %1 æ²™æ¼ è´¼ç›—(Shamo zeidao)(LV}{ki zeidao}
+/ac {^ä½ ç°åœ¨ä¸å¯ä»¥å¹å£å“¨ã€‚}{}
+/ac {^ä½ å¯¹%1ä¸€æŒ‡ï¼Œå¯¹å°å¼¯åˆ€å‘½ä»¤}{/if {$is_kill==0}{/if {$kticker==0}{startk}}}
+/ac {^  å°å°çˆªçš„å°¸ä½“(Corpse)}{wh}{4}
+/ac {^ä½ è½»è½»åœ°å¹äº†å£°å£å“¨ã€‚}{/if {$is_kill==1}{de1 {wpet;do gongji $target,kill $target}}}
+/ac {^ã€æ£‹ç›˜åˆ‡ã€åªèƒ½å¯¹æˆ˜}{sk}
+/ac {^ã€Œè¥¿å­æ§å¿ƒã€åªèƒ½åœ¨æˆ˜æ–—}{sk}
+/ac {^139çº§ä»¥åä½ å¯ä»¥é€šè¿‡ç»™æˆ‘10ï½17ä¸¤é»„é‡‘}{de2 {m1to 7}}
 /al em {entermaze1}
-/ac {^ÄãÉíÉÏÃ»ÓĞÕâÑù¶«Î÷}{get sword}
+/ac {^ä½ èº«ä¸Šæ²¡æœ‰è¿™æ ·ä¸œè¥¿}{get sword}
 /al widef {wi sword;slcx}
-/nop al eatall {eat mantou;/delay {3}{drink hulu}}
+/al eatall {drink hulu;de3 {eat mantou}}

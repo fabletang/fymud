@@ -1,0 +1,53 @@
+#config {TINTIN CHAR} /
+/var myname sinker
+/nop session $myname fy.hbisp.com 3333
+/session $myname main.fengyun6666.com 6666
+/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
+/al ntchat {/unticker {checkchat}}
+/act {^请选择您使用的内码}{0}
+/act {^您的英文名字：} {$myname}
+/al reload {/read sinker.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
+/nop ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};/delay {1}{w;s;aaa horse;ride horse;u;resethb}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};resethb}
+/ac {^#SESSION '%0' DIED.}{/read %0.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/al enablemove {enable move anxiang-steps}
+/al movenone {enable move none}
+/al jd {th jd $myname}
+/nop al wim {wield icicle;wield blade}
+/al wim {wield hammer;wield jade}
+/al buff {wim;perform dodge.wuwuwuwo}
+/al ki {set target %0;wim;buff;enforce 70;/delay {2}{kill %0;/var knpc %0}}
+/al kkk {j;k}
+/al startk {nwlk;wim;iskill;buff;kkk;/ticker {kill} {kkk} {5}}
+/al startk {nwlk;wi sevenhammer;iskill;k;/ticker {kill} {k} {5}}
+/al stopk {/unticker {kill};nokill}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var killlosttime 0;}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
+/nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
+/al sk {stopk;cks}
+/ac {^『反背连环锤』只能对}{sk}
+/ac {^『三板斧』只能对战}{sk}
+/ac {^诵经只能在战}{sk}
+/nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
+/nop ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{hh;/delay {1}{hh};/delay {3}{hh}}
+/nop ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{hh;/delay {1}{hh};/delay {3}{hh;hp}}
+/nop ac {^( 你已经陷入半昏迷状态，神智全失}{hh;/delay {1}{hh};/delay {3}{hh;hp}}
+/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get hammer;get jade;wim}
+
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/read comm/team/team4.sc
+/read comm/status.sc
+/read comm/autorecover.sc
+/nop read hb.tin
+/nop log o $myname.log
+/nop ac {^【新手】} {/line log chat-$myname.log}{text}
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  && $is_walk==0}{}{j}}
+/nop al eatall {eat mantou;/delay {3}{drink hulu}}
