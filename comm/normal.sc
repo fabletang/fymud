@@ -417,7 +417,6 @@
 /ac {^三仙碑}{do get skin from small bag,fill skin}
 /var is_fight 0
 /al fi {buff;/var is_fight 1;de2 {fight %0;set targe %0;/var npc %0}}
-/ac {^可是什么事情都没有发生}{fff}
 /ac {^看起来金衣卫首领想杀死你}{tk sentry}{3}
 /nop full pet
 /al fpet {

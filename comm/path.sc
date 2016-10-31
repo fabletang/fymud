@@ -1003,7 +1003,7 @@
 /al fy2monk {fy2yks;de8 {yks2monk}}
 /al gmonk {give 10 silver to monk}
 /al monk2fy {monk2yks;de1 {yks2fy}}
-/al ggmonk {fy2monk;de9 {gmonk};de10 {monk2fy}} 
+/al ggmonk {fy2monk;de10 {gmonk};de11 {monk2fy}} 
 /al cx2rzp {wlk;s;w;/2 wu;wd;s;nwlk}
 /al rzp2cx {wlk;n;eu;/2 ed;e;n;nwlk}
 /nop sga 松谷庵
@@ -1017,10 +1017,12 @@
 /nop al fff {fff+;fdf}
 /al fdf {fff+;conjure silent_sense}
 /al fff+ {
-/ac {^你的周围一片寂静}{de10 {df2fy}};
+/ac {^可是什么事情都没有发生}{conjure silent_sense};
+/ac {^你的周围一片寂静}{de11 {df2fy}};
 /ac {^风坛}{fff-}
 }
 /al fff- {
+/unac {^可是什么事情都没有发生};
 /unac {^你的周围一片寂静};
 /unac {^风坛}
 }
@@ -1743,14 +1745,28 @@ nwlk;
 /al fy2kqh {fy2lz;de9 {lz2kqh}}
 /al khlin {khlin+;/delay {0.2}{l}}
 /al khlin+ {
-    /ac {^孔雀河}{wadeliusha};
-    /ac {^西佛塔}{/4 e;khlin-};
-    /ac {^东佛塔}{/4 w;khlin-};
-    /ac {^南佛塔}{/4 n;khlin-};
-    /ac {^北佛塔}{/4 s;khlin-};
+    wlk;
+    /ac {^孔雀河}{wade liusha};
+    /ac {^独孤伤冷冷道：打赢我}{u;wade liusha};
+    /ac {^江左司徒喝道：“站住}{u;wade liusha};
+    /ac {^西佛塔}{e};
+    /ac {^东佛塔}{w};
+    /ac {^南佛塔}{n};
+    /ac {^北佛塔}{s};
+    /ac {^北天街}{s};
+    /ac {^南天街}{n};
+    /ac {^东天街}{w};
+    /ac {^西天街}{e};
     /ac {^圣殿}{khlin-}
 }
 /al khlin- {
+    nwlk;
+    /unac {^独孤伤冷冷道：打赢我};
+    /unac {^江左司徒喝道：“站住};
+    /unac {^北天街};
+    /unac {^南天街};
+    /unac {^东天街};
+    /unac {^西天街};
     /unac {^孔雀河};
     /unac {^西佛塔};
     /unac {^东佛塔};
@@ -1761,14 +1777,17 @@ nwlk;
 /al khlout {khlout+;/delay {0.2}{l}}
 /al khlout+ {
     wlk;
-    /ac {^北天街}{/4 n;u};
-    /ac {^南天街}{/4 s;u};
-    /ac {^东天街}{/4 e;u};
-    /ac {^西天街}{/4 w;u};
+    /ac {^北天街}{n};
+    /ac {^南天街}{s};
+    /ac {^东天街}{e};
+    /ac {^西天街}{w};
     /ac {^圣殿}{e};
-    /ac {^孔雀河}{khlout-};
-    /ac {佛塔}{u}
+    /ac {^西佛塔}{u;khlout-};
+    /ac {^东佛塔}{u;khlout-};
+    /ac {^南佛塔}{u;khlout-};
+    /ac {^北佛塔}{u;khlout-}
 }
+    /nop ac {^孔雀河}{khlout-};
 /al khlout- {
     nwlk;
     /unac {^北天街};
@@ -1776,15 +1795,20 @@ nwlk;
     /unac {^东天街};
     /unac {^西天街};
     /unac {^圣殿};
-    /unac {^孔雀河};
-    /unac {佛塔}
+    /unac {^西佛塔};
+    /unac {^东佛塔};
+    /unac {^南佛塔};
+    /unac {^北佛塔}
 }
 /al khl2fy {khlout;khl2fy+}
+/nop ac {^    这里唯一的出口是 southeast}{khlout-;khl2fy-;kqh2fy}
 /al khl2fy+ {
-/ac {^    这里唯一的出口是 southeast}{khl2fy-;kqh2fy}
+/ac {^孔雀河}{khlout-;de2 {kqh2fy}};
+/ac {^玉门关}{khl2fy-}
 }
 /al khl2fy- {
-/unac {^    这里唯一的出口是 southeast}
+/unac {^孔雀河};
+/unac {^玉门关}
 }
 /al kqh2lz {wlk;se;se;sw;s;nwlk}
 /al lz2kqh {wlk;n;ne;nw;nw;nwlk}

@@ -2,7 +2,7 @@
 /var teamer_1 tank;
 /var teamer_3 sinker;
 /var teamer_2 gun;
-/var helper nurse;
+/var helper miii;
 /var healer_1 curer;
 /var is_together 0;
 /al setheader {/var team_header %0}
@@ -59,6 +59,10 @@ whisper $teamer_2 EXfollow $team_header;
 whisper $teamer_3 EXfollow $team_header
 }
 /al tq {tta quest;ttb quest;ttc quest;quest}
+
+/al gga {give %0 to $teamer_1}
+/al ggb {give %0 to $teamer_2}
+/al ggc {give %0 to $teamer_3}
 
 /al tth {tell $team_header EX%0}
 /al th {tell $helper EX%0}
