@@ -223,7 +223,10 @@
 /al ddd {climb down}
 /al uuu {climb up}
 
-/al qr {d;w;w;n;ask shangguan xuer about treasurebox; /delay {1}{s;e;e;u;qreturn;}}
+/al qr {d;w;w;n;
+        ask shangguan xuer about 财产保险;
+        de1 {ask shangguan xuer about treasurebox};
+        /delay {2}{s;e;e;u;qreturn;}}
 /al qs  {d;w;w;n;qsave; /delay {1}{s;e;e;u;}}
 
 /al checkchat {/grep 【新手】; /grep 【闲聊】}

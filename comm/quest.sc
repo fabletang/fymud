@@ -58,8 +58,8 @@ w;cook
 /al askcuinong {ask cuinong about 傅红雪}
 /al anhongxue {answer 他若因我而死了，我也不会活下去。}
 /al ancuinong {answer 将过去的事情忘记！}
-/al bc2cuinong {wlk;/4 w;s;s;open door;enter;wlk}
-/al cuinong2bc {wlk;out;open door;n;n;/4 e;wlk}
+/al bc2cuinong {wlk;/4 w;s;open door;s;enter;wlk}
+/al cuinong2bc {wlk;out;n;open door;n;/4 e;wlk}
 /al wlb2hongxue {n;nw;ne;n;n;nu;}
 /al hongxue2wlb {sd;s;s;sw;se;s}
 /al bangcuinong {fy2wlb;
