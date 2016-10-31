@@ -794,7 +794,7 @@
 /nop 沉香镇
 /nop fy2cx {cx2fy-;fy2ml;fy2cx+}
 /nop al fy2cx {cx2fy-;fy2ml;/delay {5.5}{swing west;swing west};/delay {6}{w;w;w;w;nwlk}}
-/al fy2cx {fy2ml;/delay {6}{/showme --swing;swing west;swing west;w;w;w;w;nwlk}}
+/al fy2cx {fy2ml;/delay {6.5}{/showme --swing;swing west;swing west;w;w;w;w;nwlk}}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -941,6 +941,9 @@
 /al fgout {wlk;out;sd;sd;sw;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk}
 /al fy2fg1 {fy2fg;de3 {fgin}}
 /al fg12fy {fgout;de2 {fg2fy}}
+/nop 金府
+/al jf2fg {wlk;n;n;nw;sw;w;nwlk}
+/al fg2jf {wlk;e;ne;se;s;s;nwlk}
 
 /nop 红娘子
 /al fg2hong {fg2hong+;/al fg2hong_do {w;look};do n,n,n,n,nu,wu,nu,nu,wu,nu,w;look;}
@@ -1011,7 +1014,8 @@
 
 /nop 八识神通
 /nop ff {conjure team_drift}
-/al fff {fff+;fdf}
+/nop al fff {fff+;fdf}
+/al fdf {fff+;conjure silent_sense}
 /al fff+ {
 /ac {^你的周围一片寂静}{de10 {df2fy}};
 /ac {^风坛}{fff-}
@@ -1564,7 +1568,7 @@ nwlk;
 /nop fy to yin bin 拿树叶
 
 /al fy2yinbin {fy2qf;de4 {/2 e;/2 eu;nu;w;ask monk about meat};de6 {open door;s;pull 小柜;nwlk}}
-/al buyleaf {wlk;n;e;sd;wd;wd;give xiaofan 10 silver;nwlk}
+/al buyleaf {wlk;n;e;sd;wd;wd;give xiaofan 10 silver;de1 {w;w;qf2fy}}
 /nop al fy2gw {fy2cx;de9 {cx2gw}}
 /al fy2gw {ffy;walk 马厩;de1 {goto guanwai}}
 /al fy2gw {fy2cx;de8 {cx2gw}}
@@ -1597,7 +1601,7 @@ nwlk;
     wlk;
 /ac {^孤独美的喉结上下滚动着}{agree to help};
 /ac {^粉燕子笑了笑道：有时候我连你都想要}{leave gu du mei};
-/ac {^叶孤鸿对你说道:你们可以走了}{e;ga rock;blow pipe};
+/ac {^叶孤鸿对你说道:你们可以走了}{e;ga rock;blow pipe;keychain};
 /ac {^白云之间忽然出现了一个人}{e;gw2yl-}
 }
 /al gw2yl- {

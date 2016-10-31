@@ -58,6 +58,24 @@ w;cook
 /al askcuinong {ask cuinong about 傅红雪}
 /al anhongxue {answer 他若因我而死了，我也不会活下去。}
 /al ancuinong {answer 将过去的事情忘记！}
+/al bc2cuinong {wlk;/4 w;s;s;open door;enter;wlk}
+/al cuinong2bc {wlk;out;open door;n;n;/4 e;wlk}
+/al wlb2hongxue {n;nw;ne;n;n;nu;}
+/al hongxue2wlb {sd;s;s;sw;se;s}
+/al bangcuinong {fy2wlb;
+                /delay {14} {wlb2hongxue;askhongxue};
+                /delay {15} {hongxue2wlb};
+                /delay {16} {wlb2bc};
+                /delay {26} {bc2cuinong;askcuinong};
+                /delay {27} {cuinong2bc};
+                /delay {28} {bc2wlb};
+                /delay {38} {wlb2hongxue;anhongxue};
+                /delay {39} {hongxue2wlb;};
+                /delay {40} {wlb2bc};
+                /delay {50} {bc2cuinong;ancuinong};
+                /delay {51} {cuinong2bc};
+                /delay {52} {bc2fy};
+                }
 /nop 哈哈儿
 /al askhahaer {
     ask haha er about 帮忙;
