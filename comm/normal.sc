@@ -71,6 +71,8 @@
 /al gm {wlk;d; /3 w;n;withdraw %0; /delay {3} {s; /3 e;u;nwlk}}
 /al cm {wlk;d; /3 w;n;deposit %0; /delay {3} {s; /3 e;u;nwlk}}
 /al bxl {buy %0 from xiang ling}
+/al gxl {give %0 to xiang ling}
+/al sxl {fyxl;sell %0;xlfy;i}
 /al tbxl {fyxl;de1 {buy %0 from xiang ling};de2 {xlfy}}
 /no al sxl {sell %0 to xiang ling}
 /al tsxl {fyxl;de1 {sell %0};de2 {xlfy}}
@@ -412,8 +414,10 @@
 /ac {^  人间地狱 小僵尸(Zombie)}{ki zombie}
 /ac {^坟堆里慢慢站起一个人形向你扑来!}{ki zombie}
 /ac {^朱藻说道：你真不错！可破我的七仙女阵！}{wear all}
-/al digstatue {/ticker {dig}{l 杨树;l 新土;dig;get box}{4}}
-/al notdig {/unticker {dig}}
+/al digstatue {/ticker {dig}{l 杨树;l 新土;dig;}{4};
+/ac {^铛．．得一声}{new 挖到玉佛了，dodge;}
+             }
+/al notdig {/unticker {dig};/unac {^铛．．得一声}}
 /ac {^三仙碑}{do get skin from small bag,fill skin}
 /var is_fight 0
 /al fi {buff;/var is_fight 1;de2 {fight %0;set targe %0;/var npc %0}}
@@ -458,7 +462,7 @@
 /al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w,s,s,e,s,buy sleepbag};de8 ffy;de9 {buybx;nwlk}}
 /al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;};de7 ffy;de8 qr;de9 {buybx;nwlk}}
 /al buyall {gm 9000;de5 fy2qf;de6 {wlk;do e,e,buy beef meat from xiaofan;fyz};de7 {wlk;sb;do w,n,e,buy shui dai,w};de8 ffy;de9 {buybx;nwlk}}
-/al buymeat {fy2qf;de3 {wlk;do e,e,buy beef meat from xiaofan;};de4 {wlk;w;;w;qf2fy}}
+/al buymeat {fy2qf;de3 {wlk;e;e;buy beef meat from xiaofan;};de4 {wlk;w;;w;qf2fy}}
 /nop qiankundai 
 /nop {^[24]  豹牙手环(shouhuan)                        1}
 /nop qiankun bag
