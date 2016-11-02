@@ -26,7 +26,7 @@
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/quest.sc
-/read comm/team4.sc
+/read comm/team/team4.sc
 /read comm/status.sc
 /nop read hb.tin
 /nop log o $myname.log

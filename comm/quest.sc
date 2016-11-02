@@ -22,9 +22,9 @@
         wlk;
         fyxl;
         list;
-        de6 {buyitem};
-        de7 {xlfy;nwlk};
-        de8 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
+        de3 {buyitem};
+        de4 {xlfy;nwlk};
+        de5 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
         }
 }
 
@@ -64,7 +64,7 @@ w;cook
 /al wlb2hongxue {n;nw;ne;n;n;nu;}
 /al hongxue2wlb {sd;s;s;sw;se;s}
 /al bangcuinong {fy2wlb;
-                /delay {14} {wlb2hongxue;askhongxue};
+                /delay {14} {unwi all;wlb2hongxue;askhongxue};
                 /delay {15} {hongxue2wlb};
                 /delay {16} {wlb2bc};
                 /delay {26} {bc2cuinong;askcuinong};
@@ -258,7 +258,7 @@ n;
 /ac {^田膨郎转过身去}{get lawan}
 /ac {^少林派和尚道：阿弥陀佛，请问这位施主是何派高足}{answer 清平;de2 {qeatall}}
 /al re {repair}
-/al whlaopi {whisper laopi 小马;whisper laopi 朋友;de1 {do kill sun legate,out}}
+/al whlaopi {whisper laopi 小马;whisper laopi 朋友;de2 {kill sun legate;out}}
 /ac {^你听到老皮滚入湖水前说的最后两句话}{charge center;get grass;give grass to xiao lin}
 /al askxiaonv {
 ask xiaonu about here;
@@ -396,3 +396,9 @@ de4 {/showme dq-%1};
  nwlk;
  /unticker {buy};
 }
+
+/nop 棕嗓鹛之歌
+/ac {^棕嗓鹛轻轻叫了几声，好像叮叮}{de2 {catch bird}}
+/ac {棕嗓鹛咯咯娇笑起来。}{down}
+/ac {^小马抱拳说道：这位}{answer yes}
+/ac {^小马握紧拳头道：小琳}{/shome riddle fault-----,need quit,dry after 3hours}

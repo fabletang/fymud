@@ -164,3 +164,4 @@ exercise qi $hn_qi
 /ac {^你的身体状况无法强化练习}{hn}
 /ac {^你的「%1」进步了}{hp;de2 {/showme --check qi}}
 /ac {^--check qi}{/if {$qi_per_delta<60}{dz;/showme ##$qi_per_delta;}{/showme 气==$qi_per_delta}}
+/ac {^天机阁}{cks}

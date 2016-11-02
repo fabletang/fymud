@@ -15,7 +15,7 @@
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /al jd {th jd $myname}
-/al wim {wield blade}
+/al wim {wield blade;wi jade}
 /al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.xiaosha}}
 /nop al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.wuye}}
 /ac {^你停止保护你的妻子}{baohu nurse}

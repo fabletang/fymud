@@ -103,7 +103,7 @@
     /delay {3}{/7 practice %1;learn %2 from master with 1};
     /delay {4}{hp;eatall;dazuo}
 }
-/ac {死了。}{look corpse}
+/ac {死了。}{look corpse;x baoxiang}
 /nop {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^绿洲 -}{gb skin;fill skin;pp skin}
 /nop ac {^大明湖}{do get skin from small bag,fill skin,put skin in small bag}
@@ -196,7 +196,7 @@
 /al xg {get %0 from corpse;put %0 in small bag}
 /al lb {look small bag}
 /al gb {get %0 from small bag}
-/al xp {do put %0 in small bag,get %0 from corpse,qput %0}
+/al xp {put %0 in small bag;get %0 from corpse;qput %0}
 /al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
@@ -219,6 +219,7 @@
     }
 /al ga {get all from %0}
 /al gc {get %0 from corpse %1}
+
 
 /al wi {wield %0}
 /al unwi {unwield %0}
@@ -404,6 +405,7 @@
 /ac {^战斗中不能打坐}{iskill}
 /ac {^== 未完继续%s%1% == (ENTER 继续下一页}{/if {%1<40}{/cr;/cr;/cr;}{/cr;/cr;}}
 /al wearmonkclothes {gb monk clothes;do remove cloth,remove surcoat,wear monk clothes,wear all}
+/al rm {remove %0}
 /al wmk {tbxl monk clothes;de4 wearmonkclothes}
 /al smk {tsell monk clothes}
 /al shouhuan+ {/ac {^│	%1 ：  豹牙手环          价值：三两}{redeem %1;/showme item_no%1}}
@@ -508,7 +510,8 @@
 /ac {^你从如意乾坤袋里}{/var hasqt 1;/var it_sn 101;/var it_code shouhuan1;/var it_num 0;/var it_n 0}{4}
 /ac {^你存入%0到如意乾坤袋}{/var it_code none;/var it_num 0;}
 /ac {^你撞了大运，得到额外奖励符文%1。}{store %1}
-/al getbatdrug {wlk;do w,w,w,w,d,w,get all from woodcase,store bat drug;nwlk}
+/nop al getbatdrug {pl {wlk;w;w;w;w;d;w;get all from woodcase;store bat drug;nwlk};pr}
+/al getbatdrug {pl {wlk;w;w;w;w;d;w;get all from woodcase;pp bat drug;nwlk};pr}
 /al st {remove %0;unwield %0;store %0}
 /al gxy {give %0 to xiao yuer}
 /ac {^祭武器将会使用十两黄金}{continue yes}
@@ -653,3 +656,6 @@
 /al dz {dazuo}
 /al tickl {/ticker {learn}{dol}{8}}
 /al tickl- {/unticker {learn};}
+/nop 练梅花桩
+/al lianzhuang {/ticker {lian}{lian zhuang;hp}{6}}
+/al notlianzhuang {/unticker {lian}}

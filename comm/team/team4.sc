@@ -68,6 +68,7 @@ whisper $teamer_3 EXfollow $team_header
 /al th {tell $helper EX%0}
 /al tg {give %0 to $helper}
 /al tget {whisper $helper EXget %0 from bag,give %0 to $myname}
+/al tget {tell $helper EXget %0 from bag,give %0 to $myname}
 /al qgc {give %2 to %1;whisper %1 EXcun %2}
 /ac {^你又在流沙中陷深了一些！！你几乎在绝望中哭了出来}{tell $team_header 掉流沙里了}
 /al csoulto {conjure soul_sense on %0;conjure soul_sense on $myname}

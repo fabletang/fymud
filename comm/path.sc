@@ -189,7 +189,7 @@
 /al bat+ {
     wlk;
     /ac {^灌木林}{wlk;dash bush};
-    /ac {^  紫面煞神 魏行龙(Wei xing long)}{ask wei xing long about book;say fight wei xing long;e};
+    /ac {^  紫面煞神 魏行龙(Wei xing long)}{askss wei xing long about book;say fight wei xing long;e};
     /ac {^魏行龙无可奈何地从怀里掏出一本书递给你}{wlk;/delay {7.5}{e}};
     /ac {^  盗帅「妙绝天下」楚留香(Master chu)}{ask master about island;de2 {l}};
     /ac {^  「玉树临风」丁枫(Ding feng)}{keychain;give book to ding feng};
@@ -311,8 +311,7 @@
 /nop fyn2qf {pl {wlk;n;n;n;e;e;nwlk};pr}
 /al fyn2qf {wlk;do n,n,n,e,e;nwlk}
 /al qf2fyn {pl {wlk;w;w;s;s;s;nwlk};pr}
-/al qf2fy {unwield all;wlk;do w,w,s,s,s,s,s,sw,s,se,s,s,s,s,u;nwlk}
-/al qf2fy {unwield all;wlk;w;w;s;s;s;s;s;sw;s;se;s;s;s;s;u;nwlk}
+/al qf2fy {pl {unwield all;wlk;w;w;s;s;s;s;s;sw;s;se;s;s;s;s;u;nwlk};pr}
 /nop al fy2qf {fyn;/delay {1.5}{/3 n;/2 e}}
 /al fyn2qf+ {
     wlk;
@@ -908,8 +907,8 @@
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /al sl2fy {wlk;d;sd;sd;sd;se;sw;se;e;de1 {fyw-}}
 /nop sl 方丈南院
-/al sl2fz {wlk;do eu,nw,n,n,n,nu,ask master yuan about 见方丈,answer 重要事,answer 经书被盗,nd,nu,nd;nwlk}
-/al fz2sl {wlk;do su,sd,su,sd,s,s,s,se,wd;nwlk}
+/al sl2fz {pl {wlk;eu;nw;n;n;n;nu;ask master yuan about 见方丈;answer 重要事;answer 经书被盗;nd;nu;nd;nwlk};pr}
+/al fz2sl {pl {wlk;su;sd;su;sd;s;s;s;se;wd;nwlk};pr}
 /al fy2fz {fy2sl;de2 sl2fz}
 /al sl2nm {sl2fz;do nu,nu,nu,nd}
 /al fy2nm {fy2sl;de2 sl2nm}
@@ -1003,20 +1002,19 @@
 /al monk2yks {ne;eu;e;ne}
 /al cx2monk {cx2yks;de1 {yks2monk}}
 /al monk2cx {monk2yks;de1 {yks2cx}}
-/al fy2monk {fy2yks;de8 {yks2monk}}
+/al fy2monk {fy2yks;de10 {yks2monk}}
 /al gmonk {give 10 silver to monk}
 /al monk2fy {monk2yks;de1 {yks2fy}}
-/al ggmonk {fy2monk;de10 {gmonk};de11 {monk2fy}} 
+/al ggmonk {fy2monk;de11 {gmonk};de12 {monk2fy}} 
 /al cx2rzp {wlk;s;w;/2 wu;wd;s;nwlk}
 /al rzp2cx {wlk;n;eu;/2 ed;e;n;nwlk}
 /nop sga 松谷庵
 /al yks2sga {wlk;sw;w;wd;n;w;nwlk}
 /al sga2yks {wlk;e;s;eu;e;ne;nwlk}
-/al fy2sga {fy2yks;de8 {yks2sga}}
+/al fy2sga {fy2yks;de10 {yks2sga}}
 /al sga2fy {sga2yks;de1 {yks2fy}}
 
 /nop 八识神通
-/nop ff {conjure team_drift}
 /nop al fff {fff+;fdf}
 /al fdf {fff+;conjure silent_sense}
 /al fff+ {
@@ -1029,12 +1027,14 @@
 /unac {^你的周围一片寂静};
 /unac {^风坛}
 }
+/nop al ff {conjure team_drift}
+/al ff {conjure drift_sense}
 /al fbat {ff;master yuan suiyun}
 /al ffy {ffy+;ff;huang mazi}
 /al ffy+ {
 wlk;
 /nop ac{^银钩赌坊大厅}{de4 {tf};de8 {pl {n;n;e;e;e;e;u};pr}};
-/ac {^银钩赌坊大厅}{de4 {tf};de8 {do n,n,e,e,e,e,u;}};
+/ac {^银钩赌坊大厅}{de4 {tf};de8 {n;n;e;e;e;e;u;}};
 /ac {^风坛}{ffy-}
 }
 /al ffy- {
@@ -1097,6 +1097,7 @@ wlk;
 /nop al sj2cx {pl {wlk;e;e;s;s;su;sw;se;se;sw;se;s;nwlk};pr}
 /nop al sj2cx {pl {wlk;do e,e,s,s,su,sw,se,se,sw,se,s;nwlk};pr}
 /al sj2cx {pl {wlk;e;e;s;s;su;sw;se;se;sw;se;s;nwlk};pr}
+/al sj2fy {sj2cx;de2 {cx2fy}}
 /nop al gw2cx {gw2lz;de2 {lz2cx}}
 /nop 沉香到绿洲
 /al lz2cx {pl {wlk;w;s;s;su;sw;se;se;sw;se;s;nwlk};pr}
@@ -1343,7 +1344,7 @@ wlk;
 /nop 相思岭
 /nop al fy2xsl {wlk;d;/5 e;de1 {/5 e};de2 {unwield all;/3 w;/4 e;s;nwlk}}
 /al fy2xsl {pl {wlk;d;e;e;e;e;e;e;e;e;e;e;unwield all;w;w;w;e;e;e;e;s;nwlk};pr}
-/al xsl2fy {fye-;xslout-;pl {wlk;n;n;w;w;};pr}
+/al xsl2fy {xslout-;pl {wlk;n;n;w;w;fye-;};pr}
 /al fy2xsl2 {xslin+;fy2xsl}
 /nop 绿竹林 - 石牌峰
 /al xslup+ {
@@ -1692,6 +1693,11 @@ nwlk;
 /al fy2langwo {fy2ls;de14 {ls2langwo}}
 /al lsin {pl {wlk;s;se;su;su;su;su;su;se;su;/3 knock door;enter;nwlk};pr}
 /al lsout {pl {wlk;n;out;nd;nw;nd;nd;nd;nd;nd;nw;n};pr}
+/nop 虎穴
+/al hx2ls {pl {wlk;out;su;su;sw;sw;su;se;nwlk};pr}
+/al ls2hx {pl {wlk;nw;nd;ne;ne;nd;nd;enter;nwlk};pr}
+/al fy2hx {fy2ls;de14 {ls2hx}}
+/al hx2fy {hx2ls;de1 {ls2fy}}
 /nop 香灵
 /al fyxl {d;w;w;w;s}
 /nop al fyxl {d;/3 w;s}
@@ -1913,8 +1919,8 @@ nwlk;
 /al lz2fy {lz2cx;de1 {cx2fy}}
 /al gt {goto %0;de2 {%0;l}}
 /al fyz {ffy;do w,s,s,goto yangzhou}
-/al ffy {do recall back,w,n,e,e,e,n,u}
-/al ffy {recall back}
+/nop al ffy {do recall back,w,n,e,e,e,n,u}
+/nop al ffy {recall back}
 /al wfy {walk 天机阁}
 /ac {^看来只有等到黎明时雾散}{keychain}
 /nop miekou
