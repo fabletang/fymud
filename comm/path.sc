@@ -115,14 +115,14 @@
 /al gml2fy {w;w;n;n;de1 {hb2fy}}
 /nop gml2长春岛
 /al gml2ccd {n;fy2ccd+;/delay {0.2}{l}}
-/al fy2ccd {fy2gml;/delay {4.5}{gml2ccd}}
+/al fy2ccd {fy2gml;de5 {gml2ccd}}
 /al fy2ccd+ {
     wlk;
     /ac {^灌木林}{n};
     /ac {^碧蓝海边}{/ticker {pipe}{gb pipe;blow pipe;keychain}{4}};
     /ac {^常春岛渡口}{fy2ccd-;pp pipe};
     /ac {^老婆子说道：“上船吧！”}{/unticker {pipe};d};
-    /ac {^老婆子说道：“到了，你们可以下船了。”}{u}
+    /ac {^老婆子说道：“到了，你们可以下船了。”}{fy2ccd-;u}
 }
 
 /al fy2ccd- {
@@ -130,6 +130,7 @@
     /unac {^灌木林};
     /unac {^碧蓝海边};
     /unticker {pipe};
+    /unac {^常春岛渡口};
     /unac {^老婆子说道：“上船吧！”};
     /unac {^老婆子说道：“到了，你们可以下船了。”}
 }
@@ -242,7 +243,7 @@
     /unac {^「海边路」 -};
     /unac {^「谷内小径」 -}
 }
-/al dqgout {wlk;wear all;center;go cyan;open hua;s;nwlk}
+/al dqgout {pl {wlk;wear all;s;center;go cyan;open hua;s;nwlk};pr}
 
 /al dqgin {wlk;ask yin bin about man;remove all;de3 {ask zhu zao about 过阵;remove all;nwlk}}
 
@@ -368,12 +369,12 @@
 /al fy2qp {fy2qf;de1 {qf2qp}}
 /al qp2fy {qp2qf;de1 {qf2fy}}
 /nop hm 后门
-/al qp2hm {wlk;do e,e,e,e,e,e,e,eu,ed;nwlk}
-/al hm2qp {wlk;do wu,wd,w,w,w,w,w,w,w;nwlk}
-/al hm2ss {wlk;do push door,e,e,e,push stone,nu;nwlk}
-/al ss2hm {wlk;do sd,push stone,w,w,w;nwlk}
+/al qp2hm {wlk;e;e;e;e;e;e;e;eu;ed;nwlk}
+/al hm2qp {wlk;wu;wd;w;w;w;w;w;w;w;nwlk}
+/al hm2ss {wlk;push door;e;e;e;push stone;nu;nwlk}
+/al ss2hm {wlk;sd;push stone;w;w;push door;w;nwlk}
 /al fy2ss {fy2qp;de3 qp2hm;de4 hm2ss}
-/al ss2ffy {ss2hm;de1 hm2qp;de2 qp2fy}
+/al ss2fy {ss2hm;de1 hm2qp;de2 qp2fy}
 
 /nop 岱庙坊
 /al qp2dm {pl {wlk;w;n;ne;ne;n;n;nwlk};pr}
@@ -395,8 +396,10 @@
 /nop al dm2ts {wlk;nw;w;/4 n;/2 e;n;nu;nwlk}
 /nop al ts2dm {wlk;sd;s;/2 w;/4 s;e;se;nwlk}
 /al fy2ts {fy2dm;de4 {dm2ts}}
+/al fy2ts2 {fy2ts;de6 {tsin}}
+/al ts2fy2 {tsout;de3 {ts2fy}}
 /nop yun zhen
-/al ts2yunzheng {do ed,eu,climb down}
+/al ts2yunzheng {wlk;ed;eu;climb down;nwlk}
 /al yunzheng2ts {climb up;de4 {wd;wu}}
 /al fy2yunzheng {fy2ts;de7 {ts2yunzheng}}
 /al yunzheng2fy {yunzheng2ts;de5 {ts2fy}}
@@ -417,7 +420,7 @@
     /unac {^十八盘};
     /unac {^南天门};
 }
-/al tsout {do d,d,d,d,d,d,d,d,d,d,d,d,d;wd;sd;/6 d}
+/al tsout {pl {d;d;d;d;d;d;d;d;d;d;d;d;d;wd;sd;/6 d};pr}
 /nop 老屋
 /al fy2lw {fyn2lw+;fyn}
 /al fyn2lw+ {
@@ -483,6 +486,13 @@
 /al hhz2bc {/2 e;/2 ne;nd;wade;de8 {nw;/4 n;e}}
 /nop 地狱谷
 /al hhz2dyg {walk 地狱谷}
+/al hhz2dyg {e;e;ne;ne;ed;ed;ne}
+/al dyg2tgs {dygd+;l;jump down;}
+/al dygd+ {/ac {^地狱谷底}{e;e;e;eu;s;sd};
+           /ac {^塔公寺}{dygd-};
+            }
+/al dygd- {/unac {^地狱谷底};/unac {^塔公寺};}
+
 /nop bc2cuinong
 /al bc2cuinong {walk 销金窟;de1 {open door;s;enter}} 
 /nop 关外到二郎山
@@ -492,6 +502,9 @@
 /nop 关外到白云庄
 /al byz2gw {byz2bc;de3 {bc2gw}}
 /al gw2byz {gw2bc;de6 {bc2byz}}
+/nop 关外到班察拿
+/al gw2bcn {pl {wlk;w;s;w;w;w;s;s;sw;sw;nwlk};pr}
+/al bcn2gw {pl {wlk;ne;ne;n;n;e;e;e;n;e;nwlk};pr}
 
 /nop 风云东
 /nop 武当镇
@@ -907,8 +920,8 @@
 /al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /al sl2fy {wlk;d;sd;sd;sd;se;sw;se;e;de1 {fyw-}}
 /nop sl 方丈南院
-/al sl2fz {pl {wlk;eu;nw;n;n;n;nu;ask master yuan about 见方丈;answer 重要事;answer 经书被盗;nd;nu;nd;nwlk};pr}
-/al fz2sl {pl {wlk;su;sd;su;sd;s;s;s;se;wd;nwlk};pr}
+/al sl2fz {pl {wlk;eu;nw;n;n;n;nu;ask master yuan about 见方丈;answer 重要事;answer 经书被盗;nd;nu;nd;n;nwlk};pr}
+/al fz2sl {pl {wlk;s;su;sd;su;sd;s;s;s;se;wd;nwlk};pr}
 /al fy2fz {fy2sl;de2 sl2fz}
 /al sl2nm {sl2fz;do nu,nu,nu,nd}
 /al fy2nm {fy2sl;de2 sl2nm}
@@ -949,23 +962,44 @@
 /al fy2jf {fy2fg;de3 {fg2jf}}
 
 /nop 红娘子
-/al fg2hong {fg2hong+;/al fg2hong_do {w;look};do n,n,n,n,nu,wu,nu,nu,wu,nu,w;look;}
+/al fy2hong {fy2fg;de3 {fg2hong}}
+
+/al fg2hong {fg2hong+;/al lookhua {w;l};/al fg2hong_do {w;look};pl {n;n;n;n;nu;wu;nu;nu;wu;nu;w;look;};pr}
+    /nop ac {^  稻草人(Daocao ren)}{/al fg2hong_do {l};pl {pushaside grass;w;northwest;southwest;keychain;east;tear paper};pr;de2 {/ticker {migong}{;};}}{4};
+    /nop ac {^  稻草人(Daocao ren)}{/al fg2hong_do {l};pushaside grass;w;northwest;southwest;keychain;east;tear paper;de2 {/unticker {migong}}}{4};
+    /nop ac {不出名字的白色野花}{/al lookhua {;};/al lookren {/showme --cannot look}; /al fg2hong_do {e;s;w;s;w};/ticker {migong}{fg2hong_do}{3}};
 /al fg2hong+ {
     wlk;
-    /ac {不出名字的黄色野花}{w;look};
-    /ac {不出名字的绿色野花}{w;look};
-    /ac {不出名字的红色野花}{w;look};
-    /ac {不出名字的蓝色野花}{w;look};
-    /ac {不出名字的白色野花}{/al fg2hong_do {do e,s,w,s,w};/ticker {migong}{fg2hong_do}{2}};
-    /ac {^  稻草人(Daocao ren)}{/al fg2hong_do {l};pushaside grass;w;northwest;southwest;keychain;east;tear paper;de2 {/ticker {migong}{;};}}{4};
-    /nop ac {^  稻草人(Daocao ren)}{/al fg2hong_do {l};pushaside grass;w;northwest;southwest;keychain;east;tear paper;de2 {/unticker {migong}}}{4};
-    /ac {稻草人摇摇摆摆着倒了下去，露出一条小路}{/ticker {migong}{;};fg2hong-;de8 {east;hp}};
-    /ac {纸条已经被人撕走了。}{/ticker {tear}{tear paper}{5};};
-    /ac {有人已经在撕纸条了。}{/ticker {tear}{tear paper}{5};};
+    /al uptimedo {/showme stop uptime look;};
+    /ac {不出名字的黄色野花}{de1 lookhua};
+    /ac {不出名字的绿色野花}{de1 lookhua};
+    /ac {不出名字的红色野花}{de1 lookhua};
+    /ac {不出名字的蓝色野花}{de1 lookhua};
+    /ac {不出名字的白色野花}{pl {e;s;w;s;w;l};pr};;
+    /ac {^  稻草人(Daocao ren)}{lookren}{4};
+    /ac {^一块倒在地上，一副破败不堪的景象。厚厚的野草}{pushaside grass;}{4};
+    /ac {^你拨开路边的野草，发现了一条向西的路。}{
+            /al lookhua {;};
+            /al lookren {look daocao ren};
+            /nop unac {^  稻草人(Daocao ren)};
+            /al lookren {/showme --stop look;};
+            };
+    /ac {^一阵风吹过，野草有如活了}{/showme --stop push grass};
+    /ac {^--stop push grass}{
+            pushaside grass;w;northwest;southwest;keychain;east;tear paper;
+    };
+    /ac {纸条已经被人撕走了。}{/ticker {tear}{tear paper}{5}};
+    /ac {有人已经在撕纸条了。}{/ticker {tear}{tear paper}{5}};
+    /ac {^你伸手将纸条撕了下来}{/unticker {migong};/unticker {tear}};
+    /ac {稻草人摇摇摆摆着倒了下去，露出一条小路}{/unticker {migong};de7 {east;hp}};
+    /ac {^一阵风吹过，稻草人摇摇摆摆着恢复原位}{tear paper;/ticker {tear}{tear paper}{5}};
+    /ac {^突然一片乌光从稻草人}{e};
     /ac {^荒坟}{fg2hong-};
-    /ac {^你不可以拨开grass}{l daocao ren};
-    /ac {^了一个纸条子(paper)}{/ticker {migong}{;};tear paper}
+    /ac {^乱葬冈 -}{pushaside grass};
+    /ac {^你不可以拨开grass}{e};
+    /ac {^了一个纸条子(paper)}{/unticker {migong};tear paper}
 }
+    /nop ac {^这个方向没有出路。}{se};
 /al fg2hong- {
     nwlk;
     drop paper;
@@ -979,17 +1013,25 @@
     /unac {不出名字的蓝色野花};
     /unac {不出名字的白色野花};
     /unac {^  稻草人(Daocao ren)};
+    /unac {^一块倒在地上，一副破败不堪的景象。厚厚的野草};
     /unac {稻草人摇摇摆摆着倒了下去，露出一条小路};
+    /unac {^一阵风吹过，稻草人摇摇摆摆着恢复原位};
+    /unac {^突然一片乌光从稻草人};
+    /unac {^--stop push grass};
     /unac {纸条已经被人撕走了。};
     /unac {有人已经在撕纸条了。};
+    /unac {^你伸手将纸条撕了下来};
+    /unac {^你拨开路边的野草，发现了一条向西的路。};
+    /unac {^乱葬冈 -};
     /unac {^你不可以拨开grass};
     /unac {^了一个纸条子(paper)};
     /unac {^荒坟}
 }
+    /nop unac {^这个方向没有出路。};
 
 
-/al hong2fg {wlk;fg2hong-;do e,e,e,e,leave,sd,ed,sd,sd,ed,sd,s,s,s,s;nwlk}
-/al hong2fy {hong2fg;de2 {fg2fy}}
+/al hong2fg {wlk;fg2hong-;pl {e;e;e;e;leave;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk};pr}
+/al hong2fy {hong2fg;de3 {fg2fy}}
 
 /nop 黄山迎客松
 /al cx2yks {pl {wlk;s;w;wu;wu;wd;wu;n;wu;nw;ne;nu;wd;s;se;nwlk};pr}
@@ -1217,7 +1259,11 @@ wlk;
 /al tf2fy {tf2sk;de2 {sk2fy}}
 /al tf2lz {pl {wlk;s;w;s;s;s;e;n;w;nwlk};pr}
 /al tf2wurong {pl {nw;w;n;n;n;n;askwurong;};pr}
-/al wurong2tf {pl {s;s;s;s;s.e;s;e;e};pr}
+/al wurong2tf {pl {wlk;s;s;s;s;s.e;s;e;e;nwlk};pr}
+/al lz2wurong {lz2tf;de1 {tf2wurong}}
+/al wurong2lz {wurong2tf;de1 {tf2lz}}
+/al fy2wurong {fy2lz;de10 {lz2wurong}}
+/al wurong2fy {wurong2tf;de1 {tf2sk};de3 {sk2fy}}
 
 /nop 塞口
 /al fy2sk {fyw;de2 {pl {w;w;w;w;w;w;w;w;w;nwlk};pr}}
@@ -1552,7 +1598,7 @@ nwlk;
 }
 /al tx2fy {tx2fy+;/delay {0.2}{tx2gw}}
 /al tx2fy+ {
-    /ac {^迎梅客栈}{/delay {0.5}{gw2fy;tx2fy-}};
+    /ac {^迎梅客栈}{/delay {1}{gw2fy;tx2fy-}};
     /ac {^风云南}{tx2fy-}
 }
 /al tx2fy- {
@@ -1696,7 +1742,7 @@ nwlk;
 /nop 虎穴
 /al hx2ls {pl {wlk;out;su;su;sw;sw;su;se;nwlk};pr}
 /al ls2hx {pl {wlk;nw;nd;ne;ne;nd;nd;enter;nwlk};pr}
-/al fy2hx {fy2ls;de14 {ls2hx}}
+/al fy2hx {fy2ls;de12 {ls2hx}}
 /al hx2fy {hx2ls;de1 {ls2fy}}
 /nop 香灵
 /al fyxl {d;w;w;w;s}

@@ -22,9 +22,9 @@
         wlk;
         fyxl;
         list;
-        de3 {buyitem};
-        de4 {xlfy;nwlk};
-        de5 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
+        de2 {buyitem};
+        de3 {xlfy;nwlk};
+        de4 {gg $q_item_name;q_item_buy-; /var q_item 0; /var q_item_name 0; /var en_qb 0}
         }
 }
 

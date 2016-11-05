@@ -140,7 +140,6 @@
 
 /ac {^你已经吃太饱了}{/showme eat:$food_eat drink:$food_drink}
 /nop al hl {exercise jing $max_lingli}
-
 /al hl {exercise jing $jin_half}
 /nop al hn {exercise qi $max_neili}
 /al hn {
@@ -153,7 +152,7 @@ exercise qi $hn_qi
 /ac {^你从忘我的境界中回神敛气}{l;hp}
 /ac {^你盘膝而坐，静坐冥思}{/delay {2.1}{hp}}
 /ac {^你盘膝而坐，闭上眼睛}{/delay {2.1}{hp}}
-/ac {^你坐下来运气用功}{/delay {2.1}{hp};de3 {/if {$qi_per_delta<50}{dz}{/showme 气==$qi_per_delta}}}
+/ac {^你坐下来运气用功}{/delay {2.1}{hp};de3 {/showme --checkqi}}
 /ac {^白玉小马桶已经被喝得一滴也不剩}{/var auto_en_qi 0}
 /ac {^你从井中将白玉小马桶装满不老寒泉}{/var auto_en_qi 1}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
@@ -162,6 +161,7 @@ exercise qi $hn_qi
 /ac {^这种法术只能对战斗}{sk}
 /nop 学习
 /ac {^你的身体状况无法强化练习}{hn}
-/ac {^你的「%1」进步了}{hp;de2 {/showme --check qi}}
-/ac {^--check qi}{/if {$qi_per_delta<60}{dz;/showme ##$qi_per_delta;}{/showme 气==$qi_per_delta}}
-/ac {^天机阁}{cks}
+/ac {^你的「%1」进步了}{hp;de1 {/showme --checkqi}}
+/ac {^--checkqi}{/if {$qi_per_delta<60}{dz;/showme 气:$qi_per_delta;}{/showme 气==$qi_per_delta}}
+/ac {^天机阁}{hp;de1 {/showme ----check food}}
+/ac {^----check food}{ /if {$food_drink<20 || $food_eat<20}{eatall} }

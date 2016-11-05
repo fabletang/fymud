@@ -34,6 +34,7 @@ tat;
 /ac {告诉你：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
 /ac {你的耳边悄声说道：KKK%0}{ki %0}
 
+/al tth {tell $team_header EX%0}
 /al tta {tell $teamer_1 EX%0}
 /al ttb {tell $teamer_2 EX%0}
 /al ttc {tell $teamer_3 EX%0}
@@ -43,16 +44,16 @@ tat;
 /al t {
     /if {"$team_header" == "$myname"}{
     whisper $teamer_1 EX%0;
-    /delay {0.4}{whisper $teamer_2 EX%0};
-    /delay {0.8}{whisper $teamer_3 EX%0};
     /var EX %0;
     /replace {EX}{,}{;};
+    /delay {0.3}{whisper $teamer_2 EX%0};
+    /delay {0.9}{whisper $teamer_3 EX%0};
     /delay {1.5}{$EX}
     }{/showme you not leader}}
 /ac {^如果你愿意加入，请用 %0。}{%0}
 /ac {^队友 %0 的任务被你完成}{tt quest}
 /nop al tc {tell $teamer_1 EXfollow none;tell $teamer_2 EXfollow none;follow none}
-/al tc {tta follow none;ttb follow none;ttc follow none;ttd follow none;tte follow none;}
+/al tc {tta follow none;ttb follow none;ttc follow none;}
 /al tf {
 whisper $teamer_1 EXfollow $team_header;
 whisper $teamer_2 EXfollow $team_header;
@@ -60,11 +61,11 @@ whisper $teamer_3 EXfollow $team_header
 }
 /al tq {tta quest;ttb quest;ttc quest;quest}
 
+/al ggh {give %0 to $team_header}
 /al gga {give %0 to $teamer_1}
 /al ggb {give %0 to $teamer_2}
 /al ggc {give %0 to $teamer_3}
 
-/al tth {tell $team_header EX%0}
 /al th {tell $helper EX%0}
 /al tg {give %0 to $helper}
 /al tget {whisper $helper EXget %0 from bag,give %0 to $myname}
@@ -76,7 +77,21 @@ whisper $teamer_3 EXfollow $team_header
 /al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoul}}
 /al tcks {
     tta stat;ttb stat;ttc stat;stat;
-    tta cks;ttb cks;ttc cks;cks
+    tta cks;ttb cks;ttc cks;cks;
+    de1 {
+        whisper $teamer_1 Report status:$healer_1;
+        whisper $teamer_2 Report status:$healer_1;
+        whisper $teamer_3 Report status:$healer_1;
+    }
+}
+/ac {在你的耳边悄声说道：Report status:%0}{
+    /if {$qi_per<94 || $qi_per_delta <80}{whisper %0 heal:$myname}{/showme qi_per:$qi_per qi_per_delta:$qi_per_delta}
+    }
+
+/ac {在你的耳边悄声说道：heal:%1}{
+    /if {$myname == $healer_1}{
+     /if {$is_walk==0}{hh %1}{/showme walking....};
+        }   
 }
 /al thh1 {tell $healer_1 EXhh $myname}
 /al thh2 {tell $healer_2 EXhh $myname}
@@ -88,4 +103,8 @@ whisper $teamer_3 EXfollow $team_header
     team with $teamer_1;
    /delay {2} {team with $teamer_2};
    /delay {4} {team with $teamer_3};
+}
+/ac {^少林匪            %1 }{
+    tell $team_header status-err:$myname=少林匪;
+    tt $myname : 少林匪 %1;  
 }

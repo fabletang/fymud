@@ -118,7 +118,7 @@
          }
 /al reffs {do unwield $seconw,wield $seconw}
 /al buff {exert chill;de2 {exert powerup}}
-/al buff {buff1;de2 {buff2}}
+/al buff {buff1;de2 {buff2;perform biyingguanghan}}
 /var chillok 0
 /var powerup 0
 /al buff1 {/if {$chillok==0}{exert chill}}
@@ -149,7 +149,7 @@
         /showme  =============================================== tick == $ticks ==;
             }{4.1}
             }
-/al startk {nwlk;wi sword;iskill;j;k;/ticker {kill} {j;k} {5}}
+/al startk {nwlk;wim;iskill;j;k;/ticker {kill} {j;k} {5}}
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /al bg {set secon_perform hyakki;wib2;/showme ====== 刀  bg}
@@ -237,7 +237,7 @@
            /nop gongji %0;
                     }
         }
-/al ki {wi sword;hp;exert powerup;set target %0;de2 {kill %0;shoot %0;j;k;startk};}
+/al ki {unwl all;wim;hp;exert powerup;set target %0;de2 {kill %0;shoot %0;j;k;startk};}
 /nop slcx pfm info
 /ac {^你手中＊赤炼＊贴身斜指向上}{
     iskill;
@@ -353,7 +353,7 @@
 /al qq {quest}
 /al ffy {recall back;do w,n,e,e,e,n,u}
 /ac {^任务被你完}{wk}
-/al eatall {gb meat;drink dai;de2 {eat meat}}
+/nop al eatall {gb meat;drink dai;de2 {eat meat}}
 /ac {^看起来%0想杀死你}{
             wi sword;
             reffs;
@@ -371,7 +371,7 @@
                          }
 /ac {^看起来%0想杀死你}{wi sword;iskill;/if {$kticker ==0}{startk}}
 /ac {^看起来%0想杀死你}{wi sword;iskill;}
-/al wim {wi zhufu sword;wi sword2}
+/al wim {wi jade;wi short sword;wi sword}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
 /al roomin {928}

@@ -17,19 +17,21 @@
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /nop al wim {wield icicle;wield blade}
-/al wim {wield hammer;wield jade}
-/al buff {wim;perform dodge.wuwuwuwo}
-/al ki {set target %0;wim;buff;enforce 70;/delay {2}{kill %0;/var knpc %0}}
+/al wim {wield jade;wield hammer;wield short sword;}
+/al buff {perform dodge.wuwuwuwo}
+/al ki {set target %0;buff;enforce 90;/delay {2}{kill %0;/var knpc %0}}
+/al ki {set target %0;unwi all;wi spear;buff;enforce 90;/delay {2}{kill %0;j;unwi spear;/var knpc %0}}
 /al kkk {j;k}
 /al startk {nwlk;wim;iskill;buff;kkk;/ticker {kill} {kkk} {5}}
-/al startk {nwlk;wi sevenhammer;iskill;k;/ticker {kill} {k} {5}}
+/al startk {nwlk;wim;iskill;k;/ticker {kill} {k} {5}}
 /al stopk {/unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var killlosttime 0;}
-/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
 /al sk {stopk;cks}
 /ac {^『反背连环锤』只能对}{sk}
 /ac {^『三板斧』只能对战}{sk}
+/ac {^『锁梦缠魂』只能对战}{sk}
 /ac {^诵经只能在战}{sk}
 /nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
 /nop ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{hh;/delay {1}{hh};/delay {3}{hh}}

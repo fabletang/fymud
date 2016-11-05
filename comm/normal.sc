@@ -15,6 +15,9 @@
 /variable can_eat 1
 /al de0 {/delay {0.5}%1}
 /al de05 {/delay {0.5}%1}
+/al de06 {/delay {0.6}%1}
+/al de07 {/delay {0.7}%1}
+/al de08 {/delay {0.8}%1}
 /al de1 {/delay {1}{%1}}
 /al de2 {/delay {2}{%1}}
 /al de3 {/delay {3}{%1}}
@@ -73,6 +76,7 @@
 /al bxl {buy %0 from xiang ling}
 /al gxl {give %0 to xiang ling}
 /al sxl {fyxl;sell %0;xlfy;i}
+/al ssl {fyxl;sell %0;xlfy;i}
 /al tbxl {fyxl;de1 {buy %0 from xiang ling};de2 {xlfy}}
 /no al sxl {sell %0 to xiang ling}
 /al tsxl {fyxl;de1 {sell %0};de2 {xlfy}}
@@ -103,7 +107,7 @@
     /delay {3}{/7 practice %1;learn %2 from master with 1};
     /delay {4}{hp;eatall;dazuo}
 }
-/ac {死了。}{look corpse;x baoxiang}
+/ac {死了。}{look corpse;de2 {get baoxiang;x baoxiang}}
 /nop {^绿洲}{do get skin from small bag,fill skin,put skin in small bag}
 /ac {^绿洲 -}{gb skin;fill skin;pp skin}
 /nop ac {^大明湖}{do get skin from small bag,fill skin,put skin in small bag}
@@ -420,7 +424,7 @@
 /ac {^铛．．得一声}{new 挖到玉佛了，dodge;}
              }
 /al notdig {/unticker {dig};/unac {^铛．．得一声}}
-/ac {^三仙碑}{do get skin from small bag,fill skin}
+/ac {^三仙碑}{gb skin;fill skin;pp skin}
 /var is_fight 0
 /al fi {buff;/var is_fight 1;de2 {fight %0;set targe %0;/var npc %0}}
 /ac {^看起来金衣卫首领想杀死你}{tk sentry}{3}
@@ -456,7 +460,7 @@
     de14 {pickup 50;pickup 55;pickup 55;pickup 55;pickup 55;pickup 55;pickup 56; pickup 57; pickup 58; pickup 59};
             }
 /ac {^【闲聊】拍卖师(Auctioneer)：第%0号拍卖物%1无人认领}{pickup %0} 
-/ac {^你中的七彩蝙蝠毒发作了}{qt bat drug;de2 {cure 7batpoison};}
+/ac {^你中的七彩蝙蝠毒发作了}{gb bat drug;de2 {cure 7batpoison};}
 /ac {^你服下解药，顿时感觉好多了。但是你中的七彩蝙蝠毒并没有完全}{qt bat drug;de1 {cure 7batpoison};}
 /ac {^你服下解药，顿时感觉好多了。你终于清除了体内所有的七彩蝙蝠毒}{store bat drug}
 /al ts tsell;
@@ -654,6 +658,7 @@
     /delay {42}{getr14};
 }
 /al dz {dazuo}
+/al um {uptime}
 /al tickl {/ticker {learn}{dol}{8}}
 /al tickl- {/unticker {learn};}
 /nop 练梅花桩

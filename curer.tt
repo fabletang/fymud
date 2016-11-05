@@ -22,15 +22,17 @@
 /al enablemove {enable move nodust-steps}
 /al movenone {enable move none}
 /al jd {th jd $myname}
-/al wim {wield jade}
+/al wim {wield jade;wi staff}
 /nop al buff {perform dodge.wuwuwuwo $myname}
 /al buff {enablemove;wim}
 /al buff {wim}
-/al ki {set target %0;buff;/delay {1}{kill %0;conjure void_sense}}
+/al jj {conjure void_sense}
+/al ki {set target %0;wim;buff;/delay {1}{kill %0;jj}}
 /nop al kkk {unwi all;j;wi spear;/delay {1.2}{jj;unwi all;wi hammer;};/delay {3.1}{k}}
 /al kkk {jj;j;k}
 /al ks {jj;j;jk}
 /al kkk1 {jj;k}
+/al kkk1 {jj}
 /al pausek {
     /al kkk {;};
     /al kkk1 {;};
@@ -40,12 +42,15 @@
     }
 }
 /al startk {buff;nwlk;iskill;wim;jj;kkk;/ticker {kill} {kkk} {4}}
-/al startk {nwlk;wi staff;iskill;k;/ticker {kill} {k} {5}}
+/al startk {nwlk;iskill;jj;/ticker {kill} {jj} {5}}
 /al startks {buff;nwlk;iskill;wim;jj;ks;/ticker {kill} {ks} {4}}
 /al startk1 {nwlk;iskill;wim;jj;kkk1;/ticker {kill} {kkk1} {4}}
 /al stopk {/unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kk;startk}
+/ac {^一时之间，}{jj}
+/ac {^敌人已经中招了}{kk}
+/nop ac {^坦克使出短歌刀法}{kk}
 /ac {^『千手千变』只能对战斗}{stopk;cks}
 /ac {^『龙现于野』只能对}{stopk;cks}
 /ac {^『空识神通』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
@@ -64,6 +69,7 @@
 /ac {^【传闻】} {/line log ../mudlog/fy-chat.log}{plain}
 /ac {^【谣言】} {/line log ../mudlog/fy-chat.log}{plain}
 /ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
+/al jjj {exert douzhansheng}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh}
 /ac {^( 你头重脚轻，正在勉力支撑)}{pausek;hh;/delay {1}{hh};/delay {3}{hh}}
 /ac {^( 你摇头晃脑、歪歪斜斜}{pausek;hh;/delay {1}{hh};/delay {3}{hh;cks}}
