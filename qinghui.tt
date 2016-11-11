@@ -1,30 +1,31 @@
 #config {TINTIN CHAR} /
-/var myname mingyue
-/nop session $myname 117.135.143.81 6666
+/var myname qinghui
 /nop session $myname sh.fengyun.com 6666
-/nop session $myname china.fengyun.com 6000
+/nop session $myname 117.135.143.81 6666
+/nop session $myname fy.sysfon.com 6000
 /session $myname main.fengyun6666.com 6666
 /nop session $myname fy.hbisp.com 3333
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read mingyue.tt}
+/al reload {/read qinghui.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /al jd {th jd $myname}
-/al buff {baohu shine;wim;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
-/nop al kkk {bf2;bf4;ak1;jjk;jk}
+/al buff {baohu mingyue;wim;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
+/nop al kkk {bf2;bf4;ak1;jk}
 /al kkk {bf2;bf4;wkxl}
-/ac {^你停止保护你的妻子}{baohu shine}
+/ac {^你停止保护你的丈夫}{baohu light}
 /al ki {set target %0;buff;/delay {4.1}{kill %0}}
-/nop al ak1 {ps}
-/nop al ak1 {}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
+/al ak1 {}
 /al initk {
-    /al ak1 {zd};
+    /al ak1 {xx};
 }
 /nop ac {^『红藕香残』、『七星伴月』和『连天衰草』每２０秒钟只能使用一次（还需等待%1秒）}{
 /nop al ak1 {/showme wait %1 s 用暗器};
@@ -32,25 +33,23 @@
 /nop }
 /al startk {initk;nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}}
 /al stopk {initk;/unticker {kill};nokill}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
-/nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
-/ac {^『雷电交轰』只能对战斗}{stopk}
-/ac {^『明月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『霜华凝结』只能对战斗}{/if {$is_kill==1}{stopk}}
-/ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『霜华凝结』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『雨后初虹』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『清辉』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『连天衰草』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『阴陵扣命』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『无空漩流』只能对战斗}{stopk;cks}
 /ac {^『红藕香残』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『七星伴月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^你的法力太低}{hp}
+/ac {^［反背连环锤］只能对战斗中}{stopk;/var killlosttime 0;hp}
 /nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
-/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jk;exert qi 900;/delay {1}{jk;exert qi 900}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{jk;exert qi 900;/delay {3}{jk;exert qi 900;hp}}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jk;exert qi;/delay {1}{jk;exert qi}}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{jk;exert qi;/delay {3}{jk;exert qi;hp}}
 /nop ac {^( 你已经陷入半昏迷状态，神智全失}{hh;/delay {1}{hh};/delay {3}{hh;hp}}
-/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get jade;wim}
-
+/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get icicle;get jade;wim}
 /read comm/moonbuff.sc
 /read comm/gag.sc
 /read comm/path.sc
@@ -58,28 +57,25 @@
 /read comm/quest.sc
 /read comm/team/team4.sc
 /read comm/status.sc
+/read comm/autorecover.sc
 /nop read hb.tin
 /nop log o $myname.log
-/nop ac {^【新手】} {/line log chat-$myname.log}{text}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  || $is_walk==0}{}{j;jj;jjj}}
+/al fy2zt {fy2ztv}
+/unac {^然而，%1已经死了}{cks}
 /al getitem {
     pick needle;
     get 1200 needle from cactus bonsai;
      stack;
-     retrieve 2340;
-     retrieve 3748;
-     retrieve 7120;
-     retrieve 2848;
-     retrieve 5105;
-     retrieve 5954;
+     retrieve 9428;
+     retrieve 9901;
+     retrieve 7626;
+     retrieve 8360;
+     retrieve 3478;
      remove all;
      wear all
 }
-/read comm/autorecover.sc
-/al ffy {recall back;w;n;e;e;e;n;u}
-/var team_header dance;
-/var teamer_1 mingyue;
-/nop var teamer_2 gun;
-/var helper dance;
+/read autorecover.sc

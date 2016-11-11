@@ -44,8 +44,9 @@
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/quest.sc
-/read comm/team4.sc
+/read comm/team/team4.sc
 /read comm/status.sc
+/read comm/autorecover.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^¡¾ÐÂÊÖ¡¿} {/line log chat-$myname.log}{text}
@@ -97,3 +98,6 @@
   retrieve 1272;
   wear all
  }
+/var team_header dance;
+/var teamer_1 mingyue;
+/var helper dance;
