@@ -73,8 +73,9 @@ whisper $teamer_3 EXfollow $team_header
 /al qgc {give %2 to %1;whisper %1 EXcun %2}
 /ac {^你又在流沙中陷深了一些！！你几乎在绝望中哭了出来}{tell $team_header 掉流沙里了}
 /al csoulto {conjure soul_sense on %0;conjure soul_sense on $myname}
+/al csoulto {conjure soul_sense on %0}
 /ac {^%0告诉你：teamsoul}{csoulto $teamer_2; /delay {2}{csoulto kisskill}; /delay {4}{csoul}}
-/al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoul}}
+/al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoulto $myname}}
 /al tcks {
     tta stat;ttb stat;ttc stat;stat;
     tta cks;ttb cks;ttc cks;cks;
@@ -84,8 +85,15 @@ whisper $teamer_3 EXfollow $team_header
         whisper $teamer_3 Report status:$healer_1;
     }
 }
+/al tfull {
+   tcks;
+   de2 {tta hn;ttb hn;ttc hn}
+}
 /ac {在你的耳边悄声说道：Report status:%0}{
-    /if {$qi_per<94 || $qi_per_delta <80}{whisper %0 heal:$myname}{/showme qi_per:$qi_per qi_per_delta:$qi_per_delta}
+    /if {$qi_per<94 || $qi_per_delta <80}{whisper %0 heal:$myname}{
+            /showme qi_per:$qi_per qi_per_delta:$qi_per_delta;
+            hn;
+            }
     }
 
 /ac {在你的耳边悄声说道：heal:%1}{

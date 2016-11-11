@@ -29,7 +29,7 @@
 }
 
 /ac {^│%1　『%2』(%3) }{/if {"$q_item"=="%2"}{/var q_item_name %3}}
-/al buyitem {/grep $q_item;/echo $q_item;/echo $q_item_name;bxl $q_item; qput $q_item_name;qput $q_item}
+/al buyitem {/grep $q_item;/echo $q_item;/echo $q_item_name;pl {bxl $q_item; qput $q_item_name;qput $q_item};pr}
 /al askshuizhi {ask lu yu about 水质}
 /ac {^│ %0 『%1』(%2)}{/if {"$q_item"=="%1"}{buy $q_item from xiangling;/var q_item_name %2;buy $q_item_name from xiangling;cun $q_item_name}}
 /nop 买药熬鱼汤
@@ -160,7 +160,7 @@ w;cook
 /al m1to {wlk;/math gold {50 + %1};qtg gold $gold;de3 {do d,e,s,give $gold gold to chuili seng,n,w,u;nwlk}} 
 /al em {entermaze;de1 {maphere}}
 /ac {^垂笠老僧不满地说：你是否仔细找过？再去找%d秒钟吧。}{/delay {%1}{mazelost}}
-/ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{jqnt}
+/ac {^天机老人悄悄地对你说：山水阁钟旒秀正在『招人』}{/showme jqnt}
 /ac {^恭喜：你开始了一个新谜题：韶光虚掷}{eu;/delay {2}{ed}; /delay {4}{su}}
 /ac {^一道人影突自}{qie}
 /nop ac {^看起来四戒僧想杀死你}{qie;bs;/delay {4}{qie;bs}}
@@ -402,3 +402,5 @@ de4 {/showme dq-%1};
 /ac {棕嗓鹛咯咯娇笑起来。}{down}
 /ac {^小马抱拳说道：这位}{answer yes}
 /ac {^小马握紧拳头道：小琳}{/shome riddle fault-----,need quit,dry after 3hours}
+
+/ac {^路边黑影一闪}{ki killer;}

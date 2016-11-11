@@ -28,20 +28,7 @@
 /var petname xxz
 /var haspet 0
 /al wpet {order wear all}
-/ac {^你对着小}{/var haspet 1;}
-/ac {^小小爪不知从哪里窜}{/var haspet 1}
-/al pj {/if {$haspj==0 && $haspet ==1}{performp freeze}}
-/al pj {/if {$haspj==0}{performp freeze}}
-/al pjj {/if {$haspj==1 && $haspet ==1}{performp canglongzhaxian;/showme ---freeze faill--try to busy}}
-/al pk {/if {$haspet ==1}{do order wield sword,performp duxin,order unwield sword;/showme --pet pf sword ---duxin---}}
-/al pk {/if {$haspet ==1}{do order wield sword,performp sharenruma,order unwield sword;/showme --pet pf sword ---sharenruma---}}
-/ac {将周身凝聚的冰块震得粉碎！！}{/var haspj 0;pj}
 /var haspj 0
-/ac {^小小爪左手虚握，形成一团奇冷}{iskill;/var haspet 1;/var haspj 1}
-/ac {^但是被%1机灵地躲开了。}{/var haspj 1;/var haspet 1;de5 {/var haspj 0;pj;pjj};}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;peng;de4 peng;de4 pk;de4 {/var haspj 0};de5 pj;/showme ============ freeze ===========}
-/ac {^奇冷的寒气包围了}{/var haspj 1;/var haspet 1;de4 pk;de4 {/var haspj 0};/showme ============ freeze ===========}
-/nop read comm/autorecover_hc.sc
 /read comm/autorecover.sc
 /var jqs_lost_limit 0.1
 /ac {^你的伤势好了一些}{stopk;de2 {hxx;cks};}
@@ -118,45 +105,34 @@
          }
 /al reffs {do unwield $seconw,wield $seconw}
 /al buff {exert chill;de2 {exert powerup}}
-/al buff {buff1;de2 {buff2;perform biyingguanghan}}
 /var chillok 0
 /var powerup 0
 /al buff1 {/if {$chillok==0}{exert chill}}
 /al buff2 {/if {$powerupok==0}{exert powerup}}
+/al buff {buff1;de2 {buff2;perform biyingguanghan}}
+/al buff {buff1;de2 {buff2}}
 /ac {^你瞑目屏息，运起九阴心经}{/var chillok 1;/delay {300}{/var chillok 0}}
 /ac {^你眼观鼻，鼻观口}{/var powerupok 1;/delay {900}{/var powerupok 0}}
 /al j {/if {$mhok==1}{exert mihunshu}}
+/al mh {exert mihunshu}
 /al jjj {perform dodge.lianhuanbu}
 /al jjj {perform yanduhantan;/showme @@@@ sword busy}
-/al kk {wi sword;perform shuanglengcanxia  &&&& steps busy}
+/al kk {wi sword;perform shuanglengcanxia;/showme  &&&& steps busy}
 /al h {exert huaxue}
 /al fd {/if {$fdok==0}{exert chillbreath}}
 /nop al k {kk}
-/ac {^你对著%0！今日不是你死就是我活！} {pj;de2 iskill;}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;}
 /nop ------------
 /al ps {/showme  === auto pf ===}
-/al startk {
-        /var kticker 1;
-        /ticker {kill}{
-            wi sword;
-            j;
-            buff;
-        /if {$is_fight==0}{
-            /delay {2}{pj;wh;};
-            /nop pj;wh;
-            };
-        /math ticks {1+$ticks};
-        /showme  =============================================== tick == $ticks ==;
-            }{4.1}
-            }
-/al startk {nwlk;wim;iskill;j;k;/ticker {kill} {j;k} {5}}
+/al startk {nwlk;wim;iskill;j;perform yanduhantan;k;/ticker {kill} {j;k} {4.5}}
+/al startk {nwlk;wim;iskill;mh;perform polu;/ticker {kill} {buff;j;perform polu} {4.4}}
 /nop 『棋盘切』（gobankiri）
 /nop 『百鬼夜狂』（hyakki）
 /al bg {set secon_perform hyakki;wib2;/showme ====== 刀  bg}
 /al qie {set secon_perform gobankiri;wib2;/showme ########### 刀 qie######}
 /al jj {do unwield sword,wield blade,perform gobankiri;slcx}
 /nop 『碧映光寒』(biyingguanghan)
-/al bygh {wisword;perform sword.biyingguanghan}
+/al bygh {wisword;perform biyingguanghan}
 /nop 『霜冷残霞』(shuanglengcanxia)
 /nop 『碧映光寒』(biyingguanghan)
 /nop 『雁渡寒潭』〔yanduhantan〕
@@ -167,7 +143,7 @@
 /al tryyr {/if {$yrcyok==1}{yr}{peng}}
 /al tryyr {/if {$yrcyok==1}{yr}{pjuezhao;fd}}
 /al po   {do unwield all,perform unarmed.polu,wield zhufu sword;slcx}
-/al po   {perform unarmed.polu}
+/al po   {perform polu}
 /al zm   {do unwield all,perform dodge.zhuiming,wield zhufu sword;slcx}
 /al zm   {do unwield all,perform dodge.zhuiming,wield sword;slcx}
 /al luo {wisword;do enable sword shilin-jian,perform sword.luo,enable sword nine-moon-sword}
@@ -203,94 +179,22 @@
 /ac {^一时之间，}{pk}
 /var fdok 0
 /ac {阴风扑面，差点儿晕了过去。$}{/showme -------放毒成功----;/var fdok 1;/delay {120}{/var fdok 0}}
-/ac {^%1吐一口浊气，中的『九阴毒雾』终于失效了}{}
+/ac {^%1吐一口浊气，中的『九阴毒雾』终于失效了}{buff}
 /ac {^面对你雷霆一般的一击}{/var qienpc 1}
-/ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;de2 tryyr;/delay {14}{/var mhok 1}}
+/nop ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;de2 tryyr;/delay {14}{/var mhok 1}}
+/ac {^你停住了手，用飘飘的眼光}{iskill;/var mhok 0;/delay {14}{/var mhok 1}}
 /ac {^需等待%1秒才能再次使用迷魂术}{/var mhok_t 0;/var mhok 0;/delay {%1}{/var mhok_t 1;/var mhok 1}}
 /nop polu todo
 /var haspo 0
 /al trypo {/if {$haspo==0 && $is_kill==1}{po;/showme *****polu********;}}
-/ac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de3 trypo}}
+/unac {^在森森剑影间玫瑰色的薄雾冉冉升起，说不尽的凄迷幽艳，%1忽感}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de3 trypo}}
 /ac {^%1的脸憋得通红，忽感天旋地转}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de3 trypo}}
 /nop {^%1心头如针刺般剧痛}{/if {"%1"=="你“}{}{/var haspo 0;trypo;de2 trypo}}
 /ac {^你更不稍停，反掌间五根手指}{/var haspo 1;iskill}
 /var haskill 0
 /var ticks 0
-/al ki {do ability2,wield sword,wield blade2,hp,set target %0;
-        i;
-        /var target %0;
-        buff;
-        wh;
-        /delay {0.5}{
-            /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
-                          /if {$shaqi>0 || $bgok_t==1}{bg}{
-                                        /if {$yrcyok==1}{yrcy}{slcx;juezhao};
-                                                    };
-                                                      };
-            /var haskill 1;
-            };
-        /delay {2.1}{
-            /if {$haspet==1}{hpp;gongji %0};
-            kill %0;
-            startk;
-            /nop if {$haspet==0}{wh;de2 gongji %0};
-           /nop gongji %0;
-                    }
-        }
-/al ki {unwl all;wim;hp;exert powerup;set target %0;de2 {kill %0;shoot %0;j;k;startk};}
+/al ki {unwi all;wim;buff;set target %0;de2 {kill %0;startk}}
 /nop slcx pfm info
-/ac {^你手中＊赤炼＊贴身斜指向上}{
-    iskill;
-    /showme =========== slcx ==============;
-    /nop if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{
-                            /if {$shaqi>0 || $bgok_t==1}{bg}{
-                                        /if {$yrcyok==1}{yrcy}{slcx};
-                                                    };
-        /nop               };
-    /delay {2.1} {
-                    /if {$shaqi>0 || $bgok_t==1}{bg}{
-                                                    /if {$yrcyok==1}{yrcy}{slcx};
-                                                    };
-                 };
-    }
-/ac {^你突然仰天长嚎}{
-    iskill;
-    cks;
-    /showme =========== bg ==============;
-    /if {$qieok==1 || $qieok_t ==1 && $qienpc==0}{qie}{/if {$yrcyok==1}{yrcy}{slcx;}};
-    /var bgok 0;
-    /var bgok_t 0;
-    /delay {122}{/var bgok_t 1};
-}{4}
-/ac {^你根本无视%1的攻击，大吼一声}{
-    cks;
-    iskill;
-    /showme =========== qie ==============;
-    /var qieok 0;
-    /delay {60.2}{/var qieok_t 1};
-    /if {$shaqi>0 || $bgok_t==1}{bg}{
-        /if {$yrcyok==1}{yrcy}{slcx}; 
-                        }; 
-                     }
-/ac {^设定环境变数：secon_perform = "hyakki"}{
-    /delay {checkbg} {
-        /if {$is_kill ==1 && $qienpc ==0}{
-            /if {$shaqi>0 || $bgok_t==1}{bg}{
-                    /if {$yrcyok==1}{yrcy}{slcx}; 
-                                            }; 
-                         }
-                 }{9.1}
-}
-/nop   {^设定环境变数：secon_perform = "hyakki"}
-/nop yrcy 
-/ac {^你脸上神色惨然，猛一咬牙}{
-    /var yrcyok 0;
-    de1 cks;
-    /delay {90}{/var yrcyok 1};
-    /if {{$qieok==1 || $qieok_t ==1} && $qienpc==0}{qie}{
-            /if {$shaqi>0 || $bgok_t==1}{bg}{slcx;};
-                                    };
-}
 /var kticker 0
 /al stopk {
         /showme {----kill 变量重置};
@@ -311,7 +215,7 @@
         /var ticks 0;
         /var kticker 0;
         /undelay {checkbg};
-        de1 look;
+        /nop de1 look;
         }
 /ac {^你向%1开始移动。（40->35)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
 /ac {^你向%1开始移动。（35->30)}{iskill;/if {$mhok==1}{j};/if {$fdok==0}{fd}}
@@ -336,7 +240,7 @@
 /al hs {drink dai}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{hn}}
 /al checkkill {perform blade.gobankiri}
-/ac {^然而，%1已经死了}{checkkill;fd;/if {$is_kill==1}{cks};}
+/nop ac {^然而，%1已经死了}{checkkill;fd;/if {$is_kill==1}{cks};}
 /ac {^然而，%1已经死了}{checkkill;fd;/if {$is_kill==1}{;};}
 /al getitem {
     pick needle;
@@ -369,9 +273,10 @@
             /var knpc_name %0;
             /nop de2 iskill;
                          }
-/ac {^看起来%0想杀死你}{wi sword;iskill;/if {$kticker ==0}{startk}}
-/ac {^看起来%0想杀死你}{wi sword;iskill;}
+/nop ac {^看起来%0想杀死你}{wi sword;iskill;/if {$kticker ==0}{startk}}
+/ac {^看起来%0想杀死你}{wim;iskill;}
 /al wim {wi jade;wi short sword;wi sword}
+/al wim {wi claw}
 /al fy2room {wlk;do d,s,w,u,e,u,u,u,u,u,u,u,u,u;roomin;nwlk}
 /al room2fy {pl {wlk;out;d;d;d;d;d;d;d;d;d;w;d;e;n;u;nwlk};pr}
 /al roomin {928}
@@ -392,7 +297,6 @@
     de7 whistle;
     de9 scorep;
     }
-/ac {^你对着小小}{/var haspet 1;/showme --pet has 1----}
 /ac {^你不可以在这里用内功}{wlk}
 /ac {^你必须至少空出一只手来}{i}
 /ac {^使出一式『一切随缘』，剑身似灵蛇般缠住你手中的兵刃，神之祝福宝剑脱手而飞}{qt zhufu sword;nosword;de2 {qt zhufu sword;de2 {wi zhufu sword}}}

@@ -157,7 +157,7 @@
 /al ccdin+ {
     wlk;
     /ac {^常春岛渡口}{e;ne;se;eu;e;eu;};
-    /ac {^长阶}{/delay {0.1}{eu}};
+    /ac {^长阶}{/delay {0.2}{eu}};
     /ac {^观月顶}{ccdin-}
 }
 /al ccdin- {
@@ -402,7 +402,7 @@
 /al ts2yunzheng {wlk;ed;eu;climb down;nwlk}
 /al yunzheng2ts {climb up;de4 {wd;wu}}
 /al fy2yunzheng {fy2ts;de7 {ts2yunzheng}}
-/al yunzheng2fy {yunzheng2ts;de5 {ts2fy}}
+/al yunzheng2fy {yunzheng2ts;de6 {ts2fy}}
 /al ts2fy {ts2dm;de1 {dm2fy}}
 /al ts2xsq {wlk;/6 u;nu;de1 {/2 eu;e;s;se;/3 e;nwlk}}
 /al xsq2ts {wlk;/3 w;nw;n;n;w;/2 wd;de1 {sd;/6 d;nwlk}}
@@ -508,7 +508,7 @@
 
 /nop 风云东
 /nop 武当镇
-/al fy2wdz {fy2wdz+;fye;de1 {do e,s,s,s;nwlk}}
+/nop al fy2wdz {fy2wdz+;fye;de1 {do e,s,s,s;nwlk}}
 /al fy2wdz {fy2wdz+;fye;de1 {e;s;s;s;nwlk}}
 /al fy2wdz+ {
     /ac {^泥土路}{fy2wdz-};
@@ -518,7 +518,7 @@
     /unac {^泥土路};
     /unac {^奇石疏影}
 }
-/al wdz2fy {wlk;/3 n;w;de1 {fye-}}
+/al wdz2fy {pl {wlk;n;n;n;w;fye-};pr}
 /al fy2farmer {fy2wdz;de2 {/4 s;e;ask old farmer about 难题;nwlk}}
 /nop 武当
 /nop al fy2wd {fye;de1 {unwi all;/7 s};de2 {/2 s;/5 su;enter;nwlk}}
@@ -582,7 +582,7 @@
     /ac {^独木危桥}{w};
     /ac {^你脚下一滑，在独木桥}{de2 {west}};
     /ac {^山谷口}{sw};
-    /ac {^云海孤舟}{nhq2fy-;wd;wd;wd;w;w;fye-;}
+    /ac {^云海孤舟}{nhq2fy-;pl {wd;wd;wd;wd;w;w;fye-;};pr}
 }
 /al nhq2fy- {
     nwlk;
@@ -615,10 +615,10 @@
 /al nhq2dw {nhq2dw+;l}
 /al nhq2dw+ {
     wlk;
-    /ac {^奈何桥} {fy2nhq-;/ticker {eren}{toucheren}{1};
+    /ac {^奈何桥} {fy2nhq-;/ticker {eren}{toucheren}{2};
         pl {s;east;east;east;east;east;east;down};pr;
         };
-    /ac {^＂呀＂地一声}{pl {east;east;east;open door;east;east;east;};pr};
+    /ac {^＂呀＂地一声}{pl {east;east;east;open door;east;east;east;};pr;};
     /ac {^石壁上的门户又无声无息的合了起来}{toucheren};
     /ac {^谷地}{de1 {s;s;s;w;w;w}};
     /ac {^山阁}{nhq2dw-}
@@ -633,14 +633,13 @@
     /unac {^山阁}
 }
 
-/nop al dw2nhq {wlk;/3 e;/3 n;de1 {/3 west;open door;/3 west;u};de2 {/6 west;n;nwlk}}
 /al dw2nhq+ {
     wlk;
     /ac {^山阁}{pl {e;e;e;n;n;n};pr;};
-    /ac {^谷地}{/delay {1.0}{/3 w;open door;/3 w}};
+    /ac {^谷地}{de1 {pl {w;w;w;open door;};pr;};de2 {w;w;w}};
     /ac {^坑底}{u};
-    /ac {^坑道边}{/delay {0.5}{/6 w}};
-    /ac {^鬼域}{dw2nhq-;/delay {0.2}{n;}}
+    /ac {^坑道边}{de1 {pl {w;w;w;w;w;w};pr;}};
+    /ac {^鬼域}{/delay {0.5}{n;dw2nhq-;}}
 }
 /al dw2nhq- {
     nwlk;
@@ -651,7 +650,7 @@
     /unac {^鬼域}
 }
 /al dw2nhq {dw2nhq+;l}
-/al dw2fy {dw2nhq;nhq2fy+}
+/al dw2fy {dw2nhq;nhq2fy+;}
 /nop al fy2dw {fy2nhq;de3 {nhq2dw}}
 /al fy2dw {fy2nhq;nhq2dw+}
 
@@ -687,15 +686,18 @@
     /unac {白云渡}
 }
 
-/al by2nh {by2nh+;n;yell}
+/al by2nh {by2nh+;n;yell;d}
 /al by2nh+ {
     wlk;
-    /ac {船家老伯跳上海岸}{d;sail north;/ticker {sail}{sail north}{4}};
+    /ac {^一叶小舟中}{sail north;de4 l};
+    /nop ac {船家老伯跳上海岸}{d;sail north;/ticker {sail}{sail north}{4}};
+    /ac {船家老伯跳上海岸}{d};
     /ac {你拼命用力划了几下}{by2nh-;de2 {/2 w;/3 n}}
 }
 /al by2nh- {
     nwlk;
-    /unticker {sail};
+    /unac {^一叶小舟中};
+    /nop unticker {sail};
     /unac {船家老伯跳上海岸};
     /unac {你拼命用力划了几下}
 }
@@ -877,7 +879,7 @@
 
 /nop 棺材店
 /al dxcin {push coffin}
-/al dxcout {climb bag}
+/al dxcout {n;n;n;climb bag}
 /al fy2dxc+ {
     wlk;
     /ac {^安生店伙计似不经意地拦}{ki huo ji};
@@ -890,7 +892,7 @@
 }
 /al fy2dxc {fy2dxc+;pl {d;e;e;e;e;e;e;n;n;n;n;e;dxcin;nwlk};pr}
 /al fy2dxc2 {wlk;fyn;de1 {l grass;stamp grass;nwlk}}
-/al dxcout2 {l ring;pull ring}
+/al dxcout2 {n;n;l ring;pull ring}
 /al dxc2fy {wlk;dxcout;de1 {w;/4 s;/6 w;u;nwlk}}
 /al dxc2fy2 {wlk;dxcout2;de1 {sw;sw;s;fyw-}}
 /al fy2dxc2 {wlk;fyn;/delay {1.5}{w;l grass;stamp grass};nwlk;}
@@ -914,20 +916,25 @@
 /al hua2hs {pl {wlk;nd;slide rock;nd;wd;nd;nd;w;ne;nw;ne;nw;ed;ed;ed;nwlk};pr}
 /al hsout {wlk;pl {s;ed;ne;nu;nw;wd;wu;wd;nd;nd;w;ne;nw;ne;nw;ed;nwlk};pr}
 /al hsin  {wlk;pl {wu;se;sw;se;sw;e;su;su;eu;ed;eu;se;sd;sw;wu;n;nwlk};pr}
+/al fy2hs2 {fy2hs;de11 {hsin}}
+/al hs2fy2 {hsout;de3 {hs2fy}}
 /nop 嵩山
 /al fy2sl {fyw;de1 {wlk;do w,nw,ne,nw,nu,nu,nu;nwlk}}
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
-/al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
-/al sl2fy {wlk;d;sd;sd;sd;se;sw;se;e;de1 {fyw-}}
+/nop al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
+/al sl2fy {pl {wlk;d;sd;sd;sd;se;sw;se;e;fyw-};pr}
 /nop sl 方丈南院
 /al sl2fz {pl {wlk;eu;nw;n;n;n;nu;ask master yuan about 见方丈;answer 重要事;answer 经书被盗;nd;nu;nd;n;nwlk};pr}
 /al fz2sl {pl {wlk;s;su;sd;su;sd;s;s;s;se;wd;nwlk};pr}
 /al fy2fz {fy2sl;de2 sl2fz}
-/al sl2nm {sl2fz;do nu,nu,nu,nd}
+/al fz2fy {fz2sl;de2 sl2fy}
+/nop 少林内门
+/al sl2nm {sl2fz;de2 {nu;nu;nu;nd}}
 /al fy2nm {fy2sl;de2 sl2nm}
-/al nm2sl {wlk;do su,sd,sd,sd;fz2sl}
-/al fz2xie {wlk;do nu,nu,nu,nd,n,n,n,nu,n,n,n,ne,nw,w,w;nwlk}
-/al xie2fz {wlk;do e,e,se,sw,s,s,s,sd,s,s,s,su,sd,sd,sd;nwlk}
+/al nm2sl {pl {wlk;su;sd;sd;sd;fz2sl};pr}
+/al nm2fy {nm2sl;de2 {sl2fy}}
+/al fz2xie {pl {wlk;nu;nu;nu;nd;n;n;n;nu;n;n;n;ne;nw;w;w;nwlk};pr}
+/al xie2fz {pl {wlk;do e;e;se;sw;s;s;s;sd;s;s;s;su;sd;sd;sd;nwlk};pr}
 /al sl2xie {sl2fz;de1 fz2xie}
 /al xie2sl {xie2fz;de1 fz2sl}
 /al fy2xie {fy2sl;de2 sl2xie}
@@ -1248,6 +1255,10 @@ wlk;
 /nop 火焰山
 /al hys2wlb {pl {wlk;wd;wu;wd;wu;nw;nw;w;w;n;nwlk};pr}
 /al wlb2hys {pl {wlk;s;e;e;se;se;ed;eu;ed;eu;nwlk};pr}
+/al hys2lz {pl {wlk;se;se;se;se;sw;se;se;e;e;e;nwlk};pr}
+/al lz2hys {pl {wlk;w;w;w;nw;nw;ne;nw;nw;nw;nw;nwlk};pr}
+/al fy2hys {fy2lz;de10 {lz2hys}}
+/al hys2fy {hys2lz;de1 {lz2fy}}
 /nop 大漠
 /al lz2dsm {pl {wlk;n;ne;nw;w;nw;nw;nwlk};pr}
 /al dsm2lz {pl {wlk;se;se;e;se;sw;s;nwlk};pr}
@@ -1760,9 +1771,31 @@ nwlk;
 /nop 断塔
 /al dtin {listen;push door;l 断塔;open door;enter}
 /al wdz2dt {wlk;pl {s;s;s;se;se;su;su;su;keychain;sw;sw;su;dtin;nwlk};pr}
-/al dt2wdz {wlk;pl {d;d;d;d;d;out;ne;nd;nd;nd;nw;nw;n;n;n;nwlk};pr}
+/nop al dt2wdz {wlk;pl {d;d;d;d;d;out;ne;nd;nd;nd;nw;nw;n;n;n;nwlk};pr}
+/al dt2wdz {wlk;dtdown;de2 {pl {out;ne;nd;nd;nd;nw;nw;n;n;n;nwlk};pr}}
 /al fy2dt {fy2wdz;de2 {wdz2dt}}
-/al dt2fy {dt2wdz;de2 {wdz2fy}}
+/al fy2dtup {dtup+;fy2dt}
+/al dt2fy {dt2wdz;de4 {wdz2fy}}
+/al dtup {dtup+;l}
+/al dtup+ {
+    /ac {^断塔}{u};
+    /ac {^“喀吧！”腐朽的木板}{u};
+    /ac {^断塔顶}{dtup-}{4};
+}
+/al dtup- {
+    /unac {^“喀吧！”腐朽的木板};
+    /unac {^断塔};
+    /unac {^断塔顶};
+}
+/al dtdown {dtdown+;l}
+/al dtdown+ {
+    /ac {^断塔}{d};
+    /ac {^断塔底层}{dtdown-}{4};
+}
+/al dtdown- {
+    /unac {^断塔};
+    /unac {^断塔底层};
+}
 /nop ask baili about 归东景
 /al dt2jyt {jytin+;wlk;pl {u;u;u;u;u;u;u;u;jumpout window;drop dingxi note;d;u;jumpout window;nwlk};pr}
 /al jytin {jytin+;wlk;push 断墙;enter;su;open 木墙;eu;nwlk}
@@ -1778,7 +1811,7 @@ nwlk;
    /unac {^残砖断石纷纷落下};
    /unac {^在残砖断瓦之后你似乎找到}
 }
-/al fy2jyt {fy2dt;de4 dt2jyt;}
+/al fy2jyt {fy2dtup;de4 dt2jyt;}
 /al jyt2fy {wlk;nd;ehg2fy;nwlk}
 /nop 快活林
 /nop al lz2khl {wlk;n;ne;nw;nw;wade strand;de2 {l;nwlk}}

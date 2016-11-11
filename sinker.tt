@@ -16,23 +16,37 @@
 /al enablemove {enable move anxiang-steps}
 /al movenone {enable move none}
 /al jd {th jd $myname}
+/al smch {unwi all;wi spear;perform suomengchanhun;unwi spear;wim}
+/al j {/if {$smch_ok==1 && $npc_unwi==0}{smch}{/showme ==smch==条件不足}}
+/al ch {perform canhe}
 /nop al wim {wield icicle;wield blade}
 /al wim {wield jade;wield hammer;wield short sword;}
-/al buff {perform dodge.wuwuwuwo}
+/al wim {wi ironfist}
+/al buff {perfom dodge.wuwuwuwo}
 /al ki {set target %0;buff;enforce 90;/delay {2}{kill %0;/var knpc %0}}
-/al ki {set target %0;unwi all;wi spear;buff;enforce 90;/delay {2}{kill %0;j;unwi spear;/var knpc %0}}
+/al ki {init;set target %0;unwi all;wi spear;buff;/delay {1}{kill %0;j;/var knpc %0}}
 /al kkk {j;k}
 /al startk {nwlk;wim;iskill;buff;kkk;/ticker {kill} {kkk} {5}}
-/al startk {nwlk;wim;iskill;k;/ticker {kill} {k} {5}}
-/al stopk {/unticker {kill};nokill}
+/al startk {nwlk;wim;iskill;k;/ticker {kill} {j;k} {4.5}}
+/al startk {nwlk;wim;iskill;k;/ticker {kill} {j;ch} {4.4}}
+/al stopk {init;/unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var killlosttime 0;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
 /nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
 /al sk {stopk;cks}
+/var smch_ok 1;
+/var npc_unwi 0;
+/ac {^你使出一式『锁梦缠魂』，手中的%1如灵蛇般直咬}{/var smch_ok 0;/delay {60}{/var smch_ok 1};/var npc_unwi 0}
+/ac {^你使出一式『锁梦缠魂』，枪身似灵蛇般缠住}{/var smch_ok 0;/delay {60}{/var smch_ok 1};/var npc_unwi 1}
+/al init {
+/var smch_ok 1;
+/var npc_unwi 0;
+}
 /ac {^『反背连环锤』只能对}{sk}
 /ac {^『三板斧』只能对战}{sk}
 /ac {^『锁梦缠魂』只能对战}{sk}
 /ac {^诵经只能在战}{sk}
+/ac {^参合指只能对}{sk}
 /nop ac {^( 你似乎十分疲惫，看来需要好好休息了}{hh;/delay {2}{hh}}
 /nop ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{hh;/delay {1}{hh};/delay {3}{hh}}
 /nop ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{hh;/delay {1}{hh};/delay {3}{hh;hp}}

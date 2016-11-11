@@ -345,10 +345,10 @@
 /al tqst- {
     /unticker {quest}
 }
-/ac {^你胃里一阵绞痛，脸上紫气郁结}{qt pill;de2 {cure malaria}}
-/ac {^路行至此，紫蘑林飘荡着淡而幽香的雾障}{qt pill;de2 {cure malaria}}
+/ac {^你胃里一阵绞痛，脸上紫气郁结}{gb pill;de2 {cure malaria}}
+/ac {^路行至此，紫蘑林飘荡着淡而幽香的雾障}{gb pill;de2 {cure malaria}}
 /ac {^你中的瘴毒减轻了一些}{cure malaria}
-/ac {^你体内所有的瘴毒都被清除了}{store pill}
+/ac {^你体内所有的瘴毒都被清除了}{pp pill}
 /al getshuijing {
     get blue crystal from corpse;
     get red crystal from corpse;

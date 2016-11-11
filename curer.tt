@@ -42,7 +42,7 @@
     }
 }
 /al startk {buff;nwlk;iskill;wim;jj;kkk;/ticker {kill} {kkk} {4}}
-/al startk {nwlk;iskill;jj;/ticker {kill} {jj} {5}}
+/al startk {nwlk;iskill;jj;/ticker {kill} {jj} {4.5}}
 /al startks {buff;nwlk;iskill;wim;jj;ks;/ticker {kill} {ks} {4}}
 /al startk1 {nwlk;iskill;wim;jj;kkk1;/ticker {kill} {kkk1} {4}}
 /al stopk {/unticker {kill};nokill}

@@ -34,7 +34,7 @@
 /al kkk {
     /if {$ok_cm==1 || $ok_dg==1}{initk};
     /nop if {$is_dg==0 && $is_cm==0}{unwi all; zc; wim; j; k};
-    /if {$is_dg==0 && $is_cm==0}{j;k};
+    /if {$is_dg==0 && $is_cm==0}{k};
     /if {$is_dg==0 && $is_cm==1}{cm_k};
     /if {$is_dg==1 && $is_cm==0}{dg_k};
     /if {$is_dg==1 && $is_cm==1}{cm_k}
@@ -44,7 +44,7 @@
 /nop ac {你长啸一声，凌空而起}{initk;dgcm-}
 /ac {你长啸一声，凌空而起}{/var is_cm 1;dgcm-}
 /nop ac {你手腕一挫，硬生生收住刀势}{initk;dgcm-}
-/ac {你手腕一挫，硬生生收住刀势}{/var is_dg 1;;dgcm-}
+/ac {你手腕一挫，硬生生收住刀势}{/var is_dg 1;dgcm-}
 /al duange {
   /showme {dodge---duange---};
   duange_pf
@@ -56,7 +56,7 @@
 /al ki {initk;set target %0;buff;/delay {2}{kill %0}}
 /al ki {initk;unwi all;set target %0;buff;/delay {1}{kill %0;zc}}
 /al startk {initk;nwlk;iskill;kkk; /ticker {kill} {kkk} {5}}
-/al startk {initk;nwlk;iskill;wim;k; /ticker {kill} {kkk} {4.4}}
+/al startk {initk;nwlk;iskill;wim;k; /ticker {kill} {buff;kkk} {4.4}}
 /al stopk {initk; /unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;unwi all;perform taunt;startk;/var knpc %0}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk;/var knpc %0}
@@ -101,7 +101,7 @@
     /gag {^你使出「兰};
     /gag {^护士的身影};
           /ac {原地没有动过}{duange};
-          /ac {天人相助}{/delay {0.2}{initk}}{3};
+          /ac {天人相助}{/delay {0.3}{initk}}{3};
           /ac {不躲不闪}{/delay {0.2}{changmeng}}{3};
           /ac {攻势化于无形}{/delay {0.2}{changmeng}}{3};
           /ac {弈道『得算篇』}{/delay {0.2}{changmeng}}{3};
@@ -168,7 +168,7 @@
                                                   /ac {^你将内力凝}{dgcm-;/delay {0.3}{initk}}{3};
                                                   /ac {^Enemy:kee}{dgcm-;/delay {0.3}{initk}}{3};
           /ac {你急忙撤肘收招。}{de06 {initk}};
-          /ac {你将内力凝为一线}{de06 {initk}};
+          /unac {你将内力凝为一线}{de06 {initk}};
 }
 /al dgcm- {
           /unac {你急忙撤肘收招。};

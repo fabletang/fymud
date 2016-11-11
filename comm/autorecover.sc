@@ -56,8 +56,7 @@
 /var qi_per_delta 0.1;
 /math qi_per_delta {$qi*100};
 /math qi_per_delta {$qi_per_delta/$qi_init};
-/var hn_qi 0;
-/math hn_qi {$qi/2};
+    /math hn_qi {$qi/2};
 }
 /ac {^ 【心神】 %1/ %2 (%3%)    【评价}{
     /var shen_ok 0;
@@ -70,20 +69,32 @@
 /ac {^ 【灵力】 %1/ %2 (  %3)    【杀气】%4}{
     /var lingli %1;
     /var lingli_init %2;
+    /var max_lingli %2;
+    /math max_lingli {2*$lingli_init};
     /var shaqi %4;
+    /var ex_jing 0;
+    /math ex_jing {$max_lingli-$lingli};
+    /math ex_jing {$ex_jing*1.2};
+    /if {$ex_ling>$jing_half}{/var ex_ling $jing_half};
 }
 /ac {^ 【内力】 %1/ %2 (%3) }{
     /var neili %1;
     /var neili_init %2;
     /var max_neili 0;
     /math max_neili {2*$neili_init};
+    /var neili_per_delta 100;
+    /math neili_per_delta {100*$neili};
+    /math neili_per_delta {$neili_per_delta/neili_init};
+    /var ex_qi 0;
+    /math ex_qi {$max_neili-$neili};
+    /math ex_qi {$ex_qi*1.1};
+    /if {$ex_qi<$hn_qi}{/var hn_qi $ex_qi};
 }
 /ac {^ 【法力】 %1/ %2 (%3) }{
     /var fali %1;
     /var fali_init %2;
     /var max_fali 0;
     /math max_fali {2*$fali_init};
-
     /math jin_lost {$jqs_lost_limit*$jin_init};
     /math qi_lost {$jqs_lost_limit*$qi_init};
     /math shen_lost {$jqs_lost_limit*$shen_init};
@@ -139,12 +150,11 @@
 }
 
 /ac {^你已经吃太饱了}{/showme eat:$food_eat drink:$food_drink}
-/nop al hl {exercise jing $max_lingli}
-/al hl {exercise jing $jin_half}
-/nop al hn {exercise qi $max_neili}
 /al hn {
-exercise qi $hn_qi
+/showme hn_qi:$hn_qi;
+ /if {$hn_qi>20}{exercise qi $hn_qi}{hp}
 }
+/al hl {/if {$ex_jing>20}{exercise jing $ex_jing;/showme ex_jing:$ex_jing}{hp}}
 /al hf {exercise shen $max_fali}
 /nop 你现在的心神太少
 /nop 你已经喝太多了
@@ -163,5 +173,7 @@ exercise qi $hn_qi
 /ac {^你的身体状况无法强化练习}{hn}
 /ac {^你的「%1」进步了}{hp;de1 {/showme --checkqi}}
 /ac {^--checkqi}{/if {$qi_per_delta<60}{dz;/showme 气:$qi_per_delta;}{/showme 气==$qi_per_delta}}
-/ac {^天机阁}{hp;de1 {/showme ----check food}}
+/ac {^天机阁}{sk;de1 {/showme ----check food}}
 /ac {^----check food}{ /if {$food_drink<20 || $food_eat<20}{eatall} }
+/ac {^治疗运起内功，将手掌贴在你}{/if {$is_kill==0}{de2 hn}}
+/ac {^过了不久}{/if {$is_kill==0}{hp}}
