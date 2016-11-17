@@ -162,7 +162,7 @@
 /ac {^你从忘我的境界中回神敛气}{l;hp}
 /ac {^你盘膝而坐，静坐冥思}{/delay {2.1}{hp}}
 /ac {^你盘膝而坐，闭上眼睛}{/delay {2.1}{hp}}
-/ac {^你坐下来运气用功}{/delay {2.1}{hp};de3 {/showme --checkqi}}
+/ac {^你坐下来运气用功}{/delay {2.1}{hp};/delay {2.5}{/showme --checkqi}}
 /ac {^白玉小马桶已经被喝得一滴也不剩}{/var auto_en_qi 0}
 /ac {^你从井中将白玉小马桶装满不老寒泉}{/var auto_en_qi 1}
 /ac {^你拿起牛肉干咬了几口}{/delay {2.1}{hp}}
@@ -172,8 +172,28 @@
 /nop 学习
 /ac {^你的身体状况无法强化练习}{hn}
 /ac {^你的「%1」进步了}{hp;de1 {/showme --checkqi}}
-/ac {^--checkqi}{/if {$qi_per_delta<60}{dz;/showme 气:$qi_per_delta;}{/showme 气==$qi_per_delta}}
-/ac {^天机阁}{sk;de1 {/showme ----check food}}
-/ac {^----check food}{ /if {$food_drink<20 || $food_eat<20}{eatall} }
 /ac {^治疗运起内功，将手掌贴在你}{/if {$is_kill==0}{de2 hn}}
 /ac {^过了不久}{/if {$is_kill==0}{hp}}
+/nop {fystatus:kee:2523/2523/2523;gin:1236/1236/1236;sen:1236/1236/1236}
+/ac {^--checkqi}{/if {$qi_per_delta<60}{dz;/showme 气:$qi_per_delta;}{/showme 气==$qi_per_delta}}
+/ac {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}{
+    /var qi_ok 0;
+    /var qi %1;
+    /var qi_init %2;
+    /var qi_max %3;
+    /math qi_per {$qi_init*100};
+    /math qi_per {$qi_per/$qi_max};
+    /var qi_per_delta 0.1;
+    /math qi_per_delta {$qi*100};
+    /math qi_per_delta {$qi_per_delta/$qi_init};
+    /math hn_qi {$qi/2};
+    /if {$is_walk==0}{
+        /showme --checkall;
+    };
+    }{4}
+/ac {^--checkall}{/if {$qi_per_delta<60}{hh;dz;/showme 气:$qi_per_delta;}{/showme 气==$qi_per_delta};
+                  /if {$qi_per<95}{whisper healer_1 EXhh $myname;tt ===need heal:$myname:$serial;
+                        /math serial {$serial+1};
+                        hh;
+                      };
+                }

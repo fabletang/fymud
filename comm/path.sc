@@ -75,7 +75,7 @@
 /al fy2dqg {wlk;fy2wy;de3 {wy2yinbin}}
 /nop yhgz 云海孤舟 
 /al fy2yhgz {fye;de1 {do e,e,eu,eu,eu;nwlk}}
-/al fy2wy {fye;de1 {pl {e;e;n;eu;eu;eu;sd;e;ed;n;w;nwlk};pr}}
+/al fy2wy {fye;de1 {pl {wlk;e;e;n;eu;eu;eu;sd;e;ed;n;w;nwlk};pr}}
 /nop al wy2fy {wlk;pl {e;s;wu;w;nu;wd;wd;wd;w;w;};pr;de1 {fye-}}
 /al wy2fy {wlk;pl {e;s;wu;w;nu;wd;wd;wd;w;w;fye-};pr}
 /nop 仙人洞
@@ -84,8 +84,8 @@
 /al yhgz2wy {wlk;sd;e;ed;n;w;nwlk}
 /al wy2yhgz {wlk;e;s;wu;w;nu;nwlk}
 /al wy2xrd {wlk;e;s;wu;w;nu;nwlk}
-/al wy2yinbin {wlk;w;wd;/2 w;n;w;/2 wd;open door;wd;nwlk}
-/al yinbin2wy {wlk;eu;open door;eu;eu;e;s;e;e;eu;e;nwlk}
+/al wy2yinbin {pl {wlk;w;wd;w;w;n;w;wd;wd;open door;wd;nwlk};pr}
+/al yinbin2wy {pl {wlk;eu;open door;eu;eu;e;s;e;e;eu;e;nwlk};pr}
 /al xrd2dqg {xrd2wy;de1 {wy2yinbin}}
 /nop al fye2xrd {wlk;e;e;/3 eu;e;eu;nwlk}
 /nop al fye2xrd {wlk;do e,e,eu,eu,eu,e,eu;nwlk}
@@ -112,16 +112,18 @@
 /nop al fy2gml {fy2xrd;de3 {xrd2gml}}
 /al fy2gml {fy2hb;de4 {s;s;s}}
 /nop al gml2fy {gml2xrd;de1 {xrd2fy}}
-/al gml2fy {w;w;n;n;de1 {hb2fy}}
+/al gml2fy {pl {wlk;w;w;n;n;hb2fy};pr}
 /nop gml2长春岛
 /al gml2ccd {n;fy2ccd+;/delay {0.2}{l}}
 /al fy2ccd {fy2gml;de5 {gml2ccd}}
 /al fy2ccd+ {
     wlk;
     /ac {^灌木林}{n};
-    /ac {^碧蓝海边}{/ticker {pipe}{gb pipe;blow pipe;keychain}{4}};
+    /nop {^碧蓝海边 -}{gb pipe;blow pipe;keychain};
+    /nop {^碧蓝海边}{/ticker {pipe}{gb pipe;blow pipe;keychain}{8}};
+    /ac {^碧蓝海边}{gb pipe;blow pipe;keychain;de6 l};
     /ac {^常春岛渡口}{fy2ccd-;pp pipe};
-    /ac {^老婆子说道：“上船吧！”}{/unticker {pipe};d};
+    /ac {^老婆子说道：“上船吧！”}{d};
     /ac {^老婆子说道：“到了，你们可以下船了。”}{fy2ccd-;u}
 }
 
@@ -137,11 +139,11 @@
 /al ccd2fy {ccd2fy+;/delay {0.2}{l}}
 /al ccd2fy+ {
     wlk;
-    /ac {^碧蓝海边}{s};
-    /ac {^灌木林}{ccd2fy-;pp pipe;/delay {0.2}{gml2fy}};
-    /ac {^常春岛渡口}{keychain;/ticker {pipe}{gb pipe;blow pipe}{4}};
-    /ac {^老婆子说道：“上船吧！”}{/unticker {pipe};d};
-    /ac {^老婆子说道：“到了，你们可以下船了。”}{u}
+    /ac {^碧蓝海边}{hb2fy;ccd2fy-};
+    /ac {^灌木林}{pp pipe;/delay {0.2}{gml2fy;ccd2fy-;}};
+    /ac {^常春岛渡口}{gb pipe;blow pipe;keychain;de6 l};
+    /ac {^老婆子说道：“上船吧！”}{d};
+    /ac {^老婆子说道：“到了，你们可以下船了。”}{u};
 }
 
 /al ccd2fy- {
@@ -150,7 +152,6 @@
     /unac {^碧蓝海边};
     /unac {^灌木林};
     /unac {^常春岛渡口};
-    /unticker {pipe};
     /unac {^老婆子说道：“上船吧！”};
     /unac {^老婆子说道：“到了，你们可以下船了。”}
 }
@@ -170,7 +171,7 @@
 /al ccdout+ {
     wlk;
     /ac {^常春岛渡口}{ccdout-};
-    /ac {^长阶}{/delay {0.1}{wd}};
+    /ac {^长阶}{/delay {0.2}{wd}};
     /ac {^观月顶}{wd};
     /ac {^平台}{w;wd;nw;sw;w}
 }
@@ -243,7 +244,7 @@
     /unac {^「海边路」 -};
     /unac {^「谷内小径」 -}
 }
-/al dqgout {pl {wlk;wear all;s;center;go cyan;open hua;s;nwlk};pr}
+/al dqgout {pl {wlk;wear all;s;center;open cyan;go cyan;open hua;s;nwlk};pr}
 
 /al dqgin {wlk;ask yin bin about man;remove all;de3 {ask zhu zao about 过阵;remove all;nwlk}}
 
@@ -258,7 +259,7 @@
 /al fy2hb {fy2tuzi;de3 {tuzi2hb}}
 /al fy2longwang {fy2hb;de6 {wlk;n;n;n;e;walkto bow;give man meat;enter;nwlk}}
 /al longwangout {out;walkto bank}
-/al longwan2fy {wlk;longwangout;de2 {w;s;s;s;hb2fy}}
+/al longwang2fy {wlk;longwangout;de7 {w;s;s;s;hb2fy}}
 /al fy2stj {fy2tuzi;de3 {tuzi2hb};de4 {n;n;n;w;open door;w;give romance to master}}
 /al stj2fy {open door;e;e;s;s;s;de1 {hb2tuzi};de2 {tuzi2fy}}
 /nop 海边-龙王
@@ -400,9 +401,9 @@
 /al ts2fy2 {tsout;de3 {ts2fy}}
 /nop yun zhen
 /al ts2yunzheng {wlk;ed;eu;climb down;nwlk}
-/al yunzheng2ts {climb up;de4 {wd;wu}}
+/al yunzheng2ts {wlk;climb up;de6 {wd;wu;nwlk}}
 /al fy2yunzheng {fy2ts;de7 {ts2yunzheng}}
-/al yunzheng2fy {yunzheng2ts;de6 {ts2fy}}
+/al yunzheng2fy {yunzheng2ts;de7 {ts2fy}}
 /al ts2fy {ts2dm;de1 {dm2fy}}
 /al ts2xsq {wlk;/6 u;nu;de1 {/2 eu;e;s;se;/3 e;nwlk}}
 /al xsq2ts {wlk;/3 w;nw;n;n;w;/2 wd;de1 {sd;/6 d;nwlk}}
@@ -443,7 +444,7 @@
 /al qf2sq {qf2sq+;/3 w;/2 wu;/delay {0.5}{/4 nu;climb up};de3 {climb up};de5 {/7 n;knock door}}
 /al qf2sq+ {
     wlk;
-    /ac {^吱的一声，门向里开了}{de3 {n;n;qf2sq-}};
+    /ac {^吱的一声，门向里开了}{de2 n;de3 n;de4 {n;n;qf2sq-}};
     /ac {^三清宫大院}{/delay {0.5}{qf2sq-}};
     /ac {^上清殿}{qf2sq-};
     /ac {^门是开着的，敲什么}{de1 {n;n;qf2sq-}}
@@ -676,30 +677,30 @@
 
 
 /al nh2by+ {
-    /ac {老掌柜说道：多谢这位}{pl {w;s;e;e;give qiyue to fox;d;/ticker {sail}{sail south}{4};sail south};pr};
-    /ac {白云渡} {nh2by-;s}
+    /ac {^你递给老掌柜一些银子}{pl {w;s;e;e;give qiyue to fox;d;};pr};
+    /ac {^老狐狸把你带到一艘}{d};
+    /ac {^一叶小舟中}{sail south;de4 l};
+    /ac {^白云渡} {nh2by-;s};
 }
 /al nh2by- {
     nwlk;
-    /unticker {sail};
-    /unac {老掌柜说道：多谢这位};
-    /unac {白云渡}
+    /unac {^你递给老掌柜一些银子};
+    /unac {^老狐狸把你带到一艘}{d};
+    /unac {^白云渡};
 }
 
 /al by2nh {by2nh+;n;yell;d}
 /al by2nh+ {
     wlk;
     /ac {^一叶小舟中}{sail north;de4 l};
-    /nop ac {船家老伯跳上海岸}{d;sail north;/ticker {sail}{sail north}{4}};
-    /ac {船家老伯跳上海岸}{d};
-    /ac {你拼命用力划了几下}{by2nh-;de2 {/2 w;/3 n}}
+    /ac {^船家老伯跳上海岸}{d};
+    /ac {^你拼命用力划了几下}{by2nh-;de2 {/2 w;/3 n}}
 }
 /al by2nh- {
     nwlk;
     /unac {^一叶小舟中};
-    /nop unticker {sail};
-    /unac {船家老伯跳上海岸};
-    /unac {你拼命用力划了几下}
+    /unac {^船家老伯跳上海岸};
+    /unac {^你拼命用力划了几下}
 }
 /nop 莽林
 /al ml2tree+ {
@@ -782,15 +783,15 @@
     wlk;
     /ac {^楚楚向你笑道：没有白毛巾怎么洗}{/3 s;buy_white_towel};
     /ac {^你的钱不够}{fy2zt-};
-    /ac {^你向小丫环买下一条白毛巾}{remove all;wear white towel;/3 n;open door;n;jump;wear all};
-    /ac {你感到全身无比的舒泰} {wlk;jump};
-    /ac {^你从枫叶泉里一跃而起} {/2 dd leaf;zt2fy;fy2zt-;nwlk}
+    /ac {^你向小丫环买下一条白毛巾}{pl {remove all;wear white towel;n;n;n;open door;n;jump;wear all};pr};
+    /ac {你感到全身无比的舒泰} {wlk;jump;pp cloth;pp skirt};
+    /ac {^你从枫叶泉里一跃而起} {hp;de1 {dd leaf;zt2fy}}
 }
 
-/al fy2ztv {wlk;fy2ztv+;d;/3 s;wlk;w;w;sw;de1 {s;s;w;buy white towel from kid}}
+/al fy2ztv {wlk;fy2ztv+;pl {d;s;s;s;w;w;sw;s;s;w;buy white towel from kid};pr}
 /nop al fy2ztv {fy2ztv+;d;/3 n;e;de1 {e;n;east;east;open door;east;wash}}
 /nop al zt2fyv {open door;/2 w;s;w;w;de1 {wear baojia;wear all;remove shouhuan;/3 s;u}}
-/al ztv2fy {wlk;open door;/4 n;de1 {wear baojia;wear all;e;n;n;ne;e;e;/3 n;u;fy2ztv-}}
+/al ztv2fy {wlk;pl {open door;n;n;n;n;wear all;e;n;n;ne;e;e;n;n;n;u;fy2ztv-};pr}
 /al fy2ztv- {
     nwlk;
     /unac {^金童向你笑道：没有白毛巾怎么洗};
@@ -803,9 +804,9 @@
     wlk;
     /ac {^金童向你笑道：没有白毛巾怎么洗}{/3 n;buy white towel from kid};
     /ac {^你的钱不够}{fy2ztv-};
-    /ac {^你向小童买下一条白毛巾}{remove all;wear white towel;/3 s;open door;s;wash;wear all};
-    /ac {你感到全身无比的舒泰} {wlk;wash};
-    /ac {^你懒懒地从枫叶泉里站起身来} {dd leaf;ztv2fy;fy2ztv-;nwlk}
+    /ac {^你向小童买下一条白毛巾}{pl {remove all;wear white towel;s;s;s;open door;s;wash;wear all};pr};
+    /ac {你感到全身无比的舒泰} {wlk;wash;pp cloth;pp skirt};
+    /ac {^你懒懒地从枫叶泉里站起身来} {hp;de1 {dd leaf;ztv2fy;nwlk}};
 }
 
 /nop 沉香镇
@@ -929,9 +930,9 @@
 /al fy2fz {fy2sl;de2 sl2fz}
 /al fz2fy {fz2sl;de2 sl2fy}
 /nop 少林内门
-/al sl2nm {sl2fz;de2 {nu;nu;nu;nd}}
+/al sl2nm {sl2fz;de2 {nu;nu;nu;nd;n}}
 /al fy2nm {fy2sl;de2 sl2nm}
-/al nm2sl {pl {wlk;su;sd;sd;sd;fz2sl};pr}
+/al nm2sl {pl {wlk;s;s;s;su;sd;sd;sd;fz2sl};pr}
 /al nm2fy {nm2sl;de2 {sl2fy}}
 /al fz2xie {pl {wlk;nu;nu;nu;nd;n;n;n;nu;n;n;n;ne;nw;w;w;nwlk};pr}
 /al xie2fz {pl {wlk;do e;e;se;sw;s;s;s;sd;s;s;s;su;sd;sd;sd;nwlk};pr}
@@ -1141,7 +1142,7 @@ wlk;
 /nop 风云到关外
 
 /al lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
-/al gw2lz {pl {wlkw;n;e;e;e;e;e;e;e;e;e;e;e;e;e;nwlk};pr}
+/al gw2lz {pl {wlk;w;n;e;e;e;e;e;e;e;e;e;e;e;e;e;nwlk};pr}
 /al gw2cx {pl {gw2sj;wi jade;sj2cx};pr}
 /nop al sj2cx {pl {wlk;e;e;s;s;su;sw;se;se;sw;se;s;nwlk};pr}
 /nop al sj2cx {pl {wlk;do e,e,s,s,su,sw,se,se,sw,se,s;nwlk};pr}
@@ -1518,7 +1519,8 @@ wlk;
     /ac {^雪中阁}{w};
     /ac {^相思岭}{/al xslin_do {n;get bag;l};/ticker {xslin_go}{xslin_do}{1}};
     /ac {^凝露池}{/al xslin_do {s;get bag;climb vine;look}};
-    /ac {^石牌峰}{xslin-;/delay {2.1}{su;w;s}}
+    /ac {^杨木走廊}{s;xslin-;};
+    /ac {^石牌峰}{su;w;de2 l};
 }
 /al xslin- {
     xslup-;
@@ -1528,6 +1530,7 @@ wlk;
     /unac {^相思岭};
     /unticker {xslin_go};
     /unac {^凝露池};
+    /unac {^杨木走廊};
     /unac {^石牌峰}
 }
 /al xslout {xslout+;/delay {0.2}{l}}
@@ -1594,8 +1597,8 @@ nwlk;
     /ac {^翠竹屋}{s};
     /ac {^藏书阁}{w};
     /ac {^山庄前院}{s};
-    /ac {^翠竹庄门}{s;e;e;e;e;e;s;s;s;sd;w;s;e;};
-    /ac {^羊肠小道}{tx2gw-}
+    /ac {^翠竹庄门}{pl {s;e;e;e;e;e;s;s;s;sd;w;s;e};pr};
+    /ac {^羊肠小道}{tx2gw-};
 }
 /al tx2gw- {
     nwlk;
@@ -1605,9 +1608,9 @@ nwlk;
     /unac {^藏书阁};
     /unac {^山庄前院};
     /unac {^翠竹庄门};
-    /unac {^羊肠小道}
+    /unac {^羊肠小道};
 }
-/al tx2fy {tx2fy+;/delay {0.2}{tx2gw}}
+/al tx2fy {tx2fy+;tx2gw}
 /al tx2fy+ {
     /ac {^迎梅客栈}{/delay {1}{gw2fy;tx2fy-}};
     /ac {^风云南}{tx2fy-}
@@ -1825,6 +1828,7 @@ nwlk;
     /ac {^孔雀河}{wade liusha};
     /ac {^独孤伤冷冷道：打赢我}{u;wade liusha};
     /ac {^江左司徒喝道：“站住}{u;wade liusha};
+    /ac {^韩伶恼怒的说道：“谁要是有能耐帮我}{u;wade liusha};
     /ac {^西佛塔}{e};
     /ac {^东佛塔}{w};
     /ac {^南佛塔}{n};
@@ -1839,6 +1843,7 @@ nwlk;
     nwlk;
     /unac {^独孤伤冷冷道：打赢我};
     /unac {^江左司徒喝道：“站住};
+    /unac {^韩伶恼怒的说道：“谁要是有能耐帮我};
     /unac {^北天街};
     /unac {^南天街};
     /unac {^东天街};
@@ -1919,7 +1924,7 @@ nwlk;
 /ac {^有一批宝藏就在%1的方向！你可以用 %2 来寻找它}{%2;de1 {read afrji}}
 /ac {^有一批宝藏就在%1的方向！你可以用 %2 来寻找它}{%2;de1 {read afrji;read map}}
 /nop 龙虎寨
-/al bc2lhz {pl {se;e;e;e;e;s;s;se;listen;l south;s;disarm;se;climb tree};pr;de3 {/10 scout}}
+/al bc2lhz {pl {se;e;e;e;e;s;s;se;listen;l south;s;disarm;se;climb tree};pr;de3 {/10 scout};de4 {/10 scout}}
 /nop fy to room set room 000
 /al fy2room+ {
     wlk;
@@ -1990,12 +1995,12 @@ nwlk;
 /al lz2sf {wlk;do w,n,n,n;nwlk}
 /al lz2sf {wlk;w;n;n;n;nwlk}
 /nop  lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
-/al lz2sk {wlk;do w,n,n,n,s,s,s,e,e,e,e,e;nwlk}
+/al lz2sk {pl {wlk;w;n;n;n;s;s;s;e;e;e;e;e;nwlk};pr}
 /nop al cx2fy {cx2sf;de1 {sf2sk};de2 {sk2fy}}
-/nop al gw2fy {gw2lz;de1 {lz2sk};de2 {sk2fy}}
-/al gw2fy {gw2sj;de1 {sj2cx};de3 {cx2fy}}
-/nop al lz2fy {lz2sk;de1 {sk2fy}}
-/al lz2fy {lz2cx;de1 {cx2fy}}
+/al gw2fy {gw2lz;de2 {lz2sk};de3 {sk2fy}}
+/nop al gw2fy {gw2sj;de1 {sj2cx};de3 {cx2fy}}
+/al lz2fy {lz2sk;de2 {sk2fy}}
+/nop al lz2fy {lz2cx;de1 {cx2fy}}
 /al gt {goto %0;de2 {%0;l}}
 /al fyz {ffy;do w,s,s,goto yangzhou}
 /nop al ffy {do recall back,w,n,e,e,e,n,u}

@@ -382,7 +382,6 @@ de4 {/showme dq-%1};
     /unac {^古龙说道：在%1的%2有一正派人士};
     /unticker {askgl};
 }
-/ac {^天机老人掂了掂手里的%1百两银子乐呵呵地说：既然不想做这个就换一个吧。}{quest}
 /ac {^古龙说道：大旗门附近有个古怪的石屋，去帮我探索一下。ask gulong about daqigu}{;}
 /al bbb {do burn,burn,burn}
 /al giveduanbook {qt book;de2 {do give duan book,give duan book,give duan book,give duan book,give duan book,give duan book,give duan book}}
@@ -404,3 +403,4 @@ de4 {/showme dq-%1};
 /ac {^小马握紧拳头道：小琳}{/shome riddle fault-----,need quit,dry after 3hours}
 
 /ac {^路边黑影一闪}{ki killer;}
+/al asksongfan {pl {ask woman about 送饭;get basket;w;w;s;s;e;give farmer basket;w;n;n;e;e};pr}

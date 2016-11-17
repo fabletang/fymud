@@ -18,17 +18,18 @@
 /ac {^你身法乍变，脸若冰霜}{/var buff6 1}
 /ac {~^\e[33m你所受到的\e[37m天岚凝舞%1寒雪流岚\e[33m的效用消失}{/var buff6 0;checkbuff}
 /al bf7 {exert jingyingchangkong}
+/al bf7 {;}
 /ac {^你整个人忽然静了}{/var buff7 1}
 /ac {^此人已经受到静影长空的影响}{/var buff7 1}
 /ac {~^\e[33m你所受到的\e[37m冷雪心经%1静影长空\e[33m的效用消失}{/var buff7 0;checkbuff}
-/al checkbuff{
-    /if {$iskill==1 && $iswalk==0}{
+/al checkbuff {
+    /if {$is_kill==1 && $is_walk==0}{
         /if {$buff2==0}{bf2;bf4;bf8};
         /if {$buff4==0}{bf2;bf4};
         /if {$buff1==0}{bf1};
         /if {$buff6==0}{bf6};
     };
-    /if {$iskill==0 && iswalk==0}{
+    /if {$is_kill==0 && is_walk==0}{
         /if {$buff3==0}{bf3;bf5};
         /if {$buff7==0}{bf7};
     }
@@ -66,3 +67,7 @@
 /ac {^只听你一声清喝，向后疾退三尺}{/var flfy_ok 0;/var wkxl_ok 0;/delay {6}{/var wkxl_ok 1};/delay {20}{/var flfy_ok 1}}
 /ac {^%1只觉胸口膻中穴一麻，登时动弹不得。}{/var wkxl_ok 0;/delay {3}{/var wkxl_ok 1;wkxl}}
 /ac {^你还需等待%1秒钟才能再次施出『风漏飞烟』}{/var flfy_ok 0;/delay {%1}{/var flfy_ok 1}}
+/ac {^天岚凝舞%1霜天雪舞	%2 sec}{/var buff2 1;/showme bf2===;
+                                        /delay {%2}{/if {$is_kill ==1}{bf2}};
+                                        }
+/ac {^你所受到的天岚凝舞%1霜天雪舞的效用消失了。}{ /if {$is_kill ==1}{bf2};}

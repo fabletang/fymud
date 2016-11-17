@@ -14,6 +14,7 @@
 /variable is_kill 0
 /variable can_eat 1
 /al de0 {/delay {0.5}%1}
+/al de02 {/delay {0.2}%1}
 /al de05 {/delay {0.5}%1}
 /al de06 {/delay {0.6}%1}
 /al de07 {/delay {0.7}%1}
@@ -70,7 +71,6 @@
 /al hx {exert heal}
 /al aaa {ask giftman about %0}
 /al aaal {aaa horse;aaa small bag;aaa orb;ride horse}
-
 /al gm {wlk;d; /3 w;n;withdraw %0; /delay {3} {s; /3 e;u;nwlk}}
 /al cm {wlk;d; /3 w;n;deposit %0; /delay {3} {s; /3 e;u;nwlk}}
 /al bxl {buy %0 from xiang ling}
@@ -202,9 +202,9 @@
 /al gb {get %0 from small bag}
 /al xp {put %0 in small bag;get %0 from corpse;qput %0}
 /al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
-/nop al eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
+/nop eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
-/if {$can_eat==1}{gb meat;gb skin;eat meat; /delay {3}{drink wineskin;pp meat;pp wineskin}}
+/if {$can_eat==1}{gb meat;gb skin;drink skin;/delay {2.3}{eat meat;pp meat;pp wineskin}}
 }
 /nop al eatall {get xigua from small bag;eat xigua;put xigua in small bag}
 /nop 香灵
@@ -407,7 +407,8 @@
 /al ddc {drop %1 coin}
 /al getcoin {keychain -coin}
 /ac {^战斗中不能打坐}{iskill}
-/ac {^== 未完继续%s%1% == (ENTER 继续下一页}{/if {%1<40}{/cr;/cr;/cr;}{/cr;/cr;}}
+/nop ac {^== 未完继续%s%1% == (ENTER 继续下一页}{/if {%1<40}{/cr;/cr;/cr;}{/cr;/cr;}}
+/ac {^== 未完继续%s%1% == (ENTER 继续下一页}{/cr;}
 /al wearmonkclothes {gb monk clothes;do remove cloth,remove surcoat,wear monk clothes,wear all}
 /al rm {remove %0}
 /al wmk {tbxl monk clothes;de4 wearmonkclothes}

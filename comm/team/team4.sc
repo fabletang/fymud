@@ -6,24 +6,19 @@
 /var healer_1 curer;
 /var is_together 0;
 /al setheader {/var team_header %0}
+/var serial 1;
 
-/al tat {
-    /var is_together 0;
-    whisper $teamer_1 team_at?;
-    whisper $teamer_2 team_at?;
-    whisper $teamer_3 team_at?
+/nop  {你的耳边悄声说道：team_at?}{whisper $team_header yes.$team_header}{1}
+/nop  {你的耳边悄声说道：team_at?}{ok $team_header}{1}
+/nop  {你的耳边悄声说道：yes.}{/math is_together {$is_together + 1}}{1}
+/nop  {爽快地对你说道：“好吧}{/math is_together {$is_together + 1}}{1}
+/ac {^你在%1的耳边悄声说道：team_at?}{
+/var teamer_cn %1;
+    /if {"$teamer_cn"=="$teamer_3_cn"||"$teamer_cn"=="$teamer_2_cn"||"$teamer_cn"=="$teamer_1_cn"}{
+        /math is_together {$is_together + 1};
+    }
 }
-/ac {你的耳边悄声说道：team_at?}{whisper $team_header yes.$team_header}{1}
-/ac {你的耳边悄声说道：yes.}{/math is_together {$is_together + 1}}{1}
-/al tk {
-tat;
-/delay {1.5}{/if {$is_together > 1}{
-    /delay {2.0}{whisper $teamer_1 KKK%0;whisper $teamer_2 KKK%0;};
-    /delay {2.5}{whisper $teamer_3 KKK%0};
-    /delay {3.0}{ki %0}
-    }{/showme 队员 数量 $is_together;team talk 队员 $teamer_1 丢失}};
-/delay {3}{/var is_together 0}
-}
+/ac {在你的耳边悄声说道：team_at?}{buff}
 /al ttk {
     whisper $teamer_1 KKK%0;
     /delay {0.5}{whisper $teamer_2 KKK%0};
@@ -43,22 +38,20 @@ tat;
 
 /al t {
     /if {"$team_header" == "$myname"}{
-    whisper $teamer_1 EX%0;
+    /var EX look;
     /var EX %0;
+    /nop if {"$EX"==""}{/showme t需要参数;/var EX l};
+    pl {
     /replace {EX}{,}{;};
-    /delay {0.3}{whisper $teamer_2 EX%0};
-    /delay {0.9}{whisper $teamer_3 EX%0};
-    /delay {1.5}{$EX}
-    }{/showme you not leader}}
+    whisper $teamer_1 EX%0;
+    whisper $teamer_2 EX%0;
+    /if {"$teamer_3"=="none"}{}{whisper $teamer_3 EX%0};
+    $EX;
+    };pr;
+    }{/showme ===you not leader}
+    }
 /ac {^如果你愿意加入，请用 %0。}{%0}
 /ac {^队友 %0 的任务被你完成}{tt quest}
-/nop al tc {tell $teamer_1 EXfollow none;tell $teamer_2 EXfollow none;follow none}
-/al tc {tta follow none;ttb follow none;ttc follow none;}
-/al tf {
-whisper $teamer_1 EXfollow $team_header;
-whisper $teamer_2 EXfollow $team_header;
-whisper $teamer_3 EXfollow $team_header
-}
 /al tq {tta quest;ttb quest;ttc quest;quest}
 
 /al ggh {give %0 to $team_header}
@@ -83,6 +76,7 @@ whisper $teamer_3 EXfollow $team_header
         whisper $teamer_1 Report status:$healer_1;
         whisper $teamer_2 Report status:$healer_1;
         whisper $teamer_3 Report status:$healer_1;
+        teamhp;
     }
 }
 /al tfull {
@@ -116,3 +110,62 @@ whisper $teamer_3 EXfollow $team_header
     tell $team_header status-err:$myname=少林匪;
     tt $myname : 少林匪 %1;  
 }
+
+/al tat {
+  pl {
+    /var is_together 0;
+    whisper $teamer_1 team_at?;
+    whisper $teamer_2 team_at?;
+    /if {"$teamer_3"=="none"}{}{whisper $teamer_3 team_at?};
+    /showme ---check team;
+    };pr;
+}
+/var npc none;
+/ac {^---check team}{
+/math serial {$serial+1};
+/showme {===队员数量: $is_together};
+    /if {$is_together > 0}{
+    pl {
+    whisper $teamer_1 KKK$npc;
+    whisper $teamer_2 KKK$npc;
+    /if {"$teamer_3"=="none"}{}{whisper $teamer_3 KKK$npc};
+    ki $npc;/var is_together 0;
+    };pr;
+    }{/showme {===队员数量: $is_together};team talk 队员 $teamer_1 丢失:$serial};
+    }
+/al tk {
+/var npc %0;
+buff;
+tat;
+}
+/al tcks {
+    tta stat;ttb stat;stat;
+    tta cks;ttb cks;cks;
+    /if {"$teamer_3"=="none"}{}{ttc stat;ttc cks;};
+    de1 {
+        whisper $teamer_1 Report status:$healer_1;
+        whisper $teamer_2 Report status:$healer_1;
+        /if {"$teamer_3"=="none"}{}{whisper $teamer_3 Report status:$healer_1};
+        teamhp;
+    }
+}
+/al tfull {
+   tcks;
+   de2 {tta hn;ttb hn;
+    /if {"$teamer_3"=="none"}{}{ttc hn};
+   }
+}
+/al tw {
+whisper $teamer_1 EX%0;
+whisper $teamer_2 EX%0;
+/nop whisper $team_header EX%0;
+/if {"$teamer_3"=="none"}{}{whisper $teamer_3 EX%0;};
+}
+/al tf {
+  /if {"$team_header" == "$myname"}{
+  tw follow $team_header;
+  }{/showme ===you not leader};
+}
+/al tc {tta follow none;ttb follow none;
+        /if {"$teamer_3"=="none"}{}{ttc follow none;};
+        }

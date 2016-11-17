@@ -1,0 +1,261 @@
+#config {TINTIN CHAR} /
+/nop var myname fafafafa
+/var myname bababa
+/nop session $myname sh.fengyun.com 6666
+/nop session $myname china.fengyun.com 6000
+/session $myname main.fengyun6666.com 6666
+/al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
+/al ntchat {/unticker {checkchat}}
+/act {^请选择您使用的内码}{0}
+/act {^您的英文名字：} {$myname}
+/al reload {/read new.tt}
+/ac {此英文名字已被使用，请输入此帐号的密码}{Kk5580608}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
+/ac {^#SESSION '%0' DIED.}{/read %0.tt}
+/ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
+/al jd {th jd $myname}
+/al wim {wield flying-blade;wi short sword;wi all}
+/al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.xiaosha}}
+/nop al buff {baohu nurse;exert juqi;/delay {1}{perform dodge.wuye}}
+/ac {^你停止保护你的妻子}{baohu nurse}
+/al initk {
+/var is_dg 0;
+/var is_cm 0;
+/var ok_dg 0;
+/var ok_cm 0;
+/var t_dgcm 0
+}
+/al cm_k {/var ok_cm 1;wim; perform changmeng; k; /math t_dgcm {$t_dgcm + 1}; /showme cm $t_dgcm times}
+/al dg_k {/var ok_dg 1;wim; perform duange; k; /math t_dgcm {$t_dgcm + 1}; /showme dg $t_dgcm times}
+/ac {^cm}{/if {$t_dgcm > 2}{initk}}
+/ac {^dg}{/if {$t_dgcm > 2}{initk}}
+/al kkk {
+    /if {$ok_cm==1 || $ok_dg==1}{initk};
+    /if {$is_dg==0 && $is_cm==0}{k};
+    /if {$is_dg==0 && $is_cm==1}{cm_k};
+    /if {$is_dg==1 && $is_cm==0}{dg_k};
+    /if {$is_dg==1 && $is_cm==1}{cm_k}
+}
+/al duange_pf {/var t_dgcm 0; /var is_dg 1}
+/al changmeng_pf {/var t_dgcm 0; /var is_cm 1}
+/nop ac {你长啸一声，凌空而起}{initk;dgcm-}
+/ac {你长啸一声，凌空而起}{/var is_cm 1;dgcm-}
+/nop ac {你手腕一挫，硬生生收住刀势}{initk;dgcm-}
+/ac {你手腕一挫，硬生生收住刀势}{/var is_dg 1;;dgcm-}
+/al duange {
+  /showme {dodge---duange---};
+  duange_pf
+}
+/al changmeng {
+  /showme {parry---changmeng---};
+    changmeng_pf
+}
+/al ki {initk;unwi all;wim;set target %0;buff;/delay {2}{kill %0}}
+/nop al ki {initk;set target %0;buff;/delay {1}{kill %0}}
+/al startk {nwlk;iskill;wi blade;j;k; /ticker {kill} {j;k} {5}}
+/al startk {initk;nwlk;wim;iskill;kkk; /ticker {kill} {kkk} {4.5}}
+/al stopk {initk; /unticker {kill};nokill}
+/ac {^你对著%0！今日不是你死就是我活！} {iskill;unwi all;perform taunt;startk;/var knpc %0}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk;/var knpc %0}
+/nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
+/ac {^『落叶秋风』只能对战}{stopk;cks}
+/ac {^『短歌长梦』只能对战斗}{stopk;cks}
+/ac {^『长梦』只能对战斗}{stopk;initk}
+/ac {^『短歌』只能对战斗}{stopk;initk}
+/ac {^『争春』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^( 你似乎十分疲惫，看来需要好好休息了}{thh;/delay {1}{thh}}
+/ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{thh;exert qi;/delay {3}{thh;exert qi}}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{thh;exert qi;/delay {3}{thh;exert qi}}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{juxue $myname;thh}
+/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get jade;wim}
+/read comm/gag.sc
+/read comm/path.sc
+/read comm/normal.sc
+/read comm/quest.sc
+/read comm/team/team4.sc
+/read comm/status.sc
+/nop read hb.tin
+/nop log o $myname.log
+/nop ac {^【新手】} {/line log chat-$myname.log}{text}
+/al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
+/ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0 && $is_walk==0}{}{j;jj;jjj}}
+/unac {^然而，%1已经死了}{cks}
+/ac {^你身边冰壁逐渐溶解}{/if {$is_kill==0  || $is_walk==0}{}{h;/delay {4}{h}}}
+/nop ac {已经手忙脚乱了！}{/if {$is_kill==1}{ak1;ak2}}
+/nop ac {^结果%1被扰得眼花潦乱}{/if {$is_kill==1}{ak1;ak2}}
+/var {parrymsg} {{封}{迫}{击}{刺}{慢}{退}{逼}{击}{偏}{攻}{化解}{夹}{拍}{格}{引}{粘}{点}{带}{泥牛入海}{九重刀幕}{荡}{削}{磕}{架}{护}{躲}{麻}{砸}{磕}{捣}{落}{撤}{吸}{圈}{罩}{锁}{阴风刺骨}{扑}{弹}{剑网}{不知所措}{抖}{围}{砍}{踉踉跄跄}{退步}}
+/var {dodgemsg} {{飘}{避了}{闪过}{翻身}{绕到}{滑}{落}{绕到}{挪}{舞}{退出}{转}{踪迹}{掠出}{纵}{窜}{弹开}{遁}{扑}{避开}{躲闪}{身影一晃}{身形飘忽}{足不点地}{避}{躲}{闪}}
+/ac {^第二刀}{dgcm+;/showme  自动判断dodge or parry}{3}
+/ac {^你更不放松，竟又挥出第三刀}{initk;dgcm+;/showme  自动判断dodge or parry}{3}
+/ac {^你说道：自动判断dodge or parry}{dgcm-}
+/ac {^dodge---duange---}{dgcm-;/showme ===== 短歌 多砍一刀，哈哈=====}
+/ac {^parry---changmeng---}{dgcm-;/showme ===== 长梦 多砍一刀，哈哈=====}
+/nop ac {你手腕一挫}{initk;dgcm-};
+/nop ac {你长啸一声，凌空而起}{initk;dgcm-};
+/nop ac {^你使出短歌刀法}{initk}
+/al dgcm+ {
+    /gag {^你使出「兰};
+    /gag {^护士的身影};
+          /ac {你将内力凝为一线}{de06 {initk}};
+          /ac {你急忙撤肘收招。}{de06 {initk}};
+          /ac {原地没有动过}{duange};
+          /ac {天人相助}{/delay {0.2}{initk}}{3};
+          /ac {不躲不闪}{/delay {0.2}{changmeng}}{3};
+          /ac {攻势化于无形}{/delay {0.2}{changmeng}}{3};
+          /ac {弈道『得算篇』}{/delay {0.2}{changmeng}}{3};
+          /ac {悠漫漫织成一道剑网}{/delay {0.2}{changmeng}}{3};
+          /ac {刀调转头去，向你反噬}{/delay {0.2}{changmeng}}{3};
+          /ac {不避不闪}{/delay {0.2}{changmeng}}{3};
+          /ac {封}{changmeng};
+          /ac {迫}{changmeng};
+          /ac {击}{changmeng};
+          /ac {刺}{changmeng};
+          /ac {慢}{changmeng};
+          /ac {逼}{changmeng};
+          /ac {偏}{changmeng};
+          /ac {化解}{changmeng};
+          /ac {夹}{changmeng};
+          /ac {拍}{changmeng};
+          /ac {格}{changmeng};
+          /ac {引}{changmeng};
+          /ac {粘}{changmeng};
+          /ac {点在}{changmeng};
+          /ac {带}{changmeng};
+          /ac {泥牛入海}{changmeng};
+          /ac {九重刀幕}{changmeng};
+          /ac {削}{changmeng};
+          /ac {磕}{changmeng};
+          /ac {护}{changmeng};
+          /ac {阴风刺骨}{changmeng};
+          /ac {不知所措}{changmeng};
+          /ac {踉踉跄跄}{changmeng};
+          /ac {退步}{changmeng};
+          /ac {挥向}{changmeng};
+          /ac {抓}{changmeng};
+          /ac {抖}{changmeng};
+          /ac {架住}{changmeng};
+          /ac {你急忙沉腕避开}{/delay {0.2}{changmeng}}{3};
+          /ac {拿都拿不稳}{/delay {0.2}{changmeng}}{3};
+          /ac {一拔}{duange};
+          /ac {飞越}{duange};
+          /ac {绕着你}{duange};
+          /ac {荡开数尺}{duange};
+          /ac {消失不见}{duange};
+          /ac {避}{duange};
+          /ac {闪}{duange};
+          /ac {飘}{duange};
+              /ac {翻身}{duange};
+                /ac {绕到}{duange};
+                  /ac {挪}{duange};
+                    /ac {退出}{duange};
+                        /ac {踪迹}{duange};
+                          /ac {掠出}{duange};
+                            /ac {纵}{duange};
+                              /ac {弹开}{duange};
+                                /ac {遁}{duange};
+                                  /ac {扑}{duange};
+                                    /ac {躲}{duange};
+                                      /ac {身影一晃}{duange};
+                                        /ac {足不点地}{duange};
+                                              /ac {滑}{duange};
+                                                  /ac {窜}{duange};
+                                                  /ac {身形极速}{/delay {0.2}{duange}}{3};
+                                                  /ac {往外推出}{/delay {0.2}{changmeng}}{3};
+                                                  /ac {滴水不透}{/delay {0.2}{changmeng}}{3};
+                                                  /ac {早已绕到你身後}{/delay {0.2}{duange}}{3};
+                                                  /ac {^你将内力凝}{dgcm-;/delay {0.3}{initk}}{3};
+                                                  /ac {^Enemy:kee}{dgcm-;/delay {0.3}{initk}}{3}
+}
+/al dgcm- {
+          /unac {你将内力凝为一线};
+          /unac {你急忙撤肘收招。};
+          /unac {避};
+          /unac {原地没有动过};
+          /unac {天人相助};
+          /unac {你急忙沉腕避开};
+          /unac {拿都拿不稳};
+          /unac {不躲不闪};
+          /unac {攻势化于无形};
+          /unac {弈道『得算篇』};
+          /unac {悠漫漫织成一道剑网};
+          /unac {刀调转头去，向你反噬};
+          /unac {不避不闪};
+          /unac {封};
+          /unac {迫};
+          /unac {击};
+          /unac {刺};
+          /unac {慢};
+          /unac {逼};
+          /unac {偏};
+          /unac {化解};
+          /unac {夹};
+          /unac {拍};
+          /unac {格};
+          /unac {引};
+          /unac {粘};
+          /unac {点在};
+          /unac {带};
+          /unac {泥牛入海};
+          /unac {九重刀幕};
+          /unac {削};
+          /unac {磕};
+          /unac {护};
+          /unac {阴风刺骨};
+          /unac {不知所措};
+          /unac {踉踉跄跄};
+          /unac {退步};
+          /unac {挥向};
+          /unac {抓};
+          /unac {抖};
+          /unac {架住};
+          /unac {一拔};
+          /unac {绕着你};
+            /unac {闪};
+          /unac {飞越};
+          /unac {荡开数尺};
+          /unac {消失不见};
+          /unac {飘};
+              /unac {翻身};
+                /unac {绕到};
+                  /unac {挪};
+                    /unac {退出};
+                        /unac {踪迹};
+                          /unac {掠出};
+                            /unac {纵};
+                              /unac {弹开};
+                                /unac {遁};
+                                  /unac {扑};
+                                    /unac {躲};
+                                      /unac {身影一晃};
+                                        /unac {足不点地};
+                                              /unac {滑};
+                                                /unac {绕到};
+                                                  /unac {窜};
+                                                  /unac {身形极速};
+                                                  /unac {往外推出};
+                                                  /unac {滴水不透};
+                                                  /unac {早已绕到你身後};
+                                                  /unac {^你将内力凝};
+                                                  /unac {^Enemy:kee}
+}
+/ac {^一层淡淡的白气从指掌间透出，你的外伤}{cks}
+/ac {^你所受到的%0效用消失了}{/if {$is_kill==0  && $is_walk==0}{}{buff}}
+/gag {^手中的}
+/al getitem {
+    stack;
+    retrieve 5338;
+    retrieve 9673;
+    retrieve 5346;
+    retrieve 3106;
+    retrieve 1723;
+    retrieve 6728;
+    remove all;
+    wear all
+}
+/gag {^结果}
+/ac {^可惜%1看出了你的身法，向你倏然攻击}{tt busy fails}
+/read comm/autorecover.sc
+/nop al eatall {eat mantou;/delay {3}{drink hulu}}

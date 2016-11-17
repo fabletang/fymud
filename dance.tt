@@ -1,5 +1,6 @@
 #config {TINTIN CHAR} /
 /var myname dance
+/var myname_cn 舞
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname china.fengyun.com 6000
@@ -11,35 +12,46 @@
 /act {^您的英文名字：} {$myname}
 /al reload {/read dance.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};hp}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};hp}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
+/ac {^【新手】} {/line log ../mudlog/fy-chat.log}{plain}
+/ac {^【传闻】} {/line log ../mudlog/fy-chat.log}{plain}
+/ac {^【谣言】} {/line log ../mudlog/fy-chat.log}{plain}
+/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /al enablemove {enable move anxiang-steps}
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /al wim {wi needle;wi piece}
-/al buff {baohu tank;wim;perform iron-cloth.bingwantianzhang}
+/al wim {wi piece}
+/al buff {enablemove;wim;perform iron-cloth.bingwantianzhang}
 /ac {^你所受到的春水罗衫·冰纨天障的效用消失了}{/if {$is_kill==1}{perform iron-cloth.bingwantianzhang;/delay {2}{perform iron-cloth.bingwantianzhang}}}
 /ac {^你停止保护你的丈夫}{baohu tank}
-/al ki {set target %0;buff;enforce 80;/delay {2}{kill %0}}
+/al ki {set target %0;buff;/delay {4.2}{kill %0}}
 /nop al ki {set target %0;buff;enforce 70;/delay {2.6}{buff;kill %0}}
-/al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}}
-/al startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {17}}
-/al stopk {/unticker {kill};nokill}
+/nop al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}}
+/nop kkk {j;/delay {7}{unwi all;wi piece;perform tanzhijinghun;unwi piece;wi jade;wi short sword}}
+/al kkk {j;/delay {7}{perform tanzhijinghun}}
+/al startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {18.5}}
+/al stopk {movenone;/unticker {kill};nokill}
 /al pausek {
-/al kkk {;};
-/delay {8}{
-/al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}};
-}
-}
+    /al kkk {;};
+    /delay {8}{
+    /nop al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}};
+    /al kkk {j;/delay {7}{perform tanzhijinghun;}}
+    }
+    }
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
 /ac {^『夜雪初积』只能对战斗}{stopk;cks}
 /ac {^『漫天花雨』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^雪里春信只能在战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^你所选用的武功中没有这种必杀技。}{get piece;wim}
+/ac {^你所选用的武功中没有这种必杀技。}{get piece;gb 100 piece;wim}
+/ac {^你双袖一扬}{/if {$npc_busy==1}{/var npc_busy 0}}
+/nop busy_p {/if {$is_kill==1 && $npc_busy==1}{unwi all;wi piece;perform mantianhuayu;unwi piece;wi jade;wi short sword}}
+/al busy_p {/if {$is_kill==1 && $npc_busy==1}{perform mantianhuayu}}
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
@@ -47,6 +59,9 @@
 /read comm/team/team4.sc
 /read comm/status.sc
 /read comm/autorecover.sc
+/read comm/combat_busy.sc
+/read comm/debuff.sc
+/read comm/tianji.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
@@ -57,15 +72,16 @@
 /al fy2zt {fy2ztv}
 /unac {^然而，%1已经死了}{cks}
 /ac {^你身边冰壁逐渐溶解}{/if {$is_kill==0  || $is_walk==0}{}{h;/delay {4}{h}}}
-/ac {^( 你似乎十分疲惫，看来需要好好休息了}{hhh}
-/ac {^( 你头重脚轻，正在勉力支撑)}{pausek;hhh;/delay {1}{hhh};/delay {3}{hhh}}
-/ac {^( 你摇头晃脑、歪歪斜斜}{pausek;hh;/delay {1}{hh};/delay {3}{hh;cks}}
-    /ac {^( 你已经陷入半昏迷状态}{pausek;jjj;hh;/delay {1}{jjj;hh};/delay {3}{jj    j;hh;cks}}
-/ac {^( 硬气喘嘘嘘}{hhh hard;/delay {1}{hhh hard}}
-    /ac {^( 硬似乎十分疲惫}{hhh hard;/delay {1}{hhh hard}}
+/ac {^( 你气喘嘘嘘}{hh;de1 hh}
+/ac {^( 你似乎十分疲惫}{hh;hhh;de2 {hh;hhh}}
+/ac {^( 你头重脚轻，正在勉力支撑)}{pausek;hhh;/delay {1}{hhh;hh};/delay {3}{hhh;hh}}
+/ac {^( 你摇头晃脑、歪歪斜斜}{pausek;hhh;/delay {1}{hhh};/delay {3}{hhh;hh;cks}}
+    /ac {^( 你已经陷入半昏迷状态}{pausek;jjj;hhh;/delay {1}{jjj;hhh};/delay {3}{jjj;hhh;hh;cks}}
+/ac {^( 硬气喘嘘嘘}{hh hard;/delay {1}{hh hard}}
+    /ac {^( 硬似乎十分疲惫}{hh hard;/delay {1}{hh hard}}
         /ac {^( 硬头重脚轻}{pausek;hh hard;/delay {hh hard};/delay {3}{hh hard}}
-            /ac {^( 硬摇头晃脑}{pausek;hh hard;/delay {1}{hh hard};/delay {3}{hh hard}}
-                /ac {^( 硬已经陷入半昏迷状态}{pausek;hh hard;/delay {1}{hh hard};/delay {3}{hh hard}}
+            /ac {^( 硬摇头晃脑}{pausek;hhh hard;/delay {1}{hhh hard};/delay {3}{hhh hard}}
+                /ac {^( 硬已经陷入半昏迷状态}{pausek;hhh hard;/delay {1}{hhh hard};/delay {3}{hhh hard}}
                     /ac {^( 坦克气喘嘘嘘}{hhh tank;/delay {1}{hhh tank}}
                         /ac {^( 坦克似乎十分疲惫}{hhh tank;/delay {1}{hhh tank}}
                             /ac {^( 坦克头重脚轻}{pausek;hh tank;/delay {hh tank};/delay {3}{hh tank}}
@@ -76,16 +92,16 @@
                                                 /ac {^( 金枪不倒头重脚轻}{pausek;hh gun;/delay {hh gun};/delay {3}{hh gun}}
                                                     /ac {^( 金枪不倒摇头晃脑}{pausek;hh gun;/delay {1}{hh gun};/delay {3}{hh gun}}
                                                         /ac {^( 金枪不倒已经陷入半昏迷状态}{pausek;hh gun;/delay {1}{hh gun};/delay {3}{hh gun}}
-                                                            /ac {^( 明月气喘嘘嘘}{hhh light;/delay {1}{hhh light}}
-                                                                /ac {^( 明月似乎十分疲惫}{hhh light;/delay {1}{hhh light}}
-                                                                    /ac {^( 明月头重脚轻}{pausek;hh light;/delay {hh light};/delay {3}{hh light}}
-                                                                        /ac {^( 明月摇头晃脑}{pausek;hh light;/delay {1}{hh light};/delay {3}{hh light}}
-                                                                            /ac {^( 明月已经陷入半昏迷状态}{pausek;hh light;/delay {1}{hh light};/delay {3}{hh light}}
-                                                                                /ac {^( 清辉气喘嘘嘘}{hhh shine;/delay {1}{hhh shine}}
-                                                                                    /ac {^( 清辉似乎十分疲惫}{hhh shine;/delay {1}{hhh shine}}
-                                                                                        /ac {^( 清辉头重脚轻}{pausek;hh shine;/delay {hh shine};/delay {3}{hh shine}}
-                                                                                            /ac {^( 清辉摇头晃脑}{pausek;hh shine;/delay {1}{hh shine};/delay {3}{hh shine}}
-                                                                                                /ac {^( 清辉已经陷入半昏迷状态}{pausek;hh shine;/delay {1}{hh shine};/delay {3}{hh shine}}
+                                                            /ac {^( 明月气喘嘘嘘}{hh mingyue;/delay {1}{hh mingyue}}
+                                                                /ac {^( 明月似乎十分疲惫}{hh mingyue;hhh mingyue;/delay {1}{hh mingyue;hhh mingyue}}
+                                                                    /ac {^( 明月头重脚轻}{pausek;hhh mingyue;/delay {hhh mingyue};/delay {3}{hhh mingyue;hh mingyue}}
+                                                                        /ac {^( 明月摇头晃脑}{pausek;hhh mingyue;/delay {1}{hhh mingyue};/delay {3}{hhh mingyue;hh mingyue}}
+                                                                            /ac {^( 明月已经陷入半昏迷状态}{pausek;hhh mingyue;/delay {1}{hhh mingyue};/delay {3}{hhh mingyue;hh mingyue}}
+                                                                                /ac {^( 清辉气喘嘘嘘}{hh qinghui;/delay {1}{hh qinghui}}
+                                                                                    /ac {^( 清辉似乎十分疲惫}{hh qinghui;hhh qinghui;/delay {1}{hh qinghui;hhh qinghui}}
+                                                                                        /ac {^( 清辉头重脚轻}{pausek;hhh qinghui;/delay {hhh qinghui};/delay {3}{hhh qinghui;hh qinghui}}
+                                                                                            /ac {^( 清辉摇头晃脑}{pausek;hhh qinghui;/delay {1}{hhh qinghui};/delay {3}{hhh qinghui;hh qinghui}}
+                                                                                                /ac {^( 清辉已经陷入半昏迷状态}{pausek;hhh qinghui;/delay {1}{hhh qinghui};/delay {3}{hhh qinghui;hh qinghui}}
 /al getitem {
     pick needle;
     ga cactus bonsai;
@@ -99,5 +115,17 @@
   wear all
  }
 /var team_header dance;
+/var team_header_cn {舞};
 /var teamer_1 mingyue;
+/var teamer_1_cn {明月};
+/var teamer_2 qinghui;
+/var teamer_2_cn {清辉};
+/var teamer_3 none;
 /var helper dance;
+/var healer_1 dance;
+/nop  t { /if {"$team_header" == "$myname"}{ whisper $teamer_1 EX%0; /var EX %0; /replace {EX}{,}{;}; /delay {0.4}{whisper $teamer_2 EX%0}; /delay {1.2}{$EX} }{/showme you not leader}}
+/al do_corpse {wim;j;de4 {/if {$is_kill==1}{j}}}
+/ac {死了。}{
+    look corpse;de2 {get baoxiang;x baoxiang};
+    do_corpse;
+            }

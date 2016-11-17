@@ -11,16 +11,19 @@
 /act {^您的英文名字：} {$myname}
 /al reload {/read mingyue.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280};hp}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280};hp}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /al jd {th jd $myname}
 /al buff {baohu shine;wim;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /nop al kkk {bf2;bf4;ak1;jjk;jk}
 /al kkk {bf2;bf4;wkxl}
+/al kkk {checkbuff;bf2;k;}
+/al kkk {checkbuff;bf2;perform leidianjiaohong with qinghui;}
+/al kkk {bf2;checkbuff;}
 /ac {^你停止保护你的妻子}{baohu shine}
-/al ki {set target %0;buff;/delay {4.1}{kill %0}}
+/al ki {set target %0;wim;buff;/delay {4.1}{kill %0}}
 /nop al ak1 {ps}
 /nop al ak1 {}
 /al initk {
@@ -30,12 +33,14 @@
 /nop al ak1 {/showme wait %1 s 用暗器};
 /nop delay {%1}{/showme ======计时结束===== ;initk};
 /nop }
-/al startk {initk;nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}}
+/al startk {wim;initk;nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}}
 /al stopk {initk;/unticker {kill};nokill}
-/ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
+/al busy_p {/if {$is_kill==1}{perform leidianjiaohong with qinghui;perform leidianjiaohong}}
+/nop {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
+/ac {^你对著%0！今日不是你死就是我活！} {wim;iskill;startk}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
 /nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
-/ac {^『雷电交轰』只能对战斗}{stopk}
+/ac {^『雷电交轰』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『明月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『霜华凝结』只能对战斗}{/if {$is_kill==1}{stopk}}
 /ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
@@ -49,7 +54,7 @@
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{jk;exert qi 900;/delay {1}{jk;exert qi 900}}
 /ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{jk;exert qi 900;/delay {3}{jk;exert qi 900;hp}}
 /nop ac {^( 你已经陷入半昏迷状态，神智全失}{hh;/delay {1}{hh};/delay {3}{hh;hp}}
-/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get jade;wim}
+/ac {^你所选用的武功中没有这种必杀技。}{unwi all;get blade;get jade;wim}
 
 /read comm/moonbuff.sc
 /read comm/gag.sc
@@ -58,11 +63,15 @@
 /read comm/quest.sc
 /read comm/team/team4.sc
 /read comm/status.sc
+/read comm/combat_busy.sc
 /nop read hb.tin
+/read comm/debuff.sc
+/read comm/tianji.sc
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
+/al hh {/if {$is_kill==0 && $ is_walk==0}{gb skin;drink skin;pp}}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al getitem {
     pick needle;
@@ -80,6 +89,18 @@
 /read comm/autorecover.sc
 /al ffy {recall back;w;n;e;e;e;n;u}
 /var team_header dance;
+/var team_header_cn {舞};
 /var teamer_1 mingyue;
-/nop var teamer_2 gun;
+/var teamer_1_cn {明月};
+/var teamer_2 qinghui;
+/var teamer_2_cn {清辉};
+/var teamer_3 none;
 /var helper dance;
+/var healer_1 dance;
+/unac {^三仙碑};
+/al wim {wi jade;wi short sword}
+/al do_corpse {wim;k;de4 {/if {$is_kill==1}{k}}}
+/ac {死了。}{
+    look corpse;de2 {get baoxiang;x baoxiang};
+    do_corpse;
+            }

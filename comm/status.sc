@@ -51,6 +51,8 @@
 /ac {^fystatus:kee:%1/%2/%3}{/var qi %1;/showme Getnpc}
 /ac {^fystatus:sen:%1/%2/%3}{/var shen %1;/showme Getnpc}
 /ac {^fystatus:gin:%1/%2/%3}{/var jin %1;/showme Getnpc}
-/ac {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}{/var qi %1;/var jin %4;/var shen %7;/showme Getnpc}
+/nop ac {^fystatus:kee:%1/%2/%3;gin:%4/%5/%6;sen:%7/%8/%9}{/var qi %1;/var jin %4;/var shen %7;/showme Getnpc}
 /ac {^fystatus:force:%1/%2}{/var fce %1;/var fce_m %2;/showme Getnpc}
-/ac {^  谨慎的  宫南燕(Gong nanyan)	** 战斗中 **(LV89)}{}
+/nop {^  谨慎的  宫南燕(Gong nanyan)	** 战斗中 **(LV89)}
+/nop {fystatus:kee:2523/2523/2523;gin:1236/1236/1236;sen:1236/1236/1236}
+/nop {fystatus:force:777/777;mana:450/225;atman:450/225}
