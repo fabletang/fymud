@@ -19,3 +19,7 @@
 /ac {^你距离目标距离不够。}{/if {$runok==1}{run $target}}
 /var runok 1
 /ac {^冲锋每30秒(非铁雪2分钟)最多用一次（%1）}{/var runok 0;/var runt %1;/math runt {120-$runt};/delay {%1}{/var runok 1}}
+/ac {^七彩蝙蝠毒       %1 次}{gb bat drug;cure 7batpoison}
+/ac {竟然发出妙不可言的奇香扑向你！}{stat}
+/ac {^你似乎染上了}{stat}
+/ac {^你身上的毒素}{hp}

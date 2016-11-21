@@ -192,8 +192,9 @@
     };
     }{4}
 /ac {^--checkall}{/if {$qi_per_delta<60}{hh;dz;/showme Æø:$qi_per_delta;}{/showme Æø==$qi_per_delta};
-                  /if {$qi_per<95}{whisper healer_1 EXhh $myname;tt ===need heal:$myname:$serial;
+                  /if {$qi_per<95}{whisper $healer_1 EXhh $myname;tt ===need heal:$myname:$serial;
                         /math serial {$serial+1};
                         hh;
                       };
+                  /if {$neili<$neili_init}{hn};
                 }

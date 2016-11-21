@@ -1,6 +1,6 @@
 #config {TINTIN CHAR} /
-/nop var myname fafafafa
-/var myname bababa
+/var myname fafa
+/nop var myname babababa
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname china.fengyun.com 6000
 /session $myname main.fengyun6666.com 6666

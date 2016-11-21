@@ -10,13 +10,13 @@
     /if {$jin_per<91||$shen_per<91||$qi_per<60}{
         /all {/showme ====ill-health:$myname:jin_per=$jin_per:qi_per=$qi_per:shen_per=$shen_per};
         }{
-            /if {$food_drink<20 || $food_eat<20}{chi;/showme ----need food----;}{
+            /if {$food_drink<15 || $food_eat<15}{chi;/showme ----need food----;}{
                 /if {$shaqi>900}{/showme ----jiang shaqi----}{
                     /all {/showme ====all right:$myname===};
                     }
             }
         }
     }
-/ac {^====ill-health:%1:}{/if {"%1"=="$myname"}{/if {"$myname"=="$team_header"}{tc};fy2zt}}}
-/ac {^----need food----}{eatall;de5 l;}
-/ac {^----jiang shaqi----}{tc;pl {d;n;n;e;/2 salute;w;s;s;u};pr}
+/ac {^====ill-health:%1:}{/if {"%1"=="$myname"}{/if {"$myname"=="$team_header"}{tc};fy2zt}}
+/ac {^----need food----}{eatall;de6 l;}
+/ac {^----jiang shaqi----}{tc;pl {wlk;d;n;n;e;salute;salute;w;s;s;u;nwlk};pr}

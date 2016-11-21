@@ -35,6 +35,10 @@
 /al ttc {tell $teamer_3 EX%0}
 /al ttd {tell $teamer_4 EX%0}
 /al tte {tell $teamer_5 EX%0}
+/al wwh {whisper $team_header EX%0}
+/al wwa {whisper $teamer_1 EX%0}
+/al wwb {whisper $teamer_2 EX%0}
+/al wwc {whisper $teamer_3 EX%0}
 
 /al t {
     /if {"$team_header" == "$myname"}{
@@ -52,7 +56,11 @@
     }
 /ac {^如果你愿意加入，请用 %0。}{%0}
 /ac {^队友 %0 的任务被你完成}{tt quest}
-/al tq {tta quest;ttb quest;ttc quest;quest}
+/al tq {
+    wwa quest;wwb quest;
+    /if {"$teamer_3"=="none"}{}{wwc quest};
+    quest;
+    }
 
 /al ggh {give %0 to $team_header}
 /al gga {give %0 to $teamer_1}
@@ -69,16 +77,6 @@
 /al csoulto {conjure soul_sense on %0}
 /ac {^%0告诉你：teamsoul}{csoulto $teamer_2; /delay {2}{csoulto kisskill}; /delay {4}{csoul}}
 /al tsoul {csoulto $teamer_2; /delay {2}{csoulto $teamer_1}; /delay {4}{csoulto $teamer_3};/delay {6}{csoulto $myname}}
-/al tcks {
-    tta stat;ttb stat;ttc stat;stat;
-    tta cks;ttb cks;ttc cks;cks;
-    de1 {
-        whisper $teamer_1 Report status:$healer_1;
-        whisper $teamer_2 Report status:$healer_1;
-        whisper $teamer_3 Report status:$healer_1;
-        teamhp;
-    }
-}
 /al tfull {
    tcks;
    de2 {tta hn;ttb hn;ttc hn}
@@ -149,6 +147,18 @@ tat;
         teamhp;
     }
 }
+/al tcks {
+    tta stat;ttb stat;stat;
+    tta cks;ttb cks;cks;
+    /if {"$teamer_3"=="none"}{}{ttc stat;ttc cks;};
+    de1 {
+        wwa /showme --checkall;
+        wwb /showme --checkall;
+        /if {"$teamer_3"=="none"}{}{wwc /showme --checkall};
+        teamhp;
+        /showme --checkall;
+    }
+}
 /al tfull {
    tcks;
    de2 {tta hn;ttb hn;
@@ -166,6 +176,11 @@ whisper $teamer_2 EX%0;
   tw follow $team_header;
   }{/showme ===you not leader};
 }
+/al wf tf;
+/al wc tc;
+/al wq tq;
+/al a t;
+/al ak tk;
 /al tc {tta follow none;ttb follow none;
         /if {"$teamer_3"=="none"}{}{ttc follow none;};
         }

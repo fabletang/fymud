@@ -21,11 +21,12 @@
 /ac {^【谣言】} {/line log ../mudlog/fy-chat.log}{plain}
 /ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
-/al enablemove {enable move anxiang-steps}
+/nop  enablemove {enable move anxiang-steps}
+/al enablemove {enable move cloud-dance}
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /al wim {wi needle;wi piece}
-/al wim {wi piece}
+/al wim {wi needle;wi piece;wi short sword}
 /al buff {enablemove;wim;perform iron-cloth.bingwantianzhang}
 /ac {^你所受到的春水罗衫·冰纨天障的效用消失了}{/if {$is_kill==1}{perform iron-cloth.bingwantianzhang;/delay {2}{perform iron-cloth.bingwantianzhang}}}
 /ac {^你停止保护你的丈夫}{baohu tank}
@@ -33,7 +34,7 @@
 /nop al ki {set target %0;buff;enforce 70;/delay {2.6}{buff;kill %0}}
 /nop al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}}
 /nop kkk {j;/delay {7}{unwi all;wi piece;perform tanzhijinghun;unwi piece;wi jade;wi short sword}}
-/al kkk {j;/delay {7}{perform tanzhijinghun}}
+/al kkk {j;/delay {8}{perform tanzhijinghun}}
 /al startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {18.5}}
 /al stopk {movenone;/unticker {kill};nokill}
 /al pausek {
@@ -45,9 +46,10 @@
     }
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
-/ac {^『夜雪初积』只能对战斗}{stopk;cks}
-/ac {^『漫天花雨』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^雪里春信只能在战斗}{/if {$is_kill==1}{stopk;cks}}
+/ac {^『夜雪初积』只能对战斗}{/if {$is_kill==1}{stopk;tcks}}
+/ac {^『弹指惊魂』只能对战}{/if {$is_kill==1}{stopk;tcks}}
+/ac {^『漫天花雨』只能对战斗}{/if {$is_kill==1}{stopk;tcks}}
+/ac {^雪里春信只能在战斗}{/if {$is_kill==1}{stopk;tcks}}
 /ac {^你所选用的武功中没有这种必杀技。}{get piece;gb 100 piece;wim}
 /ac {^你双袖一扬}{/if {$npc_busy==1}{/var npc_busy 0}}
 /nop busy_p {/if {$is_kill==1 && $npc_busy==1}{unwi all;wi piece;perform mantianhuayu;unwi piece;wi jade;wi short sword}}
@@ -124,7 +126,7 @@
 /var helper dance;
 /var healer_1 dance;
 /nop  t { /if {"$team_header" == "$myname"}{ whisper $teamer_1 EX%0; /var EX %0; /replace {EX}{,}{;}; /delay {0.4}{whisper $teamer_2 EX%0}; /delay {1.2}{$EX} }{/showme you not leader}}
-/al do_corpse {wim;j;de4 {/if {$is_kill==1}{j}}}
+/al do_corpse {wim;j;de4 {/if {$is_kill==1}{j}};de6 {/if {$is_kill==1}{jj}}}
 /ac {死了。}{
     look corpse;de2 {get baoxiang;x baoxiang};
     do_corpse;

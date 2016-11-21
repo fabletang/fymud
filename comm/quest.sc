@@ -4,7 +4,6 @@
 /nop {$npc(%1)}{say %1;@lowerLetter{};/var npc_name $result;say e $npc_name;say %1;say $result}
 /ac {任务被你完成}{quest}
 /ac {^你的任务被}{quest}
-/ac {^天机老人说道：请找回『%0』}{/var en_qb 1; /var is_buy 1;/var q_item %0;/var q_item_name 0;}
 /nop {^你现在的任务是杀『%0』。}{/line log quest-fy4.log}
 /ac {^你现在的任务是%0寻『%1』}{/var en_qb 1; /var q_item %1}
 /al qticker {/ticker {q}{quest}{120};}
@@ -130,9 +129,9 @@ w;cook
     /delay {0.5}{maonv2hua};
     /delay {1.5}{ask qing qing about 弯刀}
     }
-/ac {一阵悠悠的琴声不知从何处传来}{listen}
-/ac {琴声戛然而止}{/delay {1}{apprentice hua zhenzhen}}
-/ac {琴声戛然而止}{/delay {1}{;}}
+/ac {^一阵悠悠的琴声不知从何处传来}{listen}
+/ac {^幽远的琴声在夜色中如泣如诉}{nd;hs2hua}
+/ac {^琴声戛然而止}{/delay {1}{apprentice hua zhenzhen}}
 /ac {^满了各式各样的藤萝}{unwi all; wi jade; chop vine; make tengluo}
 /ac {^你掏出一条藤萝绳}{climb down;
     /delay {6}{get all from 树冠; climb up};
@@ -258,7 +257,7 @@ n;
 /ac {^田膨郎转过身去}{get lawan}
 /ac {^少林派和尚道：阿弥陀佛，请问这位施主是何派高足}{answer 清平;de2 {qeatall}}
 /al re {repair}
-/al whlaopi {whisper laopi 小马;whisper laopi 朋友;de2 {kill sun legate;out}}
+/al whlaopi {whisper laopi 小马;whisper laopi 朋友;de2 {kill sun legate;out;out}}
 /ac {^你听到老皮滚入湖水前说的最后两句话}{charge center;get grass;give grass to xiao lin}
 /al askxiaonv {
 ask xiaonu about here;
@@ -404,3 +403,28 @@ de4 {/showme dq-%1};
 
 /ac {^路边黑影一闪}{ki killer;}
 /al asksongfan {pl {ask woman about 送饭;get basket;w;w;s;s;e;give farmer basket;w;n;n;e;e};pr}
+/ac {^雪域阴魂说道：我有一本}{x scroll;de2 x scroll;de4 x scroll;de5 x scroll}
+/nop  {^天机老人说道：请到%1找回%2}{/if {$at_tj==1}{qb}}
+/ac {^天机老人说道：请%1找回『%0』}{/var en_qb 1; /var is_buy 1;/var q_item %0;/var q_item_name 0;/if {$at_tj==1}{qb}}
+/nop 两世恩怨
+/al askjian {
+    ask jian about 李坏;
+    de1 {ask jian about 李坏};
+    de2 {ask jian about 李坏};
+    de3 {ask jian about 李坏};
+    de4 {ask jian about 指望};
+    de5 {ask jian about 指望};
+    de6 {ask jian about 失了踪影};
+    de7 {getbat};
+    de9 {put fried meat in desk};
+    de10 {get paper bag from desk};
+    de11 {get meat from desk};
+    de12 {pl {w;w;w;nu;nu;l paper bag;give paper bag to jian};pr};
+}
+/al askjian2 {
+    {ask jian about 月神};
+    de1 {ask jian about 月神};
+    de2 {ask jian about 月神};
+    de3 {pl {sd;sd;e;e;e;ask xue about 月神};pr};
+}    
+/al getbat {pl {sd;sd;e;l 走廊;l 爪印;l 痕迹;e;n;l 走廊;l 白骨;s;e;l desk};pr}   

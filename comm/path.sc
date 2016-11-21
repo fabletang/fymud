@@ -136,7 +136,7 @@
     /unac {^老婆子说道：“上船吧！”};
     /unac {^老婆子说道：“到了，你们可以下船了。”}
 }
-/al ccd2fy {ccd2fy+;/delay {0.2}{l}}
+/al ccd2fy {ccd2fy+;d;/delay {0.2}{l}}
 /al ccd2fy+ {
     wlk;
     /ac {^碧蓝海边}{hb2fy;ccd2fy-};
@@ -272,22 +272,14 @@
 /al fy2bj {wlk;d;/4 e;s;e;nwlk}
 /al bj2fy {wlk;w;n;/4 w;u;nwlk}
 
-
 /nop 无名镇
-
-
 /al fy2wmz {wlk;d;/4 n;/delay {0.5}{nw;n;ne;n;n;e;e;nwlk}}
 /al wmz2fy {wlk;w;w;s;s;sw;s;se;/delay {0.5}{/4 s;u;nwlk}}
-
-/nop 千佛
-/nop al fy2qf {wlk;d;/4 n;nw;de1 {n;ne;/4 n};de2 {n;/2 e;nwlk}}
-/nop al qf2fy {wlk;/2 w;/3 s;de1 {unwi all;s;s;sw;s;se};de2 {/4 s;u;nwlk}}
 
 /nop al fyn { wlk;do d,n,n,n,n,nw,n,ne,n,n;nwlk;}
 /al fyn {pl {wlk;d;n;n;n;n;nw;n;ne;n;n;nwlk};pr}
 /nop al fyn- {wlk;unwield all;do s,s,sw,s,se,s,s,s,s,u;nwlk}
 /al fyn- {pl {wlk;unwield all;s;s;sw;s;se;s;s;s;s;u;nwlk};pr}
-/nop al fys {wlk;do d,s,s,s,s,s,s,s,s;nwlk}
 /al pfys {pl {wlk;d;s;s;s;s;s;s;s;s;nwlk}}
 /nop al fys- {wlk;unwield all;do n,n,n,n,n,n,n,n,u;nwlk}
 /al pfys- {pl {wlk;unwield all;n;n;n;n;n;n;n;n;u;nwlk}}
@@ -297,15 +289,13 @@
 /nop al fye {wlk;do d,e,e,e,e,e,e,e,e,e;nwlk;}
 /al fye- {pl {wlk;unwield all;w;w;w;w;w;w;w;w;w;u;nwlk};pr}
 /nop al fye- {wlk;unwield all;do w,w,w,w,w,w,w,w,w,u;nwlk}
-/al fyw {wlk;do d,w,w,w,w,w,w,w,w;nwlk}
-/al fyw {wlk;d;w;w;w;w;w;w;w;w;nwlk}
-/al fyw- {wlk;unwield all;do e,e,e,e,e,e,e,e,u;nwlk}
-/al fyw- {wlk;unwield all;e;e;e;e;e;e;e;e;u;nwlk}
+/al fyw {pl {wlk;d;w;w;w;w;w;w;w;w;nwlk};pr}
+/al fyw- {pl {wlk;unwield all;e;e;e;e;e;e;e;e;u;nwlk};pr}
 
 /nop fyn {wlk;do d,n,n,n,n,nw,n,ne,n,n;nwlk;}
 /nop  fy2qf {fyn;/delay {1.5}{fyn2qf}}
-/al fy2qf {wlk;do d,n,n,n,n,nw,n,ne,n,n,n,n,n,e,e;nwlk}
-/al fy2qf {wlk;d;n;n;n;n;nw;n;ne;n;n;n;n;n;e;e;nwlk}
+/nop 千佛
+/al fy2qf {pl {wlk;d;n;n;n;n;nw;n;ne;n;n;n;n;n;e;e;nwlk};pr}
 /nop baihuagu
 /al qf2bh {do e,e,s,around flower,w,westup,northup,climb up,ask laoren about 公子羽}
 /al bhout {ask master about leave}
@@ -314,7 +304,6 @@
 /al fyn2qf {wlk;do n,n,n,e,e;nwlk}
 /al qf2fyn {pl {wlk;w;w;s;s;s;nwlk};pr}
 /al qf2fy {pl {unwield all;wlk;w;w;s;s;s;s;s;sw;s;se;s;s;s;s;u;nwlk};pr}
-/nop al fy2qf {fyn;/delay {1.5}{/3 n;/2 e}}
 /al fyn2qf+ {
     wlk;
     /ac {^风云城北}{n};
@@ -362,13 +351,11 @@
 /al xg2fy {xg2qf;de1 {qf2fy}}
 
 /nop 清平山庄
-/nop al qf2qp {wlk;do e,s,s,s,e,ne,ne,ne,e;nwlk}
-/nop al qp2qf {wlk;do w,sw,sw,sw,w,n,n,n,w;nwlk}
 /al qf2qp {pl {wlk;e;s;s;s;e;ne;ne;ne;e;nwlk};pr}
 /al qp2qf {pl {wlk;w;sw;sw;sw;w;n;n;n;w;nwlk};pr}
+/al fy2qp {pl {wlk;d;n;n;n;n;nw;n;ne;n;n;n;n;n;e;e;qf2qp};pr}
+/al qp2fy {pl {wlk;w;sw;sw;sw;w;n;n;n;w;qf2fy};pr}
 
-/al fy2qp {fy2qf;de1 {qf2qp}}
-/al qp2fy {qp2qf;de1 {qf2fy}}
 /nop hm 后门
 /al qp2hm {wlk;e;e;e;e;e;e;e;eu;ed;nwlk}
 /al hm2qp {wlk;wu;wd;w;w;w;w;w;w;w;nwlk}
@@ -812,7 +799,7 @@
 /nop 沉香镇
 /nop fy2cx {cx2fy-;fy2ml;fy2cx+}
 /nop al fy2cx {cx2fy-;fy2ml;/delay {5.5}{swing west;swing west};/delay {6}{w;w;w;w;nwlk}}
-/al fy2cx {fy2ml;/delay {7}{swing west;swing west;w;w;w;w;nwlk}}
+/al fy2cx {fy2ml;/delay {7}{pl {swing west;swing west;w;w;w;w;nwlk};pr}}
 /al fy2cx+ {
     wlk;
     /ac {^你抓着突出的树}{ml2cx+;};
@@ -914,7 +901,8 @@
 /al hs2fy {hs2cx;cx2fy+}
 /al hs2hua {pl {wlk;wu;wu;wu;se;sw;se;sw;e;su;su;eu;su;slide rock;nwlk};pr}
 /al maonv2hua {nd;sw;se;sw;e;su;su;eu;su;apprentice hua zhenzhen;slide rock}
-/al hua2hs {pl {wlk;nd;slide rock;nd;wd;nd;nd;w;ne;nw;ne;nw;ed;ed;ed;nwlk};pr}
+/nop hua2hs {pl {wlk;nd;slide rock;nd;wd;nd;nd;w;ne;nw;ne;nw;ed;ed;ed;nwlk};pr}
+/al hua2hs {pl {wlk;nd;slide rock;nd;wd;nd;nd;w;ne;nw;ne;nw;ed;nwlk};pr}
 /al hsout {wlk;pl {s;ed;ne;nu;nw;wd;wu;wd;nd;nd;w;ne;nw;ne;nw;ed;nwlk};pr}
 /al hsin  {wlk;pl {wu;se;sw;se;sw;e;su;su;eu;ed;eu;se;sd;sw;wu;n;nwlk};pr}
 /al fy2hs2 {fy2hs;de11 {hsin}}
@@ -949,18 +937,18 @@
 /al slhm2fy {wlk;w;ne;w;sw;w;sw;se;e;de1 {fyw-}}
 /nop 风云西
 /nop 富贵山庄
-/al fyw2fg {wlk;do w,w,w,n,n,n,n,n,ne,n,e,n,n;nwlk}
-/al fyw2fg {wlk;w;w;w;n;n;n;n;n;ne;n;e;n;n;nwlk}
+/nop fyw2fg {wlk;do w,w,w,n,n,n,n,n,ne,n,e,n,n;nwlk}
+/al fyw2fg {pl {wlk;w;w;w;n;n;n;n;n;ne;n;e;n;n;nwlk};pr}
 /al fy2fg {fyw;de1 {fyw2fg}}
-/al fg2fyw {wlk;do s,s,s,w,s,sw,s,s,s,s,s,e,e,e;nwlk}
-/al fg2fyw {wlk;s;s;s;w;s;sw;s;s;s;s;s;e;e;e;nwlk}
+/nop fg2fyw {wlk;do s,s,s,w,s,sw,s,s,s,s,s,e,e,e;nwlk}
+/al fg2fyw {pl {wlk;s;s;s;w;s;sw;s;s;s;s;s;e;e;e;nwlk};pr}
 /al fg2fy {fg2fyw;de1 {fyw-}}
 /al fg2guo {pl {wlk;n;n;n;n;w;nw;nw;sw;nw;sw;nw};pr}
 /al guo2fg {pl {wlk;se;ne;se;ne;se;se;e;s;s;s;s};pr}
 /al fy2guo {fy2fg;de2 {fg2guo}}
 /al guo2fy {guo2fg;de1 {fg2fy}}
 /al fgin {wlk;pl {n;n;n;n;jie gaoshi;drop yaopai;nu;wu;nu;nu;wu;nu;ne;nu;nu;enter;nwlk};pr}
-/al fgout {wlk;out;sd;sd;sw;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk}
+/al fgout {pl {wlk;out;sd;sd;sw;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk};pr}
 /al fy2fg1 {fy2fg;de3 {fgin}}
 /al fg12fy {fgout;de2 {fg2fy}}
 /nop 金府
@@ -1279,7 +1267,7 @@ wlk;
 
 /nop 塞口
 /al fy2sk {fyw;de2 {pl {w;w;w;w;w;w;w;w;w;nwlk};pr}}
-/al sk2fy {pl {wlk;e;e;e;e;e;e;e;e;e;fyw-};pr}
+/al sk2fy {pl {wlk;e;e;e;e;e;e;e;e;e;fyw-};pr;}
 /nop 桃源
 /al fy2ty {wlk;/al ty_action {around;l};fy2wdz;fy2ty+;de2 {/4 e;ty_action}}
 /al fy2ty+ {
@@ -1558,6 +1546,10 @@ xsldd-;
 /unac {^皓月宫};
 /unac {^你的内力过弱，恐怕跳};
 }
+/al bd1  {s;w;s;s;s;w;s;w;s}
+/al bd1  {s;w;s;s;w;s;s;w;s;w;s}
+/al bd1  {enter;s;w;s;s;w;s;s;w;s;}
+/al bd1- {n;e;n;n;e;n;n;e;n;out}
 /al bingdong {bingdong+;/delay {0.2}{l}}
 /al bingdong+ {
 wlk;
@@ -1781,7 +1773,7 @@ nwlk;
 /al dt2fy {dt2wdz;de4 {wdz2fy}}
 /al dtup {dtup+;l}
 /al dtup+ {
-    /ac {^断塔}{u};
+    /ac {^断塔}{de02 u};
     /ac {^“喀吧！”腐朽的木板}{u};
     /ac {^断塔顶}{dtup-}{4};
 }
@@ -1792,7 +1784,7 @@ nwlk;
 }
 /al dtdown {dtdown+;l}
 /al dtdown+ {
-    /ac {^断塔}{d};
+    /ac {^断塔}{de02 d};
     /ac {^断塔底层}{dtdown-}{4};
 }
 /al dtdown- {
@@ -1925,6 +1917,9 @@ nwlk;
 /ac {^有一批宝藏就在%1的方向！你可以用 %2 来寻找它}{%2;de1 {read afrji;read map}}
 /nop 龙虎寨
 /al bc2lhz {pl {se;e;e;e;e;s;s;se;listen;l south;s;disarm;se;climb tree};pr;de3 {/10 scout};de4 {/10 scout}}
+/al lhz2bc {pl {wlk;d;nw;n;nw;n;n;w;w;w;w;nw;nwlk};pr}
+/al fy2lhz {fy2bc;de14 bc2lhz}
+/al lhz2fy {lhz2bc;de2 bc2fy}
 /nop fy to room set room 000
 /al fy2room+ {
     wlk;

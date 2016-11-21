@@ -204,7 +204,7 @@
 /al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
-/if {$can_eat==1}{gb meat;gb skin;drink skin;/delay {2.3}{eat meat;pp meat;pp wineskin}}
+/if {$can_eat==1}{gb meat;gb skin;drink skin;/delay {2.8}{eat meat;pp meat;pp wineskin}}
 }
 /nop al eatall {get xigua from small bag;eat xigua;put xigua in small bag}
 /nop 香灵
@@ -312,7 +312,8 @@
 /ac {^你死了。}{wlk;cry;set revive 1}
 /ac {^你不可以在这里吐纳练功}{wlk}
 /ac {^你不可以在这里用内功}{stopk}
-/ac {^不老寒泉}{/if {$is_kill==0}{gb matong;fill matong;gb skin;fill skin;wi jade;dip jade}}
+/nop ac {^不老寒泉}{/if {$is_kill==0}{gb matong;fill matong;gb skin;fill skin;wi jade;dip jade}}
+/unac {^不老寒泉};
 /ac {^战斗中不能打坐}{iskill}
 /ac {^忽然，你似乎闻到了沙底下的一丝湿气，也许可以挖（digdown）下去看看}{digdown; /delay {2}{digdown}}
 /ac {^慌乱而去。}{/showme 掉东西了;/3 team talk $myname 掉东西了!!!}
@@ -665,3 +666,5 @@
 /nop 练梅花桩
 /al lianzhuang {/ticker {lian}{lian zhuang;hp}{6}}
 /al notlianzhuang {/unticker {lian}}
+/nop get 仙人刺
+/al getneedle {pl {wlk;d;s;w;u;e;dongfang101;pick needle;out;w;d;e;n;u;nwlk};pr}
