@@ -5,7 +5,8 @@
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname china.fengyun.com 6000
 /nop session $myname fy.sysfon.com 6000
-/session $myname main.fengyun6666.com 6666
+/nop session $myname main.fengyun6666.com 6666
+/session $myname 121.40.128.202 6666
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
@@ -25,24 +26,30 @@
 /al enablemove {enable move cloud-dance}
 /al movenone {enable move none}
 /al jd {th jd $myname}
-/al wim {wi needle;wi piece}
-/al wim {wi needle;wi piece;wi short sword}
-/al buff {enablemove;wim;perform iron-cloth.bingwantianzhang}
+/al buff {i;enablemove;perform iron-cloth.bingwantianzhang}
 /ac {^你所受到的春水罗衫·冰纨天障的效用消失了}{/if {$is_kill==1}{perform iron-cloth.bingwantianzhang;/delay {2}{perform iron-cloth.bingwantianzhang}}}
 /ac {^你停止保护你的丈夫}{baohu tank}
-/al ki {set target %0;buff;/delay {4.2}{kill %0}}
+/al ki {set target %0;buff;/delay {4.2}{wim;kill %0}}
 /nop al ki {set target %0;buff;enforce 70;/delay {2.6}{buff;kill %0}}
+/var ok_j 1
+/var ok_jj 1
+/al init {/var ok_j 1;/var ok_jj 1;}
+/al busy_j {/if {$ok_j==1}{perform dodge.yexuechuji}{
+                /if {$ok_jj==1}{wianqi;perform tanzhijinghun}
+                }
+            }
+/ac {^你的身影忽然变得朦胧}{/var ok_j 0;/delay {18}{/var ok_j 1;}}
+/ac {^你身影如旋风般舞动}{/var ok_jj 0;/delay {18}{/var ok_jj 1;}}
+/ac {^你双袖一扬}{/if {$npc_busy==1}{/var npc_busy 0};/ticker {kill} {busy_j} {6.2};}
 /nop al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}}
 /nop kkk {j;/delay {7}{unwi all;wi piece;perform tanzhijinghun;unwi piece;wi jade;wi short sword}}
-/al kkk {j;/delay {8}{perform tanzhijinghun}}
-/al startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {18.5}}
-/al stopk {movenone;/unticker {kill};nokill}
+/al kkk {j;/delay {8}{wianqi;perform tanzhijinghun}}
+/nop startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {18.5}}
+/al startk {iskill;busy_j;/ticker {kill} {busy_j} {6.2}}
+/al stopk {init;movenone;/unticker {kill};nokill}
 /al pausek {
-    /al kkk {;};
-    /delay {8}{
-    /nop al kkk {j;k;/delay {6.2}{jj};/delay {8.3}{k};/delay {15.5}{perform dodge.chunxin}};
-    /al kkk {j;/delay {7}{perform tanzhijinghun;}}
-    }
+    /unticker kill;
+    de8 startk;
     }
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
@@ -50,10 +57,28 @@
 /ac {^『弹指惊魂』只能对战}{/if {$is_kill==1}{stopk;tcks}}
 /ac {^『漫天花雨』只能对战斗}{/if {$is_kill==1}{stopk;tcks}}
 /ac {^雪里春信只能在战斗}{/if {$is_kill==1}{stopk;tcks}}
-/ac {^你所选用的武功中没有这种必杀技。}{get piece;gb 100 piece;wim}
-/ac {^你双袖一扬}{/if {$npc_busy==1}{/var npc_busy 0}}
-/nop busy_p {/if {$is_kill==1 && $npc_busy==1}{unwi all;wi piece;perform mantianhuayu;unwi piece;wi jade;wi short sword}}
+/ac {^你所选用的武功中没有这种必杀技。}{get needle;get piece;gb 100 piece;wim}
 /al busy_p {/if {$is_kill==1 && $npc_busy==1}{perform mantianhuayu}}
+/al wim {unwi all;wi needle;wi short sword}
+/al sha_shen {
+    /al wim {unwi all;wi jade;wi short sword};
+   /if {$ok_zx==1}{
+    /al busy_p {/if {$is_kill==1 && $npc_busy==1}{unwi all;perform zhaixin;wi jade;wi short sword}}
+    }{
+    unwi needle;wi jade;
+    }
+}
+/al sha_xue {
+    /al wim {unwi all;wi needle;wi short sword};
+    /al busy_p {/if {$is_kill==1 && $npc_busy==1}{perform mantianhuayu}}
+}
+/var ok_zx 1;
+/ac {^你还需要等待%1分钟左右才能再次使用摘心式。}{
+  /var ok_zx 0;
+  /var zx_wait %1;  
+  /math zx_wait {$zx_wait*60};
+  /delay {$zx_wait}{/var ok_zx 1};
+}
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
@@ -62,6 +87,7 @@
 /read comm/status.sc
 /read comm/autorecover.sc
 /read comm/combat_busy.sc
+/read comm/combat_wuqi.sc
 /read comm/debuff.sc
 /read comm/tianji.sc
 /nop read hb.tin
@@ -126,7 +152,7 @@
 /var helper dance;
 /var healer_1 dance;
 /nop  t { /if {"$team_header" == "$myname"}{ whisper $teamer_1 EX%0; /var EX %0; /replace {EX}{,}{;}; /delay {0.4}{whisper $teamer_2 EX%0}; /delay {1.2}{$EX} }{/showme you not leader}}
-/al do_corpse {wim;j;de4 {/if {$is_kill==1}{j}};de6 {/if {$is_kill==1}{jj}}}
+/al do_corpse {wim;busy_j;de4 {/if {$is_kill==1}{busy_j}};de6 {/if {$is_kill==1}{busy_j;kk}}}
 /ac {死了。}{
     look corpse;de2 {get baoxiang;x baoxiang};
     do_corpse;

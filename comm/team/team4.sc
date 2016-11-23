@@ -18,7 +18,8 @@
         /math is_together {$is_together + 1};
     }
 }
-/ac {在你的耳边悄声说道：team_at?}{buff}
+/nop ac {在你的耳边悄声说道：team_at?}{buff}
+/ac {在你的耳边悄声说道：team_at?}{ok}
 /al ttk {
     whisper $teamer_1 KKK%0;
     /delay {0.5}{whisper $teamer_2 KKK%0};
@@ -27,7 +28,7 @@
 }
 /ac {你的耳边悄声说道：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
 /ac {告诉你：EX%0} {/var EX %0; /replace {EX}{,}{;};$EX}
-/ac {你的耳边悄声说道：KKK%0}{ki %0}
+/ac {你的耳边悄声说道：KKK%0}{de02 {ki %0}}
 
 /al tth {tell $team_header EX%0}
 /al tta {tell $teamer_1 EX%0}
@@ -39,6 +40,12 @@
 /al wwa {whisper $teamer_1 EX%0}
 /al wwb {whisper $teamer_2 EX%0}
 /al wwc {whisper $teamer_3 EX%0}
+/al hha {hh $teamer_1}
+/al hhb {hh $teamer_2}
+/al hhc {hh $teamer_3}
+/al hhha {hhh $teamer_1}
+/al hhhb {hhh $teamer_2}
+/al hhhc {hhh $teamer_3}
 
 /al t {
     /if {"$team_header" == "$myname"}{
@@ -133,7 +140,7 @@
     }
 /al tk {
 /var npc %0;
-buff;
+/nop buff;
 tat;
 }
 /al tcks {

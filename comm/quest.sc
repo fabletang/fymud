@@ -415,16 +415,17 @@ de4 {/showme dq-%1};
     de4 {ask jian about 指望};
     de5 {ask jian about 指望};
     de6 {ask jian about 失了踪影};
-    de7 {getbat};
+    de7 getbat;
     de9 {put fried meat in desk};
     de10 {get paper bag from desk};
     de11 {get meat from desk};
     de12 {pl {w;w;w;nu;nu;l paper bag;give paper bag to jian};pr};
 }
 /al askjian2 {
-    {ask jian about 月神};
+    ask jian about 月神;
     de1 {ask jian about 月神};
     de2 {ask jian about 月神};
     de3 {pl {sd;sd;e;e;e;ask xue about 月神};pr};
+    de5 {ask xue about 月神};
 }    
 /al getbat {pl {sd;sd;e;l 走廊;l 爪印;l 痕迹;e;n;l 走廊;l 白骨;s;e;l desk};pr}   

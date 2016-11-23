@@ -3,7 +3,8 @@
 /nop session $myname 117.135.143.81 6666
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname china.fengyun.com 6000
-/session $myname main.fengyun6666.com 6666
+/nop session $myname main.fengyun6666.com 6666
+/session $myname 121.40.128.202 6666
 /nop session $myname fy.hbisp.com 3333
 /al tchat {/ticker {checkchat}{/if {$is_kill==0 && $is_walk==0}{checkchat}}{120}}
 /al ntchat {/unticker {checkchat}}
@@ -16,26 +17,23 @@
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /al jd {th jd $myname}
-/al buff {baohu shine;wim;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
+/al buff {i;baohu qinghui;bf1;/delay {4.1}{bf2;bf3;bf4;bf5;bf6;bf7;bf8}}
 /nop al kkk {bf2;bf4;ak1;jjk;jk}
-/al kkk {bf2;bf4;wkxl}
-/al kkk {checkbuff;bf2;k;}
-/al kkk {checkbuff;bf2;perform leidianjiaohong with qinghui;}
-/al kkk {bf2;checkbuff;}
-/ac {^你停止保护你的妻子}{baohu shine}
-/al ki {set target %0;wim;buff;/delay {4.1}{kill %0}}
+/nop al kkk {bf2;bf4;wkxl}
+/nop al kkk {checkbuff;bf2;k;}
+/nop al kkk {checkbuff;bf2;perform leidianjiaohong with qinghui;}
+/al kkk {bf2;/if {$busy_self==0}{checkbuff;wkxl}}
+/ac {^你停止保护你的妻子}{baohu qinghui}
+/al ki {set target %0;buff;/delay {4.1}{wim;kill %0}}
 /nop al ak1 {ps}
 /nop al ak1 {}
-/al initk {
-    /al ak1 {zd};
-}
 /nop ac {^『红藕香残』、『七星伴月』和『连天衰草』每２０秒钟只能使用一次（还需等待%1秒）}{
 /nop al ak1 {/showme wait %1 s 用暗器};
 /nop delay {%1}{/showme ======计时结束===== ;initk};
 /nop }
 /al startk {wim;initk;nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}}
 /al stopk {initk;/unticker {kill};nokill}
-/al busy_p {/if {$is_kill==1}{perform leidianjiaohong with qinghui;perform leidianjiaohong}}
+/al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform leidianjiaohong with qinghui;qxby;/if {$busy_self==0}{wiblade;perform leidianjiaohong}}}
 /nop {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0！今日不是你死就是我活！} {wim;iskill;startk}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
@@ -46,7 +44,7 @@
 /ac {^『风漏飞烟』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『连天衰草』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『阴陵扣命』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
-/ac {^『无空漩流』只能对战斗}{stopk;cks}
+/ac {^『无空漩流』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『红藕香残』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^『七星伴月』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^你的法力太低}{hp}
@@ -56,7 +54,6 @@
 /nop ac {^( 你已经陷入半昏迷状态，神智全失}{hh;/delay {1}{hh};/delay {3}{hh;hp}}
 /ac {^你所选用的武功中没有这种必杀技。}{unwi all;get blade;get jade;wim}
 
-/read comm/moonbuff.sc
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
@@ -64,14 +61,16 @@
 /read comm/team/team4.sc
 /read comm/status.sc
 /read comm/combat_busy.sc
+/read comm/combat_wuqi.sc
 /nop read hb.tin
 /read comm/debuff.sc
 /read comm/tianji.sc
+/read comm/moonbuff.sc
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
 /al hxdazuo {exercise 300;hh;/delay {2.1}{dazuo}}
 /al hx {get matong from bag; drink matong; put matong in bag}
-/al hh {/if {$is_kill==0 && $ is_walk==0}{gb skin;drink skin;pp}}
+/al hh {/if {$is_kill==0 && $is_walk==0}{gb skin;drink skin;pp skin}}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al getitem {
     pick needle;
@@ -98,8 +97,8 @@
 /var helper dance;
 /var healer_1 dance;
 /unac {^三仙碑};
-/al wim {wi jade;wi short sword}
-/al do_corpse {wim;k;de4 {/if {$is_kill==1}{k}}}
+/nop al busy_ag {wkxl}
+/al do_corpse {wkxl}
 /ac {死了。}{
     look corpse;de2 {get baoxiang;x baoxiang};
     do_corpse;

@@ -64,7 +64,7 @@
 /ac {^“啪”的一声一些白银}{get silver}
 /ac {^这里的茅草(grass)很密，但你似乎可以拨开(pushaside)它们。}{pushaside grass}
 /ac {茅草(grass)似乎更密更厚}{look grass}
-/ac {^【闲聊】天机老人(Tian ji)：风起云涌}{/if {$is_walk ==0 }{uptime_do;uptimedo l}}
+/ac {^【闲聊】天机老人(Tian ji)：风起云涌}{/if {$is_walk ==0 }{uptime_do;uptimedo ok}}
 /al uptimedo {/al uptime_do %0}
 /nop 恢复内力需要 orb
 /nop al hn {recover force}
@@ -204,7 +204,7 @@
 /al buybag {d;w;w;n;buy small bag from xuer; /delay {3}{s;e;e;;u}}
 /nop eatall {eat mantou;get beef meat from small bag;get wineskin from small bag;eat beef meat; /delay {3}{drink hulu;drink wineskin}; /delay {6}{put beef meat in small bag;put wineskin in small bag}}
 /al eatall {
-/if {$can_eat==1}{gb meat;gb skin;drink skin;/delay {2.8}{eat meat;pp meat;pp wineskin}}
+/if {$can_eat==1}{gb skin;drink skin;pp skin;/delay {2.8}{gb beef meat;eat beef meat;pp meat}}
 }
 /nop al eatall {get xigua from small bag;eat xigua;put xigua in small bag}
 /nop 香灵
@@ -359,9 +359,9 @@
 }
 /ac {^丁干死了。}{
     getshuijing;
-    /delay {2}{getshuijing;xb water chestnut;xb dagger};
-    /delay {6}{getshuijing;xb water chestnut;xb dagger};
-    /delay {9}{getshuijing;xb water chestnut;xb dagger};
+    /nop delay {2}{getshuijing;xb water chestnut;xb dagger};
+    /nop delay {6}{getshuijing;xb water chestnut;xb dagger};
+    /nop delay {9}{getshuijing;xb water chestnut;xb dagger};
 }{3}
 /ac {^西门玉死了。}{
     getshuijing;

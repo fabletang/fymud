@@ -510,9 +510,12 @@
 /al fy2farmer {fy2wdz;de2 {/4 s;e;ask old farmer about 难题;nwlk}}
 /nop 武当
 /nop al fy2wd {fye;de1 {unwi all;/7 s};de2 {/2 s;/5 su;enter;nwlk}}
-/al fy2wd {fy2wdz;de2 {unwi all;/5 s};de3 {/5 su;enter;nwlk}}
-/al wd2fy {wlk;out;/5 nd;de1 {/5 n};de2 {wdz2fy}}
-/al fy2wd2 {fy2wd;de4 {wlk;ne;s;s;s;s;su;su;su;su;nwlk}}
+/nop al fy2wd {fy2wdz;de2 {unwi all;/5 s};de3 {/5 su;enter;nwlk}}
+/al fy2wd {fy2wdz;de2 {pl {unwi all;s;s;s;s;s;su;su;su;su;su;enter;nwlk};pr}}
+/nop al wd2fy {wlk;out;/5 nd;de1 {/5 n};de2 {wdz2fy}}
+/al wd2fy {pl {wlk;out;nd;nd;nd;nd;nd;n;n;n;n;n;wdz2fy};pr}
+/al fy2wd2 {fy2wd;de4 {pl {wlk;ne;s;s;s;s;su;su;su;su;nwlk};pr}}
+/al wd2fy2 {pl {wlk;nd;nd;nd;nd;n;n;n;n;sw;wd2fy};pr}
 /nop old shandong
 /al fy2shandong {fy2wdz;de2 {s;s;s;se;e;nwlk}}
 /al shandong2fy {nwlk;w;nw;n;n;n;wdz2fy}
@@ -910,6 +913,9 @@
 /nop 嵩山
 /al fy2sl {fyw;de1 {wlk;do w,nw,ne,nw,nu,nu,nu;nwlk}}
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
+/nop 天枫14郎
+/al fy2tf14 {fyw;de2 {wlk;w;nw;ne;e;se;n;nwlk}}
+/al tf142fy {pl {wlk;s;nw;w;sw;se;e;fyw-};pr}
 /nop al sl2fy {wlk;do d,sd,sd,sd,se,sw,se,e;de1 {fyw-}}
 /al sl2fy {pl {wlk;d;sd;sd;sd;se;sw;se;e;fyw-};pr}
 /nop sl 方丈南院
@@ -1318,11 +1324,11 @@ wlk;
 /al fyfang {wlk;d;/4 w;s;s;w;open picture;wd;open door;n;nwlk}
 /al fangfy {wlk;s;open door;eu;e;n;n;/4 e;u;nwlk}
 
-/al fy2mx {mx2fy-;fy2mx+;fye;de2 {pl {e;e;n;e;eu;eu;eu};pr}}
+/al fy2mx {mx2fy-;fy2mx+;fye;de2 {pl {wlk;e;e;n;e;eu;n;nu;eu;n;nu;eu;nwlk};pr}}
 /al fy2mx+ {
     wlk;
     /ac {^你在狭窄的山缝}{/al act_1 {de4 {act_1}}};
-    /ac {云雾弥漫，北面的雾气似乎在轻轻流动}{n;nu; /ticker {try}{wd;eu}{2}};
+    /ac {云雾弥漫，北面的雾气似乎在轻轻流动}{n;nu; /ticker {try}{wd;de1 eu}{3}};
     /ac {^    这里明显的出口是 westup 和 southdown。}{fy2mx-}{3};
     /ac {^云海孤舟}{ de1 {eu;wd};};
     /ac {^黄树林}{fy2mx-;de4 {wd;nu;}};
@@ -1504,6 +1510,7 @@ wlk;
    xslup+;
     /ac {^两界碑}{e};
     /ac {^雷打石}{e};
+    /ac {^良久之后，耳中的鸣声}{de1 l};
     /ac {^雪中阁}{w};
     /ac {^相思岭}{/al xslin_do {n;get bag;l};/ticker {xslin_go}{xslin_do}{1}};
     /ac {^凝露池}{/al xslin_do {s;get bag;climb vine;look}};
@@ -1514,6 +1521,7 @@ wlk;
     xslup-;
     /unac {^两界碑};
     /unac {^雷打石};
+    /unac {^良久之后，耳中的鸣声};
     /unac {^雪中阁};
     /unac {^相思岭};
     /unticker {xslin_go};
@@ -1961,6 +1969,8 @@ nwlk;
 /nop tgs 塔公寺
 /al tgs2bc {pl {wlk;nu;n;e;ne;ne;ne;nd;e;e;n;n;w;w;w;w;nw;nwlk};pr}
 /al bc2tgs {pl {wlk;se;e;e;e;e;s;s;w;w;su;sw;sw;sw;w;s;sd;nwlk};pr}
+/al fy2tgs {fy2bc;de14 bc2tgs}
+/al tgs2fy {tgs2bc;de2 bc2fy}
 /nop jqin2 临时的path
 /al jqin2 {wlk;d;/2 e;/2 n;e;/delay {0.5}{n;/5 e;n;/3 e;nwlk}}
 /al jqout2 {wlk;/5 w;s;/5 w;/delay {0.5}{s;w;/2 s;/2 w;u;nwlk}}
