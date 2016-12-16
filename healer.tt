@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname curer
+/var myname healer
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname 117.135.143.81 6666
@@ -13,7 +13,7 @@
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read curer.tt}
+/al reload {/read healer.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{monk}{280};hp}
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{monk}{280};hp}

@@ -1,5 +1,5 @@
 #config {TINTIN CHAR} /
-/var myname dance
+/var myname lover
 /var myname_cn 舞
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
@@ -11,7 +11,7 @@
 /al ntchat {/unticker {checkchat}}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
-/al reload {/read dance.tt}
+/al reload {/read lover.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};hp}
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};hp}
@@ -23,7 +23,7 @@
 /ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /nop  enablemove {enable move anxiang-steps}
-/al enablemove {enable move cloud-dance}
+/al enablemove {enable move cloud-lover}
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /nop al buff {wwa exert jingyingchangkong $myname;enablemove;perform iron-cloth.bingwantianzhang}
@@ -146,15 +146,15 @@
   retrieve 1272;
   wear all
  }
-/var team_header dance;
+/var team_header lover;
 /var team_header_cn {舞};
 /var teamer_1 mingyue;
 /var teamer_1_cn {明月};
 /var teamer_2 qinghui;
 /var teamer_2_cn {清辉};
 /var teamer_3 none;
-/var helper dance;
-/var healer_1 dance;
+/var helper lover;
+/var healer_1 lover;
 /al do_corpse {wim;busy_j;de4 {/if {$is_kill==1}{busy_j}};de6 {/if {$is_kill==1}{busy_j;kk}}}
 /ac {死了。}{
     de2 {get baoxiang;x baoxiang};

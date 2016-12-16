@@ -7,13 +7,16 @@
 /var is_together 0;
 /al setheader {/var team_header %0}
 /var serial 1;
+/var teamer_1_cn {坦克};
+/var teamer_2_cn {金枪不倒};
+/var teamer_3_cn {锤};
 
 /nop  {你的耳边悄声说道：team_at?}{whisper $team_header yes.$team_header}{1}
 /nop  {你的耳边悄声说道：team_at?}{ok $team_header}{1}
 /nop  {你的耳边悄声说道：yes.}{/math is_together {$is_together + 1}}{1}
 /nop  {爽快地对你说道：“好吧}{/math is_together {$is_together + 1}}{1}
 /ac {^你在%1的耳边悄声说道：team_at?}{
-/var teamer_cn %1;
+    /var teamer_cn %1;
     /if {"$teamer_cn"=="$teamer_3_cn"||"$teamer_cn"=="$teamer_2_cn"||"$teamer_cn"=="$teamer_1_cn"}{
         /math is_together {$is_together + 1};
     }
@@ -50,10 +53,10 @@
 /al t {
     /if {"$team_header" == "$myname"}{
     /var EX look;
-    /var EX %0;
     /nop if {"$EX"==""}{/showme t需要参数;/var EX l};
-    pl {
+    /var EX %0;
     /replace {EX}{,}{;};
+    pl {
     whisper $teamer_1 EX%0;
     whisper $teamer_2 EX%0;
     /if {"$teamer_3"=="none"}{}{whisper $teamer_3 EX%0};
@@ -127,8 +130,7 @@
 }
 /var npc none;
 /ac {^---check team}{
-/math serial {$serial+1};
-/showme {===队员数量: $is_together};
+    /math serial {$serial+1};
     /if {$is_together > 0}{
     pl {
     whisper $teamer_1 KKK$npc;

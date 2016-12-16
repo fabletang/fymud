@@ -9,8 +9,8 @@
 /act {^您的英文名字：} {$myname}
 /al reload {/read tank.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280}}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280}}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{tu;}{280};hp}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{tu}{280};hp}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
@@ -56,7 +56,8 @@
 /al ki {initk;set target %0;buff;/delay {2}{kill %0}}
 /al ki {initk;unwi all;set target %0;buff;/delay {1}{kill %0;zc}}
 /al startk {initk;nwlk;iskill;kkk; /ticker {kill} {kkk} {5}}
-/al startk {initk;nwlk;iskill;wim;k; /ticker {kill} {buff;kkk} {4.4}}
+/al tickk {/ticker {kill} {buff;kkk} {4.4}}
+/al startk {initk;nwlk;iskill;wim;k;tickk}
 /al stopk {initk; /unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;unwi all;perform taunt;startk;/var knpc %0}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk;/var knpc %0}
@@ -67,9 +68,10 @@
 /ac {^『短歌』只能对战斗}{stopk;initk}
 /ac {^『争春』只能对战斗}{/if {$is_kill==1}{stopk;cks}}
 /ac {^( 你似乎十分疲惫，看来需要好好休息了}{thh;/delay {1}{thh}}
+/al zl {perform dodge.zhongliu}
 /ac {^( 你头重脚轻，正在勉力支撑著不倒下去)}{thh;exert qi;/delay {3}{thh;exert qi}}
-/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{juxue $myname;thh;exert qi;/delay {3}{thh;exert qi}}
-/ac {^( 你已经陷入半昏迷状态，神智全失}{juxue $myname;thh}
+/ac {^( 你摇头晃脑、歪歪斜斜，濒于晕倒}{tickk;zl;thh;exert qi;/delay {3}{thh;zl;exert qi};de6 thh}
+/ac {^( 你已经陷入半昏迷状态，神智全失}{tickk;juxue $myname;thh;zl;de4 {thh}}
 /ac {^你所选用的武功中没有这种必杀技。}{unwi all;get jade;wim}
 /read comm/gag.sc
 /read comm/path.sc
@@ -77,6 +79,9 @@
 /read comm/quest.sc
 /read comm/team/team4.sc
 /read comm/status.sc
+/read comm/debuff.sc
+/read comm/tianji.sc
+/read comm/combat_busy.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
@@ -102,6 +107,16 @@
     /gag {^护士的身影};
           /ac {原地没有动过}{duange};
           /ac {天人相助}{/delay {0.3}{initk}}{3};
+          /ac {偏了几寸}{/delay {0.3}{initk}}{3};
+          /ac {你力道尽数落在}{/delay {0.3}{initk}}{3};
+          /ac {枯叶一样在你}{/delay {0.3}{initk}}{3};
+          /ac {将自身护于}{/delay {0.3}{initk}}{3};
+          /ac {向你的}{/delay {0.3}{initk}}{3};
+          /ac {攻向你}{/delay {0.3}{initk}}{3};
+          /ac {^fystatus:kee:}{/delay {0.3}{initk}}{3};
+          /ac {往你的}{/delay {0.3}{initk}}{3};
+          /ac {歪了你的}{/delay {0.3}{initk}}{3};
+          /ac {^但是和}{/delay {0.3}{initk}}{3};
           /ac {不躲不闪}{/delay {0.2}{changmeng}}{3};
           /ac {攻势化于无形}{/delay {0.2}{changmeng}}{3};
           /ac {弈道『得算篇』}{/delay {0.2}{changmeng}}{3};
@@ -162,6 +177,7 @@
                                               /ac {滑}{duange};
                                                   /ac {窜}{duange};
                                                   /ac {身形极速}{/delay {0.2}{duange}}{3};
+                                                  /ac {向后疾退而去}{/delay {0.2}{duange}}{3};
                                                   /ac {往外推出}{/delay {0.2}{changmeng}}{3};
                                                   /ac {滴水不透}{/delay {0.2}{changmeng}}{3};
                                                   /ac {早已绕到你身後}{/delay {0.2}{duange}}{3};
@@ -171,6 +187,16 @@
           /unac {你将内力凝为一线}{de06 {initk}};
 }
 /al dgcm- {
+          /unac {枯叶一样在你};
+          /unac {偏了几寸};
+          /unac {将自身护于};
+          /unac {向你的};
+          /unac {往你的};
+          /unac {攻向你};
+          /unac {^fystatus:kee:};
+          /unac {歪了你的};
+          /unac {^但是和};
+          /unac {你力道尽数落在};
           /unac {你急忙撤肘收招。};
           /unac {你将内力凝为一线};
           /unac {避};
@@ -236,6 +262,7 @@
                                                 /unac {绕到};
                                                   /unac {窜};
                                                   /unac {身形极速};
+                                                  /unac {向后疾退而去};
                                                   /unac {往外推出};
                                                   /unac {滴水不透};
                                                   /unac {早已绕到你身後};
@@ -260,3 +287,4 @@
 /ac {^可惜%1看出了你的身法，向你倏然攻击}{tt busy fails}
 /read comm/autorecover.sc
 /nop al eatall {eat mantou;/delay {3}{drink hulu}}
+/ac {^你招式瞬息万变，有如大海潮生}{tickk}

@@ -15,6 +15,7 @@
 /variable can_eat 1
 /al de0 {/delay {0.5}%1}
 /al de02 {/delay {0.2}%1}
+/al de04 {/delay {0.4}%1}
 /al de05 {/delay {0.5}%1}
 /al de06 {/delay {0.6}%1}
 /al de07 {/delay {0.7}%1}
@@ -377,9 +378,9 @@
 }{3}
 /ac {^–°Œ‰À¿¡À°£}{
     getshuijing;
-    /delay {2}{getshuijing; xb wind sword};
-    /delay {6}{getshuijing; xb wind sword};
-    /delay {8}{getshuijing; xb wind sword};
+    /delay {2}{getshuijing;x wind sword};
+    /delay {6}{getshuijing;x wind sword};
+    /delay {8}{getshuijing;x wind sword};
 }{3}
 /ac {^¬È∑ÊÀ¿¡À°£}{
     getshuijing;

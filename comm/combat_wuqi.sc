@@ -15,3 +15,16 @@
 /ac {^  √清风剑(Jade)}{/var wq_sword 1;/var wq_anqi 0;/var wq_blade 0}
 /ac {^你将手中的%1插入腰间的剑鞘}{/var wq_sword 0;/var wq_anqi 0;/var wq_blade 0}
 /al wisword {/if {$wq_sword==0}{/if {$wq_anqi==1}{unwi needle};enable parry qingfeng-sword;wi jade}}
+
+/nop npc 是否有武器
+/var npcwi 0
+/ac {^  右手提着}{/var npcwi 1}
+/ac {^  右手握着}{/var npcwi 1}
+/ac {^  双手执着}{/var npcwi 1}
+/ac {^  双手握着}{/var npcwi 1}
+/ac {^他双手执着}{/var npcwi 1}
+/ac {^她双手执着}{/var npcwi 1}
+/ac {^他右手握着}{/var npcwi 1}
+/ac {^她右手握着}{/var npcwi 1}
+/ac {^你只觉得手中短歌刀把持不定，脱手飞出！}{tt ==== 武器掉了;}
+/ac {^你忏悔完毕，诚惶诚恐地站起身来}{/showme get 武器}

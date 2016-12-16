@@ -30,7 +30,9 @@
 /nop  startk {wim;initk;nwlk;kkk;/ticker {kill} {kkk} {4.2}}
 /al startk {initk;nwlk;kkk;/ticker {kill} {kkk} {4.2}}
 /nop busy_p {/showme --busy_p--;/if {$is_kill==1 && $npc_busy==1}{perform yuhouchuhong with mingyue;perform yuhouchuhong}}
-/al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform yuhouchuhong with mingyue;qxby;/if {$busy_self==0}{wiblade;perform yuhouchuhong}}}
+/nop al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform yuhouchuhong with mingyue;/if {$busy_self==0}{qxby};/if {$busy_self==0}{wiblade;perform yuhouchuhong}}}
+/al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform yuhouchuhong with mingyue;}}
+/ac {^同伴}{qxby}
 /al stopk {initk;/unticker {kill};nokill}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
 /ac {^『霜华凝结』只能对战斗}{/if {$is_kill==1}{stopk;cks}}

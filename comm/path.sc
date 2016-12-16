@@ -273,8 +273,8 @@
 /al bj2fy {wlk;w;n;/4 w;u;nwlk}
 
 /nop 无名镇
-/al fy2wmz {wlk;d;/4 n;/delay {0.5}{nw;n;ne;n;n;e;e;nwlk}}
-/al wmz2fy {wlk;w;w;s;s;sw;s;se;/delay {0.5}{/4 s;u;nwlk}}
+/al fy2wmz {pl {wlk;d;n;n;n;n;nw;n;ne;n;n;e;e;nwlk};pr}
+/al wmz2fy {pl {wlk;unwi all;w;w;s;s;sw;s;se;s;s;s;s;u;nwlk};pr}
 
 /nop al fyn { wlk;do d,n,n,n,n,nw,n,ne,n,n;nwlk;}
 /al fyn {pl {wlk;d;n;n;n;n;nw;n;ne;n;n;nwlk};pr}
@@ -363,6 +363,98 @@
 /al ss2hm {wlk;sd;push stone;w;w;push door;w;nwlk}
 /al fy2ss {fy2qp;de3 qp2hm;de4 hm2ss}
 /al ss2fy {ss2hm;de1 hm2qp;de2 qp2fy}
+/nop 神水宫
+/al lw2lake {/6 e;n;w;n;lake+;/ticker {search}{search}{0.5};}
+/al lake+ {
+    wlk;
+    /ac {^你在墙壁上摸到了一个象铜灯}{/unticker search;gb lighter;use lighter;keychain};
+    /ac {^你用火摺子点燃了墙壁上的灯。}{e;l stone;ne;push stone;out};
+    /ac {^只听咯吱吱，石头又滑了回来挡上了洞口}{push stone;out};
+    /ac {^洞口}{n;ne;nu;e;e;play kite;keychain};
+    /ac {^突然一阵微风拂过风筝}{;};
+    /ac {^过了半晌，一叶小舟}{d};
+    /ac {^一阵微风拂过，小船荡离了岸边}{sail northeast};
+    /ac {^你抄起船浆轻盈地把小船划向湖的东北方}{dive};
+    /ac {^你站起身来，深吸一口气}{lake-;lake_next};
+}
+/al lake- {
+    nwlk;
+    /unticker search;
+    /unac {^你在墙壁上摸到了一个象铜灯};
+    /unac {^你用火摺子点燃了墙壁上的灯。};
+    /unac {^只听咯吱吱，石头又滑了回来挡上了洞口};
+    /unac {^洞口};
+    /unac {^突然一阵微风拂过风筝};
+    /unac {^一阵微风拂过，小船荡离了岸边};
+    /unac {^过了半晌，一叶小舟};
+    /unac {^你抄起船浆轻盈地把小船划向湖的东北方};
+    /unac {^你站起身来，深吸一口气};
+}
+/al lake2ss+ {
+    /ac {^白水宫门}{enter};
+    /ac {^水池}{u};
+    /ac {^溶洞}{n;touch stone};
+    /ac {^艳洞}{n;faint};
+    /ac {^你左摇右晃}{faint};
+    /ac {^忽然头顶滴下几滴水滴}{de1 {jump up}};
+    /ac {^火岩洞口}{nu;};
+    /ac {^白水殿}{lake2ss-;ss_next};
+} 
+/al lake2ss- {
+    /al lake_next l;
+    /unac {^白水宫门};
+    /unac {^水池};
+    /unac {^溶洞};
+    /unac {^艳洞};
+    /unac {^你左摇右晃};
+    /unac {^忽然头顶滴下几滴水滴};
+    /unac {^火岩洞口};
+    /unac {^白水殿};
+}
+/al ssout {;}
+/al ssout+ {
+    /ac {^白水殿}{sd};
+    /ac {^火岩洞口}{su;s};
+    /ac {^星星小楼}{climb window};
+    /ac {^你跳到窗口，向外看了看}{de02 {climb window}};
+    /ac {^海上}{swim};
+    /ac {^碧蓝海边}{s};
+    /ac {^你终于湿淋淋地爬到了岸上}{de4 l};
+    /ac {^灌木林}{ssout-};
+}
+/al ssout- {
+    /unac {^白水殿};
+    /unac {^火岩洞口};
+    /unac {^星星小楼};
+    /unac {^你跳到窗口，向外看了看};
+    /unac {^海上};
+    /unac {^碧蓝海边};
+    /unac {^灌木林};
+}
+/al ssout++ {
+    /ac {^白水殿}{sd};
+    /ac {^火岩洞口}{d};
+    /ac {^艳洞}{s;search};
+    /ac {^只听一阵绞索的声音，你头上裂开了一个洞}{u};
+    /ac {^你什么都没找到}{de02 search};
+    /ac {^溶洞}{l 珍珠};
+    /ac {^珍珠在石壁上组成各样的字句}{de1 {l 珍珠}};
+    /ac {^你看到石壁上有几粒珍珠}{southeast};
+    /ac {^你向东南方走去}{de1 dive};
+    /ac {^水池}{dive};
+}
+/al ssout-- {
+    /unac {^白水殿};
+    /unac {^艳洞};
+    /unac {^只听一阵绞索的声音，你头上裂开了一个洞};
+    /unac {^你什么都没找到};
+    /unac {^溶洞};
+    /unac {^珍珠在石壁上组成各样的字句};
+    /unac {^你看到石壁上有几粒珍珠};
+    /unac {^你向东南方走去};
+    /unac {^水池};
+}
+
 
 /nop 岱庙坊
 /al qp2dm {pl {wlk;w;n;ne;ne;n;n;nwlk};pr}
@@ -395,11 +487,12 @@
 /al ts2xsq {wlk;/6 u;nu;de1 {/2 eu;e;s;se;/3 e;nwlk}}
 /al xsq2ts {wlk;/3 w;nw;n;n;w;/2 wd;de1 {sd;/6 d;nwlk}}
 /al xsqin {hold vine;/3 s;climb cliff;de2 {climb up}}
+/al xsqdown {hold vine;/3 s}
 /al tsin {tsin+;l}
 /al tsin+ {
     wlk;
     /ac {^红门宫}{/6 u;nu;eu;/2 u};
-    /ac {^十八盘}{/delay {0.1}{u}};
+    /ac {^十八盘}{/delay {0.2}{u}};
     /ac {^南天门}{tsin-};
 }
 /al tsin- {
@@ -431,7 +524,7 @@
 /al qf2sq {qf2sq+;/3 w;/2 wu;/delay {0.5}{/4 nu;climb up};de3 {climb up};de5 {/7 n;knock door}}
 /al qf2sq+ {
     wlk;
-    /ac {^吱的一声，门向里开了}{de2 n;de3 n;de4 {n;n;qf2sq-}};
+    /ac {^吱的一声，门向里开了}{give sqgonggui to fighter;de2 n;de3 n;de4 {n;n;qf2sq-}};
     /ac {^三清宫大院}{/delay {0.5}{qf2sq-}};
     /ac {^上清殿}{qf2sq-};
     /ac {^门是开着的，敲什么}{de1 {n;n;qf2sq-}}
@@ -913,6 +1006,39 @@
 /nop 嵩山
 /al fy2sl {fyw;de1 {wlk;do w,nw,ne,nw,nu,nu,nu;nwlk}}
 /al fy2sl {fyw;de1 {pl {wlk;w;nw;ne;nw;nu;nu;nu;nwlk};pr}}
+/nop 少林殿角楼
+/al sl2djl {pl {u;n;n;n;n};pr}
+/al djl2sl {djl2sl+;l}
+/al djl2sl+ {
+    djldown+;
+    /al djl_next {pl {wlk;s;s;s;s;d;nwlk};pr};
+    /ac {^山门殿角}{djl2sl-};
+}
+/al djl2sl- {
+    djldown-;
+   /al djl_next l;
+   /unac {^山门殿角};
+}
+/al fy2djl {fy2sl;de2 sl2djl}
+/al djl2fy {djl2sl;de3 sl2fy}
+/al djldown+ {
+  wlk;
+  /ac {^殿角楼}{djldown-;djl_next};
+  /ac {^钟楼}{d};
+  /ac {^鼓楼}{d};
+  /ac {^击鼓楼}{d};
+  /ac {^    这里明显的出口是 up 和 west。}{w;w}{4};
+  /ac {^    这里明显的出口是 up、east 和 south。}{e}{4};
+}
+/al djldown- {
+  nwlk;
+  /unac {^    这里明显的出口是 up 和 west。};
+  /unac {^    这里明显的出口是 up、east 和 south。};
+  /unac {^殿角楼};
+  /unac {^钟楼};
+  /unac {^鼓楼};
+  /unac {^击鼓楼};
+}
 /nop 天枫14郎
 /al fy2tf14 {fyw;de2 {wlk;w;nw;ne;e;se;n;nwlk}}
 /al tf142fy {pl {wlk;s;nw;w;sw;se;e;fyw-};pr}
@@ -1155,6 +1281,9 @@ wlk;
 /al cx2lz {pl {wlk;n;nw;ne;nw;nw;ne;n;nd;n;nw;nw;w;w;w};pr}
 /al gw2sj {pl {wlk;w;n;e;e;e;e;e;e;e;e;e;e;nwlk};pr}
 /al sj2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
+/nop 绿洲 black pearl
+/al lz2pearl {e;s}
+/al findtooth {lz2pearl;w;w;l sand}
 
 /nop 关外到太平镇
 /nop al lz2tp {wlk;do n,ne,nw,w,nw,nw,nw,sw;nwlk}
@@ -1225,7 +1354,7 @@ wlk;
 /al wlb2gw {wlb2lz;de3 {lz2gw}}
 /nop xie changqing 
 /al wlbin {pl {wlk;unwield all;n;nw;ne;n;n;nu;u;nwlk};pr}
-/al wlbout {pl {wlk;d;sd;s;s;sw;se;s;nwlk};pr};
+/al wlbout {pl {wlk;d;unwi all;sd;s;s;sw;se;s;nwlk};pr};
 /al lz2wlb {pl {wlk;w;w;w;nw;nw;ne;nw;nw;nw;nw;wd;wu;wd;wu;nw;nw;w;w;n;unwi all;nwlk};pr}
 /al wlb2lz {pl {wlk;s;e;e;se;se;ed;eu;ed;eu;se;se;se;se;sw;se;se;e;e;e;nwlk};pr}
 /al wlb2cx {pl {wlk;s;e;e;se;se;ed;eu;ed;eu;se;se;se;se;sw;se;se;e;e;e;lz2cx};pr}
@@ -1327,12 +1456,13 @@ wlk;
 /al fy2mx {mx2fy-;fy2mx+;fye;de2 {pl {wlk;e;e;n;e;eu;n;nu;eu;n;nu;eu;nwlk};pr}}
 /al fy2mx+ {
     wlk;
-    /ac {^你在狭窄的山缝}{/al act_1 {de4 {act_1}}};
-    /ac {云雾弥漫，北面的雾气似乎在轻轻流动}{n;nu; /ticker {try}{wd;de1 eu}{3}};
+    /var dtime 0.1;
+    /ac {^你在狭窄的山缝}{/var dtime 4.1};
+    /ac {云雾弥漫，北面的雾气似乎在轻轻流动}{n;nu;};
     /ac {^    这里明显的出口是 westup 和 southdown。}{fy2mx-}{3};
-    /ac {^云海孤舟}{ de1 {eu;wd};};
+    /ac {^云海孤舟}{/ticker {try}{eu;de1 wd}{3}};
     /ac {^黄树林}{fy2mx-;de4 {wd;nu;}};
-    /ac {^山道} {/al act_1 {nu;wu}; /unticker {try}}
+    /ac {^山道} {/unticker {try};/delay {$dtime}{nu;/var dtime 0.1;}}
 }
 /al fy2mx- {
     nwlk;
@@ -1347,8 +1477,10 @@ wlk;
 /al mx2fy {fy2mx-;mx2fy+;look}
 /al mx2fy+ {
     wlk;
-    /ac {山道}{sd;de3 {sd;l}};
-    /ac {^    这里明显的出口是 westdown 和 eastup。}{/delay {0.1}{wd};de3 {wd}};
+    /var dtime 0.1;
+    /ac {^你在狭窄的山缝}{/var dtime 4.1};
+    /ac {山道}{sd;de4 {sd;l}};
+    /ac {^    这里明显的出口是 westdown 和 eastup。}{wd;de4 {wd}};
     /ac {^迷茫风雨路}{de1 {wd}};
     /ac {^你努力挤过一处狭窄的山路}{de4 {sd;w}};
     /ac {^    这里明显的出口是 west 和 eastup。}{w};
@@ -1357,6 +1489,7 @@ wlk;
 /al mx2fy- {
     nwlk;
     /unac {山道};
+    /unac {^你在狭窄的山缝};
     /unac {^你努力挤过一处狭窄的山路};
     /unac {^    这里明显的出口是 westdown 和 eastup。};
     /unac {^迷茫风雨路};
@@ -1554,10 +1687,10 @@ xsldd-;
 /unac {^皓月宫};
 /unac {^你的内力过弱，恐怕跳};
 }
-/al bd1  {s;w;s;s;s;w;s;w;s}
-/al bd1  {s;w;s;s;w;s;s;w;s;w;s}
-/al bd1  {enter;s;w;s;s;w;s;s;w;s;}
-/al bd1- {n;e;n;n;e;n;n;e;n;out}
+/al bd1  {pl {enter;s;w;s;s;w;s;s;w;s};pr}
+/al bd1- {pl {n;e;n;n;e;n;n;e;n;out};pr}
+/al bd2- {pl {n;n;e;n;n;w;n;n;w;w};pr}
+/al bd2  {pl {e;e;s;s;e;s;s;w;s;s};pr}
 /al bingdong {bingdong+;/delay {0.2}{l}}
 /al bingdong+ {
 wlk;
@@ -1753,6 +1886,8 @@ nwlk;
 /al fy2langwo {fy2ls;de14 {ls2langwo}}
 /al lsin {pl {wlk;s;se;su;su;su;su;su;se;su;/3 knock door;enter;nwlk};pr}
 /al lsout {pl {wlk;n;out;nd;nw;nd;nd;nd;nd;nd;nw;n};pr}
+/al fy2ls2 {fy2ls;de12 lsin}
+/al ls2fy2 {lsout;de2 ls2fy}
 /nop 虎穴
 /al hx2ls {pl {wlk;out;su;su;sw;sw;su;se;nwlk};pr}
 /al ls2hx {pl {wlk;nw;nd;ne;ne;nd;nd;enter;nwlk};pr}
@@ -1997,8 +2132,9 @@ nwlk;
 /nop lz2tf {wlk;do w,n,n,n,n,e,n;nwlk}
 /nop  tf2lz {wlk;do s,w,s,s,s,e,n,w;nwlk}
 /al  sf2lz {wlk;do s,s,e,n,w;nwlk}
-/al lz2sf {wlk;do w,n,n,n;nwlk}
-/al lz2sf {wlk;w;n;n;n;nwlk}
+/al lz2sf {pl {wlk;w;n;n;n;nwlk};pr}
+/al fy2sf {fy2lz;de10 lz2sf}
+/al sf2fy {sf2sk;de2 sk2fy}
 /nop  lz2gw {pl {wlk;w;w;w;w;w;w;w;w;w;w;w;w;w;s;e;nwlk};pr}
 /al lz2sk {pl {wlk;w;n;n;n;s;s;s;e;e;e;e;e;nwlk};pr}
 /nop al cx2fy {cx2sf;de1 {sf2sk};de2 {sk2fy}}

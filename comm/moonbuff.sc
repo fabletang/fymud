@@ -19,7 +19,7 @@
 /ac {^你身法乍变，脸若冰霜}{/var buff6 1}
 /ac {~^\e[33m你所受到的\e[37m天岚凝舞%1寒雪流岚\e[33m的效用消失}{/var buff6 0;checkbuff}
 /nop al bf7 {exert jingyingchangkong}
-/al bf7 {}
+/al bf7 {;}
 /ac {^你整个人忽然静了}{/var buff7 1}
 /ac {^此人已经受到静影长空的影响}{/var buff7 1}
 /ac {~^\e[33m你所受到的\e[37m冷雪心经%1静影长空\e[33m的效用消失}{/var buff7 0;checkbuff}
@@ -56,7 +56,7 @@
 /al sha_shen {
     /al wim {unwi all;wi jade;wi short sword;};
     /al flfy {/showme ===杀神 停止暗器 flfy};
-    /al wkxl {/showme ===杀神;/if {$wkxl_ok==1 && $busy_self==0}{wianqi;perform wukongxuanliu;perform liantianshuaicao;unwi needle;wi jade}{/showme ==not 无空漩流 }};
+    /al wkxl {/showme ===杀神};
     /al qxby {/if {$df_qxby==0 && $busy_self==0 && $ok_df3==1}{wianqi;perform qixingbanyue;unwi needle;wi jade}};
 }
 /al sha_xue {
@@ -70,7 +70,7 @@
 /ac {^『红藕香残』、『七星伴月』和『连天衰草』每２０秒钟只能使用一次（还需等待%1秒）}{
     /var ok_df3 0;/delay {%1}{/var ok_df3 1};
 }
-/ac {^一袭绿光从}{/var ok_df3 0;/delay {%1}{/var ok_df3 1};}
+/ac {^一袭绿光从}{/var ok_df3 0;/delay {20}{/var ok_df3 1};}
 /ac {^金枪不倒以手中欢喜金刚转点地}{/if {$is_kill==1}{/delay {5}{flfy;wkxl}}}
 /nop  {坦克(Tank)：busy fails}{/if {$is_kill==1}{flfy}}
 /nop {^在缕缕暗香中，%1不禁有些痴迷起来}{/if {$is_kill==1}{/delay {5}{wkxl}}}
@@ -87,19 +87,19 @@
 /ac {^似有暗力牵引，仙人刺众星拱月}{/var df_qxby 1;de10 {/var df_qxby 0}}
 /var ok_qxby 1;
 /ac {^你一扬手，打出星星点点}{/var ok_df3 0;de20 {/var ok_df3 1}}
-/nop ac {^此人已经在极度忙乱中了}{/var flfy_ok 0;/delay {6}{/var flfy_ok 1;wkxl}}
-/nop ac {^此人身形未滞}{/var npc_busy 0;/all {/showme ===avoid_busy:$npc_cn}}
-/ac {^此人身形未滞}{/var npc_busy 0;}
 /ac {^===avoid_busy:}{flfy}
+/ac {说道：===avoid_busy:}{flfy}
 /ac {^你还需等待%1秒钟才能再次施出『无空漩流』}{/var wkxl_ok 0;/delay {%1}{/var wkxl_ok 1}}
 /ac {^只听你一声清喝，向后疾退三尺}{/var flfy_ok 0;/delay {20}{/var flfy_ok 1};
-                                    /var busy_self 1;/delay {4}{/var busy_self 0}
+                                    /var busy_self 1;/delay {4}{/var busy_self 0};
+                                    /ticker {kill} {kkk} {4.2}
                                     }
 /ac {^你还需等待%1秒钟才能再次施出『风漏飞烟』}{/var flfy_ok 0;/delay {%1}{/var flfy_ok 1}}
 /ac {^天岚凝舞%1霜天雪舞	%2 sec}{/var buff2 1;/showme bf2===;
                                         /delay {%2}{/if {$is_kill ==1}{bf2}};
                                         }
 /ac {^你所受到的天岚凝舞%1霜天雪舞的效用消失了。}{ /if {$is_kill ==1}{bf2};}
-/ac {^你手中%1慢慢地挥出}{/var busy_self 1;/showme ==busy_self:$busy_self;de4 {/var busy_self 0}}
-/ac {^你手中的%1突然泛起}{/var busy_self 1;/showme ==busy_self:$busy_self;de4 {/var busy_self 0}}
+/ac {^你手中%1慢慢地挥出}{/var busy_self 1;/showme ==busy_self:$busy_self;de4 {/var busy_self 0};/ticker {kill} {kkk} {4.2}}
+/ac {^你手中的%1突然泛起}{/var busy_self 1;/showme ==busy_self:$busy_self;de4 {/var busy_self 0};/ticker {kill} {kkk} {4.2}}
 /ac {^你运力不慎}{/var busy_self 1;/showme ==busy_self:$busy_self;de4 {/var busy_self 0}}
+/ac {说道：---find_busy:%1:}{/var npc_busy 1;de4 {/var npc_busy 0};qxby}

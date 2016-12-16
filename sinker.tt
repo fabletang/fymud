@@ -9,36 +9,39 @@
 /al reload {/read sinker.tt}
 /ac {此英文名字已被使用，请输入此帐号的密码}{Sea123}
 /nop ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};/delay {1}{w;s;aaa horse;ride horse;u;resethb}}
-/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};}
-/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};resethb}
+/ac {^请敲回车键［ＲＥＴＵＲＮ］}{/cr;/ticker {noidle}{lure;}{280};hp}
+/ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};hp}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
 /al enablemove {enable move anxiang-steps}
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /al smch {unwi all;wi spear;perform suomengchanhun;unwi spear;wim}
-/al j {/if {$smch_ok==1 && $npc_unwi==0}{smch}{/showme ==smch==条件不足}}
+/var qxdp_ok 1
+/al qxdp {unwi all;wi spear;perform qixingduopo;unwi spear;wim}
+/ac {^你长啸一声，凌空而起}{/var qxdp_ok 0;/delay {60}{/var qxdp_ok 1};tickk}
+/al fb {perform fanbei}
+/al xj {unwi all;wi jade;perform xuanji}
+/al j {/if {$npcwi==1 && $smch_ok==1 && $npc_unwi==0}{smch}{/showme ==smch==条件不足;jj}}
+/al jj {/if {$qxdp_ok==1}{qxdp}{/showme ==qxdp==条件不足}}
 /al ch {perform canhe}
 /nop al wim {wield icicle;wield blade}
-/al wim {wield jade;wield hammer;wield short sword;}
-/al wim {wi ironfist}
+/al wim {wield jade;wield short sword}
 /al buff {perfom dodge.wuwuwuwo}
-/al ki {set target %0;buff;enforce 90;/delay {2}{kill %0;/var knpc %0}}
-/al ki {init;set target %0;unwi all;wi spear;buff;/delay {1}{kill %0;j;/var knpc %0}}
-/al kkk {j;k}
-/al startk {nwlk;wim;iskill;buff;kkk;/ticker {kill} {kkk} {5}}
-/al startk {nwlk;wim;iskill;k;/ticker {kill} {j;k} {4.5}}
-/al startk {nwlk;wim;iskill;k;/ticker {kill} {j;ch} {4.4}}
+/al ki {l %0;init;set target %0;wim;buff;/delay {2}{kill %0;j;/var knpc %0}}
+/al kkk {j;fb}
+/al tickk {/ticker {kill} {kkk} {4.4}}
+/al startk {nwlk;iskill;kkk;tickk}
 /al stopk {init;/unticker {kill};nokill}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk;/var killlosttime 0;}
-/ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;startk}
+/ac {^你对著%0说道：在下%1，领教壮士的高招！}{l %0;iskill;startk}
 /nop ac {只觉眼前五彩斑斓，似乎有无数只小虫在飞舞。}{/if {$is_kill==1}{/var performherb_ok 1}}
 /al sk {stopk;cks}
 /var smch_ok 1;
 /var npc_unwi 0;
-/ac {^你使出一式『锁梦缠魂』，手中的%1如灵蛇般直咬}{/var smch_ok 0;/delay {60}{/var smch_ok 1};/var npc_unwi 0}
-/ac {^你使出一式『锁梦缠魂』，枪身似灵蛇般缠住}{/var smch_ok 0;/delay {60}{/var smch_ok 1};/var npc_unwi 1}
+/ac {^你使出一式『锁梦缠魂』}{tickk;/var smch_ok 0;/delay {60}{/var smch_ok 1};/var npc_unwi 1}
 /al init {
+/var npcwi 0;
 /var smch_ok 1;
 /var npc_unwi 0;
 }
@@ -60,6 +63,10 @@
 /read comm/team/team4.sc
 /read comm/status.sc
 /read comm/autorecover.sc
+/read comm/debuff.sc
+/read comm/tianji.sc
+/read comm/combat_busy.sc
+/read comm/combat_wuqi.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}

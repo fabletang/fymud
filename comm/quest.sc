@@ -429,3 +429,7 @@ de4 {/showme dq-%1};
     de5 {ask xue about 月神};
 }    
 /al getbat {pl {sd;sd;e;l 走廊;l 爪印;l 痕迹;e;n;l 走廊;l 白骨;s;e;l desk};pr}   
+/al wtym {
+/ac {^身穿黄袍的年青人厉声道：朕受命于天}{reject;ki prince};
+/ac {^你念头飞转，想道：叶孤城剑法卓绝}{leave;de1 leave;de2 leave;de3 leave;de4 leave};
+}

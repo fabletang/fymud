@@ -33,7 +33,9 @@
 /nop }
 /al startk {wim;initk;nwlk;iskill;kkk;/ticker {kill} {kkk} {4.2}}
 /al stopk {initk;/unticker {kill};nokill}
-/al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform leidianjiaohong with qinghui;qxby;/if {$busy_self==0}{wiblade;perform leidianjiaohong}}}
+/nop al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform leidianjiaohong with qinghui;/if {$busy_self==0}{qxby};/if {$busy_self==0}{wiblade;perform leidianjiaohong}}}
+/al busy_p {/if {$is_kill==1 && $npc_busy==1 && $busy_self==0}{/showme --busy_p--;wiblade;perform leidianjiaohong with qinghui;}}
+/ac {^同伴}{qxby}
 /nop {^你对著%0！今日不是你死就是我活！} {iskill;startk;}
 /ac {^你对著%0！今日不是你死就是我活！} {wim;iskill;startk}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kkk;startk}
