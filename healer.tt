@@ -1,5 +1,6 @@
 #config {TINTIN CHAR} /
 /var myname healer
+/var myname_cn 加血
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname 117.135.143.81 6666
@@ -64,6 +65,7 @@
 /read comm/path.sc
 /read comm/normal.sc
 /read comm/team/team4.sc
+/read comm/team/teamb.sc
 /read comm/quest.sc
 /read comm/status.sc
 /read comm/debuff.sc
@@ -98,8 +100,3 @@
 /ac {^泥的水草}{ga 水草;open woodcase;ga woodcase;summonnt qiankun;st shouhuan;st potion}
 /ac {^一条眼露凶光的食人鱼。}{l;de3 {dd woodcase}}
 /nop al eatall {eat mantou;/delay {3}{drink hulu}}
-/var team_header $myname;
-/var teamer_1_cn {坦克};
-/var teamer_2_cn {金枪不倒};
-/var teamer_3_cn {锤};
-/var team_header_cn {治疗};

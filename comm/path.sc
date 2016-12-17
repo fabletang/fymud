@@ -546,6 +546,8 @@
 /nop Ã·»¨âÖ
 /al els2mha {pl {wlk;s;e;nu;nu;su;nu;wu;nu;wu;nwlk};pr}
 /al mha2els {pl {wlk;ed;sd;ed;sd;nd;sd;sd;w;n;nwlk};pr}
+/al fy2mha {fy2els;de13 els2mha}
+/al mha2fy {mha2els;de1 els2fy}
 
 /nop °×ÔÆ×¯
 /al byzplay {gb trumpet;gb drum;play trumpet;play drum;pp drum;pp trumpet}

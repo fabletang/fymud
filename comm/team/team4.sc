@@ -10,6 +10,18 @@
 /var teamer_1_cn {坦克};
 /var teamer_2_cn {金枪不倒};
 /var teamer_3_cn {锤};
+/al readteama {/read comm/team/teama.sc}
+/al tteama {readteama;
+            wwa readteama;
+            wwb readteama;
+            wwc readteama;
+            }
+/al readteamb {/read comm/team/teamb.sc}
+/al tteamb {readteamb;
+            wwa readteamb;
+            wwb readteamb;
+            wwc readteamb;
+            }
 
 /nop  {你的耳边悄声说道：team_at?}{whisper $team_header yes.$team_header}{1}
 /nop  {你的耳边悄声说道：team_at?}{ok $team_header}{1}

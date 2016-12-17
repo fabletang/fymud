@@ -1,16 +1,20 @@
 #config {TINTIN CHAR} /
 /var myname offical 
+/var myname_cn 官
 /var passwd Sea123
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname 117.135.143.81 6666
 /nop session $myname china.fengyun.com 6000
-/session $myname fy.sysfon.com 6000
+/nop session $myname fy.sysfon.com 6000
+/session $myname main.fengyun6666.com 6666
 /read comm/login.sc
 /read comm/normal.sc
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/quest.sc
 /read comm/status.sc
+/read comm/team/team4.sc
+/read comm/team/teamb.sc
 /read comm/autorecover_hc.sc
 /al dian {do unwield all,perform finger.dian,wield blade2,wield blade}
 /read comm/pet.sc
@@ -73,3 +77,5 @@
 /ac {^  小公务员的尸体(Corpse)}{wh}{4}
 /ac {^你轻轻地吹了声口哨。}{/if {$is_kill==1}{de1 {wpet;gongji $target}}}
 /ac {递给你一张怜花宝籍碎页。}{do give duan book,give duan book}
+/al fy2zt fy2ztv
+/al zt2fy ztv2fy

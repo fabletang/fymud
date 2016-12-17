@@ -1,6 +1,6 @@
 #config {TINTIN CHAR} /
 /var myname lover
-/var myname_cn 舞
+/var myname_cn 情人
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname china.fengyun.com 6000
@@ -17,10 +17,7 @@
 /ac {^重新连线完毕。}{/cr;/ticker {noidle}{lure}{280};hp}
 /ac {^#SESSION '%0' DIED.}{/read %0.tt}
 /ac {^#SESSION '%0' ACTIVATED.}{/read %0.tt}
-/ac {^【新手】} {/line log ../mudlog/fy-chat.log}{plain}
-/ac {^【传闻】} {/line log ../mudlog/fy-chat.log}{plain}
-/ac {^【谣言】} {/line log ../mudlog/fy-chat.log}{plain}
-/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo l}{/line log ../chat-$myname.log }{plain}}
+/ac {^【闲聊】%0(%1)}{/var temp1 %0;/if {"$temp1" == "天机老人"}{uptime_do;uptimedo ok}{/line log ../chat-$myname.log }{plain}}
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /nop  enablemove {enable move anxiang-steps}
 /al enablemove {enable move cloud-lover}
@@ -88,12 +85,14 @@
 /read comm/normal.sc
 /read comm/quest.sc
 /read comm/team/team4.sc
+/read comm/team/teamb.sc
 /read comm/status.sc
 /read comm/autorecover.sc
 /read comm/combat_busy.sc
 /read comm/combat_wuqi.sc
 /read comm/debuff.sc
 /read comm/tianji.sc
+/read comm/team/team4.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}

@@ -1,0 +1,10 @@
+/var team_header healer;
+/var team_header_cn {¼ÓÑª};
+/var healer_1 healer;
+/var healer_2 lover;
+/var teamer_1 offical;
+/var teamer_1_cn {¹Ù};
+/var teamer_2 spearman;
+/var teamer_2_cn {Ç¹};
+/var teamer_3 lover;
+/var teamer_3_cn {ÇéÈË};

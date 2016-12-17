@@ -1,5 +1,6 @@
 #config {TINTIN CHAR} /
 /var myname curer
+/var myname_cn жнаф
 /nop session $myname sh.fengyun.com 6666
 /nop session $myname fy.hbisp.com 3333
 /nop session $myname 117.135.143.81 6666
