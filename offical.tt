@@ -15,7 +15,7 @@
 /read comm/status.sc
 /read comm/team/team4.sc
 /read comm/team/teamb.sc
-/read comm/autorecover_hc.sc
+/read comm/autorecover.sc
 /al dian {do unwield all,perform finger.dian,wield blade2,wield blade}
 /read comm/pet.sc
 /var petname xgwy
@@ -42,6 +42,7 @@
 }
 /ac {^你的护卫状态不佳，无法发动『七星斩将陣』}{kill $target;}
 /ac {^『七星斩将阵』只能在战}{sk}
+/ac {^『纵横天下』只能对战}{sk}
 /ac {^『玉环鸳鸯拳』只能对战}{sk}
 /ac {^你需要等待片刻（%1秒）才能再次变幻阵法。}{/delay {%1}{kk}}
 /ac {^你接道：“百鬼夜狂”。}{de1 {perform unarmed.yuhuan}}
@@ -61,11 +62,14 @@
         /undelay {checkbg};
         }
 /al sk {stopk;cks}
-/al buff {perform dodge.san}
+/al buff {wi spear;perform dodge.san}
 /al buff2 {perform dodge.er}
-/al ki {wh;do unwield blade2,wield blade2,wield blade;buff;buff2;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
+/nop al ki {wh;buff;buff2;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
+/al ki {buff;buff2;set target %0;/var target %0;de2 {kill %0;k;startk;}}
 /al pk {performp tianwaifeixian}
 /al startk {/ticker {kill}{pk;wh;do perform spear.likangqunmo,perform dodge.qi}{4.1}}
+/al k {perform zonghengtianxia};
+/al startk {/ticker {kill}{k}{4.2}}
 /ac {^你挥动手中银枪，但见身后护卫移形换位}{de8 kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^小公务员纵身越到了}{pk}

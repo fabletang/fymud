@@ -21,19 +21,23 @@
 /ac {^  帝王谷%0护士(Nurse)}{give nurse silver;tget 30 silver}
 /nop  enablemove {enable move anxiang-steps}
 /al enablemove {enable move cloud-lover}
+/al enablemove {;}
 /al movenone {enable move none}
 /al jd {th jd $myname}
 /nop al buff {wwa exert jingyingchangkong $myname;enablemove;perform iron-cloth.bingwantianzhang}
 /al buff {wwa exert jingyingchangkong $myname;enablemove;perform iron-cloth.yingyueliuhui}
 /ac {^你所受到的春水罗衫·冰纨天障的效用消失了}{/if {$is_kill==1}{perform iron-cloth.bingwantianzhang;/delay {2}{perform iron-cloth.bingwantianzhang}}}
-/ac {^你停止保护你的丈夫}{baohu tank}
-/al ki {set target %0;buff;/delay {4.2}{wim;kill %0}}
+/ac {^你停止保护你的丈夫}{baohu offical}
+/al j {perform dodge.yexuechuji}
+/nop al ki {set target %0;buff;/delay {4.2}{wim;kill %0}}
+/al ki {set target %0;buff;/delay {1}{wim;kill %0}}
 /nop al ki {set target %0;buff;enforce 70;/delay {2.6}{buff;kill %0}}
 /var ok_j 1
 /var ok_jj 1
 /al init {/var ok_j 1;/var ok_jj 1;}
+/nop if {$ok_jj==1}{wianqi;perform tanzhijinghun}
 /al busy_j {/if {$ok_j==1}{perform dodge.yexuechuji}{
-                /if {$ok_jj==1}{wianqi;perform tanzhijinghun}
+                /if {$ok_jj==1}{perform tanzhijinghun;}
                 }
             }
 /ac {^你的身影忽然变得朦胧}{/var ok_j 0;/delay {18}{/var ok_j 1;}}
@@ -44,7 +48,8 @@
 /al kkk {j;/delay {8}{wianqi;perform tanzhijinghun}}
 /nop startk {nwlk;iskill;kkk;/ticker {kill} {kkk} {18.5}}
 /al startk {iskill;busy_j;/ticker {kill} {busy_j} {6.2}}
-/al stopk {init;movenone;/unticker {kill};nokill}
+/nop al stopk {init;movenone;/unticker {kill};nokill}
+/al stopk {init;/unticker {kill};nokill}
 /al pausek {
     /unticker kill;
     de8 startk;
@@ -57,8 +62,9 @@
 /ac {^雪里春信只能在战斗}{/if {$is_kill==1}{stopk;tcks}}
 /ac {^你所选用的武功中没有这种必杀技。}{get needle;wim}
 /al busy_p {/if {$is_kill==1 && $npc_busy==1}{wianqi;perform mantianhuayu}}
-/al busy_p {wisword}
-/al wim {unwi all;wi needle;wi short sword}
+/al busy_p {;}
+/nop al wim {unwi all;wi needle;wi short sword}
+/al wim {unwi all;wi piece;wi short sword}
 /al sha_shen {
     /al wim {unwi all;wi jade;wi short sword};
    /if {$ok_zx==1}{
@@ -92,7 +98,6 @@
 /read comm/combat_wuqi.sc
 /read comm/debuff.sc
 /read comm/tianji.sc
-/read comm/team/team4.sc
 /nop read hb.tin
 /nop log o $myname.log
 /nop ac {^【新手】} {/line log chat-$myname.log}{text}
@@ -108,21 +113,21 @@
 /ac {^( 你头重脚轻，正在勉力支撑)}{pausek;hhh;/delay {1}{hhh;hh};/delay {3}{hhh;hh}}
 /ac {^( 你摇头晃脑、歪歪斜斜}{pausek;hhh;/delay {1}{hhh};/delay {3}{hhh;hh;cks}}
     /ac {^( 你已经陷入半昏迷状态}{pausek;jjj;hhh;/delay {1}{jjj;hhh};/delay {3}{jjj;hhh;hh;cks}}
-/ac {^( 硬气喘嘘嘘}{hh hard;/delay {1}{hh hard}}
-    /ac {^( 硬似乎十分疲惫}{hh hard;/delay {1}{hh hard}}
-        /ac {^( 硬头重脚轻}{pausek;hh hard;/delay {hh hard};/delay {3}{hh hard}}
-            /ac {^( 硬摇头晃脑}{pausek;hhh hard;/delay {1}{hhh hard};/delay {3}{hhh hard}}
-                /ac {^( 硬已经陷入半昏迷状态}{pausek;hhh hard;/delay {1}{hhh hard};/delay {3}{hhh hard}}
-                    /ac {^( 坦克气喘嘘嘘}{hhh tank;/delay {1}{hhh tank}}
-                        /ac {^( 坦克似乎十分疲惫}{hhh tank;/delay {1}{hhh tank}}
-                            /ac {^( 坦克头重脚轻}{pausek;hh tank;/delay {hh tank};/delay {3}{hh tank}}
-                                /ac {^( 坦克摇头晃脑}{pausek;hh tank;/delay {1}{hh tank};/delay {3}{hh tank}}
-                                    /ac {^( 坦克已经陷入半昏迷状态}{pausek;hh tank;/delay {1}{hh tank};/delay {3}{hh tank}}
-                                        /ac {^( 金枪不倒气喘嘘嘘}{hhh gun;/delay {1}{hhh gun}}
-                                            /ac {^( 金枪不倒似乎十分疲惫}{hhh gun;/delay {1}{hhh gun}}
-                                                /ac {^( 金枪不倒头重脚轻}{pausek;hh gun;/delay {hh gun};/delay {3}{hh gun}}
-                                                    /ac {^( 金枪不倒摇头晃脑}{pausek;hh gun;/delay {1}{hh gun};/delay {3}{hh gun}}
-                                                        /ac {^( 金枪不倒已经陷入半昏迷状态}{pausek;hh gun;/delay {1}{hh gun};/delay {3}{hh gun}}
+/ac {^( 加血气喘嘘嘘}{hh healer;/delay {1}{hh healer}}
+    /ac {^( 加血似乎十分疲惫}{hh healer;/delay {1}{hh healer}}
+        /ac {^( 加血头重脚轻}{pausek;hh healer;/delay {hh healer};/delay {3}{hh healer}}
+            /ac {^( 加血摇头晃脑}{pausek;hhh healer;/delay {1}{hhh healer};/delay {3}{hhh healer}}
+                /ac {^( 加血已经陷入半昏迷状态}{pausek;hhh healer;/delay {1}{hhh healer};/delay {3}{hhh healer}}
+                    /ac {^( 官气喘嘘嘘}{hhh offical;/delay {1}{hhh offical}}
+                        /ac {^( 官似乎十分疲惫}{hhh offical;/delay {1}{hhh offical}}
+                            /ac {^( 官头重脚轻}{pausek;hh offical;/delay {hh offical};/delay {3}{hh offical}}
+                                /ac {^( 官摇头晃脑}{pausek;hh offical;/delay {1}{hh offical};/delay {3}{hh offical}}
+                                    /ac {^( 官已经陷入半昏迷状态}{pausek;hh offical;/delay {1}{hh offical};/delay {3}{hh offical}}
+                                        /ac {^( 枪气喘嘘嘘}{hhh spearman;/delay {1}{hhh spearman}}
+                                            /ac {^( 枪似乎十分疲惫}{hhh spearman;/delay {1}{hhh spearman}}
+                                                /ac {^( 枪头重脚轻}{pausek;hh spearman;/delay {hh spearman};/delay {3}{hh spearman}}
+                                                    /ac {^( 枪摇头晃脑}{pausek;hh spearman;/delay {1}{hh spearman};/delay {3}{hh spearman}}
+                                                        /ac {^( 枪已经陷入半昏迷状态}{pausek;hh spearman;/delay {1}{hh spearman};/delay {3}{hh spearman}}
                                                             /ac {^( 明月气喘嘘嘘}{hh mingyue;/delay {1}{hh mingyue}}
                                                                 /ac {^( 明月似乎十分疲惫}{hh mingyue;hhh mingyue;/delay {1}{hh mingyue;hhh mingyue}}
                                                                     /ac {^( 明月头重脚轻}{pausek;hhh mingyue;/delay {hhh mingyue};/delay {3}{hhh mingyue;hh mingyue}}
@@ -145,15 +150,6 @@
   retrieve 1272;
   wear all
  }
-/var team_header lover;
-/var team_header_cn {舞};
-/var teamer_1 mingyue;
-/var teamer_1_cn {明月};
-/var teamer_2 qinghui;
-/var teamer_2_cn {清辉};
-/var teamer_3 none;
-/var helper lover;
-/var healer_1 lover;
 /al do_corpse {wim;busy_j;de4 {/if {$is_kill==1}{busy_j}};de6 {/if {$is_kill==1}{busy_j;kk}}}
 /ac {死了。}{
     de2 {get baoxiang;x baoxiang};
@@ -162,3 +158,4 @@
             }
 /ac {^---busy_npc:random}{/var npc_busy 1;de4 {/var npc_busy 0};}
 /ac {说道：---find_busy:%1:}{/var npc_busy 1;de4 {/var npc_busy 0};}
+/ac {^【%1】%2：===need heal:%3:}{/if {$is_walk==0}{hhh %3}}

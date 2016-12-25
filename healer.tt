@@ -30,11 +30,11 @@
 /al buff {wim}
 /al jj {conjure void_sense}
 /al ki {set target %0;wim;buff;/delay {1}{kill %0;jj}}
-/nop al kkk {unwi all;j;wi spear;/delay {1.2}{jj;unwi all;wi hammer;};/delay {3.1}{k}}
+/nop al ki {set target %0;wim;buff;/delay {1}{kill %0;k}}
 /al kkk {jj;j;k}
 /al ks {jj;j;jk}
 /al kkk1 {jj;k}
-/al kkk1 {jj}
+/al kkk {jj}
 /al pausek {
   /unticker kill;
   de6 {
@@ -42,8 +42,11 @@
   }
 }
 /al startk {buff;nwlk;iskill;wim;jj;kkk;/ticker {kill} {kkk} {4}}
-/al tickk {/ticker {kill} {jj} {4.2}}
+/al k {perform longxianyuye}
+/al busy_p {k}
+/al tickk {/ticker {kill} {jj} {4.4}}
 /al startk {nwlk;iskill;jj;tickk}
+/al startk {tickk}
 /al startks {buff;nwlk;iskill;wim;jj;ks;/ticker {kill} {ks} {4}}
 /al startk1 {nwlk;iskill;wim;jj;kkk1;/ticker {kill} {kkk1} {4}}
 /al stopk {movenone;/unticker {kill};nokill}

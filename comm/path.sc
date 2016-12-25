@@ -1300,7 +1300,7 @@ wlk;
 /al fy2tp {fy2cx;de8 {cx2tp}}
 /nop 怡红小院
 /al yhy2tp {pl {wlk;pull door;e;e;e;e;e;n;n;n;ne;ne;nwlk};pr}
-/al tp2yhy {tp2yhy+;sw;sw;s;s;s;w;w;w;w;knock red door}
+/al tp2yhy {tp2yhy+;sw;sw;s;s;s;w;w;w;w;pull door;knock red door}
 /al tp2yhy+ {
     wlk;
     /ac {^门是开着的}{w};

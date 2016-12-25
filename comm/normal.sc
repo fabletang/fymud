@@ -669,3 +669,4 @@
 /al notlianzhuang {/unticker {lian}}
 /nop get œ…»À¥Ã
 /al getneedle {pl {wlk;d;s;w;u;e;dongfang101;pick needle;out;w;d;e;n;u;nwlk};pr}
+/al learnm {learn %1 from master with %2}
