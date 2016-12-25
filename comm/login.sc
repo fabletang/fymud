@@ -1,5 +1,5 @@
 /format ttfile {%s.tt}{$myname}
-/al reload {/read $ttfile}
+/al reload {/read $ttfile;de1 hp}
 /act {^请选择您使用的内码}{0}
 /act {^您的英文名字：} {$myname}
 /ac {此英文名字已被使用，请输入此帐号的密码}{$passwd}
