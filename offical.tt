@@ -12,10 +12,12 @@
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/quest.sc
+/read comm/tianji.sc
 /read comm/status.sc
 /read comm/team/team4.sc
 /read comm/team/teamb.sc
 /read comm/autorecover.sc
+/read comm/combat_busy.sc
 /al dian {do unwield all,perform finger.dian,wield blade2,wield blade}
 /read comm/pet.sc
 /var petname xgwy
@@ -62,14 +64,16 @@
         /undelay {checkbg};
         }
 /al sk {stopk;cks}
-/al buff {wi spear;perform dodge.san}
+/al buff {wi jade;perform dodge.san}
 /al buff2 {perform dodge.er}
 /nop al ki {wh;buff;buff2;set target %0;/var target %0;de1 {wpet;do gongji %0,kill %0;startk};}
 /al ki {buff;buff2;set target %0;/var target %0;de2 {kill %0;k;startk;}}
 /al pk {performp tianwaifeixian}
-/al startk {/ticker {kill}{pk;wh;do perform spear.likangqunmo,perform dodge.qi}{4.1}}
+/nop al startk {/ticker {kill}{pk;wh;do perform spear.likangqunmo,perform dodge.qi}{4.1}}
+/al busy_p {k;tickk}
+/al tickk {/ticker {kill} {k} {4.3}}
 /al k {perform zonghengtianxia};
-/al startk {/ticker {kill}{k}{4.2}}
+/al startk {wi jade;tickk}
 /ac {^你挥动手中银枪，但见身后护卫移形换位}{de8 kk}
 /ac {^你对著%0！今日不是你死就是我活！} {de2 iskill;}
 /ac {^小公务员纵身越到了}{pk}

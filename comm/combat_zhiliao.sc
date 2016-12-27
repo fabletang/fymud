@@ -1,25 +1,51 @@
-/ac {^( 金枪不倒似乎十分疲惫，看来需要好好休息了}{pausek;hh gun;/delay {2}{hh gun}}
-/ac {^( 金枪不倒头重脚轻，正在勉力支撑}{pausek;hh gun;/delay {2}{hh gun};/delay {4}{hh gun}}
-/ac {^( 金枪不倒摇头晃脑、歪歪斜斜}{pausek;hh gun;/delay {2}{hh gun};/delay {4}{hh gun}}
-/ac {^( 金枪不倒已经陷入半昏迷状态}{pausek;hh gun;/delay {2}{hh gun};/delay {4}{hh gun}}
-/ac {^( 坦克似乎十分疲惫，看来需要好好休息了}{pausek;hh tank;/delay {2}{hh tank}}
-/ac {^( 坦克头重脚轻，正在勉力支撑}{pausek;hh tank;/delay {2}{hh tank};/delay {4}{hh tank}}
-/ac {^( 坦克摇头晃脑、歪歪斜斜}{pausek;hh tank;/delay {2}{hh tank};/delay {4}{hh tank}}
-/ac {^( 坦克已经陷入半昏迷状态}{pausek;hh tank;/delay {2}{hh tank};/delay {4}{hh tank}}
-/ac {^( 锤似乎十分疲惫，看来需要好好休息了}{pausek;hh sinker;/delay {2}{hh sinker}}
-/ac {^( 锤头重脚轻，正在勉力支撑}{pausek;hh sinker;/delay {2}{hh sinker};/delay {4}{hh sinker}}
-/ac {^( 锤摇头晃脑、歪歪斜斜}{pausek;hh sinker;/delay {2}{hh sinker};/delay {4}{hh sinker}}
-/ac {^( 锤已经陷入半昏迷状态}{pausek;hh sinker;/delay {2}{hh sinker};/delay {4}{hh sinker}}
-/ac {^( 清辉似乎十分疲惫，看来需要好好休息了}{pausek;hh qinghui;/delay {2}{hh qinghui}}
-/ac {^( 清辉头重脚轻，正在勉力支撑}{pausek;hh qinghui;/delay {2}{hh qinghui};/delay {4}{hh qinghui}}
-/ac {^( 清辉摇头晃脑、歪歪斜斜}{pausek;hh qinghui;/delay {2}{hh qinghui};/delay {4}{hh qinghui}}
-/ac {^( 清辉已经陷入半昏迷状态}{pausek;hh qinghui;/delay {2}{hh qinghui};/delay {4}{hh qinghui}}
-/ac {^( 明月似乎十分疲惫，看来需要好好休息了}{pausek;hh mingyue;/delay {2}{hh mingyue}}
-/ac {^( 明月头重脚轻，正在勉力支撑}{pausek;hh mingyue;/delay {hh mingyue};/delay {4}{hh mingyue}}
-/ac {^( 明月摇头晃脑、歪歪斜斜}{pausek;hh mingyue;/delay {2}{hh mingyue};/delay {4}{hh mingyue}}
-/ac {^( 明月已经陷入半昏迷状态}{pausek;hh mingyue;/delay {2}{hh mingyue};/delay {4}{hh mingyue}}
-/ac {^( 舞似乎十分疲惫，看来需要好好休息了}{pausek;hh dance;/delay {2}{hh dance}}
-/ac {^( 舞头重脚轻，正在勉力支撑}{pausek;hh dance;/delay {hh dance};/delay {4}{hh dance}}
-/ac {^( 舞摇头晃脑、歪歪斜斜}{pausek;hh dance;/delay {2}{hh dance};/delay {4}{hh dance}}
-/ac {^( 舞已经陷入半昏迷状态}{pausek;hh dance;/delay {2}{hh dance};/delay {4}{hh dance}}
-/ac {^你上一个动作还没有完成，不能打坐}{/delay {4}{hp}}
+/ac {^( %1似乎十分疲惫，看来需要好好休息了}{
+    /var who %1;
+    /if {"$who"=="你"}{pausek;hh;/delay {2}{hh}};
+    /if {"$who"=="$team_header_cn"}{ pausek;hh $team_header;/delay {2}{hh $team_header}};
+    /if {"$who"=="$teamer_5_cn"}{ pausek;hh $teamer_5;/delay {2}{hh $teamer_5}};
+    /if {"$who"=="$teamer_4_cn"}{ pausek;hh $teamer_4;/delay {2}{hh $teamer_4}};
+    /if {"$who"=="$teamer_3_cn"}{ pausek;hh $teamer_3;/delay {2}{hh $teamer_3}};
+    /if {"$who"=="$teamer_2_cn"}{ pausek;hh $teamer_2;/delay {2}{hh $teamer_2}};
+    /if {"$who"=="$teamer_1_cn"}{ pausek;hh $teamer_1;/delay {2}{hh $teamer_1}};
+    }
+/ac {^( %1头重脚轻，正在勉力支撑}{
+    /var who %1;
+    /if {"$who"=="你"}{pausek;hh;/delay {2}{hh}};
+    /if {"$who"=="$team_header_cn"}{ pausek;hh $team_header;/delay {2}{hh $team_header}};
+    /if {"$who"=="$teamer_5_cn"}{ pausek;hh $teamer_5;/delay {2}{hh $teamer_5}};
+    /if {"$who"=="$teamer_4_cn"}{ pausek;hh $teamer_4;/delay {2}{hh $teamer_4}};
+    /if {"$who"=="$teamer_3_cn"}{ pausek;hh $teamer_3;/delay {2}{hh $teamer_3}};
+    /if {"$who"=="$teamer_2_cn"}{ pausek;hh $teamer_2;/delay {2}{hh $teamer_2}};
+    /if {"$who"=="$teamer_1_cn"}{ pausek;hh $teamer_1;/delay {2}{hh $teamer_1}};
+    }
+/ac {^( %1摇头晃脑、歪歪斜斜}{
+    /var who %1;
+    /if {"$who"=="你"}{pausek;hh;/delay {2}{hh};/delay {4}{hh}};
+    /if {"$who"=="$team_header_cn"}{ pausek;hh $team_header;/delay {2}{hh $team_header};/delay {4}{hh $team_header}};
+    /if {"$who"=="$teamer_5_cn"}{ pausek;hh $teamer_5;/delay {2}{hh $teamer_5};/delay {4}{hh $teamer_5}};
+    /if {"$who"=="$teamer_4_cn"}{ pausek;hh $teamer_4;/delay {2}{hh $teamer_4};/delay {4}{hh $teamer_4}};
+    /if {"$who"=="$teamer_3_cn"}{ pausek;hh $teamer_3;/delay {2}{hh $teamer_3};/delay {4}{hh $teamer_3}};
+    /if {"$who"=="$teamer_2_cn"}{ pausek;hh $teamer_2;/delay {2}{hh $teamer_2};/delay {4}{hh $teamer_2}};
+    /if {"$who"=="$teamer_1_cn"}{ pausek;hh $teamer_1;/delay {2}{hh $teamer_1};/delay {4}{hh $teamer_1}};
+    }
+/ac {^( %1摇头晃脑、歪歪斜斜}{
+    /var who %1;
+    /if {"$who"=="你"}{pausek;hh;/delay {2}{hh};/delay {4}{hh}};
+    /if {"$who"=="$team_header_cn"}{ pausek;hh $team_header;/delay {2}{hh $team_header};/delay {4}{hh $team_header}};
+    /if {"$who"=="$teamer_5_cn"}{ pausek;hh $teamer_5;/delay {2}{hh $teamer_5};/delay {4}{hh $teamer_5}};
+    /if {"$who"=="$teamer_4_cn"}{ pausek;hh $teamer_4;/delay {2}{hh $teamer_4};/delay {4}{hh $teamer_4}};
+    /if {"$who"=="$teamer_3_cn"}{ pausek;hh $teamer_3;/delay {2}{hh $teamer_3};/delay {4}{hh $teamer_3}};
+    /if {"$who"=="$teamer_2_cn"}{ pausek;hh $teamer_2;/delay {2}{hh $teamer_2};/delay {4}{hh $teamer_2}};
+    /if {"$who"=="$teamer_1_cn"}{ pausek;hh $teamer_1;/delay {2}{hh $teamer_1};/delay {4}{hh $teamer_1}};
+    }
+/ac {^( %1已经陷入半昏迷状态}{
+    /var who %1;
+    /if {"$who"=="你"}{pausek;hh;/delay {2}{hh};/delay {4}{hh}};
+    /if {"$who"=="$team_header_cn"}{ pausek;hh $team_header;/delay {2}{hh $team_header};/delay {4}{hh $team_header}};
+    /if {"$who"=="$teamer_5_cn"}{ pausek;hh $teamer_5;/delay {2}{hh $teamer_5};/delay {4}{hh $teamer_5}};
+    /if {"$who"=="$teamer_4_cn"}{ pausek;hh $teamer_4;/delay {2}{hh $teamer_4};/delay {4}{hh $teamer_4}};
+    /if {"$who"=="$teamer_3_cn"}{ pausek;hh $teamer_3;/delay {2}{hh $teamer_3};/delay {4}{hh $teamer_3}};
+    /if {"$who"=="$teamer_2_cn"}{ pausek;hh $teamer_2;/delay {2}{hh $teamer_2};/delay {4}{hh $teamer_2}};
+    /if {"$who"=="$teamer_1_cn"}{ pausek;hh $teamer_1;/delay {2}{hh $teamer_1};/delay {4}{hh $teamer_1}};
+    }
+

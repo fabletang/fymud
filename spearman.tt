@@ -29,8 +29,19 @@
 /ac {^对手已经中了你的『金石为开』}{k}
 /al startk {nwlk;akinit;iskill;wim;kkk; /ticker {kill} {kkk} {5}}
 /al k {perform lixuegandan}
-/al startk {nwlk;wi spear;iskill;k;/ticker {kill} {k} {4.3}}
-/al stopk {/unticker {kill};nokill;akinit}
+/al lxgd {perform lixuegandan}
+/ac {^你手中%1斗然旋转}{tickk}
+/var jswk_ok 1
+/al jswk {/if {$jswk_ok==1}{perform jinshiweikai;
+            /delay {2.5}{
+                /if {$jswk_ok==1}{perform jinshiweikai}{lxgd}
+                };
+            }}
+/ac {^你枪锋微微颤动}{/var jswk_ok 0;de8 {/var jswk_ok 1}}
+/al busy_p {jswk;lxgd;tickk}
+/al tickk {/ticker {kill} {jswk;k} {4.5}}
+/al startk {nwlk;wi spear;iskill;jswk;tickk}
+/al stopk {/var jswk_ok 1;/unticker {kill};nokill;akinit}
 /ac {^你对著%0！今日不是你死就是我活！} {iskill;startk; /var killlosttime 0;}
 /ac {^你对著%0说道：在下%1，领教壮士的高招！}{iskill;kk;startk}
 /ac {^『沥血肝胆』只能对战斗}{stopk; /var killlosttime 0;cks}
@@ -52,11 +63,13 @@
 /read comm/gag.sc
 /read comm/path.sc
 /read comm/normal.sc
+/read comm/tianji.sc
 /read comm/team/team4.sc
 /read comm/team/teamb.sc
 /read comm/quest.sc
 /read comm/status.sc
 /read comm/autorecover.sc
+/read comm/combat_busy.sc
 /al hxdazuo {exercise 300;hh; /delay {2.1}{dazuo}}
 /ac {^你的真气不够。}{/if {$is_kill==0 && $is_walk==0}{exercise 500;hn}}
 /al getitem {

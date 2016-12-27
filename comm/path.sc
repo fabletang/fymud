@@ -1079,7 +1079,7 @@
 /al fg2fy {fg2fyw;de1 {fyw-}}
 /al fg2guo {pl {wlk;n;n;n;n;w;nw;nw;sw;nw;sw;nw};pr}
 /al guo2fg {pl {wlk;se;ne;se;ne;se;se;e;s;s;s;s};pr}
-/al fy2guo {fy2fg;de2 {fg2guo}}
+/al fy2guo {fy2fg;de3 {fg2guo}}
 /al guo2fy {guo2fg;de1 {fg2fy}}
 /al fgin {wlk;pl {n;n;n;n;jie gaoshi;drop yaopai;nu;wu;nu;nu;wu;nu;ne;nu;nu;enter;nwlk};pr}
 /al fgout {pl {wlk;out;sd;sd;sw;sd;ed;sd;sd;ed;sd;s;s;s;s;nwlk};pr}
